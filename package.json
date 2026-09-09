@@ -1,0 +1,31 @@
+{
+  "name": "coquetas-catalogo",
+  "version": "1.0.0",
+  "description": "Catálogo web curado de Coquetas Store — San Francisco, estado Zulia.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "datos": "node scripts/build-productos.mjs",
+    "fotos": "node scripts/procesar-fotos.mjs",
+    "logos": "node scripts/preparar-logos.mjs",
+    "fuentes": "node scripts/preparar-fuentes.mjs",
+    "contraste": "node scripts/verificar-contraste.mjs",
+    "qa": "node scripts/qa-datos.mjs && node scripts/qa-sitio.mjs"
+  },
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^5.18.2",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3"
+  },
+  "private": true,
+  "devDependencies": {
+    "axe-core": "^4.13.0",
+    "playwright-core": "^1.63.0"
+  },
+  "engines": {
+    "node": ">=20.3.0"
+  }
+}

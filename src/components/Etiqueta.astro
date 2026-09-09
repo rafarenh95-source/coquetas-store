@@ -1,0 +1,24 @@
+---
+/**
+ * Etiqueta discreta de la tarjeta. Hoy solo se usa para «Uso profesional».
+ *
+ * Contorno ciruela, nunca relleno rosa: el rosa no es color de texto y un chip
+ * rosa sólido convertiría la etiqueta en un reclamo, que es justo lo contrario
+ * de discreto.
+ */
+
+interface Props {
+  class?: string;
+}
+
+const { class: clase = "" } = Astro.props;
+---
+
+<span
+  class:list={[
+    "t-etiqueta inline-flex items-center border border-ciruela/35 px-1 py-[3px] text-ciruela/75",
+    clase,
+  ]}
+>
+  <slot />
+</span>

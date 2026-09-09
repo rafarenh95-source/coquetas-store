@@ -1,0 +1,144 @@
+---
+/**
+ * Pie de página.
+ *
+ * «No saber cuándo llega el pedido» es una de las frenadas de Rebeca (manual §4)
+ * y el punto de contacto de entrega exige «la fecha que se prometió». Por eso el
+ * bloque de cómo comprar dice qué pasa después de escribir, no solo dónde.
+ *
+ * La línea legal sobre la tasa BCV no es adorno: la Ley de Precios Justos obliga
+ * a expresar el precio según la tasa oficial vigente.
+ */
+
+import tienda from "../data/tienda.json";
+import Icono from "./Icono.astro";
+
+const enlaceWhatsapp = tienda.whatsapp ? `https://wa.me/${tienda.whatsapp}` : null;
+
+/* Cuando se cargue la dirección exacta, el enlace apunta a ella. Mientras
+   tanto busca el negocio por nombre y ciudad, que ya deja a la clienta en la
+   zona correcta en vez de en ningún sitio. */
+const consultaMapa = tienda.direccion
+  ? `${tienda.direccion}, ${tienda.ciudad}, ${tienda.estado}, Venezuela`
+  : `${tienda.nombre}, ${tienda.ciudad}, ${tienda.estado}, Venezuela`;
+
+const enlaceMapa =
+  tienda.mapa ??
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consultaMapa)}`;
+
+/* Con coordenadas se puede ofrecer la ruta directa. Es lo que de verdad hace
+   falta en un teléfono: no ver el punto, sino llegar a él. */
+const enlaceRuta = tienda.coordenadas
+  ? `https://www.google.com/maps/dir/?api=1&destination=${tienda.coordenadas.lat},${tienda.coordenadas.lng}`
+  : null;
+
+const pasos = [
+  "Elige lo que quieres del catálogo y anota el tono si lo tiene.",
+  "Escríbenos por WhatsApp con la lista.",
+  "Te confirmamos disponibilidad, el total en bolívares y cuándo lo tienes.",
+];
+---
+
+<footer id="como-comprar" class="mt-12 pb-8">
+  <div class="contenedor">
+    <h2 class="t-h2 text-ciruela">Cómo comprar</h2>
+
+    <ol class="mt-3 grid gap-3 md:grid-cols-3">
+      {
+        pasos.map((paso, i) => (
+          <li class="bg-papel p-3">
+            <p class="t-etiqueta text-purpura">0{i + 1}</p>
+            <p class="t-cuerpo mt-1 text-ciruela/85">{paso}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    {/* ── Dónde estamos · cómo escribirnos ─────────────────────────────── */}
+    <div class="mt-6 grid gap-3 md:grid-cols-2">
+      <div class="flex flex-col bg-papel p-3">
+        <p class="t-etiqueta text-purpura">Dónde estamos</p>
+
+        <address class="mt-2 not-italic">
+          {tienda.direccion && <p class="t-cuerpo text-ciruela">{tienda.direccion}</p>}
+          <p class="t-cuerpo text-ciruela">
+            {tienda.ciudad}, {tienda.estado}.
+          </p>
+        </address>
+
+        {tienda.horario && <p class="t-caption mt-1 text-ciruela/70">{tienda.horario}</p>}
+
+        <div class="mt-3 flex flex-wrap gap-2">
+          <a
+            href={enlaceMapa}
+            target="_blank"
+            rel="noopener"
+            class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 border border-ciruela px-3 text-ciruela transition-colors duration-[var(--paso)] hover:bg-ciruela hover:text-crema"
+          >
+            <Icono nombre="ubicacion" tamano={16} />
+            Ver en el mapa
+          </a>
+
+          {
+            enlaceRuta && (
+              <a
+                href={enlaceRuta}
+                target="_blank"
+                rel="noopener"
+                class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 border border-ciruela/35 px-3 text-ciruela/80 transition-colors duration-[var(--paso)] hover:border-ciruela hover:text-ciruela"
+              >
+                Cómo llegar
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-col bg-papel p-3">
+        <p class="t-etiqueta text-purpura">Escríbenos</p>
+
+        <p class="t-cuerpo mt-2 text-ciruela/85">
+          Mándanos la lista por WhatsApp y te confirmamos todo en el mismo chat.
+        </p>
+        <p class="t-caption mt-1 text-ciruela/70">{tienda.promesa_respuesta}</p>
+
+        <div class="mt-3">
+          {
+            enlaceWhatsapp ? (
+              <a
+                href={enlaceWhatsapp}
+                target="_blank"
+                rel="noopener"
+                class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
+              >
+                <Icono nombre="whatsapp" tamano={17} />
+                Escribir por WhatsApp
+              </a>
+            ) : (
+              <p class="t-caption max-w-[36ch] border border-ciruela/25 p-2 text-ciruela/70">
+                Falta el número de WhatsApp. Se pone una sola vez en el archivo de datos de la
+                tienda y aparece en todo el sitio.
+              </p>
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    <p class="t-cuerpo mt-6 max-w-[62ch] text-ciruela/85">
+      Cada pieza muestra dos precios: el de divisa y el de pagar en bolívares, que tiene un
+      recargo del 35 %. El monto en bolívares se calcula con la tasa oficial del día, así que
+      cambia cuando cambia la tasa.
+    </p>
+
+    <p class="t-legal mt-6 max-w-[70ch] text-ciruela/70">
+      Precios expresados en divisa. El equivalente en bolívares se calcula con la tasa oficial
+      del Banco Central de Venezuela vigente el día de la consulta, y se muestra junto a la
+      fecha de esa tasa. Las existencias pueden variar; se confirman al momento del pedido.
+    </p>
+
+    <p class="t-legal mt-2 text-ciruela/70">
+      © {new Date().getFullYear()} {tienda.nombre}.
+    </p>
+  </div>
+</footer>

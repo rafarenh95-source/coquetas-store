@@ -1,0 +1,133 @@
+---
+/**
+ * Encabezado.
+ *
+ * Fondo crema porque el logo solo puede ir sobre crema o papel (manual §5).
+ *
+ * Los tres accesos que resuelven algo van aquí arriba: ir a la tienda, pedir por
+ * WhatsApp y ver la bolsa. En móvil son iconos para que quepan junto al lockup
+ * completo — el manual pide 180 px de mínimo para el horizontal, y con texto en
+ * los botones no cabrían.
+ *
+ * Por debajo de 360 px ni siquiera caben los tres iconos, así que el del mapa se
+ * retira: es el único de los tres que también vive en el pie, con su botón de
+ * ruta al lado. Sin esto, el navegador ensancha el viewport para que quepa el
+ * encabezado y la página entera se ve encogida.
+ */
+
+import Logo from "./Logo.astro";
+import Icono from "./Icono.astro";
+import tienda from "../data/tienda.json";
+
+const enlaces = [
+  { texto: "Catálogo", href: "/#catalogo" },
+  { texto: "Cómo comprar", href: "/#como-comprar" },
+];
+
+const consultaMapa = tienda.direccion
+  ? `${tienda.direccion}, ${tienda.ciudad}, ${tienda.estado}, Venezuela`
+  : `${tienda.nombre}, ${tienda.ciudad}, ${tienda.estado}, Venezuela`;
+
+const enlaceMapa =
+  tienda.mapa ??
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consultaMapa)}`;
+
+const enlaceWhatsapp = tienda.whatsapp
+  ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(
+      "Hola Coquetas Store, quiero hacer un pedido."
+    )}`
+  : null;
+
+/* Sin utilidad de display: la pone cada acción, para que ocultar una no
+   dependa del orden en que Tailwind escriba las clases. */
+const accion =
+  "presionable min-h-[44px] items-center justify-center gap-1 transition-colors duration-[var(--paso)]";
+---
+
+<header class="bg-crema">
+  <div class="contenedor flex items-center justify-between gap-2 py-2 md:py-3">
+    <a href="/" class="shrink-0" aria-label={`${tienda.nombre} — inicio`}>
+      <span class="md:hidden">
+        <Logo version="horizontal" ancho={180} />
+      </span>
+      <span class="hidden md:block">
+        <Logo version="horizontal" ancho={220} />
+      </span>
+    </a>
+
+    <nav aria-label="Principal" class="flex items-center gap-1 md:gap-2">
+      <ul class="hidden items-center gap-3 lg:flex">
+        {
+          enlaces.map((e) => (
+            <li>
+              <a
+                href={e.href}
+                class={`${accion} inline-flex t-etiqueta px-1 text-ciruela/70 hover:text-ciruela`}
+              >
+                {e.texto}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      {/* Ir a la tienda */}
+      <a
+        href={enlaceMapa}
+        target="_blank"
+        rel="noopener"
+        aria-label="Ver la tienda en el mapa"
+        class={`${accion} hidden w-[40px] border border-ciruela/25 text-ciruela/75 min-[360px]:inline-flex hover:border-ciruela hover:text-ciruela md:w-auto md:px-2`}
+        data-accion-mapa
+      >
+        <Icono nombre="ubicacion" tamano={19} />
+        <span class="t-etiqueta hidden md:inline">Tienda</span>
+      </a>
+
+      {/* Pedir por WhatsApp */}
+      {
+        enlaceWhatsapp && (
+          <a
+            href={enlaceWhatsapp}
+            target="_blank"
+            rel="noopener"
+            aria-label="Pedir por WhatsApp"
+            data-wa-referencia
+            class={`${accion} inline-flex w-[40px] bg-magenta text-crema hover:bg-purpura md:w-auto md:px-2`}
+          >
+            <Icono nombre="whatsapp" tamano={19} />
+            <span class="t-etiqueta hidden md:inline">Pedir</span>
+          </a>
+        )
+      }
+
+      <button
+        type="button"
+        data-bolsa-abrir
+        aria-label="La bolsa está vacía"
+        class={`${accion} relative inline-flex w-[40px] border border-ciruela/25 text-ciruela hover:border-ciruela hover:text-purpura md:w-auto md:px-2`}
+      >
+        <span class="t-etiqueta hidden md:inline">Bolsa</span>
+        <svg
+          viewBox="0 0 20 20"
+          width="19"
+          height="19"
+          aria-hidden="true"
+          fill="none"
+          class="md:hidden"
+        >
+          <path
+            d="M4 6.5h12l-1 10.5H5L4 6.5Zm3 0V5a3 3 0 0 1 6 0v1.5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linejoin="round"></path>
+        </svg>
+        <span
+          data-bolsa-cuenta
+          class="t-etiqueta absolute -top-[2px] -right-[2px] hidden min-w-[18px] rounded-full bg-magenta px-[4px] py-[1px] text-center text-[10px] text-crema tabular-nums md:static md:min-w-[20px] md:rounded-full md:px-1 md:py-[2px] md:text-[12px]"
+          >0</span
+        >
+      </button>
+    </nav>
+  </div>
+</header>

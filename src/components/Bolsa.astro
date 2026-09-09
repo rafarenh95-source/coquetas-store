@@ -1,0 +1,121 @@
+---
+/**
+ * Panel de la bolsa.
+ *
+ * Se arrastra para cerrarlo. La posición la lleva JavaScript con un resorte, no
+ * una transición CSS: una transición tiene duración y destino fijos, así que no
+ * se puede agarrar a medio camino ni devolver. Aquí sí — se puede empujar,
+ * soltar, volver a agarrar mientras vuelve, y el movimiento nunca da un salto
+ * porque siempre arranca del valor que hay en pantalla.
+ *
+ * `touch-action: pan-y` deja el desplazamiento vertical al navegador y reserva
+ * el horizontal para el gesto de cerrar.
+ */
+
+import tienda from "../data/tienda.json";
+import Icono from "./Icono.astro";
+---
+
+<div
+  data-bolsa-panel
+  inert
+  class="pointer-events-none fixed inset-0 z-50 overflow-hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Tu bolsa"
+>
+  <div data-bolsa-fondo class="pointer-events-auto absolute inset-0 bg-ciruela/40 opacity-0 [[data-bolsa-panel]:not([data-abierta])_&]:pointer-events-none"></div>
+
+  <aside
+    data-hoja
+    style="transform: translateX(100%)"
+    class="pointer-events-auto absolute inset-y-0 right-0 flex w-full max-w-[420px] touch-pan-y flex-col bg-crema will-change-transform"
+  >
+    <div class="flex items-center justify-between border-b border-ciruela/15 px-3 py-2">
+      <h2 class="t-h3 text-ciruela">Tu bolsa</h2>
+
+      <div class="flex items-center gap-2">
+        {/* Señal de que la hoja se puede arrastrar. Decorativa: el gesto no es
+            la única forma de cerrar, para eso está el botón de al lado. */}
+        <span aria-hidden="true" class="hidden h-8 w-1 rounded-full bg-ciruela/20 md:hidden"></span>
+
+        <button
+          type="button"
+          data-bolsa-cerrar
+          aria-label="Cerrar la bolsa"
+          class="presionable flex h-[44px] w-[44px] items-center justify-center text-ciruela/70 transition-colors duration-[var(--paso)] hover:text-ciruela"
+        >
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="none">
+            <path
+              d="M3 3l10 10M13 3L3 13"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div data-bolsa-desplazable class="flex-1 overflow-y-auto px-3">
+      <p data-bolsa-vacia class="t-cuerpo py-6 text-ciruela/70">
+        Todavía no has agregado nada. Entra en cualquier producto y elige el tono antes de
+        agregarlo, así el pedido llega sin dudas.
+      </p>
+
+      <ul data-bolsa-lista class="flex flex-col"></ul>
+    </div>
+
+    <div data-bolsa-resumen class="hidden border-t border-ciruela/15 px-3 py-3">
+      <div class="flex items-baseline justify-between">
+        <span class="t-etiqueta text-ciruela/70">Subtotal</span>
+        <span
+          data-bolsa-divisa
+          class="font-sans text-[24px] leading-none font-semibold text-ciruela tabular-nums"
+        >
+          $0,00
+        </span>
+      </div>
+
+      <p data-bolsa-bolivares class="t-caption mt-1 text-right text-purpura tabular-nums"></p>
+
+      <p class="t-caption mt-2 text-ciruela/70">
+        Te confirmamos disponibilidad y cuándo lo tienes. El monto final en bolívares se calcula
+        con la tasa del día del pago.
+      </p>
+
+      {
+        tienda.whatsapp ? (
+          <a
+            data-bolsa-pedir
+            data-whatsapp={tienda.whatsapp}
+            href={`https://wa.me/${tienda.whatsapp}`}
+            class="presionable t-etiqueta mt-3 flex min-h-[48px] w-full items-center justify-center gap-1 bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
+          >
+            <Icono nombre="whatsapp" tamano={17} />
+            Pedir por WhatsApp
+          </a>
+        ) : (
+          <>
+            <button
+              type="button"
+              data-bolsa-copiar
+              class="presionable t-etiqueta relative mt-3 flex min-h-[48px] w-full items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
+            >
+              Copiar el pedido
+              <span
+                data-bolsa-copiado
+                class="t-caption absolute inset-0 hidden items-center justify-center bg-purpura text-crema [&:not(.hidden)]:flex"
+              >
+                Copiado
+              </span>
+            </button>
+            <p class="t-caption mt-2 text-ciruela/70">
+              Falta cargar el número de WhatsApp de la tienda. Mientras tanto, copia el pedido y
+              pégalo en el chat.
+            </p>
+          </>
+        )
+      }
+    </div>
+  </aside>
+</div>

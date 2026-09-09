@@ -1,0 +1,178 @@
+{
+  "_borrador": "Redacción inicial en tono Amante para revisión de la dueña. Describe función y modo de uso reales del producto; NO contiene promesas de duración, rendimiento en número de usos ni certificaciones, porque eso solo lo puede confirmar la tienda. Donde 'rendimiento' habla de contenido, el dato sale de la etiqueta del envase.",
+  "MG-ESM-SEMI-10": {
+    "descripcion": "Color en gel que se cura con lámpara UV o LED. Cubre parejo desde la primera capa y queda con brillo de salón, sin el relieve que deja el esmalte tradicional.",
+    "modo_uso": "Prepara la uña, aplica base gel y cura. Extiende una capa fina de color, cura, repite si quieres más cobertura y sella con top coat.",
+    "rendimiento": "Frasco de 10 ml. Se retira con removedor, no se despinta con el uso diario."
+  },
+  "MG-GEL-COLOR-15": {
+    "descripcion": "La misma tecnología soak off en frasco grande y tapa dorada. Colección de nudes para quien quiere la uña arreglada sin que se note el color.",
+    "modo_uso": "Sobre base gel curada, aplica una capa fina, cura y repite. Sella con top coat.",
+    "rendimiento": "Frasco de 15 ml, la mitad más de producto que el de 10 ml."
+  },
+  "EG-ESM-TRAD": {
+    "descripcion": "Esmalte tradicional para pintar y salir. No necesita lámpara ni removedor especial.",
+    "modo_uso": "Aplica sobre la uña limpia y seca. Dos capas finas cubren mejor que una gruesa.",
+    "rendimiento": "Se retira con acetona común."
+  },
+  "MG-ACE-CUT-FLOR": {
+    "descripcion": "Aceite con flores de verdad dentro del frasco. Ablanda la cutícula y deja la piel alrededor de la uña suave y con aroma.",
+    "modo_uso": "Una gota en cada cutícula y masajea hasta que absorba. De noche es cuando mejor trabaja.",
+    "rendimiento": "Frasco de 15 ml con aplicador de pincel."
+  },
+  "MG-ACE-CUT-35": {
+    "descripcion": "El aceite de cutícula en tamaño grande, para quien ya sabe que lo va a gastar.",
+    "modo_uso": "Aplica sobre la cutícula y masajea. Úsalo a diario, sobre todo después de retirar el esmalte.",
+    "rendimiento": "Frasco de 35 ml."
+  },
+  "TF-LIMA-100-180": {
+    "descripcion": "Lima de dos granos: el lado 100 rebaja y el 180 afina. Media luna, cómoda de sostener.",
+    "modo_uso": "Lima siempre en una sola dirección, del borde hacia el centro. El lado 180 es el que da el acabado.",
+    "rendimiento": "Vienen dos limas."
+  },
+  "MG-TIPS-JELLY": {
+    "descripcion": "Tips blandos de forma coffin, translúcidos, para alargar la uña sin construir con gel desde cero.",
+    "modo_uso": "Elige el tip que calce en tu uña, pega con gel constructor y cura. Recorta y lima a la forma que quieras.",
+    "rendimiento": "Caja con 120 piezas en tamaños surtidos."
+  },
+  "MG-POLYGEL": {
+    "descripcion": "Polygel en tubo: ni tan líquido como el gel ni tan rápido como la acrílica. Se moldea con calma y no chorrea.",
+    "modo_uso": "Corta la porción, colócala sobre el molde o la uña y extiende con el pincel humedecido en líquido deslizante. Cura, lima y sella.",
+    "rendimiento": "Tubo de 30 ml. El tono es un número de la carta, no un color visible en el envase."
+  },
+  "MG-JELLY-BUILDER": {
+    "descripcion": "Gel constructor de textura jelly, más denso que un builder normal. Da estructura sin peso.",
+    "modo_uso": "Aplica sobre la uña preparada, deja que el producto se asiente solo unos segundos y cura.",
+    "rendimiento": "Pote de 30 ml."
+  },
+  "MG-BUILDER-GEL": {
+    "descripcion": "Gel constructor para alargar, reforzar y corregir la curva de la uña.",
+    "modo_uso": "Sobre base curada, construye el ápex y cura. Lima la forma antes de sellar.",
+    "rendimiento": "Pote para trabajo de salón."
+  },
+  "TF-BUILDER-10": {
+    "descripcion": "Builder gel de la serie Tiffany en frasco pequeño, para probar el producto o llevarlo al trabajo.",
+    "modo_uso": "Aplica sobre la uña preparada, construye la estructura y cura.",
+    "rendimiento": "Frasco de 10 ml."
+  },
+  "TF-BUILDER-15": {
+    "descripcion": "El builder gel Tiffany en el frasco de uso diario.",
+    "modo_uso": "Aplica sobre la uña preparada, construye la estructura y cura.",
+    "rendimiento": "Frasco de 15 ml."
+  },
+  "MG-BASE-GEL-10": {
+    "descripcion": "La capa que va primero. Agarra el color a la uña y evita que el pigmento la manche.",
+    "modo_uso": "Una capa fina sobre la uña limpia y sin brillo. Cura antes de aplicar el color.",
+    "rendimiento": "Frasco de 10 ml."
+  },
+  "MG-BASE-GEL-15": {
+    "descripcion": "La misma base gel en frasco grande, para quien pinta seguido o trabaja con clientas.",
+    "modo_uso": "Una capa fina sobre la uña limpia y sin brillo. Cura antes de aplicar el color.",
+    "rendimiento": "Frasco de 15 ml."
+  },
+  "MG-TOP-COAT-15": {
+    "descripcion": "La capa que va de última y decide el acabado. Sella el color y le da el brillo espejo.",
+    "modo_uso": "Aplica sobre el color ya curado, cubriendo el borde libre de la uña. Cura.",
+    "rendimiento": "Frasco de 15 ml."
+  },
+  "MG-TOP-COAT-REC": {
+    "descripcion": "Top coat en presentación de recarga, pensado para rellenar los frascos de trabajo.",
+    "modo_uso": "Trasvasa al frasco con pincel. Guarda el envase cerrado y lejos de la luz.",
+    "rendimiento": "La presentación más rendidora del top coat."
+  },
+  "MG-FINISH-15": {
+    "descripcion": "Sellador de acabado para cerrar el trabajo y proteger el color.",
+    "modo_uso": "Aplica como última capa sobre el color curado y cura.",
+    "rendimiento": "Frasco de 15 ml."
+  },
+  "MG-BRUSH-ON-GEL": {
+    "descripcion": "Gel con pincel incorporado. Para reforzar, rellenar o reparar sin sacar el pote.",
+    "modo_uso": "Aplica directo con su pincel sobre la zona que quieras reforzar y cura.",
+    "rendimiento": "Frasco con pincel."
+  },
+  "MG-PRIMER": {
+    "descripcion": "Prepara la superficie de la uña para que el gel agarre. El paso que evita que el trabajo se levante.",
+    "modo_uso": "Una capa muy fina sobre la uña limpia y sin brillo. Deja evaporar antes de la base.",
+    "rendimiento": "Frasco con pincel. Se usa muy poco por uña."
+  },
+  "MG-PROTEIN-BOND": {
+    "descripcion": "Adherente con proteína para uñas difíciles, de esas donde el esmalte no dura.",
+    "modo_uso": "Aplica sobre la uña preparada antes de la base gel y deja secar al aire.",
+    "rendimiento": "Frasco con pincel."
+  },
+  "MG-ACE-CUT-PRO": {
+    "descripcion": "Aceite de cutícula de uso profesional, para cerrar el servicio y entregar la mano hidratada.",
+    "modo_uso": "Una gota por dedo al terminar la manicura y masajea la cutícula.",
+    "rendimiento": "Frasco de 15 ml con pincel."
+  },
+  "MG-CORTACUTICULA": {
+    "descripcion": "Alicate de cutícula con resorte. El resorte hace el trabajo de volver a abrir, tu mano solo corta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio."
+  },
+  "MG-ESPUMA-MANI": {
+    "descripcion": "Espuma limpiadora para manicure. Retira residuos de limado y grasa antes de aplicar producto.",
+    "modo_uso": "Una dosis sobre la uña, extiende y retira con toalla sin pelusa.",
+    "rendimiento": "La etiqueta rosa trae 150 ml; la negra y la crema, 100 ml. Todas al mismo precio."
+  },
+  "MG-SANITIZANTE": {
+    "descripcion": "Sanitizante para manos y uñas antes de empezar el servicio.",
+    "modo_uso": "Rocía sobre las manos y deja secar al aire antes de trabajar.",
+    "rendimiento": "Frasco de 100 ml con atomizador."
+  },
+  "MG-LIMPIA-PINCELES": {
+    "descripcion": "Limpiador de pinceles de gel. Devuelve la punta al pincel y evita que el producto se endurezca en las cerdas.",
+    "modo_uso": "Moja el pincel, arrastra sobre papel absorbente y repite hasta que salga limpio.",
+    "rendimiento": "Frasco para mesa de trabajo."
+  },
+  "MG-TOALLAS-REMOV": {
+    "descripcion": "Toallas sin pelusa para retirar la capa pegajosa del gel y limpiar la uña sin dejar fibras.",
+    "modo_uso": "Humedece con removedor o alcohol y pasa sobre la uña curada.",
+    "rendimiento": "Paquete de 90 g."
+  },
+  "MG-TIPS-500": {
+    "descripcion": "Caja grande de uñas postizas surtidas por tamaño, para trabajo de salón.",
+    "modo_uso": "Selecciona el tamaño que calce en cada uña, pega y recorta a la forma.",
+    "rendimiento": "500 piezas."
+  },
+  "MG-AGUA-MICELAR": {
+    "descripcion": "Desmaquilla, limpia y refresca en un solo paso. Las micelas levantan el maquillaje sin frotar y sin dejar la piel tirante.",
+    "modo_uso": "Empapa un algodón y pásalo por el rostro sin arrastrar. No necesita enjuague.",
+    "rendimiento": "Frasco de 200 ml. Para todo tipo de piel."
+  },
+  "MG-AGUA-ROSAS": {
+    "descripcion": "Agua de rosas con extracto natural. Tonifica e hidrata después de limpiar, y baja el enrojecimiento.",
+    "modo_uso": "Aplica con algodón o rocía sobre el rostro limpio, antes de la crema.",
+    "rendimiento": "Frasco de 250 ml."
+  },
+  "MG-GASAS-PESTANAS": {
+    "descripcion": "Gasas sin pelusa para retirar pestañas postizas y limpiar la línea del ojo sin dejar fibras.",
+    "modo_uso": "Humedece con removedor y apoya sobre la pestaña hasta que el adhesivo ceda.",
+    "rendimiento": "Paquete de 300 piezas."
+  },
+  "MG-VELOTERAPIA": {
+    "descripcion": "Crema de textura densa que se derrite al contacto con la piel. Se usa después del baño, cuando la piel todavía está tibia.",
+    "modo_uso": "Toma una porción pequeña y masajea hasta que absorba. Insiste en codos, rodillas y talones.",
+    "rendimiento": "Pote de 80 g."
+  },
+  "MG-EXFOLIANTE": {
+    "descripcion": "Crema exfoliante con partículas que arrastran la piel muerta y dejan el cuerpo liso. El aroma se queda un rato después del baño.",
+    "modo_uso": "Sobre la piel húmeda, masajea en círculos y enjuaga. Dos veces por semana es suficiente.",
+    "rendimiento": "Pote de 350 g."
+  },
+  "MG-BODY-BUTTER": {
+    "descripcion": "Manteca corporal espesa, para piel que pide más que una crema normal.",
+    "modo_uso": "Aplica sobre la piel limpia y masajea hasta que absorba.",
+    "rendimiento": "Pote para uso diario."
+  },
+  "MG-BOMBAS-EFERV": {
+    "descripcion": "Bombas efervescentes en tamaño mini. Se disuelven en el agua y la perfuman.",
+    "modo_uso": "Suelta una en la bañera con agua caliente y espera a que termine de disolverse.",
+    "rendimiento": "Presentación mini, para un baño cada una."
+  },
+  "MG-ATOMIZADOR-TALCO": {
+    "descripcion": "Atomizador vacío de vidrio con bomba para polvo. Reparte el talco en una capa fina en vez de una nube.",
+    "modo_uso": "Llena hasta la mitad, cierra bien y presiona la bomba a unos centímetros de la piel.",
+    "rendimiento": "Envase recargable. Se vende vacío."
+  }
+}

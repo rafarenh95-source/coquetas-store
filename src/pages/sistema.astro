@@ -1,0 +1,297 @@
+---
+/**
+ * Página interna de revisión del sistema de diseño.
+ *
+ * NO es parte del sitio público y ningún cliente debe llegar aquí: es el
+ * andamiaje donde se revisan tokens, escala y componentes de un vistazo.
+ * En producción redirige a la portada, así no puede escaparse ni por enlace
+ * directo ni por un buscador.
+ */
+
+import Base from "../layouts/Base.astro";
+import Boton from "../components/Boton.astro";
+import Etiqueta from "../components/Etiqueta.astro";
+import Precio from "../components/Precio.astro";
+import Swatches from "../components/Swatches.astro";
+import TarjetaProducto from "../components/TarjetaProducto.astro";
+import FranjaMarca from "../components/FranjaMarca.astro";
+import FileteOro from "../components/FileteOro.astro";
+import Logo from "../components/Logo.astro";
+import productos from "../data/productos.json";
+
+if (import.meta.env.PROD) return Astro.redirect("/");
+
+const PALETA = [
+  { token: "crema", hex: "#FEEBE2", rol: "Lienzo dominante", proporcion: "55 %", contraste: "—" },
+  { token: "papel", hex: "#FFF8F4", rol: "Soporte alterno", proporcion: "—", contraste: "—" },
+  { token: "ciruela", hex: "#2B0A26", rol: "Estructura tipográfica", proporcion: "16 %", contraste: "15.8:1" },
+  { token: "purpura", hex: "#7A0177", rol: "Jerarquías", proporcion: "11 %", contraste: "8.67:1" },
+  { token: "magenta", hex: "#C5188A", rol: "Acción · CTA", proporcion: "6 %", contraste: "4.70:1" },
+  { token: "rosa-fuerte", hex: "#F768A1", rol: "Ornamental", proporcion: "10 %", contraste: "2.44:1 — nunca texto" },
+  { token: "rosa-medio", hex: "#FA9FB5", rol: "Ornamental", proporcion: "↑", contraste: "nunca texto" },
+  { token: "rosa-claro", hex: "#FCC5C0", rol: "Ornamental", proporcion: "↑", contraste: "nunca texto" },
+  { token: "oro", hex: "#D6C09A", rol: "Filete lineal", proporcion: "< 2 %", contraste: "1.53:1 — nunca texto" },
+];
+
+const ESCALA = [
+  { nivel: "H1", fuente: "Didot", caja: "MAYÚS", tam: "104 / 56 / 32 px", track: "0.12em" },
+  { nivel: "H2", fuente: "Didot", caja: "MAYÚS", tam: "56 / 32 px", track: "0.10em" },
+  { nivel: "H3", fuente: "Didot", caja: "MAYÚS", tam: "32 / 24 px", track: "0.10em" },
+  { nivel: "Lead", fuente: "Montserrat 300", caja: "Oración", tam: "20 px", track: "0" },
+  { nivel: "Cuerpo", fuente: "Montserrat 400", caja: "Oración", tam: "15 px", track: "0" },
+  { nivel: "Etiqueta", fuente: "Montserrat 600", caja: "MAYÚS", tam: "12 px", track: "0.16em" },
+  { nivel: "Caption", fuente: "Montserrat 400", caja: "Oración", tam: "12 px", track: "0.02em" },
+  { nivel: "Legal", fuente: "Montserrat 400", caja: "Oración", tam: "10 px", track: "0.10em" },
+];
+
+const conColor = productos.find((p) => p.tipo_variante === "color" && p.variantes.length > 6);
+const conCodigo = productos.find((p) => p.tipo_variante === "codigo");
+const conAroma = productos.find((p) => p.tipo_variante === "aroma");
+const muestra = productos.slice(0, 4);
+---
+
+<Base titulo="Sistema de diseño">
+  <main class="pb-12">
+    {/* ── Portada del sistema: la única franja de la vista ─────────────── */}
+    <section class="relative overflow-hidden">
+      <FranjaMarca />
+      <div class="contenedor relative py-8 pr-[28%]">
+        <p class="t-etiqueta text-purpura">Documento interno</p>
+        <h1 class="t-h1 mt-2 text-ciruela">Sistema<br />de diseño</h1>
+        <p class="t-lead mt-3 max-w-[46ch] text-ciruela/80">
+          Cada valor de esta página sale del manual de identidad visual. Si algo aquí lo
+          contradice, manda el manual.
+        </p>
+      </div>
+    </section>
+
+    <div class="contenedor mt-12 flex flex-col gap-12">
+      {/* ── Color ─────────────────────────────────────────────────────── */}
+      <section>
+        <h2 class="t-h2 text-purpura">Color</h2>
+        <div class="mt-3 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5">
+          {
+            PALETA.map((c) => (
+              <div class="flex flex-col gap-1">
+                <div
+                  class="h-12 w-full border border-ciruela/10"
+                  style={`background-color:${c.hex}`}
+                />
+                <p class="t-etiqueta text-ciruela">{c.token}</p>
+                <p class="t-caption text-ciruela/70">
+                  {c.hex} · {c.proporcion}
+                </p>
+                <p class="t-caption text-ciruela/60">{c.rol}</p>
+                <p class="t-caption text-ciruela/60">{c.contraste}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <p class="t-etiqueta mt-6 text-purpura">Reparto objetivo por pieza</p>
+        <div class="mt-1 flex h-8 w-full overflow-hidden">
+          <div class="bg-crema border border-ciruela/10" style="width:55%"></div>
+          <div class="bg-ciruela" style="width:16%"></div>
+          <div class="bg-purpura" style="width:11%"></div>
+          <div class="bg-rosa-claro" style="width:10%"></div>
+          <div class="bg-magenta" style="width:6%"></div>
+          <div class="bg-oro" style="width:2%"></div>
+        </div>
+        <p class="t-caption mt-1 text-ciruela/60">
+          Lienzo 55 % · estructura 27 % · acción 16 % · oro al mínimo, siempre en filete.
+        </p>
+      </section>
+
+      {/* ── Tipografía ────────────────────────────────────────────────── */}
+      <section>
+        <h2 class="t-h2 text-purpura">Tipografía</h2>
+
+        <div class="mt-3 flex flex-col gap-3 bg-papel p-3">
+          <p class="t-h1 text-ciruela">Belleza que inspira</p>
+          <p class="t-h2 text-ciruela">Uñas · Cuidado facial</p>
+          <p class="t-h3 text-ciruela">Esmalte semipermanente</p>
+          <p class="t-lead text-ciruela/85">
+            Lo nuevo llega primero a San Francisco. Treinta y cinco piezas elegidas una por una.
+          </p>
+          <p class="t-cuerpo max-w-[60ch] text-ciruela/85">
+            Este es el cuerpo de texto a 15 px con interlineado 1.7. Es el tamaño en el que se
+            leen la descripción, el modo de uso y el rendimiento de cada producto, que son los
+            tres bloques que el manual exige en la ficha.
+          </p>
+          <p class="t-etiqueta text-ciruela">Uso profesional</p>
+          <p class="t-caption text-ciruela/70">Caption a 12 px para presentación y tasa.</p>
+          <p class="t-legal text-ciruela/60">
+            Legal a 10 px. Precios en divisa. El equivalente en bolívares se calcula con la tasa
+            BCV del día.
+          </p>
+        </div>
+
+        <div class="mt-3 -mx-3 overflow-x-auto px-3 md:mx-0 md:px-0">
+        <table class="w-full min-w-[520px] border-collapse text-left">
+          <thead>
+            <tr class="border-b border-ciruela/20">
+              {
+                ["Nivel", "Fuente", "Caja", "Tamaño", "Tracking"].map((h) => (
+                  <th class="t-etiqueta py-1 pr-2 text-purpura">{h}</th>
+                ))
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {
+              ESCALA.map((e) => (
+                <tr class="border-b border-ciruela/10">
+                  <td class="t-caption py-1 pr-2 font-semibold text-ciruela">{e.nivel}</td>
+                  <td class="t-caption py-1 pr-2 text-ciruela/75">{e.fuente}</td>
+                  <td class="t-caption py-1 pr-2 text-ciruela/75">{e.caja}</td>
+                  <td class="t-caption py-1 pr-2 text-ciruela/75">{e.tam}</td>
+                  <td class="t-caption py-1 pr-2 text-ciruela/75">{e.track}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        </div>
+
+        <p class="t-caption mt-2 max-w-[70ch] text-ciruela/70">
+          En móvil el H1 no interpola: baja al siguiente nivel declarado (104 → 56 → 32), como
+          manda el manual. El piso es 32 px, muy por encima del mínimo de 24 de Didot.
+        </p>
+      </section>
+
+      {/* ── Recursos propietarios ─────────────────────────────────────── */}
+      <section>
+        <h2 class="t-h2 text-purpura">Recursos propietarios</h2>
+
+        <div class="mt-3 grid gap-3 md:grid-cols-2">
+          <div class="bg-papel p-2">
+            <p class="t-etiqueta text-ciruela">Filete de oro</p>
+            <p class="t-caption mt-1 mb-2 text-ciruela/70">
+              1 px con punto en cada extremo. Divide, nunca enmarca. Uno por vista — el de esta
+              página es este.
+            </p>
+            <FileteOro />
+          </div>
+
+          <div class="bg-papel p-2">
+            <p class="t-etiqueta text-ciruela">Franja de marca</p>
+            <p class="t-caption mt-1 mb-2 text-ciruela/70">
+              Cuatro bandas en orden fijo, vertical, al 25 % del ancho, en un borde. Está arriba,
+              en la portada de esta página. El componente no acepta colores por props: no se
+              puede reordenar desde fuera.
+            </p>
+            <p class="t-caption text-ciruela/60">
+              No se repite aquí: dos franjas en una vista ya serían un error, y el auditor lo
+              marca.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Logo ──────────────────────────────────────────────────────── */}
+      <section>
+        <h2 class="t-h2 text-purpura">Logo</h2>
+        <p class="t-caption mt-1 max-w-[70ch] text-ciruela/70">
+          Solo sobre crema o papel. No hay versión negativa ni monocroma: están por definir y el
+          manual prohíbe dibujarlas de memoria. Mínimos en pantalla: horizontal 180 px, vertical
+          120 px, isotipo 40 px.
+        </p>
+        <div class="mt-3 flex flex-wrap items-end gap-4 bg-papel p-3">
+          <div class="flex flex-col gap-1">
+            <Logo version="horizontal" ancho={240} />
+            <p class="t-caption text-ciruela/60">horizontal · 240 px</p>
+          </div>
+          <div class="flex flex-col gap-1">
+            <Logo version="vertical" ancho={140} />
+            <p class="t-caption text-ciruela/60">vertical · 140 px</p>
+          </div>
+          <div class="flex flex-col gap-1">
+            <Logo version="isotipo" ancho={56} />
+            <p class="t-caption text-ciruela/60">isotipo · 56 px</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Componentes ───────────────────────────────────────────────── */}
+      <section>
+        <h2 class="t-h2 text-purpura">Componentes</h2>
+
+        <div class="mt-3 grid gap-3 md:grid-cols-3">
+          <div class="flex flex-col gap-2 bg-papel p-2">
+            <p class="t-etiqueta text-ciruela">Botones</p>
+            <Boton variante="primario">Agregar a la bolsa</Boton>
+            <Boton variante="secundario">Ver catálogo</Boton>
+            <p class="t-caption text-ciruela/60">
+              Altura mínima 44 px. Magenta sobre crema da 4.70:1, pasa AA.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-start gap-2 bg-papel p-2">
+            <p class="t-etiqueta text-ciruela">Etiqueta</p>
+            <Etiqueta>Uso profesional</Etiqueta>
+            <p class="t-caption text-ciruela/60">
+              Contorno ciruela, nunca relleno rosa: el rosa no es color de texto y un chip sólido
+              la convertiría en un reclamo.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-2 bg-papel p-2">
+            <p class="t-etiqueta text-ciruela">Precio</p>
+            <Precio divisa={1.7} nota="La docena en $15,00" tamano="ficha" />
+            <p class="t-caption text-ciruela/60">
+              El monto en Bs lo rellena la tasa del día. Nunca un número fijo.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-3 grid gap-3 md:grid-cols-3">
+          <div class="flex flex-col gap-2 bg-papel p-2">
+            <p class="t-etiqueta text-ciruela">Variante · color</p>
+            <p class="t-caption text-ciruela/60">{conColor?.nombre}</p>
+            <Swatches variantes={conColor!.variantes} tipo="color" />
+          </div>
+          <div class="flex flex-col gap-2 bg-papel p-2">
+            <p class="t-etiqueta text-ciruela">Variante · aroma</p>
+            <p class="t-caption text-ciruela/60">{conAroma?.nombre}</p>
+            <Swatches variantes={conAroma!.variantes} tipo="aroma" />
+          </div>
+          <div class="flex flex-col gap-2 bg-papel p-2">
+            <p class="t-etiqueta text-ciruela">Variante · código</p>
+            <p class="t-caption text-ciruela/60">{conCodigo?.nombre}</p>
+            <Swatches variantes={conCodigo!.variantes} tipo="codigo" />
+            <p class="t-caption text-ciruela/60">
+              El envase no muestra el color del gel. Un círculo aquí sería un color inventado.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Tarjetas ──────────────────────────────────────────────────── */}
+      <section>
+        <h2 class="t-h2 text-purpura">Tarjeta de producto</h2>
+        <div class="reticula mt-3">
+          {
+            muestra.map((p, i) => (
+              <div class="col-span-2 md:col-span-4 lg:col-span-3">
+                <TarjetaProducto producto={p} prioridad={i < 2} />
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      {/* ── Cierre editorial ──────────────────────────────────────────── */}
+      <section class="sobre-ciruela px-3 py-8 text-center">
+        <p class="t-h3 text-crema">La alternativa de la ciudad</p>
+        <p class="t-caption mx-auto mt-2 max-w-[46ch] text-crema/70">
+          Sobre ciruela solo va texto crema y detalles en oro. Ni magenta ni rosa.
+        </p>
+      </section>
+
+      <p class="t-legal text-ciruela/60">
+        El auditor de marca corre solo en desarrollo y deja el resultado en la consola del
+        navegador.
+      </p>
+    </div>
+  </main>
+</Base>

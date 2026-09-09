@@ -1,0 +1,151 @@
+---
+/**
+ * Variantes.
+ *
+ * Tres formas según lo que distingue a la variante, porque no todas son un color:
+ *
+ *   color   círculo con el tono muestreado de la foto. La clienta reconoce el
+ *           tono por el color, no por su nombre.
+ *   aroma   chip de texto. Un círculo para «Lavanda» sería un color inventado.
+ *   codigo  chip de texto. El polygel y el jelly builder vienen en envase negro
+ *           o blanco y la foto no muestra el color del gel por ningún lado.
+ *
+ * Dos modos:
+ *   indicador   en la tarjeta. Solo informa de que hay variantes. No es
+ *               interactivo, porque un botón que no hace nada dentro de una
+ *               tarjeta que sí navega es una trampa para el dedo.
+ *   selector    en la ficha. Radiogroup de verdad, con teclado y estado.
+ */
+
+interface Variante {
+  tono: string | null;
+  swatch_hex: string | null;
+  disponible: boolean;
+  imagenes: string[];
+}
+
+interface Props {
+  variantes: Variante[];
+  tipo: "color" | "aroma" | "codigo" | null;
+  modo?: "indicador" | "selector" | "tarjeta";
+  etiqueta?: string;
+}
+
+const { variantes, tipo, modo = "selector", etiqueta = "Tono" } = Astro.props;
+
+const visible = Boolean(tipo) && variantes.length > 1;
+const esColor = tipo === "color";
+const indicador = modo === "indicador";
+const enTarjeta = modo === "tarjeta";
+
+/* En la tarjeta todo va un punto más pequeño. */
+const medidaColor = enTarjeta ? "h-[30px] w-[30px]" : "h-[36px] w-[36px]";
+const medidaChip = enTarjeta ? "min-h-[34px] px-2 py-1" : "min-h-[40px] px-2 py-1";
+
+const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${variantes
+  .map((v) => v.tono)
+  .filter(Boolean)
+  .join(", ")}`;
+---
+
+{
+  visible &&
+    (indicador ? (
+      /* ── Indicador ─────────────────────────────────────────────────── */
+      <div class="flex flex-wrap items-center gap-1" role="img" aria-label={resumen}>
+        {esColor ? (
+          variantes.map((v) => (
+            <span
+              aria-hidden="true"
+              class:list={[
+                "h-[18px] w-[18px] rounded-full border border-ciruela/25",
+                !v.disponible && "opacity-35",
+              ]}
+              style={`background-color:${v.swatch_hex ?? "var(--color-papel)"}`}
+            />
+          ))
+        ) : (
+          <span aria-hidden="true" class="t-caption text-ciruela/70">
+            {`${variantes.length} ${esColor ? "tonos" : "variantes"}`}
+          </span>
+        )}
+      </div>
+    ) : (
+      /* ── Selector ──────────────────────────────────────────────────── */
+      <div class="flex flex-col gap-1">
+        {/* En la tarjeta los chips van en dos columnas: con etiquetas largas
+            como «Passion fruit» el ajuste libre los apila de uno en uno y la
+            tarjeta crece hasta descuadrar la altura de toda la fila. */}
+        <div
+          role="radiogroup"
+          aria-label={etiqueta}
+          data-selector-variante
+          class="flex flex-wrap items-center gap-1"
+        >
+          {variantes.map((v, i) =>
+            esColor ? (
+              <button
+                type="button"
+                role="radio"
+                aria-checked={i === 0}
+                aria-label={`${v.tono}${v.disponible ? "" : " — agotado"}`}
+                disabled={!v.disponible}
+                tabindex={i === 0 ? 0 : -1}
+                data-variante={i}
+                data-tono={v.tono}
+                data-imagen={v.imagenes[0]}
+                class:list={[
+                  `presionable-menudo objetivo-amplio ${medidaColor} rounded-full border border-ciruela/25`,
+                  "transition-transform duration-[var(--paso-rapido)] ease-[var(--curva)]",
+                  "hover:scale-110 aria-checked:ring-1 aria-checked:ring-ciruela",
+                  "aria-checked:ring-offset-2 aria-checked:ring-offset-crema",
+                  !v.disponible && "cursor-not-allowed opacity-35 hover:scale-100",
+                ]}
+                style={`background-color:${v.swatch_hex ?? "var(--color-papel)"}`}
+              />
+            ) : (
+              <button
+                type="button"
+                role="radio"
+                aria-checked={i === 0}
+                disabled={!v.disponible}
+                tabindex={i === 0 ? 0 : -1}
+                data-variante={i}
+                data-tono={v.tono}
+                data-imagen={v.imagenes[0]}
+class:list={[
+                  `presionable-menudo objetivo-amplio t-caption ${medidaChip} border transition-colors`,
+                  // Nombres largos sin espacio (Watermelon) no tienen dónde
+                  // partirse: sin esto el texto se sale de la caja del chip en
+                  // vez de quedarse dentro. break-words parte la palabra si no
+                  // entra; leading-tight controla el alto cuando pasa a dos
+                  // líneas.
+                  "min-w-0 text-center leading-tight",
+                  "duration-[var(--paso-rapido)] border-ciruela/25 text-ciruela/80",
+                  "hover:border-ciruela aria-checked:border-ciruela aria-checked:text-ciruela",
+                  !v.disponible && "cursor-not-allowed opacity-35",
+                ]}
+              >
+                {v.tono}
+              </button>
+            )
+          )}
+        </div>
+
+        {/* El nombre solo hace falta bajo los círculos: con siete nudes casi
+            idénticos el color no basta. En los chips el nombre ya está escrito
+            dentro, y repetirlo debajo es ruido. */}
+        {
+          esColor && (
+            <p class="t-caption text-ciruela/70">
+              <span data-tono-elegido>{variantes[0].tono}</span>
+              <span data-tono-agotado class="hidden text-purpura">
+                {" "}
+                — agotado
+              </span>
+            </p>
+          )
+        }
+      </div>
+    ))
+}

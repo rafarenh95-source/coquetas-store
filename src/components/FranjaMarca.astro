@@ -1,0 +1,33 @@
+---
+/**
+ * Franja de marca — recurso propietario (manual §12).
+ *
+ * Cuatro bandas en orden inalterable: rosa claro, rosa fuerte, púrpura, ciruela.
+ * Siempre vertical, siempre al 25 % exacto del ancho de la pieza, siempre en un
+ * borde. No se recorta ni se reordena, así que el orden va escrito aquí adentro
+ * y el componente no acepta colores por props: no hay forma de romperlo desde
+ * fuera.
+ *
+ * Es estructural, no decorativo: una sola por pieza.
+ */
+
+interface Props {
+  lado?: "derecha" | "izquierda";
+}
+
+const { lado = "derecha" } = Astro.props;
+---
+
+<div
+  data-franja
+  aria-hidden="true"
+  class:list={[
+    "pointer-events-none absolute inset-y-0 flex w-1/4 flex-col",
+    lado === "derecha" ? "right-0" : "left-0",
+  ]}
+>
+  <div class="flex-1 bg-rosa-claro"></div>
+  <div class="flex-1 bg-rosa-fuerte"></div>
+  <div class="flex-1 bg-purpura"></div>
+  <div class="flex-1 bg-ciruela"></div>
+</div>

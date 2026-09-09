@@ -1,0 +1,1662 @@
+[
+  {
+    "producto_id": "MG-ESM-SEMI-10",
+    "nombre": "Esmalte semipermanente",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 1.7,
+    "precio_referencia": 2.3,
+    "nota_precio": null,
+    "presentacion": "10 ml",
+    "descripcion": "Color en gel que se cura con lámpara UV o LED. Cubre parejo desde la primera capa y queda con brillo de salón, sin el relieve que deja el esmalte tradicional.",
+    "modo_uso": "Prepara la uña, aplica base gel y cura. Extiende una capa fina de color, cura, repite si quieres más cobertura y sella con top coat.",
+    "rendimiento": "Frasco de 10 ml. Se retira con removedor, no se despinta con el uso diario.",
+    "destacado": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Tono 1 · Nude",
+        "swatch_hex": "#CC9988",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-01.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2 · Azul",
+        "swatch_hex": "#0152CC",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-02.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3 · Rojo",
+        "swatch_hex": "#D4292D",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-03.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 3.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 4 · Rojo",
+        "swatch_hex": "#E9263A",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-04.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 4.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 5 · Coral",
+        "swatch_hex": "#FAD3C9",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-05.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 5.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 6 · Rosa",
+        "swatch_hex": "#E70463",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-06.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 6.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 7 · Rojo",
+        "swatch_hex": "#E998AC",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-07.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 7.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 8 · Rojo",
+        "swatch_hex": "#570214",
+        "swatch_revisar": true,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-08.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 8.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 9 · Turquesa",
+        "swatch_hex": "#25D8EB",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-09.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 9.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 10 · Azul",
+        "swatch_hex": "#88C4F5",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-10.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 10.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 11",
+        "swatch_hex": null,
+        "swatch_revisar": true,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-11.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 11.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 12 · Azul",
+        "swatch_hex": "#161A25",
+        "swatch_revisar": true,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-12.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 12.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 13 · Morado",
+        "swatch_hex": "#CBC6D6",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-13.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 13.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 14 · Azul",
+        "swatch_hex": "#0138B8",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESM-SEMI-10-14.webp"
+        ],
+        "origen": [
+          "Esmaltes semipermanentes 10 ml 1.7$ 14.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 1
+  },
+  {
+    "producto_id": "MG-GEL-COLOR-15",
+    "nombre": "Gel polish color",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 1.9,
+    "precio_referencia": 2.57,
+    "nota_precio": null,
+    "presentacion": "15 ml",
+    "descripcion": "La misma tecnología soak off en frasco grande y tapa dorada. Colección de nudes para quien quiere la uña arreglada sin que se note el color.",
+    "modo_uso": "Sobre base gel curada, aplica una capa fina, cura y repite. Sella con top coat.",
+    "rendimiento": "Frasco de 15 ml, la mitad más de producto que el de 10 ml.",
+    "destacado": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Tono 1 · Nude",
+        "swatch_hex": "#D2A99C",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GEL-COLOR-15-01.webp"
+        ],
+        "origen": [
+          "Brillo color 1.9$ 1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2 · Rojo",
+        "swatch_hex": "#C68D85",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GEL-COLOR-15-02.webp"
+        ],
+        "origen": [
+          "Brillo color 1.9$ 2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3 · Nude",
+        "swatch_hex": "#D8A694",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GEL-COLOR-15-03.webp"
+        ],
+        "origen": [
+          "Brillo color 1.9$ 3.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 4 · Nude",
+        "swatch_hex": "#CBA49A",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GEL-COLOR-15-04.webp"
+        ],
+        "origen": [
+          "Brillo color 1.9$ 4.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 5 · Nude",
+        "swatch_hex": "#C7978A",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GEL-COLOR-15-05.webp"
+        ],
+        "origen": [
+          "Brillo color 1.9$ 5.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 6 · Nude",
+        "swatch_hex": "#C99787",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GEL-COLOR-15-06.webp"
+        ],
+        "origen": [
+          "Brillo color 1.9$ 6.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 7 · Nude",
+        "swatch_hex": "#D4A48B",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GEL-COLOR-15-07.webp"
+        ],
+        "origen": [
+          "Brillo color 1.9$ 7.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 2
+  },
+  {
+    "producto_id": "MG-AGUA-MICELAR",
+    "nombre": "Agua micelar",
+    "marca": "MAXGLOW",
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": "200 ml",
+    "descripcion": "Desmaquilla, limpia y refresca en un solo paso. Las micelas levantan el maquillaje sin frotar y sin dejar la piel tirante.",
+    "modo_uso": "Empapa un algodón y pásalo por el rostro sin arrastrar. No necesita enjuague.",
+    "rendimiento": "Frasco de 200 ml. Para todo tipo de piel.",
+    "destacado": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-AGUA-MICELAR-01.webp"
+        ],
+        "origen": [
+          "Agua micelar 3.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 3
+  },
+  {
+    "producto_id": "MG-EXFOLIANTE",
+    "nombre": "Exfoliante corporal",
+    "marca": "MAXGLOW",
+    "categoria": "cuerpo",
+    "uso_profesional": false,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": "350 g",
+    "descripcion": "Crema exfoliante con partículas que arrastran la piel muerta y dejan el cuerpo liso. El aroma se queda un rato después del baño.",
+    "modo_uso": "Sobre la piel húmeda, masajea en círculos y enjuaga. Dos veces por semana es suficiente.",
+    "rendimiento": "Pote de 350 g.",
+    "destacado": true,
+    "disponible": true,
+    "tipo_variante": "aroma",
+    "variantes": [
+      {
+        "tono": "Passion fruit",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-EXFOLIANTE-01.webp"
+        ],
+        "origen": [
+          "Exfoliante 3.5$ MANGO.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Watermelon",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-EXFOLIANTE-02.webp"
+        ],
+        "origen": [
+          "Exfoliante 3.5$ MELON.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Mango",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-EXFOLIANTE-03.webp"
+        ],
+        "origen": [
+          "Exfoliante 3.5$ PARCHITA.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Grape fruit",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-EXFOLIANTE-04.webp"
+        ],
+        "origen": [
+          "Exfoliante 3.5$ GRAPE FRUIT.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 4
+  },
+  {
+    "producto_id": "MG-VELOTERAPIA",
+    "nombre": "Veloterapia",
+    "marca": "MAXGLOW",
+    "categoria": "cuerpo",
+    "uso_profesional": false,
+    "precio_divisa": 2.5,
+    "precio_referencia": 3.38,
+    "nota_precio": null,
+    "presentacion": "80 g",
+    "descripcion": "Crema de textura densa que se derrite al contacto con la piel. Se usa después del baño, cuando la piel todavía está tibia.",
+    "modo_uso": "Toma una porción pequeña y masajea hasta que absorba. Insiste en codos, rodillas y talones.",
+    "rendimiento": "Pote de 80 g.",
+    "destacado": true,
+    "disponible": true,
+    "tipo_variante": "aroma",
+    "variantes": [
+      {
+        "tono": "Lavanda",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-VELOTERAPIA-01.webp"
+        ],
+        "origen": [
+          "veloterapia lavanda 2.5$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Vainilla",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-VELOTERAPIA-02.webp"
+        ],
+        "origen": [
+          "veloterapia vainilla 2.5$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Coconut",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-VELOTERAPIA-03.webp"
+        ],
+        "origen": [
+          "veloterapia coconut 2.5$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Agua de rosas",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-VELOTERAPIA-04.webp"
+        ],
+        "origen": [
+          "veloterapia agua de rosas 2.5$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Brisas del mar",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-VELOTERAPIA-05.webp"
+        ],
+        "origen": [
+          "veloterapia brisas del mar 2.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 5
+  },
+  {
+    "producto_id": "MG-ACE-CUT-35",
+    "nombre": "Aceite para cutícula",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": "35 ml",
+    "descripcion": "El aceite de cutícula en tamaño grande, para quien ya sabe que lo va a gastar.",
+    "modo_uso": "Aplica sobre la cutícula y masajea. Úsalo a diario, sobre todo después de retirar el esmalte.",
+    "rendimiento": "Frasco de 35 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ACE-CUT-35-01.webp"
+        ],
+        "origen": [
+          "Aceite de cutícula de 35ml 3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 6
+  },
+  {
+    "producto_id": "MG-ACE-CUT-FLOR",
+    "nombre": "Aceite para cutícula con flor",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": "15 ml",
+    "descripcion": "Aceite con flores de verdad dentro del frasco. Ablanda la cutícula y deja la piel alrededor de la uña suave y con aroma.",
+    "modo_uso": "Una gota en cada cutícula y masajea hasta que absorba. De noche es cuando mejor trabaja.",
+    "rendimiento": "Frasco de 15 ml con aplicador de pincel.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "aroma",
+    "variantes": [
+      {
+        "tono": "Lavanda",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ACE-CUT-FLOR-01.webp"
+        ],
+        "origen": [
+          "aceite de cuticula flor 1.5$ LAVANDA.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Peach",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ACE-CUT-FLOR-02.webp"
+        ],
+        "origen": [
+          "aceite de cuticula flor 1.5$ PEACH.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Rosas",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ACE-CUT-FLOR-03.webp"
+        ],
+        "origen": [
+          "aceite de cuticula flor 1.5$ ROSAS.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 7
+  },
+  {
+    "producto_id": "EG-ESM-TRAD",
+    "nombre": "Esmalte tradicional",
+    "marca": "EMERGIRL",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 1.4,
+    "precio_referencia": 1.89,
+    "nota_precio": "La docena en $15,00",
+    "presentacion": null,
+    "descripcion": "Esmalte tradicional para pintar y salir. No necesita lámpara ni removedor especial.",
+    "modo_uso": "Aplica sobre la uña limpia y seca. Dos capas finas cubren mejor que una gruesa.",
+    "rendimiento": "Se retira con acetona común.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Tono 1 · Marrón",
+        "swatch_hex": "#96533A",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EG-ESM-TRAD-01.webp"
+        ],
+        "origen": [
+          "Esmaltes emergirl 1.4$ 1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2 · Marrón",
+        "swatch_hex": "#5A271B",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EG-ESM-TRAD-02.webp"
+        ],
+        "origen": [
+          "Esmaltes emergirl 1.4$ 2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3 · Marrón",
+        "swatch_hex": "#965448",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EG-ESM-TRAD-03.webp"
+        ],
+        "origen": [
+          "Esmaltes emergirl 1.4$ 3.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 4 · Coral",
+        "swatch_hex": "#B56A54",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EG-ESM-TRAD-04.webp"
+        ],
+        "origen": [
+          "Esmaltes emergirl 1.4$ 4.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 8
+  },
+  {
+    "producto_id": "TF-LIMA-100-180",
+    "nombre": "Lima Tiffany 100/180",
+    "marca": "TIFFANY",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 1,
+    "precio_referencia": 1.35,
+    "nota_precio": "El par en $1,00",
+    "presentacion": "Par",
+    "descripcion": "Lima de dos granos: el lado 100 rebaja y el 180 afina. Media luna, cómoda de sostener.",
+    "modo_uso": "Lima siempre en una sola dirección, del borde hacia el centro. El lado 180 es el que da el acabado.",
+    "rendimiento": "Vienen dos limas.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-LIMA-100-180-01.webp"
+        ],
+        "origen": [
+          "lima tiffany 2x1$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 9
+  },
+  {
+    "producto_id": "MG-TIPS-JELLY",
+    "nombre": "Soft jelly tips coffin",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": "120 piezas",
+    "descripcion": "Tips blandos de forma coffin, translúcidos, para alargar la uña sin construir con gel desde cero.",
+    "modo_uso": "Elige el tip que calce en tu uña, pega con gel constructor y cura. Recorta y lima a la forma que quieras.",
+    "rendimiento": "Caja con 120 piezas en tamaños surtidos.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-JELLY-01.webp"
+        ],
+        "origen": [
+          "Uñas jelly tips tecnología avanzada 2$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 10
+  },
+  {
+    "producto_id": "MG-ACE-CUT-PRO",
+    "nombre": "Aceite para cutícula profesional",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 1,
+    "precio_referencia": 1.35,
+    "nota_precio": null,
+    "presentacion": "15 ml",
+    "descripcion": "Aceite de cutícula de uso profesional, para cerrar el servicio y entregar la mano hidratada.",
+    "modo_uso": "Una gota por dedo al terminar la manicura y masajea la cutícula.",
+    "rendimiento": "Frasco de 15 ml con pincel.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Tono 1 · Rojo",
+        "swatch_hex": "#F63828",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ACE-CUT-PRO-01.webp"
+        ],
+        "origen": [
+          "aceite de cuticula maxglow 1$ 1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2 · Amarillo",
+        "swatch_hex": "#FDF648",
+        "swatch_revisar": true,
+        "imagenes": [
+          "/img/productos/MG-ACE-CUT-PRO-02.webp"
+        ],
+        "origen": [
+          "aceite de cuticula maxglow 1$ 2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3 · Rosa",
+        "swatch_hex": "#D90358",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ACE-CUT-PRO-03.webp"
+        ],
+        "origen": [
+          "aceite de cuticula maxglow 1$ 3.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 11
+  },
+  {
+    "producto_id": "MG-BASE-GEL-10",
+    "nombre": "Base gel",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": "10 ml",
+    "descripcion": "La capa que va primero. Agarra el color a la uña y evita que el pigmento la manche.",
+    "modo_uso": "Una capa fina sobre la uña limpia y sin brillo. Cura antes de aplicar el color.",
+    "rendimiento": "Frasco de 10 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-BASE-GEL-10-01.webp"
+        ],
+        "origen": [
+          "Base gel 10 ml 1.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 12
+  },
+  {
+    "producto_id": "MG-BASE-GEL-15",
+    "nombre": "Base gel",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": "15 ml",
+    "descripcion": "La misma base gel en frasco grande, para quien pinta seguido o trabaja con clientas.",
+    "modo_uso": "Una capa fina sobre la uña limpia y sin brillo. Cura antes de aplicar el color.",
+    "rendimiento": "Frasco de 15 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-BASE-GEL-15-01.webp"
+        ],
+        "origen": [
+          "Base gel 15 ml 3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 13
+  },
+  {
+    "producto_id": "MG-BRUSH-ON-GEL",
+    "nombre": "Brush on gel",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Gel con pincel incorporado. Para reforzar, rellenar o reparar sin sacar el pote.",
+    "modo_uso": "Aplica directo con su pincel sobre la zona que quieras reforzar y cura.",
+    "rendimiento": "Frasco con pincel.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-BRUSH-ON-GEL-01.webp"
+        ],
+        "origen": [
+          "Brush on gel 3.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 14
+  },
+  {
+    "producto_id": "MG-BUILDER-GEL",
+    "nombre": "Builder gel",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": "Dos por $5,00",
+    "presentacion": null,
+    "descripcion": "Gel constructor para alargar, reforzar y corregir la curva de la uña.",
+    "modo_uso": "Sobre base curada, construye el ápex y cura. Lima la forma antes de sellar.",
+    "rendimiento": "Pote para trabajo de salón.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder gel 3$ y dos por 5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 15
+  },
+  {
+    "producto_id": "TF-BUILDER-10",
+    "nombre": "Builder gel Tiffany",
+    "marca": "TIFFANY",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": "10 ml",
+    "descripcion": "Builder gel de la serie Tiffany en frasco pequeño, para probar el producto o llevarlo al trabajo.",
+    "modo_uso": "Aplica sobre la uña preparada, construye la estructura y cura.",
+    "rendimiento": "Frasco de 10 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-BUILDER-10-01.webp"
+        ],
+        "origen": [
+          "builder gel tifany 2$ 10ml.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 16
+  },
+  {
+    "producto_id": "TF-BUILDER-15",
+    "nombre": "Builder gel Tiffany",
+    "marca": "TIFFANY",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": "15 ml",
+    "descripcion": "El builder gel Tiffany en el frasco de uso diario.",
+    "modo_uso": "Aplica sobre la uña preparada, construye la estructura y cura.",
+    "rendimiento": "Frasco de 15 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-BUILDER-15-01.webp"
+        ],
+        "origen": [
+          "builder gel tifany 3$ 15ml.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 17
+  },
+  {
+    "producto_id": "MG-CORTACUTICULA",
+    "nombre": "Cortacutícula de resorte",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 7,
+    "precio_referencia": 9.45,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Alicate de cutícula con resorte. El resorte hace el trabajo de volver a abrir, tu mano solo corta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORTACUTICULA-01.webp"
+        ],
+        "origen": [
+          "Cortacuticula Maxglow resorte 7$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 18
+  },
+  {
+    "producto_id": "MG-ESPUMA-MANI",
+    "nombre": "Espuma limpiadora para manicure",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Espuma limpiadora para manicure. Retira residuos de limado y grasa antes de aplicar producto.",
+    "modo_uso": "Una dosis sobre la uña, extiende y retira con toalla sin pelusa.",
+    "rendimiento": "La etiqueta rosa trae 150 ml; la negra y la crema, 100 ml. Todas al mismo precio.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "aroma",
+    "variantes": [
+      {
+        "tono": "Rosa · 150 ml",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESPUMA-MANI-01.webp"
+        ],
+        "origen": [
+          "Espuma limpiadora 3$ 1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Negra · 100 ml",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESPUMA-MANI-02.webp"
+        ],
+        "origen": [
+          "Espuma limpiadora 3$ 2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Crema · 100 ml",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ESPUMA-MANI-03.webp"
+        ],
+        "origen": [
+          "Espuma limpiadora 3$ 3.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 19
+  },
+  {
+    "producto_id": "MG-FINISH-15",
+    "nombre": "Finish",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3.4,
+    "precio_referencia": 4.59,
+    "nota_precio": null,
+    "presentacion": "15 ml",
+    "descripcion": "Sellador de acabado para cerrar el trabajo y proteger el color.",
+    "modo_uso": "Aplica como última capa sobre el color curado y cura.",
+    "rendimiento": "Frasco de 15 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-FINISH-15-01.webp"
+        ],
+        "origen": [
+          "Finish 15 ml 3.4$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 20
+  },
+  {
+    "producto_id": "MG-JELLY-BUILDER",
+    "nombre": "Jelly builder gel",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Gel constructor de textura jelly, más denso que un builder normal. Da estructura sin peso.",
+    "modo_uso": "Aplica sobre la uña preparada, deja que el producto se asiente solo unos segundos y cura.",
+    "rendimiento": "Pote de 30 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "codigo",
+    "variantes": [
+      {
+        "tono": "#2",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-JELLY-BUILDER-01.webp"
+        ],
+        "origen": [
+          "jelly builder gel #2 3$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "#4",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-JELLY-BUILDER-02.webp"
+        ],
+        "origen": [
+          "jelly builder gel #4 3$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "#7",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-JELLY-BUILDER-03.webp"
+        ],
+        "origen": [
+          "jelly builder gel #7 3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 21
+  },
+  {
+    "producto_id": "MG-LIMPIA-PINCELES",
+    "nombre": "Limpia pinceles",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Limpiador de pinceles de gel. Devuelve la punta al pincel y evita que el producto se endurezca en las cerdas.",
+    "modo_uso": "Moja el pincel, arrastra sobre papel absorbente y repite hasta que salga limpio.",
+    "rendimiento": "Frasco para mesa de trabajo.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-LIMPIA-PINCELES-01.webp"
+        ],
+        "origen": [
+          "Limpia pinceles 2$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 22
+  },
+  {
+    "producto_id": "MG-POLYGEL",
+    "nombre": "Polygel Premium",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Polygel en tubo: ni tan líquido como el gel ni tan rápido como la acrílica. Se moldea con calma y no chorrea.",
+    "modo_uso": "Corta la porción, colócala sobre el molde o la uña y extiende con el pincel humedecido en líquido deslizante. Cura, lima y sella.",
+    "rendimiento": "Tubo de 30 ml. El tono es un número de la carta, no un color visible en el envase.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "codigo",
+    "variantes": [
+      {
+        "tono": "04",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-POLYGEL-01.webp"
+        ],
+        "origen": [
+          "polygel premiun 04 3$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "17",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-POLYGEL-02.webp"
+        ],
+        "origen": [
+          "polygel premiun 17 3$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "19",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-POLYGEL-03.webp"
+        ],
+        "origen": [
+          "polygel premiun 19 3$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "20",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-POLYGEL-04.webp"
+        ],
+        "origen": [
+          "polygel premiun 20 3$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "25",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-POLYGEL-05.webp"
+        ],
+        "origen": [
+          "polygel premiun 25 3$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "39",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-POLYGEL-06.webp"
+        ],
+        "origen": [
+          "polygel premiun 39 3$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Clear",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-POLYGEL-07.webp"
+        ],
+        "origen": [
+          "polygel premiun clear 3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 23
+  },
+  {
+    "producto_id": "MG-PRIMER",
+    "nombre": "Primer",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Prepara la superficie de la uña para que el gel agarre. El paso que evita que el trabajo se levante.",
+    "modo_uso": "Una capa muy fina sobre la uña limpia y sin brillo. Deja evaporar antes de la base.",
+    "rendimiento": "Frasco con pincel. Se usa muy poco por uña.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-PRIMER-01.webp"
+        ],
+        "origen": [
+          "primer 2$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 24
+  },
+  {
+    "producto_id": "MG-PROTEIN-BOND",
+    "nombre": "Protein bond ultra",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Adherente con proteína para uñas difíciles, de esas donde el esmalte no dura.",
+    "modo_uso": "Aplica sobre la uña preparada antes de la base gel y deja secar al aire.",
+    "rendimiento": "Frasco con pincel.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-PROTEIN-BOND-01.webp"
+        ],
+        "origen": [
+          "Protein bond ultra 3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 25
+  },
+  {
+    "producto_id": "MG-TOP-COAT-REC",
+    "nombre": "Recarga de top coat",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 15,
+    "precio_referencia": 20.25,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Top coat en presentación de recarga, pensado para rellenar los frascos de trabajo.",
+    "modo_uso": "Trasvasa al frasco con pincel. Guarda el envase cerrado y lejos de la luz.",
+    "rendimiento": "La presentación más rendidora del top coat.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TOP-COAT-REC-01.webp"
+        ],
+        "origen": [
+          "Recarga de top coat 15$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 26
+  },
+  {
+    "producto_id": "MG-SANITIZANTE",
+    "nombre": "Sanitizante para manicure",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": "100 ml",
+    "descripcion": "Sanitizante para manos y uñas antes de empezar el servicio.",
+    "modo_uso": "Rocía sobre las manos y deja secar al aire antes de trabajar.",
+    "rendimiento": "Frasco de 100 ml con atomizador.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-SANITIZANTE-01.webp"
+        ],
+        "origen": [
+          "Sanitizante 3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 27
+  },
+  {
+    "producto_id": "MG-TOALLAS-REMOV",
+    "nombre": "Toallas removedoras de esmalte",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": "90 g",
+    "descripcion": "Toallas sin pelusa para retirar la capa pegajosa del gel y limpiar la uña sin dejar fibras.",
+    "modo_uso": "Humedece con removedor o alcohol y pasa sobre la uña curada.",
+    "rendimiento": "Paquete de 90 g.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TOALLAS-REMOV-01.webp"
+        ],
+        "origen": [
+          "Algodón celulosas 2$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 28
+  },
+  {
+    "producto_id": "MG-TOP-COAT-15",
+    "nombre": "Top coat",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3.7,
+    "precio_referencia": 5,
+    "nota_precio": null,
+    "presentacion": "15 ml",
+    "descripcion": "La capa que va de última y decide el acabado. Sella el color y le da el brillo espejo.",
+    "modo_uso": "Aplica sobre el color ya curado, cubriendo el borde libre de la uña. Cura.",
+    "rendimiento": "Frasco de 15 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TOP-COAT-15-01.webp"
+        ],
+        "origen": [
+          "Top coat 15 ml 3.7$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 29
+  },
+  {
+    "producto_id": "MG-TIPS-500",
+    "nombre": "Uñas postizas por 500",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 5,
+    "precio_referencia": 6.75,
+    "nota_precio": null,
+    "presentacion": "500 piezas",
+    "descripcion": "Caja grande de uñas postizas surtidas por tamaño, para trabajo de salón.",
+    "modo_uso": "Selecciona el tamaño que calce en cada uña, pega y recorta a la forma.",
+    "rendimiento": "500 piezas.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-500-01.webp"
+        ],
+        "origen": [
+          "Uñas por 500 5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 30
+  },
+  {
+    "producto_id": "MG-AGUA-ROSAS",
+    "nombre": "Agua de rosas",
+    "marca": "MAXGLOW",
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": "250 ml",
+    "descripcion": "Agua de rosas con extracto natural. Tonifica e hidrata después de limpiar, y baja el enrojecimiento.",
+    "modo_uso": "Aplica con algodón o rocía sobre el rostro limpio, antes de la crema.",
+    "rendimiento": "Frasco de 250 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-AGUA-ROSAS-01.webp"
+        ],
+        "origen": [
+          "Agua de rosas 3.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 31
+  },
+  {
+    "producto_id": "MG-GASAS-PESTANAS",
+    "nombre": "Gasas mágicas para pestañas",
+    "marca": "MAXGLOW",
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": "300 piezas",
+    "descripcion": "Gasas sin pelusa para retirar pestañas postizas y limpiar la línea del ojo sin dejar fibras.",
+    "modo_uso": "Humedece con removedor y apoya sobre la pestaña hasta que el adhesivo ceda.",
+    "rendimiento": "Paquete de 300 piezas.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "aroma",
+    "variantes": [
+      {
+        "tono": "Lisa",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GASAS-PESTANAS-01.webp"
+        ],
+        "origen": [
+          "Algodón gasa de pestañas 2$.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Corazones rosas",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GASAS-PESTANAS-02.webp"
+        ],
+        "origen": [
+          "Algodón gasas de pestañas 2$ corazones rosas.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Corazones morados",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-GASAS-PESTANAS-03.webp"
+        ],
+        "origen": [
+          "Algodón gasas de pestañas 2$ corazones morados.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 32
+  },
+  {
+    "producto_id": "MG-ATOMIZADOR-TALCO",
+    "nombre": "Atomizador de talco",
+    "marca": "MAXGLOW",
+    "categoria": "cuerpo",
+    "uso_profesional": false,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Atomizador vacío de vidrio con bomba para polvo. Reparte el talco en una capa fina en vez de una nube.",
+    "modo_uso": "Llena hasta la mitad, cierra bien y presiona la bomba a unos centímetros de la piel.",
+    "rendimiento": "Envase recargable. Se vende vacío.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-ATOMIZADOR-TALCO-01.webp"
+        ],
+        "origen": [
+          "Atomizador de talco 3.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 33
+  },
+  {
+    "producto_id": "MG-BOMBAS-EFERV",
+    "nombre": "Bombas efervescentes mini",
+    "marca": "MAXGLOW",
+    "categoria": "cuerpo",
+    "uso_profesional": false,
+    "precio_divisa": 3.9,
+    "precio_referencia": 5.27,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Bombas efervescentes en tamaño mini. Se disuelven en el agua y la perfuman.",
+    "modo_uso": "Suelta una en la bañera con agua caliente y espera a que termine de disolverse.",
+    "rendimiento": "Presentación mini, para un baño cada una.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-BOMBAS-EFERV-01.webp"
+        ],
+        "origen": [
+          "Bombas efervescente mini 3.9$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 34
+  },
+  {
+    "producto_id": "MG-BODY-BUTTER",
+    "nombre": "Crema body butter",
+    "marca": "MAXGLOW",
+    "categoria": "cuerpo",
+    "uso_profesional": false,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Manteca corporal espesa, para piel que pide más que una crema normal.",
+    "modo_uso": "Aplica sobre la piel limpia y masajea hasta que absorba.",
+    "rendimiento": "Pote para uso diario.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-BODY-BUTTER-01.webp"
+        ],
+        "origen": [
+          "Crema body buter 3.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 35
+  }
+]

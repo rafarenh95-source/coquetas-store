@@ -1,0 +1,84 @@
+---
+/**
+ * Botón de WhatsApp.
+ *
+ * La tienda vende por WhatsApp, así que este es el camino real de compra y
+ * tiene que estar siempre a mano: arriba del catálogo, flotando mientras se
+ * recorren los productos, y otra vez en el pie.
+ *
+ * El chat no se abre vacío. Llega con un saludo escrito, porque una clienta que
+ * abre un chat en blanco tiene que redactar ella el primer mensaje, y ese es
+ * justo el trámite que el manual §4 dice que la hace desistir.
+ */
+
+import tienda from "../data/tienda.json";
+import Icono from "./Icono.astro";
+
+interface Props {
+  variante?: "inline" | "flotante";
+  texto?: string;
+  mensaje?: string;
+}
+
+const {
+  variante = "inline",
+  texto = "Pedir por WhatsApp",
+  mensaje = "Hola Coquetas Store, quiero hacer un pedido.",
+} = Astro.props;
+
+const enlace = tienda.whatsapp
+  ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(mensaje)}`
+  : null;
+
+const flotante = variante === "flotante";
+---
+
+{
+  enlace &&
+    (flotante ? (
+      /* Aparece cuando el botón de arriba ya se perdió de vista, para no
+         competir con él en la primera pantalla. */
+      <a
+        href={enlace}
+        target="_blank"
+        rel="noopener"
+        data-wa-flotante
+        aria-label={texto}
+        class="presionable fixed right-2 bottom-2 z-40 flex h-[56px] w-[56px] translate-y-3 scale-90 items-center justify-center rounded-full bg-magenta text-crema opacity-0 shadow-[0_4px_16px_rgba(43,10,38,0.28)] transition-[opacity,transform] duration-[var(--paso-lento)] ease-[var(--curva)] data-[visible]:translate-y-0 data-[visible]:scale-100 data-[visible]:opacity-100 hover:bg-purpura md:right-4 md:bottom-4 md:h-[60px] md:w-[60px]"
+      >
+        <Icono nombre="whatsapp" tamano={28} />
+      </a>
+    ) : (
+      <a
+        href={enlace}
+        target="_blank"
+        rel="noopener"
+        class="presionable t-etiqueta inline-flex min-h-[48px] items-center justify-center gap-1 bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
+      >
+        <Icono nombre="whatsapp" tamano={17} />
+        {texto}
+      </a>
+    ))
+}
+
+<script>
+  /* El flotante entra cuando el botón de arriba sale de pantalla, para no
+     competir con él en la primera pantalla. Un observador en vez de un
+     listener de scroll: no se ejecuta en cada pixel. */
+  const boton = document.querySelector("[data-wa-flotante]");
+  const referencia = document.querySelector("[data-wa-referencia]");
+
+  if (boton) {
+    if (referencia) {
+      new IntersectionObserver(
+        ([entrada]) => {
+          if (entrada.isIntersecting) delete boton.dataset.visible;
+          else boton.dataset.visible = "true";
+        },
+        { threshold: 0 }
+      ).observe(referencia);
+    } else {
+      boton.dataset.visible = "true";
+    }
+  }
+</script>

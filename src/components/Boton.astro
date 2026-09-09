@@ -1,0 +1,47 @@
+---
+/**
+ * Botón.
+ *
+ * Montserrat 600 · 12 px · tracking 0.16em · mayúsculas, como manda la tabla
+ * tipográfica del manual y como se ve en el mock de la página 14.
+ *
+ * Primario   magenta con texto crema (4.70:1, pasa AA)
+ * Secundario contorno ciruela sobre crema (15.8:1)
+ *
+ * Altura mínima 44 px: objetivo táctil, prioridad 2 de accesibilidad.
+ */
+
+interface Props {
+  variante?: "primario" | "secundario";
+  href?: string;
+  tipo?: "button" | "submit";
+  ancho?: boolean;
+  class?: string;
+}
+
+const {
+  variante = "primario",
+  href,
+  tipo = "button",
+  ancho = false,
+  class: clase = "",
+} = Astro.props;
+
+const Etiqueta = href ? "a" : "button";
+
+const base =
+  "presionable t-etiqueta inline-flex min-h-[44px] items-center justify-center gap-1 px-3 py-2 transition-colors duration-[var(--paso)] ease-[var(--curva)]";
+
+const variantes = {
+  primario: "bg-magenta text-crema hover:bg-purpura",
+  secundario: "border border-ciruela text-ciruela hover:bg-ciruela hover:text-crema",
+};
+---
+
+<Etiqueta
+  href={href}
+  type={href ? undefined : tipo}
+  class:list={[base, variantes[variante], ancho && "w-full", clase]}
+>
+  <slot />
+</Etiqueta>

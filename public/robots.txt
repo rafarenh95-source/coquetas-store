@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /sistema
+
+Sitemap: https://coquetas.store/sitemap.xml

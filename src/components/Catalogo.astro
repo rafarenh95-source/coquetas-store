@@ -1,0 +1,180 @@
+---
+/**
+ * Catálogo — pestañas de categoría sobre una sola grilla.
+ *
+ * Con 35 productos no hace falta buscador, filtros avanzados ni paginación:
+ * todo cabe en una vista. Las pestañas solo esconden y muestran tarjetas que ya
+ * están en el HTML, así que el filtrado es instantáneo y funciona igual si el
+ * JavaScript no llega a cargar (sin JS se ven los 35, que es un estado correcto).
+ *
+ * Orden: destacados primero, luego consumidora antes que uso profesional dentro
+ * de cada categoría. El recorrido por defecto es el de Rebeca.
+ */
+
+import TarjetaProducto from "./TarjetaProducto.astro";
+import productos from "../data/productos.json";
+
+const CATEGORIAS = [
+  { id: "todo", texto: "Todo" },
+  { id: "unas", texto: "Uñas" },
+  { id: "facial", texto: "Cuidado facial" },
+  { id: "cuerpo", texto: "Cuerpo y spa" },
+];
+---
+
+<section id="catalogo" class="scroll-mt-2">
+  <div class="contenedor pt-4 md:pt-6">
+    <h1 class="t-h2 text-ciruela">Catálogo</h1>
+
+    {/* Una sola línea y el camino de compra. Nada más antes de los productos. */}
+    <p class="t-lead mt-2 max-w-[46ch] text-ciruela/80">
+      {productos.length} piezas disponibles. Pides por WhatsApp y te confirmamos todo en el
+      mismo chat.
+    </p>
+
+  </div>
+
+  <div
+    class="sticky top-0 z-10 mt-4 bg-crema py-1 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-4 after:bg-gradient-to-b after:from-crema after:to-transparent"
+  >
+    <div class="contenedor">
+      <div
+        role="tablist"
+        aria-label="Categorías"
+        class="sin-riel a-sangre flex gap-1 overflow-x-auto md:m-0 md:p-0"
+      >
+        {
+          CATEGORIAS.map((c, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`pestana-${c.id}`}
+              data-categoria={c.id}
+              aria-selected={i === 0}
+              aria-controls="grilla"
+              tabindex={i === 0 ? 0 : -1}
+              class:list={[
+                "presionable t-etiqueta relative shrink-0 whitespace-nowrap px-2 py-2",
+                "min-h-[44px] text-ciruela/60 transition-colors duration-[var(--paso)]",
+                "hover:text-ciruela aria-selected:text-ciruela",
+                "after:absolute after:inset-x-2 after:bottom-1 after:h-px after:origin-left",
+                "after:scale-x-0 after:bg-ciruela after:transition-transform",
+                "after:duration-[var(--paso-lento)] after:ease-[var(--curva)]",
+                "aria-selected:after:scale-x-100",
+              ]}
+            >
+              {c.texto}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="contenedor mt-3">
+    {/* Un solo panel gobernado por las cuatro pestañas: aria-labelledby apunta
+        a la que esté activa y el script lo mantiene al día. */}
+    <div
+      id="grilla"
+      role="tabpanel"
+      aria-labelledby="pestana-todo"
+      class="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3 lg:grid-cols-4"
+    >
+      {
+        productos.map((p, i) => (
+          <div data-categoria={p.categoria} class="contents">
+            <TarjetaProducto producto={p} prioridad={i < 4} />
+          </div>
+        ))
+      }
+    </div>
+
+    <p
+      id="sin-resultados"
+      class="t-cuerpo mt-6 hidden text-center text-ciruela/70"
+      role="status"
+    >
+      No hay piezas en esta categoría.
+    </p>
+
+    {/* Sin esto, quien usa lector de pantalla cambia de pestaña y no sabe si
+        pasó algo ni cuántas piezas quedaron. */}
+    <p class="sr-only" role="status" aria-live="polite" data-recuento></p>
+  </div>
+</section>
+
+<script>
+  import "../scripts/tarjetas.js";
+
+  const pestanas = document.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+  const grilla = document.getElementById("grilla");
+  const vacio = document.getElementById("sin-resultados");
+
+  if (pestanas.length && grilla) {
+    /* `.contents` en el envoltorio dejaría la tarjeta sin contenedor propio para
+       esconder, así que se marca la tarjeta misma con la categoría. */
+    const tarjetas = Array.from(grilla.children) as HTMLElement[];
+    tarjetas.forEach((envoltorio) => {
+      const cat = envoltorio.getAttribute("data-categoria");
+      const articulo = envoltorio.querySelector("article");
+      if (cat && articulo) articulo.setAttribute("data-categoria", cat);
+    });
+
+    function filtrar(categoria: string) {
+      let visibles = 0;
+
+      for (const envoltorio of tarjetas) {
+        const coincide = categoria === "todo" || envoltorio.dataset.categoria === categoria;
+        envoltorio.classList.toggle("hidden", !coincide);
+        envoltorio.classList.toggle("contents", coincide);
+        if (coincide) visibles++;
+      }
+
+      vacio?.classList.toggle("hidden", visibles > 0);
+
+      const nombres = { todo: "Todo", unas: "Uñas", facial: "Cuidado facial", cuerpo: "Cuerpo y spa" };
+
+      for (const p of pestanas) {
+        const activa = p.dataset.categoria === categoria;
+        p.setAttribute("aria-selected", String(activa));
+        p.tabIndex = activa ? 0 : -1;
+        if (activa) grilla.setAttribute("aria-labelledby", p.id);
+      }
+
+      const recuento = document.querySelector("[data-recuento]");
+      if (recuento) {
+        recuento.textContent = `${visibles} ${visibles === 1 ? "pieza" : "piezas"} en ${nombres[categoria] ?? categoria}.`;
+      }
+
+      const url = new URL(location.href);
+      if (categoria === "todo") url.searchParams.delete("categoria");
+      else url.searchParams.set("categoria", categoria);
+      history.replaceState(null, "", url);
+    }
+
+    for (const p of pestanas) {
+      p.addEventListener("click", () => filtrar(p.dataset.categoria!));
+    }
+
+    /* Flechas para moverse entre pestañas, como espera un tablist */
+    for (const [i, p] of pestanas.entries()) {
+      p.addEventListener("keydown", (e) => {
+        let destino: number | null = null;
+        if (e.key === "ArrowRight") destino = (i + 1) % pestanas.length;
+        else if (e.key === "ArrowLeft") destino = (i - 1 + pestanas.length) % pestanas.length;
+        else if (e.key === "Home") destino = 0;
+        else if (e.key === "End") destino = pestanas.length - 1;
+        if (destino === null) return;
+        e.preventDefault();
+        pestanas[destino].focus();
+        filtrar(pestanas[destino].dataset.categoria!);
+      });
+    }
+
+    /* Si se llega con ?categoria=unas desde un enlace compartido */
+    const inicial = new URL(location.href).searchParams.get("categoria");
+    if (inicial && [...pestanas].some((p) => p.dataset.categoria === inicial)) {
+      filtrar(inicial);
+    }
+  }
+</script>

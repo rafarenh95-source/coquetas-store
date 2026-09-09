@@ -1,0 +1,14 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "tmp-fonts"],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@componentes/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@datos/*": ["src/data/*"]
+    }
+  }
+}

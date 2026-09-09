@@ -1,0 +1,78 @@
+---
+import "../styles/global.css";
+import tienda from "../data/tienda.json";
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+}
+
+const { titulo, descripcion = "Belleza y cuidado personal en San Francisco, estado Zulia." } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo} · Coquetas Store</title>
+    <meta name="description" content={descripcion} />
+
+    {/* Didot es la fuente del H1, que es el LCP de la portada. Va precargada. */}
+    <link
+      rel="preload"
+      href="/fuentes/gfs-didot-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fuentes/montserrat-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    {/* La tasa se pide nada más cargar; adelantar la conexión ahorra el saludo TLS */}
+    <link rel="preconnect" href="https://ve.dolarapi.com" crossorigin />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#FEEBE2" />
+
+    {/* Cómo se ve el enlace cuando lo comparten por WhatsApp, que es por donde
+        llega la mayoría de las clientas */}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_VE" />
+    <meta property="og:site_name" content="Coquetas Store" />
+    <meta property="og:title" content={`${titulo} · Coquetas Store`} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:image" content={new URL("/og.jpg", Astro.site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
+  </head>
+
+  <body
+    data-tasa-respaldo={tienda.tasa_bcv_respaldo?.valor}
+    data-tasa-fecha={tienda.tasa_bcv_respaldo?.fecha}
+  >
+    <a
+      href="#contenido"
+      class="t-etiqueta sr-only bg-ciruela px-3 text-crema focus:not-sr-only focus:absolute focus:top-1 focus:left-1 focus:z-[60] focus:flex focus:min-h-[44px] focus:items-center"
+    >
+      Saltar al contenido
+    </a>
+
+    <slot />
+
+    <script>
+      import "../scripts/tasa-bcv.js";
+      import "../scripts/bolsa.js";
+      if (import.meta.env.DEV) import("../scripts/auditor-marca.js");
+    </script>
+  </body>
+</html>

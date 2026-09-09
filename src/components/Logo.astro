@@ -1,0 +1,41 @@
+---
+/**
+ * Logo.
+ *
+ * Solo va sobre crema #FEEBE2 o papel #FFF8F4. Nunca sobre ciruela, nunca sobre
+ * un rosa, nunca sobre blanco puro (manual §5 y §6). No existe versión negativa
+ * ni monocroma: están [POR DEFINIR] y el manual prohíbe dibujarlas de memoria,
+ * así que este componente no ofrece esa opción. El auditor de marca comprueba
+ * en desarrollo el color real del fondo sobre el que quedó.
+ *
+ * Los mínimos del manual §7 están aplicados como min-width: por debajo de ellos
+ * el filete de oro se pierde y la silueta se ensucia.
+ */
+
+interface Props {
+  version?: "horizontal" | "vertical" | "isotipo";
+  ancho?: number;
+  class?: string;
+}
+
+const { version = "horizontal", ancho, class: clase = "" } = Astro.props;
+
+const VERSIONES = {
+  horizontal: { src: "/img/marca/coquetas-horizontal.webp", minimo: 180, ratio: 203 / 720 },
+  vertical: { src: "/img/marca/coquetas-vertical.webp", minimo: 120, ratio: 413 / 480 },
+  isotipo: { src: "/img/marca/coquetas-isotipo.webp", minimo: 40, ratio: 249 / 240 },
+};
+
+const v = VERSIONES[version];
+const w = Math.max(ancho ?? v.minimo, v.minimo);
+---
+
+<img
+  data-logo
+  src={v.src}
+  alt="Coquetas Store"
+  width={w}
+  height={Math.round(w * v.ratio)}
+  style={`width:${w}px;min-width:${v.minimo}px;height:auto`}
+  class={clase}
+/>

@@ -1,0 +1,206 @@
+---
+/**
+ * Ficha de producto.
+ *
+ * El manual §4 pide tres bloques: para qué sirve, cómo se usa, cuánto rinde.
+ * Se dejó solo el tercero, por decisión de la dueña: su clienta ya sabe para
+ * qué sirve un esmalte y cómo se aplica antes de entrar al catálogo — no hace
+ * falta explicárselo. Lo que sí decide la compra es el dato práctico: cuánto
+ * trae el frasco, o que las limas van dos por un dólar. Ese dato sigue abierto,
+ * no en acordeón, porque es justo el argumento que explica el precio.
+ *
+ * El nombre va en Didot a 32 px: es la única superficie donde el nombre del
+ * producto alcanza el mínimo de 24 px que permite la tipografía de titulares.
+ */
+
+import Base from "../../layouts/Base.astro";
+import Encabezado from "../../components/Encabezado.astro";
+import PieDePagina from "../../components/PieDePagina.astro";
+import Bolsa from "../../components/Bolsa.astro";
+import Precio from "../../components/Precio.astro";
+import Swatches from "../../components/Swatches.astro";
+import BarraProducto from "../../components/BarraProducto.astro";
+import productos from "../../data/productos.json";
+
+export function getStaticPaths() {
+  return productos.map((p) => ({
+    params: { id: p.producto_id.toLowerCase() },
+    props: { p },
+  }));
+}
+
+const { p } = Astro.props;
+
+const CATEGORIAS = { unas: "Uñas", facial: "Cuidado facial", cuerpo: "Cuerpo y spa" };
+
+const primera = p.variantes[0];
+const srcset = (src: string) =>
+  [400, 550, 700]
+    .map((w) => `${src.replace(".webp", `-${w}.webp`)} ${w}w`)
+    .concat(`${src} 1000w`)
+    .join(", ");
+
+const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) => b.texto);
+---
+
+<Base titulo={p.nombre} descripcion={p.descripcion}>
+  <Encabezado />
+
+  <main id="contenido" class="contenedor pb-12">
+    <nav aria-label="Miga de pan" class="py-3">
+      <ol class="t-caption flex items-center gap-1 text-ciruela/70">
+        <li><a href="/" class="hover:text-ciruela">Catálogo</a></li>
+        <li aria-hidden="true">›</li>
+        <li>
+          <a href={`/?categoria=${p.categoria}`} class="hover:text-ciruela">
+            {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}
+          </a>
+        </li>
+      </ol>
+    </nav>
+
+    <div
+      class="grid gap-6 md:grid-cols-2 md:gap-8"
+      data-producto
+      data-id={p.producto_id}
+      data-nombre={p.nombre}
+      data-presentacion={p.presentacion ?? ""}
+      data-precio={p.precio_divisa}
+      data-referencia={p.precio_referencia}
+    >
+      {/* ── Fotografía ──────────────────────────────────────────────── */}
+      <div>
+        <button
+          type="button"
+          data-ampliar
+          class="block w-full cursor-zoom-in bg-crema"
+          aria-label="Ver la foto en grande"
+        >
+          <img
+            data-foto
+            src={primera.imagenes[0]}
+            srcset={srcset(primera.imagenes[0])}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
+            width="1000"
+            height="1000"
+            fetchpriority="high"
+            decoding="async"
+            class="aspect-square w-full object-contain p-2"
+          />
+        </button>
+
+        <p class="t-caption mt-1 text-ciruela/60">
+          Foto del producto real, sin retoque de color.
+        </p>
+      </div>
+
+      {/* ── Datos ───────────────────────────────────────────────────── */}
+      <div class="flex flex-col gap-3">
+        <p class="t-etiqueta text-purpura">
+          {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]} · {p.marca}
+        </p>
+
+        <h1 class="t-h3 text-ciruela">{p.nombre}</h1>
+
+        {p.presentacion && <p class="t-caption text-ciruela/70">{p.presentacion}</p>}
+
+        <Precio
+          divisa={p.precio_divisa}
+          referencia={p.precio_referencia}
+          nota={p.nota_precio}
+          tamano="ficha"
+        />
+
+        {
+          p.variantes.length > 1 && (
+            <div class="mt-2">
+              <p class="t-etiqueta mb-1 text-ciruela/70">
+                {p.tipo_variante === "color" ? "Tono" : "Variante"}
+              </p>
+              <Swatches variantes={p.variantes} tipo={p.tipo_variante} modo="selector" />
+            </div>
+          )
+        }
+
+        <div class="mt-2 flex flex-col gap-1" data-cta-principal>
+          <button
+            type="button"
+            data-agregar
+            class="presionable t-etiqueta flex min-h-[48px] w-full items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Agregar · ${p.precio_divisa.toFixed(2).replace(".", ",")}
+          </button>
+          <p class="t-caption text-ciruela/70">
+            Te confirmamos disponibilidad y cuándo lo tienes.
+          </p>
+        </div>
+
+        <div class="mt-4 flex flex-col gap-4">
+          {
+            bloques.map((b) => (
+              <section>
+                <h2 class="t-etiqueta text-purpura">{b.titulo}</h2>
+                <p class="t-cuerpo mt-1 max-w-[52ch] text-ciruela/85">{b.texto}</p>
+              </section>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-8">
+      <a href="/#catalogo" class="t-etiqueta text-ciruela/70 hover:text-ciruela">
+        ← Volver al catálogo
+      </a>
+    </p>
+  </main>
+
+  {/* ── Foto en grande ────────────────────────────────────────────────── */}
+  <dialog
+    data-lupa
+    class="m-auto max-h-[90dvh] max-w-[90vw] bg-crema p-2 backdrop:bg-ciruela/60"
+    aria-label={`${p.nombre} en grande`}
+  >
+    <img data-lupa-foto src={primera.imagenes[0]} alt="" class="max-h-[80dvh] w-auto" />
+    <button
+      type="button"
+      data-lupa-cerrar
+      class="t-etiqueta mt-1 min-h-[44px] w-full text-ciruela/70 hover:text-ciruela"
+    >
+      Cerrar
+    </button>
+  </dialog>
+
+  <BarraProducto producto={p} />
+
+  <Bolsa />
+  <PieDePagina />
+
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: p.nombre,
+      description: p.descripcion,
+      brand: { "@type": "Brand", name: p.marca },
+      category: CATEGORIAS[p.categoria as keyof typeof CATEGORIAS],
+      image: p.variantes.map((v: any) => new URL(v.imagenes[0], Astro.site).href),
+      ...(p.presentacion ? { size: p.presentacion } : {}),
+      offers: {
+        "@type": "Offer",
+        price: p.precio_divisa.toFixed(2),
+        priceCurrency: "USD",
+        availability: p.disponible
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+        url: new URL(`/producto/${p.producto_id.toLowerCase()}`, Astro.site).href,
+      },
+    })}
+  />
+
+  <script>
+    import "../../scripts/ficha.js";
+  </script>
+</Base>

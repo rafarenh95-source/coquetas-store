@@ -1,0 +1,116 @@
+---
+/**
+ * Portada — landing con el catálogo completo.
+ *
+ * El héroe no lleva foto de producto. El arquetipo dominante de la marca pide
+ * «bloques de color plano, mucho aire y Didot grande, una idea por pieza, nada
+ * de adornos que compitan con el mensaje» (manual §3). Además hace que el LCP
+ * sea texto, no una imagen, que es la vía más barata para el presupuesto de
+ * rendimiento en móvil.
+ *
+ * Un solo filete de oro en toda la página, en el cierre editorial.
+ */
+
+import Base from "../layouts/Base.astro";
+import Encabezado from "../components/Encabezado.astro";
+import Catalogo from "../components/Catalogo.astro";
+import PieDePagina from "../components/PieDePagina.astro";
+import Bolsa from "../components/Bolsa.astro";
+import BotonWhatsapp from "../components/BotonWhatsapp.astro";
+import FileteOro from "../components/FileteOro.astro";
+import productos from "../data/productos.json";
+import tienda from "../data/tienda.json";
+---
+
+<Base
+  titulo="Catálogo"
+  descripcion="Maquillaje, uñas y cuidado personal en San Francisco, estado Zulia. Treinta y cinco piezas elegidas una por una. Pedidos por WhatsApp."
+>
+  <Encabezado />
+
+  <main id="contenido">
+    {/* ── Catálogo ───────────────────────────────────────────────────────
+        No hay portada antes del catálogo. La clienta llega desde Instagram
+        sabiendo ya quién es la tienda: lo que necesita es ver los productos y
+        saber que se pide por WhatsApp, no que le presenten la marca otra vez. */}
+    <Catalogo />
+
+    {/* ── Cierre editorial ──────────────────────────────────────────────── */}
+    <section class="sobre-ciruela mt-12 px-3 py-12">
+      <div class="mx-auto flex max-w-[46ch] flex-col items-center gap-3 text-center">
+        <p class="t-h2 text-crema">La alternativa de la ciudad</p>
+        <FileteOro ancho="corto" />
+        <p class="t-cuerpo text-crema/70">
+          No competimos por precio. Competimos por criterio, novedad y trato.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <BotonWhatsapp variante="flotante" texto="Pedir por WhatsApp" />
+
+  <Bolsa />
+  <PieDePagina />
+
+  {/* El negocio físico: coordenadas, teléfono y ficha de Google. Es lo que
+      permite que aparezca como local y no solo como página. */}
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Store",
+      name: tienda.nombre,
+      image: new URL("/og.jpg", Astro.site).href,
+      url: Astro.site?.href,
+      ...(tienda.whatsapp ? { telephone: `+${tienda.whatsapp}` } : {}),
+      address: {
+        "@type": "PostalAddress",
+        ...(tienda.direccion ? { streetAddress: tienda.direccion } : {}),
+        addressLocality: tienda.ciudad,
+        addressRegion: tienda.estado,
+        addressCountry: "VE",
+      },
+      ...(tienda.coordenadas
+        ? {
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: tienda.coordenadas.lat,
+              longitude: tienda.coordenadas.lng,
+            },
+          }
+        : {}),
+      ...(tienda.mapa ? { hasMap: tienda.mapa, sameAs: [tienda.mapa] } : {}),
+      currenciesAccepted: "USD, VES",
+    })}
+  />
+
+  {/* Datos estructurados: cada producto del catálogo, con su precio en divisa. */}
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Catálogo Coquetas Store",
+      numberOfItems: productos.length,
+      itemListElement: productos.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "Product",
+          name: p.nombre,
+          brand: { "@type": "Brand", name: p.marca },
+          ...(p.presentacion ? { size: p.presentacion } : {}),
+          image: p.variantes[0].imagenes[0],
+          offers: {
+            "@type": "Offer",
+            price: p.precio_divisa.toFixed(2),
+            priceCurrency: "USD",
+            availability: p.disponible
+              ? "https://schema.org/InStock"
+              : "https://schema.org/OutOfStock",
+          },
+        },
+      })),
+    })}
+  />
+</Base>

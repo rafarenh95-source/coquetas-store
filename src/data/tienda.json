@@ -1,0 +1,21 @@
+{
+  "nombre": "Coquetas Store",
+  "ciudad": "San Francisco",
+  "estado": "estado Zulia",
+  "whatsapp": "584246767738",
+  "instagram": null,
+  "promesa_respuesta": "Respondemos el mismo día.",
+  "recargo_bolivares": 1.35,
+  "tasa_bcv_respaldo": {
+    "valor": 820.1018,
+    "fecha": "2026-09-09"
+  },
+  "_pendiente": "direccion: calle y referencia, para escribirla bajo el nombre de la ciudad. horario: p. ej. 'Lunes a sábado, 9:00 a 18:00'. instagram: usuario sin arroba.",
+  "direccion": null,
+  "horario": null,
+  "mapa": "https://maps.google.com/?cid=867189525018855144",
+  "coordenadas": {
+    "lat": 10.5644234,
+    "lng": -71.6548232
+  }
+}

@@ -1,0 +1,42 @@
+---
+/**
+ * Página de error.
+ *
+ * Sin esto, quien escriba mal una dirección o llegue desde un enlace viejo ve
+ * la pantalla genérica del servidor, que no dice de quién es el sitio ni cómo
+ * volver. Aquí el tono sigue siendo el de la marca: afirmativo, sin disculpas
+ * largas, y con la salida a la vista.
+ */
+
+import Base from "../layouts/Base.astro";
+import Encabezado from "../components/Encabezado.astro";
+import PieDePagina from "../components/PieDePagina.astro";
+import Boton from "../components/Boton.astro";
+---
+
+<Base
+  titulo="Página no encontrada"
+  descripcion="Esta dirección no existe en el catálogo de Coquetas Store."
+>
+  <Encabezado />
+
+  <main id="contenido" class="contenedor">
+    <div class="flex min-h-[50vh] flex-col justify-center py-12">
+      <p class="t-etiqueta text-purpura">Error 404</p>
+
+      <h1 class="t-h2 mt-2 text-ciruela">Esta página<br />no existe</h1>
+
+      <p class="t-lead mt-3 max-w-[42ch] text-ciruela/80">
+        La dirección que buscas no está en el catálogo. Puede que el producto ya no esté o que
+        el enlace venga con una errata.
+      </p>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        <Boton href="/#catalogo" variante="primario">Ver el catálogo</Boton>
+        <Boton href="/#como-comprar" variante="secundario">Cómo comprar</Boton>
+      </div>
+    </div>
+  </main>
+
+  <PieDePagina />
+</Base>

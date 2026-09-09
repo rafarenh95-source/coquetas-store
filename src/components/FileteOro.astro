@@ -1,0 +1,32 @@
+---
+/**
+ * Filete de oro (manual §12).
+ *
+ * Línea de 1 px con un punto ornamental en cada extremo. Divide bloques, nunca
+ * enmarca. Máximo uno por vista — el auditor de marca lo verifica en desarrollo.
+ *
+ * El oro nunca es tipografía ni relleno: solo esta línea.
+ */
+
+interface Props {
+  ancho?: "completo" | "corto";
+}
+
+const { ancho = "completo" } = Astro.props;
+---
+
+<div
+  data-filete
+  role="separator"
+  class:list={[
+    "relative h-px bg-oro",
+    ancho === "completo" ? "w-full" : "w-[min(320px,60%)]",
+  ]}
+>
+  <span
+    class="absolute top-1/2 -left-px h-[3px] w-[3px] -translate-y-1/2 rounded-full bg-oro"
+  ></span>
+  <span
+    class="absolute top-1/2 -right-px h-[3px] w-[3px] -translate-y-1/2 rounded-full bg-oro"
+  ></span>
+</div>

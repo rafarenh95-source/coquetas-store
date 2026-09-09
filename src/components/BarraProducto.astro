@@ -1,0 +1,102 @@
+---
+/**
+ * Barra persistente de la ficha.
+ *
+ * La ficha es larga: foto, precio, tonos, y tres bloques de texto. Al bajar a
+ * leer el modo de uso, el botón de agregar quedaba fuera de pantalla y había que
+ * volver a subir. Esta barra aparece justo cuando el botón principal se pierde
+ * de vista, así que nunca hay dos a la vez ni un momento sin ninguno.
+ *
+ * Abajo en el teléfono, donde está el pulgar. Arriba en escritorio, donde está
+ * la mirada. No es la misma barra en dos sitios: es la misma decisión adaptada
+ * a cómo se sostiene cada aparato.
+ *
+ * Lleva el precio en el botón porque, cuando la barra aparece, el precio de la
+ * página ya no se ve: sin él la clienta tendría que confiar de memoria.
+ */
+
+interface Props {
+  producto: any;
+}
+
+const { producto: p } = Astro.props;
+
+const monto = new Intl.NumberFormat("es-VE", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const conVariantes = p.variantes.length > 1;
+const etiquetaBoton = `Agregar · $${monto.format(p.precio_divisa)}`;
+
+/* invisible, no solo transparente: si solo baja la opacidad, el botón sigue
+   estando en el orden de tabulación y se aterriza en él sin verlo. */
+const base =
+  "invisible data-[visible]:visible fixed inset-x-0 z-30 border-ciruela/15 bg-crema/95 backdrop-blur-sm transition-[opacity,transform] duration-[var(--paso-lento)] ease-[var(--curva)]";
+---
+
+{/* ── Teléfono: abajo, al alcance del pulgar ─────────────────────────── */}
+<div
+  data-barra-producto
+  class:list={[
+    base,
+    "bottom-0 translate-y-full border-t opacity-0 md:hidden",
+    "data-[visible]:translate-y-0 data-[visible]:opacity-100",
+  ]}
+>
+  <div class="contenedor flex items-center gap-2 py-2">
+    <div class="min-w-0 flex-1">
+      <p class="font-sans text-[15px] leading-tight font-semibold text-ciruela truncate">
+        {p.nombre}
+      </p>
+      {
+        conVariantes && (
+          <p class="t-caption truncate text-ciruela/70" data-barra-tono>
+            {p.variantes[0].tono}
+          </p>
+        )
+      }
+    </div>
+
+    <button
+      type="button"
+      data-agregar-barra
+      class="presionable t-etiqueta inline-flex min-h-[44px] shrink-0 items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      {etiquetaBoton}
+    </button>
+  </div>
+</div>
+
+{/* ── Escritorio: arriba, donde está la mirada ───────────────────────── */}
+<div
+  data-barra-producto
+  class:list={[
+    base,
+    "top-0 hidden -translate-y-full border-b opacity-0 md:block",
+    "data-[visible]:translate-y-0 data-[visible]:opacity-100",
+  ]}
+>
+  <div class="contenedor flex items-center justify-between gap-3 py-2">
+    <div class="flex min-w-0 items-baseline gap-2">
+      <p class="font-sans text-[15px] leading-tight font-semibold text-ciruela truncate">
+        {p.nombre}
+      </p>
+      {
+        conVariantes && (
+          <span class="t-caption truncate text-ciruela/70" data-barra-tono>
+            {p.variantes[0].tono}
+          </span>
+        )
+      }
+    </div>
+
+    <button
+      type="button"
+      data-agregar-barra
+      class="presionable t-etiqueta inline-flex min-h-[44px] shrink-0 items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      {etiquetaBoton}
+    </button>
+  </div>
+</div>

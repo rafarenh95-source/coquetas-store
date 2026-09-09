@@ -1,0 +1,106 @@
+---
+/**
+ * Tarjeta de producto.
+ *
+ * Superficie papel #FFF8F4, nunca blanco puro. La foto se apoya sobre crema,
+ * como exige el manual §13, y llega recortada a transparencia para que el fondo
+ * lo ponga el CSS y no haya costura entre la foto y la página.
+ *
+ * El nombre va en Montserrat: a este tamaño Didot está prohibido (§11). Didot
+ * aparece con el nombre del producto solo en la ficha, donde llega a 32 px.
+ *
+ * Desde aquí se elige el tono y se agrega a la bolsa sin abrir la ficha. La
+ * mayoría de las compras son de piezas que la clienta ya conoce; obligarla a
+ * entrar y volver por cada una es cobrarle dos navegaciones por algo que ya
+ * tenía decidido. La ficha sigue ahí para quien quiera leer el modo de uso.
+ *
+ * Los controles viven fuera del enlace a propósito: un botón dentro de un ancla
+ * es un objetivo ambiguo, y el dedo acaba abriendo la ficha cuando quería el
+ * tono.
+ */
+
+import Precio from "./Precio.astro";
+import Swatches from "./Swatches.astro";
+
+interface Props {
+  producto: any;
+  prioridad?: boolean;
+}
+
+const { producto: p, prioridad = false } = Astro.props;
+
+const primera = p.variantes[0];
+const src = primera.imagenes[0];
+const srcset = [400, 550, 700]
+  .map((w) => `${src.replace(".webp", `-${w}.webp`)} ${w}w`)
+  .concat(`${src} 1000w`)
+  .join(", ");
+
+const conVariantes = p.variantes.length > 1;
+const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : "Variante"} de ${p.nombre}`;
+---
+
+<article
+  data-tarjeta
+  data-id={p.producto_id}
+  data-nombre={p.nombre}
+  data-presentacion={p.presentacion ?? ""}
+  data-precio={p.precio_divisa}
+  data-referencia={p.precio_referencia}
+  class="group flex h-full flex-col bg-papel"
+>
+  <a
+    href={`/producto/${p.producto_id.toLowerCase()}`}
+    class="presionable flex flex-col gap-2 p-2"
+  >
+    <div class="relative aspect-square overflow-hidden bg-crema">
+      <img
+        data-foto-tarjeta
+        src={src}
+        srcset={srcset}
+        sizes="(min-width: 1280px) 270px, (min-width: 768px) 30vw, 45vw"
+        alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
+        width="1000"
+        height="1000"
+        loading={prioridad ? "eager" : "lazy"}
+        fetchpriority={prioridad ? "high" : "auto"}
+        decoding="async"
+        class="h-full w-full object-contain p-1 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
+      />
+    </div>
+
+    <div class="flex min-h-[3.5em] flex-col gap-[2px]">
+      <h3 class="font-sans text-[15px] leading-tight font-semibold text-ciruela">
+        {p.nombre}
+      </h3>
+      {p.presentacion && <p class="t-caption text-ciruela/60">{p.presentacion}</p>}
+    </div>
+
+    <Precio divisa={p.precio_divisa} referencia={p.precio_referencia} nota={p.nota_precio} />
+  </a>
+
+  <div class="mt-auto flex flex-col gap-2 px-2 pb-2">
+    {
+      conVariantes && (
+        <Swatches
+          variantes={p.variantes}
+          tipo={p.tipo_variante}
+          modo="tarjeta"
+          etiqueta={nombreGrupo}
+        />
+      )
+    }
+
+    {/* Contorno ciruela y no relleno magenta: son treinta y cinco tarjetas, y
+        treinta y cinco botones magenta romperían el reparto de color del manual
+        y dejarían de destacar justo lo que debe destacar. */}
+    <button
+      type="button"
+      data-agregar-tarjeta
+      aria-label={`Agregar ${p.nombre} a la bolsa`}
+      class="presionable t-etiqueta inline-flex min-h-[40px] w-full items-center justify-center border border-ciruela/40 px-2 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela hover:bg-ciruela hover:text-crema disabled:cursor-not-allowed disabled:opacity-40"
+    >
+      Agregar
+    </button>
+  </div>
+</article>

@@ -1,0 +1,381 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COQUETAS — sistema de diseño
+   Traducción literal del manual de identidad visual v1.0.
+   Ningún valor de este archivo se decide aquí: todos salen del manual.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── FUENTES ────────────────────────────────────────────────────────────────
+   Dos familias y nada más (manual §11). Subseteadas a castellano.
+   GFS Didot solo Regular: no existe bold ni itálica y no se sintetizan. */
+
+@font-face {
+  font-family: "GFS Didot";
+  src: url("/fuentes/gfs-didot-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fuentes/montserrat-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fuentes/montserrat-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fuentes/montserrat-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── TOKENS ─────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Paleta — manual §9. Hex verificados contra las páginas del manual,
+     no contra ninguna transcripción posterior. */
+  --color-crema: #feebe2; /* lienzo dominante        55 % */
+  --color-papel: #fff8f4; /* soporte alterno              */
+  --color-ciruela: #2b0a26; /* estructura tipográfica  16 % · 15.8:1 */
+  --color-purpura: #7a0177; /* jerarquías              11 % ·  8.67:1 */
+  --color-magenta: #c5188a; /* acción                   6 % ·  4.70:1 */
+  --color-rosa-fuerte: #f768a1; /* ornamental          10 % con los otros rosas */
+  --color-rosa-medio: #fa9fb5;
+  --color-rosa-claro: #fcc5c0;
+  --color-oro: #d6c09a; /* filete lineal              < 2 % */
+
+  /* Tipografía */
+  --font-didot: "GFS Didot", "Times New Roman", Times, serif;
+  --font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
+
+  /* Retícula — manual §12.
+     Base 1280 × 854 · márgenes 64 / 56 / 64 · 12 columnas de 74 con medianil 24.
+     12 × 74 + 11 × 24 = 1152 = 1280 − 128. */
+  --ancho-contenido: 1152px;
+  --margen-lateral: 64px;
+  --medianil: 24px;
+
+  /* Rejilla base de 8 px. Redefinir --spacing hace que toda la escala de
+     Tailwind caiga sobre el baseline del manual: 1 = 8px, 6 = 48px (ritmo
+     entre módulos), 8 = 64px (margen lateral). */
+  --spacing: 8px;
+
+  /* Piso de opacidad para el texto ciruela: por debajo de /60 el contraste cae
+     de 4.5:1 y deja de pasar AA a 12 px. Medido, no estimado:
+       ciruela/60 → 4.59:1 sobre crema · 4.75:1 sobre papel
+       ciruela/55 → 3.92:1 sobre crema   ← no usar
+     Comprobar con: node scripts/verificar-contraste.mjs */
+
+  /* Movimiento — respuestas a una acción, nunca decoración */
+  --paso-rapido: 120ms;
+  --paso: 160ms;
+  --paso-lento: 200ms;
+  --curva: cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* ── BASE ───────────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-crema);
+    color: var(--color-ciruela);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* El foco nunca se quita (accesibilidad, prioridad 1).
+     Sobre ciruela el anillo cambia a crema — ver .sobre-ciruela. */
+  :focus-visible {
+    outline: 2px solid var(--color-ciruela);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .sobre-ciruela :focus-visible {
+    outline-color: var(--color-crema);
+  }
+
+  ::selection {
+    background: var(--color-rosa-claro);
+    color: var(--color-ciruela);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ── TIPOGRAFÍA ─────────────────────────────────────────────────────────────
+   Manual §11. Didot solo en H1/H2/H3, siempre mayúsculas, nunca bajo 24 px,
+   nunca bold ni itálica.
+
+   En móvil un H1 de 104 px no cabe. El manual manda bajar de nivel, no romper
+   la regla: por eso la escala salta entre tamaños declarados (104 → 56 → 32)
+   en vez de interpolar con clamp(), que produciría valores que no existen en
+   el sistema. El piso es 32 px, muy por encima del mínimo de 24. */
+
+@layer components {
+  .t-didot {
+    font-family: var(--font-didot);
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  .t-h1 {
+    font-family: var(--font-didot);
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 32px;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+  }
+
+  .t-h2 {
+    font-family: var(--font-didot);
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 32px;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+  }
+
+  .t-h3 {
+    font-family: var(--font-didot);
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+  }
+
+  @media (min-width: 768px) {
+    .t-h1 {
+      font-size: 56px;
+      line-height: 1.05;
+      letter-spacing: 0.1em;
+    }
+    .t-h2 {
+      font-size: 56px;
+      line-height: 1.05;
+      letter-spacing: 0.1em;
+    }
+    .t-h3 {
+      font-size: 32px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .t-h1 {
+      font-size: 104px;
+      line-height: 1;
+      letter-spacing: 0.12em;
+    }
+  }
+
+  .t-lead {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  .t-cuerpo {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* Etiquetas y botones en mayúsculas con tracking 0.16em: es lo que hace el
+     propio manual en todas sus páginas y lo que pide su tabla tipográfica. */
+  .t-etiqueta {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .t-caption {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  .t-legal {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── RETÍCULA ─────────────────────────────────────────────────────────── */
+
+  .contenedor {
+    --sangria: 16px;
+    width: 100%;
+    max-width: calc(var(--ancho-contenido) + var(--margen-lateral) * 2);
+    margin-inline: auto;
+    padding-inline: var(--sangria);
+  }
+
+  @media (min-width: 480px) {
+    .contenedor {
+      --sangria: 24px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .contenedor {
+      --sangria: 40px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .contenedor {
+      --sangria: var(--margen-lateral);
+    }
+  }
+
+  /* Se sale del contenedor justo lo que el contenedor mete, ni un pixel más.
+     Con un valor fijo, cualquier cambio de margen deja la barra sobresaliendo
+     y el navegador encoge la página para que quepa. */
+  .a-sangre {
+    margin-inline: calc(var(--sangria) * -1);
+    padding-inline: var(--sangria);
+  }
+
+  /* 4 columnas en móvil, 8 en tablet, 12 en escritorio */
+  .reticula {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .reticula {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: var(--medianil);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .reticula {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: var(--medianil);
+    }
+  }
+
+  /* ── SUPERFICIES ──────────────────────────────────────────────────────────
+     No existe el blanco puro en este sitio. El logo no puede ir sobre blanco
+     (manual §5) y una tarjeta blanca sobre crema se ve como un parche. */
+
+  .sobre-ciruela {
+    background-color: var(--color-ciruela);
+    color: var(--color-crema);
+  }
+
+  /* Se desliza igual, pero sin el riel gris del navegador encima del diseño. */
+  .sin-riel {
+    scrollbar-width: none;
+  }
+
+  .sin-riel::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── RESPUESTA AL TACTO ───────────────────────────────────────────────────
+     El estado se ve en el frame en que el dedo toca, no al soltar. Esperar al
+     click deja un hueco en el que la interfaz parece muerta, y ese hueco es lo
+     primero que rompe la sensación de estar tocando algo. */
+
+  .presionable {
+    transition:
+      transform var(--paso-rapido) var(--curva),
+      color var(--paso) var(--curva),
+      background-color var(--paso) var(--curva);
+  }
+
+  .presionable:active {
+    transform: scale(0.97);
+  }
+
+  /* Los objetivos pequeños necesitan más recorrido para que el hundido se vea */
+  .presionable-menudo:active {
+    transform: scale(0.9);
+  }
+
+  /* Amplía el área que responde sin cambiar lo que se ve. Los 4 px por lado
+     son exactamente medio hueco entre vecinos: nunca se solapan. */
+  .objetivo-amplio {
+    position: relative;
+  }
+
+  .objetivo-amplio::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+  }
+
+  @media (min-width: 768px) {
+    /* Con ratón la precisión sobra y el área extra estorbaría al hover. */
+    .objetivo-amplio::after {
+      content: none;
+    }
+  }
+
+  /* ── MOVIMIENTO ───────────────────────────────────────────────────────── */
+
+  /* Movimiento reducido no significa «sin respuesta»: significa una respuesta
+     que no desplaza. Se conservan opacidad y color, que ayudan a entender lo
+     que pasó, y se retiran desplazamientos, escalas y rebotes, que son los que
+     marean. El resorte de la bolsa se salta el recorrido por su cuenta. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-property: opacity, color, background-color, border-color, outline-color !important;
+      transition-duration: 140ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .presionable:active,
+    .presionable-menudo:active {
+      transform: none;
+      opacity: 0.7;
+    }
+  }
+}

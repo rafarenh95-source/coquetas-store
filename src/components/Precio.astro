@@ -1,0 +1,63 @@
+---
+/**
+ * Precio.
+ *
+ * Se muestran los dos, siempre, porque no cuestan lo mismo: pagar en bolívares
+ * tiene un 35 % de recargo sobre el precio en divisa. Enseñar solo el de divisa
+ * y que en el WhatsApp aparezca otro número es justo la frenada que el manual
+ * describe en Rebeca — «un precio sin explicación de por qué vale».
+ *
+ * El monto en bolívares lo rellena el script de tasa al cargar la página. Nunca
+ * se hornea en el build: la Ley de Precios Justos obliga a usar la tasa oficial
+ * vigente, y la tasa cambia todos los días.
+ */
+
+interface Props {
+  divisa: number;
+  referencia?: number | null;
+  nota?: string | null;
+  tamano?: "tarjeta" | "ficha";
+}
+
+const { divisa, referencia = null, nota = null, tamano = "tarjeta" } = Astro.props;
+
+const monto = new Intl.NumberFormat("es-VE", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const enFicha = tamano === "ficha";
+---
+
+<div class="flex flex-col gap-[2px]">
+  <p
+    class:list={[
+      "font-sans font-semibold text-ciruela tabular-nums",
+      enFicha ? "text-[32px] leading-none" : "text-[20px] leading-tight",
+    ]}
+  >
+    ${monto.format(divisa)}
+  </p>
+
+  {
+    referencia !== null && (
+      <p
+        class="t-caption hidden text-purpura tabular-nums"
+        data-bs
+        data-referencia={referencia}
+      >
+        <span data-bs-monto /> pagando en bolívares
+      </p>
+    )
+  }
+
+  {
+    enFicha && (
+      <p class="t-caption mt-1 hidden text-ciruela/60" data-bs-tasa-linea>
+        <span data-bs-tasa />
+      </p>
+    )
+  }
+
+  {nota && <p class="t-caption text-ciruela/70">{nota}</p>}
+</div>
