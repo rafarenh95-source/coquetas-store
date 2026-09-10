@@ -33,9 +33,9 @@ const enlaceRuta = tienda.coordenadas
   : null;
 
 const pasos = [
-  "Elige lo que quieres del catálogo y anota el tono si lo tiene.",
-  "Escríbenos por WhatsApp con la lista.",
-  "Te confirmamos disponibilidad, el total en bolívares y cuándo lo tienes.",
+  { icono: "elegir" as const, texto: "Elige lo que quieras del catálogo." },
+  { icono: "whatsapp" as const, texto: "Escríbenos por WhatsApp." },
+  { icono: "confirmar" as const, texto: "Te confirmamos disponibilidad y cuándo lo tienes." },
 ];
 ---
 
@@ -43,12 +43,19 @@ const pasos = [
   <div class="contenedor">
     <h2 class="t-h2 text-ciruela">Cómo comprar</h2>
 
+    {/* Un ícono por paso antes que el número: se entiende el qué de un
+        vistazo, sin tener que leer la frase completa primero. */}
     <ol class="mt-3 grid gap-3 md:grid-cols-3">
       {
         pasos.map((paso, i) => (
           <li class="bg-papel p-3">
-            <p class="t-etiqueta text-purpura">0{i + 1}</p>
-            <p class="t-cuerpo mt-1 text-ciruela/85">{paso}</p>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-crema text-purpura">
+                <Icono nombre={paso.icono} tamano={18} />
+              </span>
+              <p class="t-etiqueta text-purpura">0{i + 1}</p>
+            </div>
+            <p class="t-cuerpo mt-2 text-ciruela/85">{paso.texto}</p>
           </li>
         ))
       }
