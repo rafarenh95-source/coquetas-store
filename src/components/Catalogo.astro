@@ -13,6 +13,7 @@
 
 import TarjetaProducto from "./TarjetaProducto.astro";
 import productos from "../data/productos.json";
+import tienda from "../data/tienda.json";
 
 const CATEGORIAS = [
   { id: "todo", texto: "Todo" },
@@ -20,18 +21,42 @@ const CATEGORIAS = [
   { id: "facial", texto: "Cuidado facial" },
   { id: "cuerpo", texto: "Cuerpo y spa" },
 ];
+
+/* Este catálogo es una selección, no el inventario completo — hay más piezas
+   que todavía no están fotografiadas ni subidas a la web. El texto lo dice sin
+   necesidad de mantener un número exacto, y el enlace no abre el chat en
+   blanco: llega con el mensaje ya escrito, para que preguntar por algo que no
+   está aquí sea tan fácil como pedir lo que sí está. */
+const enlaceBuscar = tienda.whatsapp
+  ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(
+      "Hola Coquetas Store, busco un producto que no veo en el catálogo web. ¿Lo tienen?"
+    )}`
+  : null;
 ---
 
 <section id="catalogo" class="scroll-mt-2">
   <div class="contenedor pt-4 md:pt-6">
     <h1 class="t-h2 text-ciruela">Catálogo</h1>
 
-    {/* Una sola línea y el camino de compra. Nada más antes de los productos. */}
+    {/* Selección, no inventario cerrado: el número real vive en el chat, no aquí. */}
     <p class="t-lead mt-2 max-w-[46ch] text-ciruela/80">
-      {productos.length} piezas disponibles. Pides por WhatsApp y te confirmamos todo en el
-      mismo chat.
+      Una selección de nuestras piezas favoritas — hay muchas más. Si buscas
+      algo que no ves aquí,{" "}
+      {
+        enlaceBuscar ? (
+          <a
+            href={enlaceBuscar}
+            target="_blank"
+            rel="noopener"
+            class="text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+          >
+            pregúntanos por WhatsApp
+          </a>
+        ) : (
+          "pregúntanos por WhatsApp"
+        )
+      }.
     </p>
-
   </div>
 
   <div
