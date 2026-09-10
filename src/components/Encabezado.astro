@@ -4,15 +4,17 @@
  *
  * Fondo crema porque el logo solo puede ir sobre crema o papel (manual §5).
  *
- * Los tres accesos que resuelven algo van aquí arriba: ir a la tienda, pedir por
- * WhatsApp y ver la bolsa. En móvil son iconos para que quepan junto al lockup
- * completo — el manual pide 180 px de mínimo para el horizontal, y con texto en
- * los botones no cabrían.
+ * Los accesos que resuelven algo van aquí arriba: ir a la tienda, pedir por
+ * WhatsApp, seguir en TikTok y ver la bolsa. En móvil son iconos para que
+ * quepan junto al lockup completo — el manual pide 180 px de mínimo para el
+ * horizontal, y con texto en los botones no cabrían.
  *
- * Por debajo de 360 px ni siquiera caben los tres iconos, así que el del mapa se
- * retira: es el único de los tres que también vive en el pie, con su botón de
- * ruta al lado. Sin esto, el navegador ensancha el viewport para que quepa el
- * encabezado y la página entera se ve encogida.
+ * No todos caben a la vez en un teléfono angosto, así que se retiran en
+ * orden de qué tan reemplazable es cada uno por otra vía: primero TikTok
+ * (< 400 px), luego el mapa (< 360 px) — los dos siguen alcanzables desde el
+ * pie. WhatsApp y la bolsa no se ocultan nunca: son los dos que resuelven la
+ * compra. Sin este orden, el navegador ensancha el viewport para que quepa
+ * el encabezado entero y la página se ve encogida.
  */
 
 import Logo from "./Logo.astro";
@@ -37,6 +39,8 @@ const enlaceWhatsapp = tienda.whatsapp
       "Hola Coquetas Store, quiero hacer un pedido."
     )}`
   : null;
+
+const enlaceTiktok = tienda.tiktok ? `https://www.tiktok.com/@${tienda.tiktok}` : null;
 
 /* Sin utilidad de display: la pone cada acción, para que ocultar una no
    dependa del orden en que Tailwind escriba las clases. */
@@ -97,6 +101,22 @@ const accion =
           >
             <Icono nombre="whatsapp" tamano={19} />
             <span class="t-etiqueta hidden md:inline">Pedir</span>
+          </a>
+        )
+      }
+
+      {/* Seguir en TikTok */}
+      {
+        enlaceTiktok && (
+          <a
+            href={enlaceTiktok}
+            target="_blank"
+            rel="noopener"
+            aria-label="Ver Coquetas Store en TikTok"
+            class={`${accion} hidden w-[40px] border border-ciruela/25 text-ciruela/75 min-[400px]:inline-flex hover:border-ciruela hover:text-ciruela md:w-auto md:px-2`}
+          >
+            <Icono nombre="tiktok" tamano={17} />
+            <span class="t-etiqueta hidden md:inline">TikTok</span>
           </a>
         )
       }
