@@ -51,6 +51,17 @@ const enlaceListaCompleta = tienda.whatsapp
     <h1 class="t-h2 text-ciruela">Catálogo</h1>
 
     <p class="t-lead mt-2 text-ciruela/80">Una muestra de nuestras piezas favoritas.</p>
+
+    {/* Acceso directo al pie sin cruzar las 35 tarjetas. El enlace equivalente
+        del encabezado solo se ve desde 1024px (no hay sitio para texto junto a
+        los íconos en móvil) -- este es la versión que sí llega al teléfono. */}
+    <a
+      href="#como-comprar"
+      class="presionable t-etiqueta mt-2 inline-flex items-center gap-1 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+    >
+      Cómo comprar y dónde estamos
+      <Icono nombre="chevron" tamano={13} />
+    </a>
   </div>
 
   <div
