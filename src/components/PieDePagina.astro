@@ -13,7 +13,14 @@
 import tienda from "../data/tienda.json";
 import Icono from "./Icono.astro";
 
-const enlaceWhatsapp = tienda.whatsapp ? `https://wa.me/${tienda.whatsapp}` : null;
+/* El mismo mensaje precargado que usa el botón "Pedir la lista completa" al
+   final del catálogo: si el texto de esta tarjeta invita a pedirla, el chat
+   no puede abrirse en blanco y obligar a escribirlo de cero. */
+const enlaceWhatsapp = tienda.whatsapp
+  ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(
+      "Hola Coquetas Store, quiero ver la lista completa de productos disponibles."
+    )}`
+  : null;
 
 /* Cuando se cargue la dirección exacta, el enlace apunta a ella. Mientras
    tanto busca el negocio por nombre y ciudad, que ya deja a la clienta en la
@@ -26,16 +33,13 @@ const enlaceMapa =
   tienda.mapa ??
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consultaMapa)}`;
 
-/* Con coordenadas se puede ofrecer la ruta directa. Es lo que de verdad hace
-   falta en un teléfono: no ver el punto, sino llegar a él. */
-const enlaceRuta = tienda.coordenadas
-  ? `https://www.google.com/maps/dir/?api=1&destination=${tienda.coordenadas.lat},${tienda.coordenadas.lng}`
-  : null;
-
 const pasos = [
-  { icono: "elegir" as const, texto: "Elige lo que quieras del catálogo." },
-  { icono: "whatsapp" as const, texto: "Escríbenos por WhatsApp." },
-  { icono: "confirmar" as const, texto: "Te confirmamos disponibilidad y cuándo lo tienes." },
+  { icono: "elegir" as const, texto: "Elige lo que quieras y agrégalo a la bolsa." },
+  {
+    icono: "whatsapp" as const,
+    texto: "Escríbenos por WhatsApp. ¿No ves algo? Pide la lista completa.",
+  },
+  { icono: "confirmar" as const, texto: "Confirmamos disponibilidad y tu compra queda lista." },
 ];
 ---
 
@@ -61,10 +65,10 @@ const pasos = [
       }
     </ol>
 
-    {/* ── Dónde estamos · cómo escribirnos ─────────────────────────────── */}
+    {/* ── Dónde nos encuentras · cómo escribirnos ──────────────────────── */}
     <div class="mt-6 grid gap-3 md:grid-cols-2">
       <div class="flex flex-col bg-papel p-3">
-        <p class="t-etiqueta text-purpura">Dónde estamos</p>
+        <p class="t-etiqueta text-purpura">Dónde nos encuentras</p>
 
         <address class="mt-2 not-italic">
           {tienda.direccion && <p class="t-cuerpo text-ciruela">{tienda.direccion}</p>}
@@ -75,7 +79,10 @@ const pasos = [
 
         {tienda.horario && <p class="t-caption mt-1 text-ciruela/70">{tienda.horario}</p>}
 
-        <div class="mt-3 flex flex-wrap gap-2">
+        {/* Un solo botón: una vez dentro de Google Maps, la propia app ya
+            ofrece la ruta -- un segundo botón aquí solo ahorraba un toque
+            que la clienta puede dar dentro del mapa igual. */}
+        <div class="mt-3">
           <a
             href={enlaceMapa}
             target="_blank"
@@ -85,19 +92,6 @@ const pasos = [
             <Icono nombre="ubicacion" tamano={16} />
             Ver en el mapa
           </a>
-
-          {
-            enlaceRuta && (
-              <a
-                href={enlaceRuta}
-                target="_blank"
-                rel="noopener"
-                class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 border border-ciruela/35 px-3 text-ciruela/80 transition-colors duration-[var(--paso)] hover:border-ciruela hover:text-ciruela"
-              >
-                Cómo llegar
-              </a>
-            )
-          }
         </div>
       </div>
 
@@ -105,7 +99,7 @@ const pasos = [
         <p class="t-etiqueta text-purpura">Escríbenos</p>
 
         <p class="t-cuerpo mt-2 text-ciruela/85">
-          Mándanos la lista por WhatsApp y te confirmamos todo en el mismo chat.
+          Solicita la lista completa de productos por WhatsApp.
         </p>
         <p class="t-caption mt-1 text-ciruela/70">{tienda.promesa_respuesta}</p>
 
