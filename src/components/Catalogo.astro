@@ -38,10 +38,11 @@ const enlaceBuscar = tienda.whatsapp
   <div class="contenedor pt-4 md:pt-6">
     <h1 class="t-h2 text-ciruela">Catálogo</h1>
 
-    {/* Selección, no inventario cerrado: el número real vive en el chat, no aquí. */}
-    <p class="t-lead mt-2 max-w-[46ch] text-ciruela/80">
-      Una selección de nuestras piezas favoritas — hay muchas más. Si buscas
-      algo que no ves aquí,{" "}
+    {/* Selección, no inventario cerrado: el número real vive en el chat, no aquí.
+        Corto a propósito — en 320 px de ancho, dos líneas se sienten ligeras y
+        tres empiezan a pesar sobre la grilla que viene justo debajo. */}
+    <p class="t-lead mt-2 max-w-[30ch] text-ciruela/80">
+      Una selección — hay mucho más.{" "}
       {
         enlaceBuscar ? (
           <a
@@ -50,10 +51,10 @@ const enlaceBuscar = tienda.whatsapp
             rel="noopener"
             class="text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
           >
-            pregúntanos por WhatsApp
+            Pregúntanos por WhatsApp
           </a>
         ) : (
-          "pregúntanos por WhatsApp"
+          "Pregúntanos por WhatsApp"
         )
       }.
     </p>
