@@ -76,14 +76,23 @@ const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${varia
         {/* En la tarjeta, si son colores, van en una sola fila con scroll
             horizontal: con 14 tonos, envolver los deja en cuatro filas y la
             tarjeta crece hasta desentonar con las vecinas de una tarjeta.
-            Los chips de texto (aroma, código) sí envuelven -- son pocos. */}
+            Los chips de texto (aroma, código) sí envuelven -- son pocos.
+
+            El -mx-2 px-2 no es decorativo: sin él, el riel de scroll no
+            reserva margen propio y el último tono queda pegado al borde de
+            la tarjeta al deslizar hasta el final. El -mx-2 cancela el
+            padding del contenedor para que el primer tono siga alineado en
+            reposo, y el px-2 lo repone como margen *dentro* del área
+            deslizable, así que también hay aire al llegar al último. */}
         <div
           role="radiogroup"
           aria-label={etiqueta}
           data-selector-variante
           class:list={[
             "flex items-center gap-1",
-            enTarjeta && esColor ? "sin-riel flex-nowrap overflow-x-auto py-[2px]" : "flex-wrap",
+            enTarjeta && esColor
+              ? "sin-riel -mx-2 flex-nowrap overflow-x-auto px-2 py-[2px]"
+              : "flex-wrap",
           ]}
         >
           {variantes.map((v, i) =>
