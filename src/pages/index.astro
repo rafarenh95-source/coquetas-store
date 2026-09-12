@@ -7,8 +7,6 @@
  * de adornos que compitan con el mensaje» (manual §3). Además hace que el LCP
  * sea texto, no una imagen, que es la vía más barata para el presupuesto de
  * rendimiento en móvil.
- *
- * Un solo filete de oro en toda la página, en el cierre editorial.
  */
 
 import Base from "../layouts/Base.astro";
@@ -17,7 +15,6 @@ import Catalogo from "../components/Catalogo.astro";
 import PieDePagina from "../components/PieDePagina.astro";
 import Bolsa from "../components/Bolsa.astro";
 import BotonWhatsapp from "../components/BotonWhatsapp.astro";
-import FileteOro from "../components/FileteOro.astro";
 import productos from "../data/productos.json";
 import tienda from "../data/tienda.json";
 ---
@@ -34,17 +31,6 @@ import tienda from "../data/tienda.json";
         sabiendo ya quién es la tienda: lo que necesita es ver los productos y
         saber que se pide por WhatsApp, no que le presenten la marca otra vez. */}
     <Catalogo />
-
-    {/* ── Cierre editorial ──────────────────────────────────────────────── */}
-    <section class="sobre-ciruela mt-12 px-3 py-12">
-      <div class="mx-auto flex max-w-[46ch] flex-col items-center gap-3 text-center">
-        <p class="t-h2 text-crema">La alternativa de la ciudad</p>
-        <FileteOro ancho="corto" />
-        <p class="t-cuerpo text-crema/70">
-          No competimos por precio. Competimos por criterio, novedad y trato.
-        </p>
-      </div>
-    </section>
   </main>
 
   <BotonWhatsapp variante="flotante" texto="Pedir por WhatsApp" />
