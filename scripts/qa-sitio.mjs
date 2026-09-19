@@ -121,7 +121,7 @@ for (const href of enlaces) {
   if (r.status() >= 400) fallo("/", `enlace roto ${href} (${r.status()})`);
 }
 
-/* ── 3 · buscador y categoría desplegable ─────────────────────────────── */
+/* ── 3 · categorías, buscador y volver ────────────────────────────────── */
 
 const esperado = {
   todo: productos.length,
@@ -131,43 +131,54 @@ const esperado = {
 };
 
 for (const [cat, n] of Object.entries(esperado)) {
-  await p.click("[data-categoria-boton]");
-  await p.waitForTimeout(250);
-  await p.click(`#opcion-${cat}`);
+  await p.goto(BASE + "/", { waitUntil: "networkidle" });
+  await p.click(`[data-categoria-tile="${cat}"]`);
   await p.waitForTimeout(400);
   const visibles = await p.$$eval("#grilla > div:not(.hidden)", (ns) => ns.length);
   if (visibles !== n) fallo("/", `categoría ${cat}: ${visibles} tarjetas, esperaba ${n}`);
-  const seleccion = await p.getAttribute(`#opcion-${cat}`, "aria-selected");
-  if (seleccion !== "true") fallo("/", `categoría ${cat} no queda marcada como seleccionada`);
-  if (await p.isVisible("[data-categoria-lista]")) {
-    fallo("/", `categoría ${cat}: el desplegable no se cierra al elegir`);
-  }
+  const portadaOculta = await p.evaluate(() => document.getElementById("vista-portada").hidden);
+  if (!portadaOculta) fallo("/", `categoría ${cat}: la portada no se esconde al elegirla`);
 }
 
-/* buscador: se combina con la categoría activa, que quedó en "cuerpo" */
-const busquedaEsperada = productos.filter(
-  (x) => x.categoria === "cuerpo" && x.nombre.toLowerCase().includes("crema")
-).length;
+/* buscador desde la portada: salta directo a los resultados, sin pasar por
+   una categoría primero */
+await p.goto(BASE + "/", { waitUntil: "networkidle" });
+const busquedaEsperada = productos.filter((x) => x.nombre.toLowerCase().includes("crema")).length;
 await p.fill("[data-buscador]", "crema");
 await p.waitForTimeout(400);
 const conBusqueda = await p.$$eval("#grilla > div:not(.hidden)", (ns) => ns.length);
 if (conBusqueda !== busquedaEsperada) {
-  fallo("/", `buscador "crema" en cuerpo: ${conBusqueda} tarjetas, esperaba ${busquedaEsperada}`);
+  fallo("/", `buscador "crema": ${conBusqueda} tarjetas, esperaba ${busquedaEsperada}`);
 }
-await p.fill("[data-buscador]", "");
-await p.waitForTimeout(300);
+if (await p.evaluate(() => document.getElementById("vista-portada").hidden) === false) {
+  fallo("/", "escribir en el buscador desde la portada no revela la grilla");
+}
 
-/* vuelve a Todo antes de las pruebas siguientes */
-await p.click("[data-categoria-boton]");
-await p.waitForTimeout(250);
-await p.click("#opcion-todo");
+/* volver limpia el buscador, regresa a la portada, y desde ahí se puede
+   elegir otra categoría sin recargar */
+await p.click("[data-volver]");
 await p.waitForTimeout(400);
+if (!(await p.evaluate(() => !document.getElementById("vista-portada").hidden))) {
+  fallo("/", "'volver' no regresa a la portada");
+}
+if ((await p.inputValue("[data-buscador]")) !== "") {
+  fallo("/", "'volver' no limpia el buscador");
+}
+await p.click('[data-categoria-tile="unas"]');
+await p.waitForTimeout(400);
+const trasVolverYElegir = await p.$$eval("#grilla > div:not(.hidden)", (ns) => ns.length);
+if (trasVolverYElegir !== esperado.unas) {
+  fallo("/", `tras volver y elegir Uñas: ${trasVolverYElegir} tarjetas, esperaba ${esperado.unas}`);
+}
 
-/* enlace profundo */
+/* enlace profundo: abre directo en la grilla, sin pasar por la portada */
 await p.goto(BASE + "/?categoria=cuerpo", { waitUntil: "networkidle" });
 await p.waitForTimeout(800);
 if ((await p.$$eval("#grilla > div:not(.hidden)", (ns) => ns.length)) !== esperado.cuerpo) {
   fallo("/?categoria=cuerpo", "el enlace profundo no filtra");
+}
+if (await p.evaluate(() => document.getElementById("vista-portada").hidden) === false) {
+  fallo("/?categoria=cuerpo", "el enlace profundo no esconde la portada");
 }
 
 /* ── 4 · la bolsa ─────────────────────────────────────────────────────── */
@@ -346,63 +357,35 @@ if (ultimo !== muyVariado.variantes.at(-1).tono) {
   fallo("teclado", `Fin lleva a "${ultimo}", esperaba "${muyVariado.variantes.at(-1).tono}"`);
 }
 
-/* portada: categoría desplegable y anuncio del filtro */
+/* portada: las categorías son enlaces normales -- tabulables y activables
+   con Enter por defecto, sin necesidad de un patrón de teclado a medida. Lo
+   que importa comprobar es que Enter realmente dispara el filtro. */
 await pTeclado.goto(BASE + "/", { waitUntil: "networkidle" });
 await pTeclado.waitForTimeout(1500);
 
-const enPortada = await recorrerConTab(pTeclado, 12);
-
-const enBotonCategoria = enPortada.filter((d) => d.id === "categoria-activa").length;
-if (enBotonCategoria !== 1) {
-  fallo(
-    "teclado",
-    `el botón de categoría expone ${enBotonCategoria} paradas de tabulador; debería exponer 1`
-  );
-}
-
-const enOpcionesCerrado = enPortada.filter((d) => d.rol === "option").length;
-if (enOpcionesCerrado !== 0) {
-  fallo(
-    "teclado",
-    `${enOpcionesCerrado} opciones de categoría son alcanzables por Tab con el desplegable cerrado`
-  );
-}
-
-/* Enter abre, las flechas resaltan, Enter elige y cierra devolviendo el foco */
-await pTeclado.evaluate(() => document.getElementById("categoria-activa").focus());
-await pTeclado.keyboard.press("Enter");
-await pTeclado.waitForTimeout(300);
-if (!(await pTeclado.isVisible("[data-categoria-lista]"))) {
-  fallo("teclado", "Enter en el botón de categoría no abre el desplegable");
-}
-
-await pTeclado.keyboard.press("ArrowDown"); // de «Todo» a «Uñas»
+await pTeclado.evaluate(() => document.querySelector('[data-categoria-tile="unas"]').focus());
 await pTeclado.keyboard.press("Enter");
 await pTeclado.waitForTimeout(500);
 
 const anuncio = (await pTeclado.textContent("[data-recuento]")).trim();
-if (!anuncio.includes("Uñas")) fallo("teclado", `el filtro no se anuncia (dice "${anuncio}")`);
+if (!anuncio.includes("Uñas")) fallo("teclado", `el filtro no se anuncia al elegir con teclado (dice "${anuncio}")`);
 
-if (await pTeclado.isVisible("[data-categoria-lista]")) {
-  fallo("teclado", "el desplegable no se cierra al elegir con teclado");
-}
-const focoTrasElegir = await pTeclado.evaluate(() => document.activeElement?.id);
-if (focoTrasElegir !== "categoria-activa") {
-  fallo("teclado", `tras elegir con teclado el foco queda en "${focoTrasElegir}", no vuelve al botón`);
+if (!(await pTeclado.evaluate(() => document.getElementById("vista-portada").hidden))) {
+  fallo("teclado", "Enter en una categoría no esconde la portada");
 }
 
 const etiquetadoPor = await pTeclado.getAttribute("#grilla", "aria-labelledby");
-if (etiquetadoPor !== "categoria-activa") {
-  fallo("teclado", `el panel debería seguir etiquetado por "categoria-activa", da "${etiquetadoPor}"`);
+if (etiquetadoPor !== "categoria-nombre") {
+  fallo("teclado", `el panel debería estar etiquetado por "categoria-nombre", da "${etiquetadoPor}"`);
 }
 
-/* Escape cierra sin elegir */
+/* "volver" también es un enlace normal: tabulable y activable con Enter */
+await pTeclado.evaluate(() => document.querySelector("[data-volver]").focus());
 await pTeclado.keyboard.press("Enter");
-await pTeclado.waitForTimeout(300);
-await pTeclado.keyboard.press("Escape");
-await pTeclado.waitForTimeout(300);
-if (await pTeclado.isVisible("[data-categoria-lista]")) {
-  fallo("teclado", "Escape no cierra el desplegable de categoría");
+await pTeclado.waitForTimeout(500);
+
+if (!(await pTeclado.evaluate(() => !document.getElementById("vista-portada").hidden))) {
+  fallo("teclado", "Enter en 'volver' no regresa a la portada");
 }
 
 await pTeclado.close();

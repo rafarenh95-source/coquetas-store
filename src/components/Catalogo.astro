@@ -1,24 +1,25 @@
 ---
 /**
- * Catálogo — buscador y categoría desplegable sobre una sola grilla.
+ * Catálogo — portada de categorías, luego la grilla de una categoría a la vez.
  *
- * Con 35 productos no hace falta paginación: todo cabe en el mismo panel. El
- * buscador y la categoría solo esconden y muestran tarjetas que ya están en el
- * HTML, así que filtrar es instantáneo y funciona igual si el JavaScript no
- * llega a cargar (sin JS se ven las 35, que es un estado correcto).
+ * Antes, la portada mostraba las 35 fichas de un jalón (filtradas por una
+ * categoría desplegable). En el teléfono eso era mucho scroll para llegar al
+ * pie de página: quien solo quería ver «Cómo comprar» o la ubicación tenía
+ * que cruzar el catálogo entero primero.
  *
- * La categoría era antes una fila de pestañas siempre visible. En el ancho de
- * un teléfono, cuatro pestañas más un buscador no caben sin recortarse — así
- * que la categoría se volvió un desplegable de un solo botón: dos controles
- * cortos en vez de una fila que no entra en pantalla.
+ * Ahora la portada muestra solo un puñado de destacados (los que ya llevan
+ * `destacado: true` en los datos) y las categorías como tarjetas grandes con
+ * foto. Tocar una categoría revela su grilla completa; un enlace «Todas las
+ * categorías» regresa. El buscador sigue siempre visible y, si se escribe
+ * algo, salta directo a los resultados sin pasar por las categorías.
  *
- * Una sola columna en el teléfono: con dos columnas, una pieza con muchos
- * tonos empuja la tarjeta muy por debajo de sus vecinas y el conjunto se ve
- * descuadrado. Una columna deja cada foto grande y cada tarjeta a su propia
- * altura, sin arrastrar a la de al lado.
+ * Sin JavaScript se ven las dos cosas a la vez -- destacados y categorías
+ * arriba, la grilla completa debajo -- que es un estado correcto y usable:
+ * ningún producto queda inalcanzable, solo la página es más larga. Es el
+ * mismo criterio que ya regía el buscador y la categoría antes de esto.
  *
- * Orden: destacados primero, luego consumidora antes que uso profesional dentro
- * de cada categoría. El recorrido por defecto es el de Rebeca.
+ * Orden dentro de cada categoría: destacados primero, luego consumidora antes
+ * que uso profesional. El recorrido por defecto es el de Rebeca.
  */
 
 import TarjetaProducto from "./TarjetaProducto.astro";
@@ -26,12 +27,34 @@ import Icono from "./Icono.astro";
 import productos from "../data/productos.json";
 import tienda from "../data/tienda.json";
 
-const CATEGORIAS = [
-  { id: "todo", texto: "Todo", icono: "todo" as const },
+const CATEGORIAS_BASE = [
   { id: "unas", texto: "Uñas", icono: "unas" as const },
   { id: "facial", texto: "Cuidado facial", icono: "facial" as const },
   { id: "cuerpo", texto: "Cuerpo y spa", icono: "cuerpo" as const },
 ];
+
+/* Foto de portada de cada categoría: la del primer producto destacado que
+   tenga, o si no hay ninguno destacado en esa categoría, la del primero por
+   orden. Así la tarjeta de categoría no depende de mantener una lista aparte
+   -- solo de la misma bandera `destacado` que ya se usa en los datos. */
+const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
+  const deLaCategoria = productos.filter((p) => p.categoria === c.id);
+  const conFoto = deLaCategoria.find((p) => p.destacado) ?? deLaCategoria[0];
+  return {
+    ...c,
+    cantidad: deLaCategoria.length,
+    imagen: conFoto?.variantes[0]?.imagenes[0] ?? null,
+  };
+});
+
+const NOMBRES: Record<string, string> = {
+  todo: "Todo",
+  unas: "Uñas",
+  facial: "Cuidado facial",
+  cuerpo: "Cuerpo y spa",
+};
+
+const destacados = productos.filter((p) => p.destacado);
 
 /* El aviso de que esto es una muestra vive en dos momentos, no uno:
    arriba, una línea corta, solo para que nadie confunda la selección con el
@@ -52,7 +75,7 @@ const enlaceListaCompleta = tienda.whatsapp
 
     <p class="t-lead mt-2 text-ciruela/80">Una muestra de nuestras piezas favoritas.</p>
 
-    {/* Acceso directo al pie sin cruzar las 35 tarjetas. El enlace equivalente
+    {/* Acceso directo al pie sin cruzar las tarjetas. El enlace equivalente
         del encabezado solo se ve desde 1024px (no hay sitio para texto junto a
         los íconos en móvil) -- este es la versión que sí llega al teléfono. */}
     <a
@@ -67,9 +90,9 @@ const enlaceListaCompleta = tienda.whatsapp
   <div
     class="sticky top-0 z-20 mt-4 bg-crema py-1 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-4 after:bg-gradient-to-b after:from-crema after:to-transparent"
   >
-    <div class="contenedor flex items-center gap-2">
+    <div class="contenedor">
       {/* ── Buscador ──────────────────────────────────────────────────── */}
-      <div class="relative min-w-0 flex-1">
+      <div class="relative min-w-0">
         <Icono
           nombre="buscar"
           tamano={17}
@@ -85,77 +108,88 @@ const enlaceListaCompleta = tienda.whatsapp
           class="t-cuerpo min-h-[44px] w-full border border-ciruela/25 bg-papel py-2 pr-3 pl-8 text-ciruela placeholder:text-ciruela/45 focus-visible:outline-none"
         />
       </div>
+    </div>
+  </div>
 
-      {/* ── Categoría desplegable ─────────────────────────────────────── */}
-      <div class="relative shrink-0" data-categoria-caja>
-        <button
-          type="button"
-          id="categoria-activa"
-          data-categoria-boton
-          aria-haspopup="listbox"
-          aria-expanded="false"
-          aria-controls="lista-categorias"
-          class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 border border-ciruela/25 bg-papel px-2 text-ciruela md:px-3"
-        >
-          <span class="inline-flex shrink-0" aria-hidden="true">
-            {
-              CATEGORIAS.map((c) => (
-                <Icono
-                  nombre={c.icono}
-                  tamano={16}
-                  data-icono-de={c.id}
-                  class={c.id === "todo" ? "" : "hidden"}
-                />
-              ))
-            }
-          </span>
-          <span data-categoria-texto class="hidden sm:inline">
-            Todo
-          </span>
-          <Icono
-            nombre="chevron"
-            tamano={14}
-            data-categoria-flecha
-            class="shrink-0 transition-transform duration-[var(--paso-rapido)] ease-[var(--curva)]"
-          />
-        </button>
+  {/* ── Portada: destacados + categorías ─────────────────────────────────
+      Vista inicial con JavaScript. El script la esconde y muestra la grilla
+      completa en cuanto se toca una categoría o se escribe en el buscador. */}
+  <div id="vista-portada" class="contenedor mt-5 scroll-mt-[84px]">
+    <div>
+      <p class="t-etiqueta text-purpura">Algunos favoritos</p>
+      <div class="mt-2 flex gap-3 overflow-x-auto sin-riel pb-1">
+        {
+          destacados.map((p, i) => (
+            <div class="w-[190px] shrink-0">
+              <TarjetaProducto producto={p} prioridad={i < 3} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
 
-        <ul
-          role="listbox"
-          id="lista-categorias"
-          aria-labelledby="categoria-activa"
-          data-categoria-lista
-          tabindex="-1"
-          hidden
-          class="absolute right-0 z-30 mt-1 w-[220px] border border-ciruela/15 bg-papel py-1 shadow-[0_8px_24px_rgba(43,10,38,0.18)] focus:outline-none"
-        >
-          {
-            CATEGORIAS.map((c) => (
-              <li
-                role="option"
-                id={`opcion-${c.id}`}
-                data-categoria-opcion={c.id}
-                aria-selected={c.id === "todo"}
-                class="t-etiqueta flex min-h-[44px] cursor-pointer items-center gap-2 px-3 text-ciruela/80 aria-selected:text-ciruela aria-selected:font-semibold"
-              >
-                <Icono nombre={c.icono} tamano={16} class="shrink-0" />
-                <span data-opcion-texto>{c.texto}</span>
-              </li>
-            ))
-          }
-        </ul>
+    <div class="mt-7">
+      <p class="t-etiqueta text-purpura">Categorías</p>
+      <div class="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {
+          CATEGORIAS.map((c) => (
+            <a href="#grilla" data-categoria-tile={c.id} class="group block bg-papel">
+              <div class="relative aspect-[4/3] overflow-hidden bg-crema">
+                {c.imagen && (
+                  <img
+                    src={c.imagen}
+                    alt=""
+                    loading="eager"
+                    class="h-full w-full object-contain p-3 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
+                  />
+                )}
+              </div>
+              <div class="flex items-center justify-between gap-1 p-2">
+                <span class="t-etiqueta text-ciruela">{c.texto}</span>
+                <span class="t-caption shrink-0 text-ciruela/60">{c.cantidad}</span>
+              </div>
+            </a>
+          ))
+        }
+
+        {/* La cuarta tarjeta es un bloque de color, no una foto: es la única
+            categoría que no tiene un producto que la represente sola. */}
+        <a href="#grilla" data-categoria-tile="todo" class="group block bg-papel">
+          <div class="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-ciruela text-crema">
+            <Icono nombre="todo" tamano={30} class="transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-110" />
+          </div>
+          <div class="flex items-center justify-between gap-1 p-2">
+            <span class="t-etiqueta text-ciruela">Todo</span>
+            <span class="t-caption shrink-0 text-ciruela/60">{productos.length}</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 
-  <div class="contenedor mt-3">
+  {/* ── Grilla: una categoría (o los resultados del buscador) a la vez ──── */}
+  <div id="vista-grilla" class="contenedor mt-6 scroll-mt-[84px]">
+    <div class="mb-3 flex items-center justify-between gap-2 border-t border-ciruela/15 pt-4">
+      <a
+        href="#vista-portada"
+        data-volver
+        class="presionable t-etiqueta inline-flex items-center gap-1 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+      >
+        <Icono nombre="chevron" tamano={13} class="rotate-90" />
+        Todas las categorías
+      </a>
+      <p id="categoria-nombre" class="t-etiqueta text-ciruela/60">
+        Todo · {productos.length} productos
+      </p>
+    </div>
+
     {/* Un solo panel gobernado por buscador + categoría: aria-labelledby
-        apunta al botón de categoría, cuyo texto visible cambia con la
-        selección, y el script lo mantiene al día. */}
+        apunta al texto que dice en qué categoría está y cuántas hay, y el
+        script lo mantiene al día. */}
     <div
       id="grilla"
       role="region"
-      aria-labelledby="categoria-activa"
+      aria-labelledby="categoria-nombre"
       class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-2 md:grid-cols-3 md:gap-3 lg:grid-cols-4"
     >
       {
@@ -180,8 +214,9 @@ const enlaceListaCompleta = tienda.whatsapp
     <p class="sr-only" role="status" aria-live="polite" data-recuento></p>
   </div>
 
-  {/* Cierre del catálogo: el argumento completo llega cuando ya se vio todo,
-      no antes de empezar a mirar. */}
+  {/* Cierre del catálogo: el argumento completo llega cuando ya se vio algo,
+      no antes de empezar a mirar. Vive fuera de las dos vistas de arriba
+      porque es válido en cualquiera de las dos. */}
   <div class="contenedor mt-10">
     <div class="mx-auto flex max-w-[38ch] flex-col items-center gap-3 border-t border-ciruela/15 pt-8 text-center">
       <p class="t-cuerpo text-ciruela/80">
@@ -211,15 +246,13 @@ const enlaceListaCompleta = tienda.whatsapp
   const vacio = document.getElementById("sin-resultados");
   const buscador = document.querySelector<HTMLInputElement>("[data-buscador]");
   const recuento = document.querySelector("[data-recuento]");
+  const portada = document.getElementById("vista-portada");
+  const vistaGrilla = document.getElementById("vista-grilla");
+  const categoriaNombre = document.getElementById("categoria-nombre");
+  const tiles = document.querySelectorAll<HTMLAnchorElement>("[data-categoria-tile]");
+  const volver = document.querySelector<HTMLAnchorElement>("[data-volver]");
 
-  const caja = document.querySelector<HTMLElement>("[data-categoria-caja]");
-  const boton = document.querySelector<HTMLButtonElement>("[data-categoria-boton]");
-  const lista = document.querySelector<HTMLUListElement>("[data-categoria-lista]");
-  const flecha = document.querySelector<HTMLElement>("[data-categoria-flecha]");
-  const textoBoton = document.querySelector<HTMLElement>("[data-categoria-texto]");
-  const iconosBoton = document.querySelectorAll<HTMLElement>("[data-icono-de]");
-
-  if (grilla && buscador && caja && boton && lista && flecha && textoBoton) {
+  if (grilla && buscador && portada && vistaGrilla && categoriaNombre) {
     /* `.contents` en el envoltorio dejaría la tarjeta sin contenedor propio para
        esconder, así que se marca la tarjeta misma con la categoría y el nombre. */
     const tarjetas = Array.from(grilla.children) as HTMLElement[];
@@ -256,6 +289,12 @@ const enlaceListaCompleta = tienda.whatsapp
 
       vacio?.classList.toggle("hidden", visibles > 0);
 
+      const etiqueta = textoBusqueda
+        ? `"${buscador.value.trim()}"`
+        : (NOMBRES[categoriaActual] ?? categoriaActual);
+      const unidad = visibles === 1 ? "producto" : "productos";
+      categoriaNombre!.textContent = `${etiqueta} · ${visibles} ${unidad}`;
+
       if (recuento) {
         recuento.textContent = textoBusqueda
           ? `${visibles} ${visibles === 1 ? "resultado" : "resultados"} para "${buscador.value.trim()}".`
@@ -268,111 +307,55 @@ const enlaceListaCompleta = tienda.whatsapp
       history.replaceState(null, "", url);
     }
 
+    function mostrarGrilla(cat: string) {
+      categoriaActual = NOMBRES[cat] ? cat : "todo";
+      portada!.hidden = true;
+      vistaGrilla!.hidden = false;
+      aplicarFiltros();
+      vistaGrilla!.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function mostrarPortada() {
+      vistaGrilla!.hidden = true;
+      portada!.hidden = false;
+      textoBusqueda = "";
+      buscador.value = "";
+      categoriaActual = "todo";
+      portada!.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    tiles.forEach((tile) => {
+      tile.addEventListener("click", (e) => {
+        e.preventDefault();
+        mostrarGrilla(tile.dataset.categoriaTile ?? "todo");
+      });
+    });
+
+    volver?.addEventListener("click", (e) => {
+      e.preventDefault();
+      mostrarPortada();
+    });
+
     buscador.addEventListener("input", () => {
       textoBusqueda = buscador.value.trim().toLowerCase();
+      /* Escribir desde la portada salta directo a los resultados: quien ya
+         sabe qué busca no debería tener que tocar una categoría primero. */
+      if (textoBusqueda && !portada!.hidden) {
+        portada!.hidden = true;
+        vistaGrilla!.hidden = false;
+      }
       aplicarFiltros();
     });
 
-    /* ── Categoría desplegable ─────────────────────────────────────────── */
-
-    const opciones = Array.from(lista.querySelectorAll<HTMLLIElement>('[role="option"]'));
-    let activo = 0;
-
-    function resaltar(i: number) {
-      activo = (i + opciones.length) % opciones.length;
-      lista!.setAttribute("aria-activedescendant", opciones[activo].id);
-      opciones.forEach((o, idx) => o.classList.toggle("bg-crema", idx === activo));
-    }
-
-    function abrir() {
-      lista!.hidden = false;
-      boton!.setAttribute("aria-expanded", "true");
-      flecha!.style.transform = "rotate(180deg)";
-      const i = opciones.findIndex((o) => o.dataset.categoriaOpcion === categoriaActual);
-      resaltar(i === -1 ? 0 : i);
-      lista!.focus();
-      document.addEventListener("click", alClicFuera);
-    }
-
-    function cerrar(devolverFoco: boolean) {
-      lista!.hidden = true;
-      boton!.setAttribute("aria-expanded", "false");
-      flecha!.style.transform = "";
-      document.removeEventListener("click", alClicFuera);
-      if (devolverFoco) boton!.focus();
-    }
-
-    function alClicFuera(e: MouseEvent) {
-      if (!(e.target instanceof Node)) return;
-      if (!caja!.contains(e.target)) cerrar(false);
-    }
-
-    /* Elige sin abrir ni mover el foco: la usan el clic, el teclado y el
-       enlace profundo (?categoria=), que no debe robarle el foco a la página
-       al cargar. */
-    function seleccionar(i: number) {
-      const opcion = opciones[i];
-      const cat = opcion.dataset.categoriaOpcion!;
-      categoriaActual = cat;
-
-      opciones.forEach((o, idx) => o.setAttribute("aria-selected", String(idx === i)));
-      textoBoton!.textContent = opcion.querySelector("[data-opcion-texto]")?.textContent ?? "";
-      iconosBoton.forEach((el) => el.classList.toggle("hidden", el.dataset.iconoDe !== cat));
-
-      aplicarFiltros();
-    }
-
-    boton.addEventListener("click", () => {
-      if (lista!.hidden) abrir();
-      else cerrar(true);
-    });
-
-    boton.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-        if (lista!.hidden) {
-          e.preventDefault();
-          abrir();
-        }
-      }
-    });
-
-    lista.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        resaltar(activo + 1);
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        resaltar(activo - 1);
-      } else if (e.key === "Home") {
-        e.preventDefault();
-        resaltar(0);
-      } else if (e.key === "End") {
-        e.preventDefault();
-        resaltar(opciones.length - 1);
-      } else if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        seleccionar(activo);
-        cerrar(true);
-      } else if (e.key === "Escape") {
-        e.preventDefault();
-        cerrar(true);
-      } else if (e.key === "Tab") {
-        cerrar(false);
-      }
-    });
-
-    opciones.forEach((o, i) => {
-      o.addEventListener("click", () => {
-        seleccionar(i);
-        cerrar(true);
-      });
-      o.addEventListener("mouseenter", () => resaltar(i));
-    });
-
-    /* Si se llega con ?categoria=unas desde un enlace compartido */
+    /* Si se llega con ?categoria=unas desde un enlace compartido, se abre
+       directo en la grilla de esa categoría, sin pasar por la portada. */
     const inicial = new URL(location.href).searchParams.get("categoria");
-    const iInicial = inicial ? opciones.findIndex((o) => o.dataset.categoriaOpcion === inicial) : -1;
-    if (iInicial !== -1) seleccionar(iInicial);
-    else aplicarFiltros();
+    if (inicial && NOMBRES[inicial]) {
+      mostrarGrilla(inicial);
+    } else {
+      portada!.hidden = false;
+      vistaGrilla!.hidden = true;
+      aplicarFiltros();
+    }
   }
 </script>
