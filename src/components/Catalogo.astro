@@ -7,16 +7,15 @@
  * pie de página: quien solo quería ver «Cómo comprar» o la ubicación tenía
  * que cruzar el catálogo entero primero.
  *
- * Ahora la portada muestra solo un puñado de destacados (los que ya llevan
- * `destacado: true` en los datos) y las categorías como tarjetas grandes con
+ * Ahora la portada muestra solo las categorías, como tarjetas grandes con
  * foto. Tocar una categoría revela su grilla completa; un enlace «Todas las
  * categorías» regresa. El buscador sigue siempre visible y, si se escribe
  * algo, salta directo a los resultados sin pasar por las categorías.
  *
- * Sin JavaScript se ven las dos cosas a la vez -- destacados y categorías
- * arriba, la grilla completa debajo -- que es un estado correcto y usable:
- * ningún producto queda inalcanzable, solo la página es más larga. Es el
- * mismo criterio que ya regía el buscador y la categoría antes de esto.
+ * Sin JavaScript se ven las dos cosas a la vez -- categorías arriba, la
+ * grilla completa debajo -- que es un estado correcto y usable: ningún
+ * producto queda inalcanzable, solo la página es más larga. Es el mismo
+ * criterio que ya regía el buscador y la categoría antes de esto.
  *
  * Orden dentro de cada categoría: destacados primero, luego consumidora antes
  * que uso profesional. El recorrido por defecto es el de Rebeca.
@@ -53,8 +52,6 @@ const NOMBRES: Record<string, string> = {
   facial: "Cuidado facial",
   cuerpo: "Cuerpo y spa",
 };
-
-const destacados = productos.filter((p) => p.destacado);
 
 /* El aviso de que esto es una muestra vive en dos momentos, no uno:
    arriba, una línea corta, solo para que nadie confunda la selección con el
@@ -111,59 +108,44 @@ const enlaceListaCompleta = tienda.whatsapp
     </div>
   </div>
 
-  {/* ── Portada: destacados + categorías ─────────────────────────────────
+  {/* ── Portada: solo categorías ──────────────────────────────────────────
       Vista inicial con JavaScript. El script la esconde y muestra la grilla
       completa en cuanto se toca una categoría o se escribe en el buscador. */}
   <div id="vista-portada" class="contenedor mt-5 scroll-mt-[84px]">
-    <div>
-      <p class="t-etiqueta text-purpura">Algunos favoritos</p>
-      <div class="mt-2 flex gap-3 overflow-x-auto sin-riel pb-1">
-        {
-          destacados.map((p, i) => (
-            <div class="w-[190px] shrink-0">
-              <TarjetaProducto producto={p} prioridad={i < 3} />
+    <p class="t-etiqueta text-purpura">Categorías</p>
+    <div class="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {
+        CATEGORIAS.map((c) => (
+          <a href="#grilla" data-categoria-tile={c.id} class="group block bg-papel">
+            <div class="relative aspect-[4/3] overflow-hidden bg-crema">
+              {c.imagen && (
+                <img
+                  src={c.imagen}
+                  alt=""
+                  loading="eager"
+                  class="h-full w-full object-contain p-3 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
+                />
+              )}
             </div>
-          ))
-        }
-      </div>
-    </div>
+            <div class="flex items-center justify-between gap-1 p-2">
+              <span class="t-etiqueta text-ciruela">{c.texto}</span>
+              <span class="t-caption shrink-0 text-ciruela/60">{c.cantidad}</span>
+            </div>
+          </a>
+        ))
+      }
 
-    <div class="mt-7">
-      <p class="t-etiqueta text-purpura">Categorías</p>
-      <div class="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {
-          CATEGORIAS.map((c) => (
-            <a href="#grilla" data-categoria-tile={c.id} class="group block bg-papel">
-              <div class="relative aspect-[4/3] overflow-hidden bg-crema">
-                {c.imagen && (
-                  <img
-                    src={c.imagen}
-                    alt=""
-                    loading="eager"
-                    class="h-full w-full object-contain p-3 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
-                  />
-                )}
-              </div>
-              <div class="flex items-center justify-between gap-1 p-2">
-                <span class="t-etiqueta text-ciruela">{c.texto}</span>
-                <span class="t-caption shrink-0 text-ciruela/60">{c.cantidad}</span>
-              </div>
-            </a>
-          ))
-        }
-
-        {/* La cuarta tarjeta es un bloque de color, no una foto: es la única
-            categoría que no tiene un producto que la represente sola. */}
-        <a href="#grilla" data-categoria-tile="todo" class="group block bg-papel">
-          <div class="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-ciruela text-crema">
-            <Icono nombre="todo" tamano={30} class="transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-110" />
-          </div>
-          <div class="flex items-center justify-between gap-1 p-2">
-            <span class="t-etiqueta text-ciruela">Todo</span>
-            <span class="t-caption shrink-0 text-ciruela/60">{productos.length}</span>
-          </div>
-        </a>
-      </div>
+      {/* La cuarta tarjeta es un bloque de color, no una foto: es la única
+          categoría que no tiene un producto que la represente sola. */}
+      <a href="#grilla" data-categoria-tile="todo" class="group block bg-papel">
+        <div class="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-ciruela text-crema">
+          <Icono nombre="todo" tamano={30} class="transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-110" />
+        </div>
+        <div class="flex items-center justify-between gap-1 p-2">
+          <span class="t-etiqueta text-ciruela">Todo</span>
+          <span class="t-caption shrink-0 text-ciruela/60">{productos.length}</span>
+        </div>
+      </a>
     </div>
   </div>
 
