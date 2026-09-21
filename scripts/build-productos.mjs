@@ -671,8 +671,20 @@ const CATALOGO = [
     presentacion: null,
     destacado: false,
     foto_editada: true, // regenerada con IA a partir de la foto de la tienda
-    tipo_variante: null,
-    variantes: [{ tono: null, archivo: "Builder mombray 2.5$.png" }],
+    tipo_variante: "color",
+    // La foto es solo el frasco; lo que se elige es el tono del gel. Los colores salen de
+    // las muestras de la foto original, con el balance de blancos corregido sobre la punta blanca.
+    variantes: [
+      { tono: "Transparente", archivo: "Builder mombray 2.5$ frasco.png", swatch_hex: "#EEEAEA" },
+      { tono: "Tono 1", archivo: "Builder mombray 2.5$ frasco.png", swatch_hex: "#F8C4C0" },
+      { tono: "Tono 2", archivo: "Builder mombray 2.5$ frasco.png", swatch_hex: "#D2888B" },
+      { tono: "Tono 3", archivo: "Builder mombray 2.5$ frasco.png", swatch_hex: "#FCA9AB" },
+      { tono: "Tono 4", archivo: "Builder mombray 2.5$ frasco.png", swatch_hex: "#F2F2F2" },
+      { tono: "Tono 5", archivo: "Builder mombray 2.5$ frasco.png", swatch_hex: "#FFC4C7" },
+      { tono: "Tono 6", archivo: "Builder mombray 2.5$ frasco.png", swatch_hex: "#FED4D4" },
+      { tono: "Tono 7", archivo: "Builder mombray 2.5$ frasco.png", swatch_hex: "#D38B94" },
+    ],
+    fotos_extra: ["Builder mombray 2.5$.png"], // la carta de tonos completa, sin usar por ahora
   },
   {
     id: "MX-PEGA-7",
@@ -780,8 +792,16 @@ async function construir() {
       const archivo = resolver(v.archivo);
       usados.add(archivo);
 
-      const muestra =
-        p.tipo_variante === "color" ? await muestrearColor(archivo) : { hex: null, revisar: false };
+      // swatch_hex explicito: cuando varias variantes comparten una foto (el frasco es el mismo
+      // y lo que cambia es el tono del producto que contiene) el color no sale de la foto.
+      const muestra = v.swatch_hex
+        ? { hex: v.swatch_hex, revisar: false }
+        : p.tipo_variante === "color"
+          ? await muestrearColor(archivo)
+          : { hex: null, revisar: false };
+
+      // la foto de una variante es la de la primera que use el mismo archivo
+      const indiceFoto = p.variantes.findIndex((x) => x.archivo === v.archivo);
 
       const familia = familiaDeColor(muestra.hex);
       const automatico = familia ? `Tono ${i + 1} · ${familia}` : `Tono ${i + 1}`;
@@ -790,7 +810,7 @@ async function construir() {
         tono: v.tono ?? (p.tipo_variante === "color" ? automatico : null),
         swatch_hex: muestra.hex,
         swatch_revisar: muestra.revisar,
-        imagenes: [`/img/productos/${p.id}-${String(i + 1).padStart(2, "0")}.webp`],
+        imagenes: [`/img/productos/${p.id}-${String(indiceFoto + 1).padStart(2, "0")}.webp`],
         origen: [archivo],
         disponible: true,
       });

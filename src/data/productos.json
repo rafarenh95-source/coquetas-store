@@ -918,23 +918,107 @@
     "precio_referencia": 3.38,
     "nota_precio": null,
     "presentacion": null,
-    "descripcion": "Builder gel de la marca Monbray, para dar estructura y reforzar la uña. Consulta por los tonos disponibles.",
+    "descripcion": "Builder gel de la marca Monbray, para dar estructura y reforzar la uña. Elige entre el transparente y siete tonos rosados y nude.",
     "modo_uso": "Aplica sobre la uña preparada, construye la estructura y cura.",
     "rendimiento": null,
     "destacado": false,
     "foto_editada": true,
     "disponible": true,
-    "tipo_variante": null,
+    "tipo_variante": "color",
     "variantes": [
       {
-        "tono": null,
-        "swatch_hex": null,
+        "tono": "Transparente",
+        "swatch_hex": "#EEEAEA",
         "swatch_revisar": false,
         "imagenes": [
           "/img/productos/MB-BUILDER-GEL-01.webp"
         ],
         "origen": [
-          "Builder mombray 2.5$.png"
+          "Builder mombray 2.5$ frasco.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 1",
+        "swatch_hex": "#F8C4C0",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder mombray 2.5$ frasco.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2",
+        "swatch_hex": "#D2888B",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder mombray 2.5$ frasco.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3",
+        "swatch_hex": "#FCA9AB",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder mombray 2.5$ frasco.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 4",
+        "swatch_hex": "#F2F2F2",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder mombray 2.5$ frasco.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 5",
+        "swatch_hex": "#FFC4C7",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder mombray 2.5$ frasco.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 6",
+        "swatch_hex": "#FED4D4",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder mombray 2.5$ frasco.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 7",
+        "swatch_hex": "#D38B94",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder mombray 2.5$ frasco.png"
         ],
         "disponible": true
       }

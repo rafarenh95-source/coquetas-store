@@ -15,9 +15,19 @@
  *    visual común y se apoya sobre una misma línea de base, así la fila entera
  *    descansa sobre el mismo suelo.
  *
+ * 3. LIMPIEZA Y CENTRADO. El fondo de estudio no es 255 sino 250-254, y bajo el
+ *    producto se aclara u oscurece en un halo. Sobre el crema eso se veía como
+ *    un rectángulo y una elipse más claros, y la sombra pintada en la foto no era
+ *    igual en todas: más larga hacia un lado en unas, un halo en otras, lo que
+ *    descentraba al producto. Del fondo solo se conserva el suavizado del borde;
+ *    el producto se centra por sí mismo, sin sombra; y se le pone una sola sombra
+ *    de contacto, simétrica y suave (el manual pide luz suave, sin sombra dura).
+ *
  *   node scripts/procesar-fotos.mjs                     # todas las fotos
  *   node scripts/procesar-fotos.mjs --solo=ID1,ID2      # solo esos productos: al agregar
  *                                                       # productos nuevos no se rehacen los ya publicados
+ *   --sin-sombra                                        # sin la sombra de contacto
+ *   --salida=carpeta                                    # para probar sin tocar public/img/productos
  */
 
 import fs from "node:fs";
@@ -25,7 +35,11 @@ import path from "node:path";
 import sharp from "sharp";
 
 const ORIGEN = "C:/Users/conch/Downloads/imagenes editadas";
-const DESTINO = path.resolve("public/img/productos");
+const ARG_SALIDA = process.argv.find((a) => a.startsWith("--salida="));
+const DESTINO = ARG_SALIDA
+  ? path.resolve(ARG_SALIDA.slice("--salida=".length))
+  : path.resolve("public/img/productos");
+const CON_SOMBRA = !process.argv.includes("--sin-sombra");
 const PRODUCTOS = path.resolve("src/data/productos.json");
 
 const LIENZO = 1000; // lado del cuadro final
@@ -37,6 +51,99 @@ const UMBRAL_ESTRICTO = 242; // solo blanco casi puro, para envases blancos
 const ALTO_MAXIMO = 0.78; // el producto ocupa como mucho el 78 % del alto
 const ANCHO_MAXIMO = 0.8; // y el 80 % del ancho
 const LINEA_BASE = 0.9; // su base queda al 90 % del alto del lienzo
+
+/* Limpieza del borde: del fondo solo se conservan los píxeles pegados al
+   producto, que son el suavizado de su contorno. */
+const RADIO_BORDE = 2;
+
+/* Las tapas blancas y los plásticos transparentes son casi tan claros como el
+   fondo, y el relleno se les fuga por dentro: no se puede distinguir un pixel de
+   tapa de uno de velo solo por el color. Lo que sí los separa es el valor: el
+   velo del estudio está en 250-254, y las partes claras del producto, con su
+   sombreado y sus bordes, por debajo de ese valor. Por eso, dentro de la caja
+   del producto se conserva lo que baje de MUERTA; por encima, es fondo. */
+const MUERTA = 249;
+const HOLGURA_ARRIBA = 0.15; // margen sobre la caja para las tapas que el relleno se llevó
+
+/* Sombra de contacto única, simétrica y suave, centrada bajo cada producto. */
+const SOMBRA_OPACIDAD = 0.14;
+const SOMBRA_ANCHO = 0.56; // semiancho, como fracción del ancho del producto
+const SOMBRA_ALTO = 0.03; // semialto, como fracción del lienzo
+
+/** Marca los píxeles a menos de `radio` del producto (lo que no es fondo). */
+function cercaDelProducto(fondo, w, h, radio) {
+  const tmp = new Uint8Array(w * h);
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      if (fondo[y * w + x]) continue;
+      const x0 = Math.max(0, x - radio);
+      const x1 = Math.min(w - 1, x + radio);
+      for (let xx = x0; xx <= x1; xx++) tmp[y * w + xx] = 1;
+    }
+  }
+  const cerca = new Uint8Array(w * h);
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; y++) {
+      if (!tmp[y * w + x]) continue;
+      const y0 = Math.max(0, y - radio);
+      const y1 = Math.min(h - 1, y + radio);
+      for (let yy = y0; yy <= y1; yy++) cerca[yy * w + x] = 1;
+    }
+  }
+  return cerca;
+}
+
+/**
+ * Extensión del producto por filas y por columnas. Un píxel de fondo está DENTRO
+ * del producto si queda entre producto y producto tanto en su fila como en su
+ * columna. Sirve para no vaciar los envases blancos: sobre fondo blanco el
+ * relleno se les fuga por dentro y ese relleno hay que conservarlo, mientras que
+ * el velo de fuera (los lados, arriba, abajo y entre objetos separados) sobra.
+ */
+function extensionDelProducto(fondo, w, h) {
+  const filaMin = new Int32Array(h).fill(w);
+  const filaMax = new Int32Array(h).fill(-1);
+  const colMin = new Int32Array(w).fill(h);
+  const colMax = new Int32Array(w).fill(-1);
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      if (fondo[y * w + x]) continue;
+      if (x < filaMin[y]) filaMin[y] = x;
+      if (x > filaMax[y]) filaMax[y] = x;
+      if (y < colMin[x]) colMin[x] = y;
+      if (y > colMax[x]) colMax[x] = y;
+    }
+  }
+  return { filaMin, filaMax, colMin, colMax };
+}
+
+/** Capa RGBA del lienzo entero con una elipse de sombra que se desvanece hacia los bordes. */
+function capaSombra(centroX, anchoProducto, baseY) {
+  const rx = Math.min(anchoProducto * SOMBRA_ANCHO, LIENZO * 0.47);
+  const ry = LIENZO * SOMBRA_ALTO;
+  const cy = baseY - ry * 0.2; // asienta justo bajo la base, sin separarse de ella
+  const buf = Buffer.alloc(LIENZO * LIENZO * 4);
+
+  const x0 = Math.max(0, Math.floor(centroX - rx));
+  const x1 = Math.min(LIENZO - 1, Math.ceil(centroX + rx));
+  const y0 = Math.max(0, Math.floor(cy - ry));
+  const y1 = Math.min(LIENZO - 1, Math.ceil(cy + ry));
+
+  for (let y = y0; y <= y1; y++) {
+    for (let x = x0; x <= x1; x++) {
+      const dx = (x - centroX) / rx;
+      const dy = (y - cy) / ry;
+      const r2 = dx * dx + dy * dy;
+      if (r2 >= 1) continue;
+      const i = (y * LIENZO + x) * 4;
+      buf[i] = 43; // ciruela #2B0A26
+      buf[i + 1] = 10;
+      buf[i + 2] = 38;
+      buf[i + 3] = Math.round(SOMBRA_OPACIDAD * (1 - r2) * (1 - r2) * 255);
+    }
+  }
+  return buf;
+}
 
 function inundar(data, w, h, canales, umbral) {
   const fondo = new Uint8Array(w * h);
@@ -134,10 +241,38 @@ async function procesar(rutaEntrada) {
   }
 
   const rango = 255 - (modo === "suave" ? UMBRAL_SUAVE : UMBRAL_ESTRICTO);
+  const cerca = cercaDelProducto(fondo, w, h, RADIO_BORDE);
+  const { filaMin, filaMax, colMin, colMax } = extensionDelProducto(fondo, w, h);
+
+  // caja del contenido duro (lo que el relleno no se llevó)
+  let bx0 = w;
+  let bx1 = -1;
+  let by0 = -1;
+  let by1 = -1;
+  for (let y = 0; y < h; y++) {
+    if (filaMax[y] < 0) continue;
+    if (by0 < 0) by0 = y;
+    by1 = y;
+    if (filaMin[y] < bx0) bx0 = filaMin[y];
+    if (filaMax[y] > bx1) bx1 = filaMax[y];
+  }
+  const holgura = Math.round((by1 - by0) * HOLGURA_ARRIBA);
+
   for (let p = 0; p < w * h; p++) {
     if (!fondo[p]) continue;
     const i = p * c;
+    const x = p % w;
+    const y = (p / w) | 0;
+    const dentro = x >= filaMin[y] && x <= filaMax[y] && y >= colMin[x] && y <= colMax[x];
     const min = Math.min(data[i], data[i + 1], data[i + 2]);
+    // parte clara del producto que el relleno se llevó (tapa blanca, plástico): dentro de la
+    // caja, y por debajo del valor del velo. Nunca por debajo de la base: ahí solo hay sombra.
+    const claraDelProducto =
+      min < MUERTA && x >= bx0 - 4 && x <= bx1 + 4 && y >= by0 - holgura && y <= by1;
+    if (!cerca[p] && !dentro && !claraDelProducto) {
+      data[i + 3] = 0; // velo y halo del estudio, fuera del producto
+      continue;
+    }
     data[i + 3] = Math.max(0, Math.min(255, Math.round(((255 - min) / rango) * 255)));
   }
 
@@ -164,10 +299,21 @@ async function procesar(rutaEntrada) {
   const izquierda = Math.round((LIENZO - anchoFinal) / 2);
   const arriba = Math.round(LIENZO * LINEA_BASE - altoFinal);
 
+  const capas = [];
+  if (CON_SOMBRA) {
+    const sombra = capaSombra(LIENZO / 2, anchoFinal, Math.max(0, arriba) + altoFinal);
+    capas.push({
+      input: await sharp(sombra, { raw: { width: LIENZO, height: LIENZO, channels: 4 } }).png().toBuffer(),
+      left: 0,
+      top: 0,
+    });
+  }
+  capas.push({ input: producto, left: izquierda, top: Math.max(0, arriba) });
+
   const compuesta = await sharp({
     create: { width: LIENZO, height: LIENZO, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
   })
-    .composite([{ input: producto, left: izquierda, top: Math.max(0, arriba) }])
+    .composite(capas)
     .png()
     .toBuffer();
 
@@ -181,12 +327,15 @@ async function main() {
   const soloArg = process.argv.find((a) => a.startsWith("--solo="));
   const SOLO = soloArg ? new Set(soloArg.slice("--solo=".length).split(",")) : null;
   const revisar = [];
+  const hechos = new Set();
   let n = 0;
 
   for (const p of productos) {
     if (SOLO && !SOLO.has(p.producto_id)) continue;
     for (const v of p.variantes) {
       const salida = path.basename(v.imagenes[0]);
+      if (hechos.has(salida)) continue; // varias variantes pueden compartir una misma foto
+      hechos.add(salida);
       const { buffer, modo } = await procesar(path.join(ORIGEN, v.origen[0]));
 
       await sharp(buffer).webp({ quality: 82, effort: 4 }).toFile(path.join(DESTINO, salida));
