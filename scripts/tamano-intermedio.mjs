@@ -11,7 +11,8 @@
  * No rehace el recorte: parte del webp de 1000 px que ya existe, así que son
  * minutos en vez de media hora.
  *
- *   node scripts/tamano-intermedio.mjs
+ *   node scripts/tamano-intermedio.mjs                  # todas
+ *   node scripts/tamano-intermedio.mjs --solo=ID1,ID2   # solo las fotos de esos productos
  */
 
 import fs from "node:fs";
@@ -21,9 +22,16 @@ import sharp from "sharp";
 const DIR = path.resolve("public/img/productos");
 const ANCHO = 550;
 
+const soloArg = process.argv.find((a) => a.startsWith("--solo="));
+const SOLO = soloArg ? soloArg.slice("--solo=".length).split(",") : null;
+
+const esDeLosElegidos = (f) =>
+  !SOLO || SOLO.some((id) => f.startsWith(`${id}-`) && /^[0-9]{2}[.]webp$/.test(f.slice(id.length + 1)));
+
 const originales = fs
   .readdirSync(DIR)
-  .filter((f) => f.endsWith(".webp") && !/-\d{3}\.webp$/.test(f));
+  .filter((f) => f.endsWith(".webp") && !/-[0-9]{3}[.]webp$/.test(f))
+  .filter(esDeLosElegidos);
 
 let hechas = 0;
 let peso = 0;

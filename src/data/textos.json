@@ -28,7 +28,7 @@
   "TF-LIMA-100-180": {
     "descripcion": "Lima de dos granos: el lado 100 rebaja y el 180 afina. Media luna, cómoda de sostener.",
     "modo_uso": "Lima siempre en una sola dirección, del borde hacia el centro. El lado 180 es el que da el acabado.",
-    "rendimiento": "Vienen dos limas."
+    "rendimiento": ""
   },
   "MG-TIPS-JELLY": {
     "descripcion": "Tips blandos de forma coffin, translúcidos, para alargar la uña sin construir con gel desde cero.",
@@ -174,5 +174,50 @@
     "descripcion": "Atomizador vacío de vidrio con bomba para polvo. Reparte el talco en una capa fina en vez de una nube.",
     "modo_uso": "Llena hasta la mitad, cierra bien y presiona la bomba a unos centímetros de la piel.",
     "rendimiento": "Envase recargable. Se vende vacío."
+  },
+  "MY-BASE-COAT-8": {
+    "descripcion": "La capa que va primero, antes del color. Base coat UV y LED, soak-off, en frasco de 8 ml.",
+    "modo_uso": "Una capa fina sobre la uña limpia y sin brillo. Cura en la lámpara antes de aplicar el color.",
+    "rendimiento": "Frasco de 8 ml."
+  },
+  "MY-PROTEIN-BASE": {
+    "descripcion": "Protein base de M&Y en frasco de 15 ml, en dos tonos nude: rosado y crema.",
+    "modo_uso": "Aplica una capa fina sobre la uña preparada y cura en la lámpara antes de seguir con el color.",
+    "rendimiento": "Frasco de 15 ml."
+  },
+  "MB-BUILDER-GEL": {
+    "descripcion": "Builder gel de la marca Monbray, para dar estructura y reforzar la uña. Consulta por los tonos disponibles.",
+    "modo_uso": "Aplica sobre la uña preparada, construye la estructura y cura.",
+    "rendimiento": ""
+  },
+  "MX-PEGA-7": {
+    "descripcion": "Pegamento con pincel para pegar uñas postizas, en frasco de 7 g.",
+    "modo_uso": "Aplica una capa fina con el pincel, coloca la uña postiza y presiona unos segundos.",
+    "rendimiento": "Frasco de 7 g con pincel."
+  },
+  "MY-MOLDES-DUAL": {
+    "descripcion": "Moldes duales transparentes en forma almendra, con parte superior e inferior. La caja trae 240 piezas en 15 tamaños.",
+    "modo_uso": "Elige el tamaño que calce en cada uña y combina la parte superior con la inferior del molde.",
+    "rendimiento": "Caja con 240 piezas (120 + 120) en 15 tamaños."
+  },
+  "MY-TIPS-500": {
+    "descripcion": "Bolsa con 500 uñas postizas transparentes, en tamaños surtidos y numerados. Modelo W033.",
+    "modo_uso": "Elige el tamaño que calce en cada uña, pega y recorta a la forma.",
+    "rendimiento": "Bolsa con 500 piezas."
+  },
+  "CQ-SET-PINCELES": {
+    "descripcion": "Set de 5 pinceles para uñas, cada uno con su capuchón transparente y mango nacarado. Cada pincel tiene una punta distinta.",
+    "modo_uso": "Elige el pincel según el trabajo: los planos para cubrir y los finos para detalles y líneas.",
+    "rendimiento": "Set de 5 pinceles."
+  },
+  "CQ-CEPILLO-GRANDE": {
+    "descripcion": "Cepillo de manicure con mango curvo morado y cerdas transparentes, para limpiar la uña y retirar el polvo de limado.",
+    "modo_uso": "Pasa el cepillo sobre la uña con movimientos suaves hasta retirar el polvo.",
+    "rendimiento": ""
+  },
+  "MY-PETALOS-JABON": {
+    "descripcion": "Pétalos de jabón en forma de corazón, en colores pastel. Bolsa con 1000 unidades.",
+    "modo_uso": "Toma unos pétalos y frótalos entre las manos húmedas hasta que hagan espuma.",
+    "rendimiento": "Bolsa con 1000 unidades."
   }
 }

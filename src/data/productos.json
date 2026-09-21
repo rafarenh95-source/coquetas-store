@@ -748,6 +748,39 @@
     "orden": 11
   },
   {
+    "producto_id": "MY-BASE-COAT-8",
+    "nombre": "Base coat M&Y",
+    "marca": "M&Y",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 1,
+    "precio_referencia": 1.35,
+    "nota_precio": null,
+    "presentacion": "8 ml",
+    "descripcion": "La capa que va primero, antes del color. Base coat UV y LED, soak-off, en frasco de 8 ml.",
+    "modo_uso": "Una capa fina sobre la uña limpia y sin brillo. Cura en la lámpara antes de aplicar el color.",
+    "rendimiento": "Frasco de 8 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MY-BASE-COAT-8-01.webp"
+        ],
+        "origen": [
+          "BASE COAT 1$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 12
+  },
+  {
     "producto_id": "MG-BASE-GEL-10",
     "nombre": "Base gel",
     "marca": "MAXGLOW",
@@ -777,7 +810,7 @@
         "disponible": true
       }
     ],
-    "orden": 12
+    "orden": 13
   },
   {
     "producto_id": "MG-BASE-GEL-15",
@@ -809,7 +842,7 @@
         "disponible": true
       }
     ],
-    "orden": 13
+    "orden": 14
   },
   {
     "producto_id": "MG-BRUSH-ON-GEL",
@@ -841,7 +874,7 @@
         "disponible": true
       }
     ],
-    "orden": 14
+    "orden": 15
   },
   {
     "producto_id": "MG-BUILDER-GEL",
@@ -873,7 +906,40 @@
         "disponible": true
       }
     ],
-    "orden": 15
+    "orden": 16
+  },
+  {
+    "producto_id": "MB-BUILDER-GEL",
+    "nombre": "Builder gel Monbray",
+    "marca": "Monbray",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2.5,
+    "precio_referencia": 3.38,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Builder gel de la marca Monbray, para dar estructura y reforzar la uña. Consulta por los tonos disponibles.",
+    "modo_uso": "Aplica sobre la uña preparada, construye la estructura y cura.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-BUILDER-GEL-01.webp"
+        ],
+        "origen": [
+          "Builder mombray 2.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 17
   },
   {
     "producto_id": "TF-BUILDER-10",
@@ -905,7 +971,7 @@
         "disponible": true
       }
     ],
-    "orden": 16
+    "orden": 18
   },
   {
     "producto_id": "TF-BUILDER-15",
@@ -937,7 +1003,40 @@
         "disponible": true
       }
     ],
-    "orden": 17
+    "orden": 19
+  },
+  {
+    "producto_id": "CQ-CEPILLO-GRANDE",
+    "nombre": "Cepillo grande para manicure",
+    "marca": null,
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 1,
+    "precio_referencia": 1.35,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Cepillo de manicure con mango curvo morado y cerdas transparentes, para limpiar la uña y retirar el polvo de limado.",
+    "modo_uso": "Pasa el cepillo sobre la uña con movimientos suaves hasta retirar el polvo.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-CEPILLO-GRANDE-01.webp"
+        ],
+        "origen": [
+          "Cepillo grande 1$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 20
   },
   {
     "producto_id": "MG-CORTACUTICULA",
@@ -969,7 +1068,7 @@
         "disponible": true
       }
     ],
-    "orden": 18
+    "orden": 21
   },
   {
     "producto_id": "MG-ESPUMA-MANI",
@@ -1025,7 +1124,7 @@
         "disponible": true
       }
     ],
-    "orden": 19
+    "orden": 22
   },
   {
     "producto_id": "MG-FINISH-15",
@@ -1057,7 +1156,7 @@
         "disponible": true
       }
     ],
-    "orden": 20
+    "orden": 23
   },
   {
     "producto_id": "MG-JELLY-BUILDER",
@@ -1113,7 +1212,7 @@
         "disponible": true
       }
     ],
-    "orden": 21
+    "orden": 24
   },
   {
     "producto_id": "MG-LIMPIA-PINCELES",
@@ -1145,7 +1244,73 @@
         "disponible": true
       }
     ],
-    "orden": 22
+    "orden": 25
+  },
+  {
+    "producto_id": "MY-MOLDES-DUAL",
+    "nombre": "Moldes sandwich dual forms",
+    "marca": "M&Y",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": "240 piezas",
+    "descripcion": "Moldes duales transparentes en forma almendra, con parte superior e inferior. La caja trae 240 piezas en 15 tamaños.",
+    "modo_uso": "Elige el tamaño que calce en cada uña y combina la parte superior con la inferior del molde.",
+    "rendimiento": "Caja con 240 piezas (120 + 120) en 15 tamaños.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MY-MOLDES-DUAL-01.webp"
+        ],
+        "origen": [
+          "3.5 moldes sandui.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 26
+  },
+  {
+    "producto_id": "MX-PEGA-7",
+    "nombre": "Pega de uñas mxbon",
+    "marca": "mxbon",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 1,
+    "precio_referencia": 1.35,
+    "nota_precio": null,
+    "presentacion": "7 g",
+    "descripcion": "Pegamento con pincel para pegar uñas postizas, en frasco de 7 g.",
+    "modo_uso": "Aplica una capa fina con el pincel, coloca la uña postiza y presiona unos segundos.",
+    "rendimiento": "Frasco de 7 g con pincel.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MX-PEGA-7-01.webp"
+        ],
+        "origen": [
+          "Pega de uñas 1$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 27
   },
   {
     "producto_id": "MG-POLYGEL",
@@ -1249,7 +1414,7 @@
         "disponible": true
       }
     ],
-    "orden": 23
+    "orden": 28
   },
   {
     "producto_id": "MG-PRIMER",
@@ -1281,7 +1446,52 @@
         "disponible": true
       }
     ],
-    "orden": 24
+    "orden": 29
+  },
+  {
+    "producto_id": "MY-PROTEIN-BASE",
+    "nombre": "Protein base M&Y",
+    "marca": "M&Y",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": "15 ml",
+    "descripcion": "Protein base de M&Y en frasco de 15 ml, en dos tonos nude: rosado y crema.",
+    "modo_uso": "Aplica una capa fina sobre la uña preparada y cura en la lámpara antes de seguir con el color.",
+    "rendimiento": "Frasco de 15 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Nude rosado",
+        "swatch_hex": "#D4A397",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MY-PROTEIN-BASE-01.webp"
+        ],
+        "origen": [
+          "Protein base 2$ nude rosado.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Nude crema",
+        "swatch_hex": "#D9C5BC",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MY-PROTEIN-BASE-02.webp"
+        ],
+        "origen": [
+          "Protein base 2$ nude crema.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 30
   },
   {
     "producto_id": "MG-PROTEIN-BOND",
@@ -1313,7 +1523,7 @@
         "disponible": true
       }
     ],
-    "orden": 25
+    "orden": 31
   },
   {
     "producto_id": "MG-TOP-COAT-REC",
@@ -1345,7 +1555,7 @@
         "disponible": true
       }
     ],
-    "orden": 26
+    "orden": 32
   },
   {
     "producto_id": "MG-SANITIZANTE",
@@ -1377,7 +1587,40 @@
         "disponible": true
       }
     ],
-    "orden": 27
+    "orden": 33
+  },
+  {
+    "producto_id": "CQ-SET-PINCELES",
+    "nombre": "Set de pinceles",
+    "marca": null,
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": "5 piezas",
+    "descripcion": "Set de 5 pinceles para uñas, cada uno con su capuchón transparente y mango nacarado. Cada pincel tiene una punta distinta.",
+    "modo_uso": "Elige el pincel según el trabajo: los planos para cubrir y los finos para detalles y líneas.",
+    "rendimiento": "Set de 5 pinceles.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-SET-PINCELES-01.webp"
+        ],
+        "origen": [
+          "Set d pinceles 3.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 34
   },
   {
     "producto_id": "MG-TOALLAS-REMOV",
@@ -1409,7 +1652,7 @@
         "disponible": true
       }
     ],
-    "orden": 28
+    "orden": 35
   },
   {
     "producto_id": "MG-TOP-COAT-15",
@@ -1441,7 +1684,7 @@
         "disponible": true
       }
     ],
-    "orden": 29
+    "orden": 36
   },
   {
     "producto_id": "MG-TIPS-500",
@@ -1473,7 +1716,40 @@
         "disponible": true
       }
     ],
-    "orden": 30
+    "orden": 37
+  },
+  {
+    "producto_id": "MY-TIPS-500",
+    "nombre": "Uñas postizas por 500 M&Y",
+    "marca": "M&Y",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2.5,
+    "precio_referencia": 3.38,
+    "nota_precio": null,
+    "presentacion": "500 piezas",
+    "descripcion": "Bolsa con 500 uñas postizas transparentes, en tamaños surtidos y numerados. Modelo W033.",
+    "modo_uso": "Elige el tamaño que calce en cada uña, pega y recorta a la forma.",
+    "rendimiento": "Bolsa con 500 piezas.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MY-TIPS-500-01.webp"
+        ],
+        "origen": [
+          "Tips de 500 unidades 2.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 38
   },
   {
     "producto_id": "MG-AGUA-ROSAS",
@@ -1505,7 +1781,7 @@
         "disponible": true
       }
     ],
-    "orden": 31
+    "orden": 39
   },
   {
     "producto_id": "MG-GASAS-PESTANAS",
@@ -1561,7 +1837,7 @@
         "disponible": true
       }
     ],
-    "orden": 32
+    "orden": 40
   },
   {
     "producto_id": "MG-ATOMIZADOR-TALCO",
@@ -1593,7 +1869,7 @@
         "disponible": true
       }
     ],
-    "orden": 33
+    "orden": 41
   },
   {
     "producto_id": "MG-BOMBAS-EFERV",
@@ -1625,7 +1901,7 @@
         "disponible": true
       }
     ],
-    "orden": 34
+    "orden": 42
   },
   {
     "producto_id": "MG-BODY-BUTTER",
@@ -1657,6 +1933,39 @@
         "disponible": true
       }
     ],
-    "orden": 35
+    "orden": 43
+  },
+  {
+    "producto_id": "MY-PETALOS-JABON",
+    "nombre": "Pétalos de jabón",
+    "marca": "M&Y",
+    "categoria": "cuerpo",
+    "uso_profesional": false,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": "1000 unidades",
+    "descripcion": "Pétalos de jabón en forma de corazón, en colores pastel. Bolsa con 1000 unidades.",
+    "modo_uso": "Toma unos pétalos y frótalos entre las manos húmedas hasta que hagan espuma.",
+    "rendimiento": "Bolsa con 1000 unidades.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MY-PETALOS-JABON-01.webp"
+        ],
+        "origen": [
+          "Pétalos de jabón 1.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 44
   }
 ]

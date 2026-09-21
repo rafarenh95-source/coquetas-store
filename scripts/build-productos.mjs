@@ -170,12 +170,13 @@ const CATALOGO = [
   },
   {
     id: "MG-GEL-COLOR-15",
-    nombre: "Gel polish color",
+    nombre: "Brillo color",
+    orden_como: "Gel polish color", // se llamaba así cuando se fijó su lugar en la grilla
     marca: "MAXGLOW",
     categoria: "unas",
     uso_profesional: false,
     precio_divisa: 1.9,
-    presentacion: "15 ml",
+    presentacion: "10 ml",
     destacado: true,
     tipo_variante: "color",
     variantes: numeradas("Brillo color 1.9$ ", 1, 7),
@@ -227,9 +228,8 @@ const CATALOGO = [
     marca: "TIFFANY",
     categoria: "unas",
     uso_profesional: false,
-    precio_divisa: 1.0,
-    nota_precio: "El par en $1,00",
-    presentacion: "Par",
+    precio_divisa: 0.5,
+    presentacion: null,
     destacado: false,
     tipo_variante: null,
     variantes: [{ tono: null, archivo: "lima tiffany 2x1$.png" }],
@@ -237,7 +237,8 @@ const CATALOGO = [
   },
   {
     id: "MG-TIPS-JELLY",
-    nombre: "Soft jelly tips coffin",
+    nombre: "Uñas jelly tips tecnología avanzada",
+    orden_como: "Soft jelly tips coffin", // ídem
     marca: "MAXGLOW",
     categoria: "unas",
     uso_profesional: false,
@@ -627,6 +628,133 @@ const CATALOGO = [
     tipo_variante: null,
     variantes: [{ tono: null, archivo: "Atomizador de talco 3.5$.png" }],
   },
+  /* ── UÑAS · agregados con M&Y, Monbray y mxbon ─────────────────────────
+   * Fotos editadas con IA a partir de fotos de la tienda. Los textos son
+   * borrador y los datos salen de la etiqueta visible en cada foto.
+   * marca: null cuando el envase no muestra ninguna. */
+  {
+    id: "MY-BASE-COAT-8",
+    nombre: "Base coat M&Y",
+    marca: "M&Y",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 1.0,
+    presentacion: "8 ml",
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "BASE COAT 1$.png" }],
+  },
+  {
+    id: "MY-PROTEIN-BASE",
+    nombre: "Protein base M&Y",
+    marca: "M&Y",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 2.0,
+    presentacion: "15 ml",
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Nude rosado", archivo: "Protein base 2$ nude rosado.png" },
+      { tono: "Nude crema", archivo: "Protein base 2$ nude crema.png" },
+    ],
+  },
+  {
+    id: "MB-BUILDER-GEL",
+    nombre: "Builder gel Monbray",
+    marca: "Monbray",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 2.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "Builder mombray 2.5$.png" }],
+  },
+  {
+    id: "MX-PEGA-7",
+    nombre: "Pega de uñas mxbon",
+    marca: "mxbon",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 1.0,
+    presentacion: "7 g",
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "Pega de uñas 1$.png" }],
+  },
+  {
+    id: "MY-MOLDES-DUAL",
+    nombre: "Moldes sandwich dual forms",
+    marca: "M&Y",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 3.5,
+    presentacion: "240 piezas",
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "3.5 moldes sandui.png" }],
+  },
+  {
+    id: "MY-TIPS-500",
+    nombre: "Uñas postizas por 500 M&Y",
+    marca: "M&Y",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 2.5,
+    presentacion: "500 piezas",
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "Tips de 500 unidades 2.5$.png" }],
+  },
+  {
+    id: "CQ-SET-PINCELES",
+    nombre: "Set de pinceles",
+    marca: null,
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 3.5,
+    presentacion: "5 piezas",
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "Set d pinceles 3.5$.png" }],
+  },
+  {
+    id: "CQ-CEPILLO-GRANDE",
+    nombre: "Cepillo grande para manicure",
+    marca: null,
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 1.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "Cepillo grande 1$.png" }],
+  },
+
+  /* ── CUERPO Y SPA · agregado ──────────────────────────────────────────── */
+  {
+    id: "MY-PETALOS-JABON",
+    nombre: "Pétalos de jabón",
+    marca: "M&Y",
+    categoria: "cuerpo",
+    uso_profesional: false,
+    precio_divisa: 1.5,
+    presentacion: "1000 unidades",
+    destacado: false,
+    foto_editada: true, // regenerada con IA a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "Pétalos de jabón 1.5$.png" }],
+  },
+
 ];
 
 /* ── construcción ─────────────────────────────────────────────────────────
@@ -685,13 +813,17 @@ async function construir() {
       presentacion: p.presentacion,
       descripcion: textos[p.id]?.descripcion ?? "",
       modo_uso: textos[p.id]?.modo_uso ?? "",
-      rendimiento: textos[p.id]?.rendimiento ?? "",
+      rendimiento: textos[p.id]?.rendimiento || null,
       destacado: p.destacado,
+      // solo aparece cuando es true: los productos publicados antes no cambian
+      ...(p.foto_editada ? { foto_editada: true } : {}),
       disponible: true,
       tipo_variante: p.tipo_variante,
       variantes,
     });
   }
+
+  const claveDeOrden = new Map(CATALOGO.map((p) => [p.id, p.orden_como ?? p.nombre]));
 
   productos.sort((a, b) => {
     if (a.destacado !== b.destacado) return a.destacado ? -1 : 1;
@@ -699,7 +831,7 @@ async function construir() {
     const cb = PESO_CATEGORIA[b.categoria];
     if (ca !== cb) return ca - cb;
     if (a.uso_profesional !== b.uso_profesional) return a.uso_profesional ? 1 : -1;
-    return a.nombre.localeCompare(b.nombre, "es");
+    return claveDeOrden.get(a.producto_id).localeCompare(claveDeOrden.get(b.producto_id), "es");
   });
 
   productos.forEach((p, i) => (p.orden = i + 1));

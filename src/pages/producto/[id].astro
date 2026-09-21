@@ -90,15 +90,23 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
           />
         </button>
 
+        {/* La leyenda tiene que ser verdad: las fotos regeneradas con IA no son «sin
+            retoque», y en los tonos el color es justo lo que la clienta mira. */}
         <p class="t-caption mt-1 text-ciruela/60">
-          Foto del producto real, sin retoque de color.
+          {
+            p.foto_editada
+              ? p.tipo_variante === "color"
+                ? "Foto editada a partir de la del producto real; el tono puede verse un poco distinto."
+                : "Foto editada a partir de la del producto real."
+              : "Foto del producto real, sin retoque de color."
+          }
         </p>
       </div>
 
       {/* ── Datos ───────────────────────────────────────────────────── */}
       <div class="flex flex-col gap-3">
         <p class="t-etiqueta text-purpura">
-          {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]} · {p.marca}
+          {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}{p.marca && <Fragment> · {p.marca}</Fragment>}
         </p>
 
         <h1 class="t-h3 text-ciruela">{p.nombre}</h1>
@@ -184,7 +192,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
       "@type": "Product",
       name: p.nombre,
       description: p.descripcion,
-      brand: { "@type": "Brand", name: p.marca },
+      ...(p.marca ? { brand: { "@type": "Brand", name: p.marca } } : {}),
       category: CATEGORIAS[p.categoria as keyof typeof CATEGORIAS],
       image: p.variantes.map((v: any) => new URL(v.imagenes[0], Astro.site).href),
       ...(p.presentacion ? { size: p.presentacion } : {}),

@@ -15,7 +15,9 @@
  *    visual común y se apoya sobre una misma línea de base, así la fila entera
  *    descansa sobre el mismo suelo.
  *
- *   node scripts/procesar-fotos.mjs
+ *   node scripts/procesar-fotos.mjs                     # todas las fotos
+ *   node scripts/procesar-fotos.mjs --solo=ID1,ID2      # solo esos productos: al agregar
+ *                                                       # productos nuevos no se rehacen los ya publicados
  */
 
 import fs from "node:fs";
@@ -176,10 +178,13 @@ async function main() {
   fs.mkdirSync(DESTINO, { recursive: true });
 
   const productos = JSON.parse(fs.readFileSync(PRODUCTOS, "utf8"));
+  const soloArg = process.argv.find((a) => a.startsWith("--solo="));
+  const SOLO = soloArg ? new Set(soloArg.slice("--solo=".length).split(",")) : null;
   const revisar = [];
   let n = 0;
 
   for (const p of productos) {
+    if (SOLO && !SOLO.has(p.producto_id)) continue;
     for (const v of p.variantes) {
       const salida = path.basename(v.imagenes[0]);
       const { buffer, modo } = await procesar(path.join(ORIGEN, v.origen[0]));

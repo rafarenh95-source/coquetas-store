@@ -21,6 +21,7 @@
  *   node scripts/editar-fotos-ia.mjs --seco          # solo lista, no gasta nada
  *   node scripts/editar-fotos-ia.mjs --max 2         # procesa como mucho 2
  *   node scripts/editar-fotos-ia.mjs --archivo "esmalte 3.jpg"
+ *   node scripts/editar-fotos-ia.mjs --archivo "set.jpg" --rehacer --nota "5 pinceles: ..."
  *
  * La clave va en el archivo `.env` (OPENAI_API_KEY=...), que Git ignora. Nunca
  * se imprime ni se guarda en otro sitio.
@@ -93,6 +94,7 @@ const SALIDA = String(args.salida ?? SALIDA_POR_DEFECTO);
    la etiqueta sin errores: 1.5 cambió «UV&LED» por «UV/LED» y 1 escribió «UVILED». */
 const MODELO = String(args.modelo ?? "gpt-image-2");
 const CALIDAD = String(args.calidad ?? "high");
+const NOTA = args.nota && args.nota !== true ? String(args.nota) : ""; // datos que solo se ven en ESA foto
 const MAXIMO = Number(args.max ?? 3); // tope de seguridad: cada imagen cuesta dinero
 const BASE_API = process.env.OPENAI_BASE_URL ?? "https://api.openai.com/v1";
 
@@ -125,7 +127,10 @@ function explicar(status, cuerpo) {
 async function pedirEdicion(imagenes, { conFidelidad = !/^gpt-image-2/.test(MODELO) } = {}) {
   const form = new FormData();
   form.append("model", MODELO);
-  form.append("prompt", PROMPT + (imagenes.length > 1 ? PROMPT_REFERENCIA : ""));
+  form.append(
+    "prompt",
+    PROMPT + (NOTA ? ` Specific details about this photo: ${NOTA}` : "") + (imagenes.length > 1 ? PROMPT_REFERENCIA : "")
+  );
   form.append("size", "1024x1024");
   form.append("quality", CALIDAD);
   form.append("n", "1");

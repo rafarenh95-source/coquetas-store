@@ -84,7 +84,7 @@ import tienda from "../data/tienda.json";
         item: {
           "@type": "Product",
           name: p.nombre,
-          brand: { "@type": "Brand", name: p.marca },
+          ...(p.marca ? { brand: { "@type": "Brand", name: p.marca } } : {}),
           ...(p.presentacion ? { size: p.presentacion } : {}),
           image: p.variantes[0].imagenes[0],
           offers: {
