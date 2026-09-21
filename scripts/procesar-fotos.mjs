@@ -26,7 +26,7 @@
  *   node scripts/procesar-fotos.mjs                     # todas las fotos
  *   node scripts/procesar-fotos.mjs --solo=ID1,ID2      # solo esos productos: al agregar
  *                                                       # productos nuevos no se rehacen los ya publicados
- *   --sin-sombra                                        # sin la sombra de contacto
+ *   --con-sombra                                        # pone una sombra de contacto suave (por defecto, ninguna)
  *   --salida=carpeta                                    # para probar sin tocar public/img/productos
  */
 
@@ -39,7 +39,7 @@ const ARG_SALIDA = process.argv.find((a) => a.startsWith("--salida="));
 const DESTINO = ARG_SALIDA
   ? path.resolve(ARG_SALIDA.slice("--salida=".length))
   : path.resolve("public/img/productos");
-const CON_SOMBRA = !process.argv.includes("--sin-sombra");
+const CON_SOMBRA = process.argv.includes("--con-sombra"); // por defecto no se pone ninguna
 const PRODUCTOS = path.resolve("src/data/productos.json");
 
 const LIENZO = 1000; // lado del cuadro final
@@ -63,6 +63,19 @@ const RADIO_BORDE = 2;
    sombreado y sus bordes, por debajo de ese valor. Por eso, dentro de la caja
    del producto se conserva lo que baje de MUERTA; por encima, es fondo. */
 const MUERTA = 249;
+
+/* Reflejo del suelo. Los fotógrafos de estudio dejan bajo el producto un reflejo
+   claro que, sobre el crema, se ve como una franja blanca (a veces con el borde
+   roto). Es neutro y casi blanco, así que se distingue del producto por el valor:
+   el producto, aun el transparente, tiene color, sombreado o borde por debajo de
+   BASE_CLARO. La base del producto es la última fila con píxeles así; lo que hay
+   debajo se descarta. */
+const BASE_CLARO = 224;
+const BASE_DIFERENCIA = 30; // o bien un color claramente no neutro
+const BASE_MIN_PIXELES = 5;
+const BASE_FRACCION = 0.25; // y que sean al menos una cuarta parte de la fila: los pocos píxeles
+                            // oscuros del borde curvo de una base no la alargan
+const BASE_VENTANA = 0.25; // solo se busca en el 25 % inferior del producto
 const HOLGURA_ARRIBA = 0.15; // margen sobre la caja para las tapas que el relleno se llevó
 
 /* Sombra de contacto única, simétrica y suave, centrada bajo cada producto. */
@@ -143,6 +156,84 @@ function capaSombra(centroX, anchoProducto, baseY) {
     }
   }
   return buf;
+}
+
+/**
+ * Descarta el reflejo del suelo: lo que queda bajo la base real del producto y,
+ * en las filas de la base, lo claro y neutro que sobresale por los lados del
+ * cuerpo (el reflejo se ensancha más que el frasco).
+ */
+function recortarBase(data, w, h, c) {
+  const visibles = new Int32Array(h);
+  const deProducto = new Int32Array(h);
+  const izq = new Int32Array(h).fill(w);
+  const der = new Int32Array(h).fill(-1);
+  const esDeProducto = (i) => {
+    const mn = Math.min(data[i], data[i + 1], data[i + 2]);
+    const mx = Math.max(data[i], data[i + 1], data[i + 2]);
+    return mn < BASE_CLARO || mx - mn > BASE_DIFERENCIA;
+  };
+
+  let y0 = -1;
+  let y1 = -1;
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * c;
+      if (data[i + 3] < 40) continue;
+      visibles[y]++;
+      if (esDeProducto(i)) {
+        deProducto[y]++;
+        if (x < izq[y]) izq[y] = x;
+        if (x > der[y]) der[y] = x;
+      }
+    }
+    if (visibles[y] > 0) {
+      if (y0 < 0) y0 = y;
+      y1 = y;
+    }
+  }
+  if (y0 < 0) return 0;
+
+  const alto = y1 - y0 + 1;
+  const limite = y1 - Math.round(alto * BASE_VENTANA);
+  let base = -1;
+  for (let y = y1; y >= limite; y--) {
+    if (deProducto[y] >= BASE_MIN_PIXELES && deProducto[y] >= visibles[y] * BASE_FRACCION) {
+      base = y;
+      break;
+    }
+  }
+  if (base < 0) return 0;
+
+  // ancho real del cuerpo: mediana de los extremos del producto en las filas justo sobre la base
+  const bandaIni = Math.max(y0, base - Math.round(alto * 0.45));
+  const bandaFin = base - Math.round(alto * 0.15);
+  const izqs = [];
+  const ders = [];
+  for (let y = bandaIni; y <= bandaFin; y++) {
+    if (deProducto[y] < BASE_MIN_PIXELES) continue;
+    izqs.push(izq[y]);
+    ders.push(der[y]);
+  }
+  if (izqs.length >= 5) {
+    izqs.sort((a, b) => a - b);
+    ders.sort((a, b) => a - b);
+    const xL = izqs[izqs.length >> 1] - 3;
+    const xR = ders[ders.length >> 1] + 3;
+    for (let y = bandaFin + 1; y <= base + 1 && y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        if (x >= xL && x <= xR) continue;
+        const i = (y * w + x) * c;
+        if (data[i + 3] > 0 && !esDeProducto(i)) data[i + 3] = 0; // solo lo neutro y claro; nunca un color
+      }
+    }
+  }
+
+  // lo que hay bajo la base
+  for (let y = base + 2; y <= y1; y++) {
+    for (let x = 0; x < w; x++) data[(y * w + x) * c + 3] = 0;
+  }
+  return Math.max(0, y1 - base);
 }
 
 function inundar(data, w, h, canales, umbral) {
@@ -275,6 +366,8 @@ async function procesar(rutaEntrada) {
     }
     data[i + 3] = Math.max(0, Math.min(255, Math.round(((255 - min) / rango) * 255)));
   }
+
+  recortarBase(data, w, h, c);
 
   const recortada = sharp(data, { raw: { width: w, height: h, channels: c } }).png();
   const cuadro = caja(data, w, h, c);
