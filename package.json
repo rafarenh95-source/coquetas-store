@@ -11,7 +11,8 @@
     "logos": "node scripts/preparar-logos.mjs",
     "fuentes": "node scripts/preparar-fuentes.mjs",
     "contraste": "node scripts/verificar-contraste.mjs",
-    "qa": "node scripts/qa-datos.mjs && node scripts/qa-sitio.mjs"
+    "qa": "node scripts/qa-datos.mjs && node scripts/qa-sitio.mjs",
+    "fotos:ia": "node scripts/editar-fotos-ia.mjs"
   },
   "type": "module",
   "dependencies": {

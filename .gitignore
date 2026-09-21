@@ -4,3 +4,8 @@ tmp-fonts/
 .astro/
 revision/
 .impeccable/
+
+# Claves y secretos: nunca se suben a GitHub
+.env
+.env.*
+!.env.example
