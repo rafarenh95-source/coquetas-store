@@ -41,7 +41,9 @@ const PROMPT = [
   "Edit this product photo into a professional e-commerce catalog photo.",
   "Keep the exact same product: identical shape, proportions, colors, materials, logo and every piece of text on the label.",
   "Do not redraw, rename, translate or invent any text. If some label text is too blurry to read, leave it soft and blurry as it is instead of making up words.",
-  "Remove everything that is not the product: the background, the surface it sits on, hands and fingers, props, room reflections, dust and clutter.",
+  "Remove everything that is not the product: the background and any signs, letters or logos in it (they are not part of the product), the surface it sits on, hands and fingers, props, room reflections, dust and clutter.",
+  "If part of the product is hidden by a hand or cut off by the edge of the photo, complete it faithfully following the visible design, and never add details that the visible parts do not imply.",
+  "If the photo shows a set or several units together, keep the whole set together, with the same number of items as in the photo.",
   "Place the product centered, upright and straight-on, on a pure seamless white background (#FFFFFF), with soft even studio lighting,",
   "a very subtle soft contact shadow directly under it, sharp focus and clean edges.",
   "Keep the product's colors natural and accurate: do not enhance, saturate or shift them.",
@@ -87,7 +89,9 @@ cargarEnv(path.resolve(".env"));
 
 const ENTRADA = String(args.entrada ?? ENTRADA_POR_DEFECTO);
 const SALIDA = String(args.salida ?? SALIDA_POR_DEFECTO);
-const MODELO = String(args.modelo ?? "gpt-image-1");
+/* gpt-image-2 fue el único de los tres probados (gpt-image-1, 1.5 y 2) que copió
+   la etiqueta sin errores: 1.5 cambió «UV&LED» por «UV/LED» y 1 escribió «UVILED». */
+const MODELO = String(args.modelo ?? "gpt-image-2");
 const CALIDAD = String(args.calidad ?? "high");
 const MAXIMO = Number(args.max ?? 3); // tope de seguridad: cada imagen cuesta dinero
 const BASE_API = process.env.OPENAI_BASE_URL ?? "https://api.openai.com/v1";
@@ -118,7 +122,7 @@ function explicar(status, cuerpo) {
   return new ErrorApi(`OpenAI respondió ${status}: ${detalle}`);
 }
 
-async function pedirEdicion(imagenes, { conFidelidad = true } = {}) {
+async function pedirEdicion(imagenes, { conFidelidad = !/^gpt-image-2/.test(MODELO) } = {}) {
   const form = new FormData();
   form.append("model", MODELO);
   form.append("prompt", PROMPT + (imagenes.length > 1 ? PROMPT_REFERENCIA : ""));
@@ -237,12 +241,12 @@ for (const f of aProcesar) {
     const { png, uso } = await pedirEdicion(referencia ? [original, referencia] : [original]);
 
     fs.writeFileSync(salidaDe(f), png);
-    await hojaDeRevision(original, png, path.join(REVISION, `antes-despues-${path.parse(f).name}.jpg`));
+    await hojaDeRevision(original, png, path.join(REVISION, `antes-despues-${path.parse(f).name}-${MODELO}.jpg`));
 
     tokens += uso?.total_tokens ?? 0;
     hechas++;
     console.log(`    listo → ${salidaDe(f)}`);
-    console.log(`    para revisar → revision/antes-despues-${path.parse(f).name}.jpg`);
+    console.log(`    para revisar → revision/antes-despues-${path.parse(f).name}-${MODELO}.jpg`);
   } catch (e) {
     fallidas++;
     console.log(`    FALLÓ: ${e.message}`);
