@@ -628,38 +628,6 @@
     "orden": 8
   },
   {
-    "producto_id": "TF-LIMA-100-180",
-    "nombre": "Lima Tiffany 100/180",
-    "marca": "TIFFANY",
-    "categoria": "unas",
-    "uso_profesional": false,
-    "precio_divisa": 0.5,
-    "precio_referencia": 0.68,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Lima de dos granos: el lado 100 rebaja y el 180 afina. Media luna, cómoda de sostener.",
-    "modo_uso": "Lima siempre en una sola dirección, del borde hacia el centro. El lado 180 es el que da el acabado.",
-    "rendimiento": null,
-    "destacado": false,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/TF-LIMA-100-180-01.webp"
-        ],
-        "origen": [
-          "lima tiffany 2x1$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 9
-  },
-  {
     "producto_id": "MG-TIPS-JELLY",
     "nombre": "Uñas jelly tips tecnología avanzada",
     "marca": "MAXGLOW",
@@ -689,7 +657,7 @@
         "disponible": true
       }
     ],
-    "orden": 10
+    "orden": 9
   },
   {
     "producto_id": "MG-ACE-CUT-PRO",
@@ -745,7 +713,7 @@
         "disponible": true
       }
     ],
-    "orden": 11
+    "orden": 10
   },
   {
     "producto_id": "MY-BASE-COAT-8",
@@ -778,7 +746,7 @@
         "disponible": true
       }
     ],
-    "orden": 12
+    "orden": 11
   },
   {
     "producto_id": "MG-BASE-GEL-10",
@@ -810,7 +778,7 @@
         "disponible": true
       }
     ],
-    "orden": 13
+    "orden": 12
   },
   {
     "producto_id": "MG-BASE-GEL-15",
@@ -842,7 +810,7 @@
         "disponible": true
       }
     ],
-    "orden": 14
+    "orden": 13
   },
   {
     "producto_id": "MG-BRUSH-ON-GEL",
@@ -874,7 +842,7 @@
         "disponible": true
       }
     ],
-    "orden": 15
+    "orden": 14
   },
   {
     "producto_id": "MG-BUILDER-GEL",
@@ -906,7 +874,7 @@
         "disponible": true
       }
     ],
-    "orden": 16
+    "orden": 15
   },
   {
     "producto_id": "MB-BUILDER-GEL",
@@ -1023,7 +991,7 @@
         "disponible": true
       }
     ],
-    "orden": 17
+    "orden": 16
   },
   {
     "producto_id": "TF-BUILDER-10",
@@ -1055,7 +1023,7 @@
         "disponible": true
       }
     ],
-    "orden": 18
+    "orden": 17
   },
   {
     "producto_id": "TF-BUILDER-15",
@@ -1087,7 +1055,7 @@
         "disponible": true
       }
     ],
-    "orden": 19
+    "orden": 18
   },
   {
     "producto_id": "CQ-CELULOSAS-CORAZON",
@@ -1120,171 +1088,7 @@
         "disponible": true
       }
     ],
-    "orden": 20
-  },
-  {
-    "producto_id": "CQ-CEPILLO-GRANDE",
-    "nombre": "Cepillo grande para manicure",
-    "marca": null,
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 1,
-    "precio_referencia": 1.35,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Cepillo de manicure con mango curvo morado y cerdas transparentes, para limpiar la uña y retirar el polvo de limado.",
-    "modo_uso": "Pasa el cepillo sobre la uña con movimientos suaves hasta retirar el polvo.",
-    "rendimiento": null,
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/CQ-CEPILLO-GRANDE-01.webp"
-        ],
-        "origen": [
-          "Cepillo grande 1$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 21
-  },
-  {
-    "producto_id": "MG-CORTACUTICULA",
-    "nombre": "Cortacutícula de resorte",
-    "marca": "MAXGLOW",
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 7,
-    "precio_referencia": 9.45,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Alicate de cutícula con resorte. El resorte hace el trabajo de volver a abrir, tu mano solo corta.",
-    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
-    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
-    "destacado": false,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/MG-CORTACUTICULA-01.webp"
-        ],
-        "origen": [
-          "Cortacuticula Maxglow resorte 7$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 22
-  },
-  {
-    "producto_id": "TF-CORTA-RESORTE",
-    "nombre": "Cortacutícula de resorte Tiffany Expert",
-    "marca": "TIFFANY",
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 7.5,
-    "precio_referencia": 10.13,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Cortacutícula de acero con doble resorte, de la línea Expert de Tiffany. El resorte abre solo y tu mano solo corta.",
-    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
-    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/TF-CORTA-RESORTE-01.webp"
-        ],
-        "origen": [
-          "Cortacuticula de resorte Tifany 7.5$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 23
-  },
-  {
-    "producto_id": "MG-CORTA-JAW14",
-    "nombre": "Cortacutícula profesional Jaw 14",
-    "marca": "MAXGLOW",
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 7.5,
-    "precio_referencia": 10.13,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Cortacutícula profesional Maxglow, de acero inoxidable y mordida 14.",
-    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
-    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/MG-CORTA-JAW14-01.webp"
-        ],
-        "origen": [
-          "Cortacuticula Maxglow profesional 7.5$ jaw 14.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 24
-  },
-  {
-    "producto_id": "MG-CORTA-SHARP",
-    "nombre": "Cortacutícula Sharp",
-    "marca": "MAXGLOW",
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 6.5,
-    "precio_referencia": 8.78,
-    "nota_precio": null,
-    "presentacion": "4 mm",
-    "descripcion": "Cortacutícula profesional Maxglow con filo de 4 mm, con protector para la punta.",
-    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
-    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/MG-CORTA-SHARP-01.webp"
-        ],
-        "origen": [
-          "CORTA CUTICULA Sharp 6.5.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 25
+    "orden": 19
   },
   {
     "producto_id": "MG-ESPUMA-MANI",
@@ -1340,7 +1144,7 @@
         "disponible": true
       }
     ],
-    "orden": 26
+    "orden": 20
   },
   {
     "producto_id": "MG-FINISH-15",
@@ -1372,7 +1176,7 @@
         "disponible": true
       }
     ],
-    "orden": 27
+    "orden": 21
   },
   {
     "producto_id": "MG-JELLY-BUILDER",
@@ -1428,7 +1232,7 @@
         "disponible": true
       }
     ],
-    "orden": 28
+    "orden": 22
   },
   {
     "producto_id": "MG-LIMPIA-PINCELES",
@@ -1460,7 +1264,7 @@
         "disponible": true
       }
     ],
-    "orden": 29
+    "orden": 23
   },
   {
     "producto_id": "MY-MOLDES-DUAL",
@@ -1493,7 +1297,7 @@
         "disponible": true
       }
     ],
-    "orden": 30
+    "orden": 24
   },
   {
     "producto_id": "MX-PEGA-7",
@@ -1526,7 +1330,7 @@
         "disponible": true
       }
     ],
-    "orden": 31
+    "orden": 25
   },
   {
     "producto_id": "MG-POLYGEL",
@@ -1630,7 +1434,7 @@
         "disponible": true
       }
     ],
-    "orden": 32
+    "orden": 26
   },
   {
     "producto_id": "MG-PRIMER",
@@ -1662,7 +1466,7 @@
         "disponible": true
       }
     ],
-    "orden": 33
+    "orden": 27
   },
   {
     "producto_id": "MY-PROTEIN-BASE",
@@ -1707,7 +1511,7 @@
         "disponible": true
       }
     ],
-    "orden": 34
+    "orden": 28
   },
   {
     "producto_id": "MG-PROTEIN-BOND",
@@ -1739,40 +1543,7 @@
         "disponible": true
       }
     ],
-    "orden": 35
-  },
-  {
-    "producto_id": "MG-PUNTAS-PEDICURE",
-    "nombre": "Puntas para pedicure",
-    "marca": "MAXGLOW",
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 6,
-    "precio_referencia": 8.1,
-    "nota_precio": null,
-    "presentacion": "4 puntas",
-    "descripcion": "Estuche de puntas para torno, de uso profesional en pedicure.",
-    "modo_uso": "Coloca la punta en el torno, trabaja a baja velocidad sobre la piel seca y límpiala al terminar.",
-    "rendimiento": "Estuche con 4 puntas.",
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/MG-PUNTAS-PEDICURE-01.webp"
-        ],
-        "origen": [
-          "Puntas uso profesional maxglw 6$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 36
+    "orden": 29
   },
   {
     "producto_id": "MG-TOP-COAT-REC",
@@ -1804,7 +1575,7 @@
         "disponible": true
       }
     ],
-    "orden": 37
+    "orden": 30
   },
   {
     "producto_id": "MG-SANITIZANTE",
@@ -1836,172 +1607,7 @@
         "disponible": true
       }
     ],
-    "orden": 38
-  },
-  {
-    "producto_id": "CQ-SET-PINCELES",
-    "nombre": "Set de pinceles",
-    "marca": null,
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 3.5,
-    "precio_referencia": 4.73,
-    "nota_precio": null,
-    "presentacion": "5 piezas",
-    "descripcion": "Set de 5 pinceles para uñas, cada uno con su capuchón transparente y mango nacarado. Cada pincel tiene una punta distinta.",
-    "modo_uso": "Elige el pincel según el trabajo: los planos para cubrir y los finos para detalles y líneas.",
-    "rendimiento": "Set de 5 pinceles.",
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/CQ-SET-PINCELES-01.webp"
-        ],
-        "origen": [
-          "Set d pinceles 3.5$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 39
-  },
-  {
-    "producto_id": "TF-TIJERA-CURVA",
-    "nombre": "Tijera para cutícula curva Tiffany",
-    "marca": "TIFFANY",
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 7,
-    "precio_referencia": 9.45,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Tijera de acero inoxidable con punta curva, para seguir la forma de la cutícula sin pellizcar la piel.",
-    "modo_uso": "Apoya la curva hacia la uña y corta en tramos cortos. Desinfecta después de cada uso.",
-    "rendimiento": null,
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/TF-TIJERA-CURVA-01.webp"
-        ],
-        "origen": [
-          "Tifany tijera curva 7$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 40
-  },
-  {
-    "producto_id": "CQ-TIJERA-PROFESIONAL",
-    "nombre": "Tijera para cutícula profesional",
-    "marca": null,
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 4.5,
-    "precio_referencia": 6.08,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Tijera de punta fina para cutícula, de uso profesional.",
-    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
-    "rendimiento": null,
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/CQ-TIJERA-PROFESIONAL-01.webp"
-        ],
-        "origen": [
-          "Tijera exmacristal profesional 4.5$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 41
-  },
-  {
-    "producto_id": "TF-TIJERA-CUTICULA",
-    "nombre": "Tijera para cutícula Tiffany",
-    "marca": "TIFFANY",
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 5.5,
-    "precio_referencia": 7.43,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Tijera de acero inoxidable para cutícula, de la serie Tiffany. Punta fina para cortar con precisión.",
-    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
-    "rendimiento": null,
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/TF-TIJERA-CUTICULA-01.webp"
-        ],
-        "origen": [
-          "Tijera Tifany 5.5$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 42
-  },
-  {
-    "producto_id": "TF-TIJERA-PRO",
-    "nombre": "Tijera para cutícula Tiffany Pro",
-    "marca": "TIFFANY",
-    "categoria": "unas",
-    "uso_profesional": true,
-    "precio_divisa": 6.5,
-    "precio_referencia": 8.78,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Tijera para cutícula de la línea Pro de Tiffany, afilada de fábrica y resistente a los desinfectantes.",
-    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
-    "rendimiento": null,
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/TF-TIJERA-PRO-01.webp"
-        ],
-        "origen": [
-          "Tijera Tifany pro 6.5$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 43
+    "orden": 31
   },
   {
     "producto_id": "MG-TOALLAS-REMOV",
@@ -2033,7 +1639,7 @@
         "disponible": true
       }
     ],
-    "orden": 44
+    "orden": 32
   },
   {
     "producto_id": "MG-TOP-COAT-15",
@@ -2065,7 +1671,7 @@
         "disponible": true
       }
     ],
-    "orden": 45
+    "orden": 33
   },
   {
     "producto_id": "MG-TIPS-500",
@@ -2097,7 +1703,7 @@
         "disponible": true
       }
     ],
-    "orden": 46
+    "orden": 34
   },
   {
     "producto_id": "MY-TIPS-500",
@@ -2126,6 +1732,400 @@
         ],
         "origen": [
           "Tips de 500 unidades 2.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 35
+  },
+  {
+    "producto_id": "TF-LIMA-100-180",
+    "nombre": "Lima Tiffany 100/180",
+    "marca": "TIFFANY",
+    "categoria": "herramientas",
+    "uso_profesional": false,
+    "precio_divisa": 0.5,
+    "precio_referencia": 0.68,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Lima de dos granos: el lado 100 rebaja y el 180 afina. Media luna, cómoda de sostener.",
+    "modo_uso": "Lima siempre en una sola dirección, del borde hacia el centro. El lado 180 es el que da el acabado.",
+    "rendimiento": null,
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-LIMA-100-180-01.webp"
+        ],
+        "origen": [
+          "lima tiffany 2x1$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 36
+  },
+  {
+    "producto_id": "CQ-CEPILLO-GRANDE",
+    "nombre": "Cepillo grande para manicure",
+    "marca": null,
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 1,
+    "precio_referencia": 1.35,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Cepillo de manicure con mango curvo morado y cerdas transparentes, para limpiar la uña y retirar el polvo de limado.",
+    "modo_uso": "Pasa el cepillo sobre la uña con movimientos suaves hasta retirar el polvo.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-CEPILLO-GRANDE-01.webp"
+        ],
+        "origen": [
+          "Cepillo grande 1$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 37
+  },
+  {
+    "producto_id": "MG-CORTACUTICULA",
+    "nombre": "Cortacutícula de resorte",
+    "marca": "MAXGLOW",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 7,
+    "precio_referencia": 9.45,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Alicate de cutícula con resorte. El resorte hace el trabajo de volver a abrir, tu mano solo corta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORTACUTICULA-01.webp"
+        ],
+        "origen": [
+          "Cortacuticula Maxglow resorte 7$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 38
+  },
+  {
+    "producto_id": "TF-CORTA-RESORTE",
+    "nombre": "Cortacutícula de resorte Tiffany Expert",
+    "marca": "TIFFANY",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 7.5,
+    "precio_referencia": 10.13,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Cortacutícula de acero con doble resorte, de la línea Expert de Tiffany. El resorte abre solo y tu mano solo corta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-CORTA-RESORTE-01.webp"
+        ],
+        "origen": [
+          "Cortacuticula de resorte Tifany 7.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 39
+  },
+  {
+    "producto_id": "MG-CORTA-JAW14",
+    "nombre": "Cortacutícula profesional Jaw 14",
+    "marca": "MAXGLOW",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 7.5,
+    "precio_referencia": 10.13,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Cortacutícula profesional Maxglow, de acero inoxidable y mordida 14.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORTA-JAW14-01.webp"
+        ],
+        "origen": [
+          "Cortacuticula Maxglow profesional 7.5$ jaw 14.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 40
+  },
+  {
+    "producto_id": "MG-CORTA-SHARP",
+    "nombre": "Cortacutícula Sharp",
+    "marca": "MAXGLOW",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 6.5,
+    "precio_referencia": 8.78,
+    "nota_precio": null,
+    "presentacion": "4 mm",
+    "descripcion": "Cortacutícula profesional Maxglow con filo de 4 mm, con protector para la punta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORTA-SHARP-01.webp"
+        ],
+        "origen": [
+          "CORTA CUTICULA Sharp 6.5.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 41
+  },
+  {
+    "producto_id": "MG-PUNTAS-PEDICURE",
+    "nombre": "Puntas para pedicure",
+    "marca": "MAXGLOW",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 6,
+    "precio_referencia": 8.1,
+    "nota_precio": null,
+    "presentacion": "4 puntas",
+    "descripcion": "Estuche de puntas para torno, de uso profesional en pedicure.",
+    "modo_uso": "Coloca la punta en el torno, trabaja a baja velocidad sobre la piel seca y límpiala al terminar.",
+    "rendimiento": "Estuche con 4 puntas.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-PUNTAS-PEDICURE-01.webp"
+        ],
+        "origen": [
+          "Puntas uso profesional maxglw 6$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 42
+  },
+  {
+    "producto_id": "CQ-SET-PINCELES",
+    "nombre": "Set de pinceles",
+    "marca": null,
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": "5 piezas",
+    "descripcion": "Set de 5 pinceles para uñas, cada uno con su capuchón transparente y mango nacarado. Cada pincel tiene una punta distinta.",
+    "modo_uso": "Elige el pincel según el trabajo: los planos para cubrir y los finos para detalles y líneas.",
+    "rendimiento": "Set de 5 pinceles.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-SET-PINCELES-01.webp"
+        ],
+        "origen": [
+          "Set d pinceles 3.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 43
+  },
+  {
+    "producto_id": "TF-TIJERA-CURVA",
+    "nombre": "Tijera para cutícula curva Tiffany",
+    "marca": "TIFFANY",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 7,
+    "precio_referencia": 9.45,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tijera de acero inoxidable con punta curva, para seguir la forma de la cutícula sin pellizcar la piel.",
+    "modo_uso": "Apoya la curva hacia la uña y corta en tramos cortos. Desinfecta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-TIJERA-CURVA-01.webp"
+        ],
+        "origen": [
+          "Tifany tijera curva 7$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 44
+  },
+  {
+    "producto_id": "CQ-TIJERA-PROFESIONAL",
+    "nombre": "Tijera para cutícula profesional",
+    "marca": null,
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 4.5,
+    "precio_referencia": 6.08,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tijera de punta fina para cutícula, de uso profesional.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-TIJERA-PROFESIONAL-01.webp"
+        ],
+        "origen": [
+          "Tijera exmacristal profesional 4.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 45
+  },
+  {
+    "producto_id": "TF-TIJERA-CUTICULA",
+    "nombre": "Tijera para cutícula Tiffany",
+    "marca": "TIFFANY",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 5.5,
+    "precio_referencia": 7.43,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tijera de acero inoxidable para cutícula, de la serie Tiffany. Punta fina para cortar con precisión.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-TIJERA-CUTICULA-01.webp"
+        ],
+        "origen": [
+          "Tijera Tifany 5.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 46
+  },
+  {
+    "producto_id": "TF-TIJERA-PRO",
+    "nombre": "Tijera para cutícula Tiffany Pro",
+    "marca": "TIFFANY",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 6.5,
+    "precio_referencia": 8.78,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tijera para cutícula de la línea Pro de Tiffany, afilada de fábrica y resistente a los desinfectantes.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-TIJERA-PRO-01.webp"
+        ],
+        "origen": [
+          "Tijera Tifany pro 6.5$.png"
         ],
         "disponible": true
       }

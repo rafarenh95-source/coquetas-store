@@ -29,7 +29,8 @@ interface Props {
     | "unas"
     | "facial"
     | "cuerpo"
-    | "pestanas";
+    | "pestanas"
+    | "herramientas";
   tamano?: number;
   class?: string;
   [dataAttr: string]: any;
@@ -212,6 +213,28 @@ const { nombre, tamano = 18, class: clase = "", ...resto } = Astro.props;
     >
       <path d="M19 4C11 4 4 11 4 19c0 .5.5 1 1 1 8 0 15-7 15-15 0-.5-.5-1-1-1Z" />
       <path d="M5.5 18.5 18.5 5.5" />
+    </svg>
+  )
+}
+
+{
+  nombre === "herramientas" && (
+    <svg
+      width={tamano}
+      height={tamano}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+      class={clase}
+      {...resto}
+    >
+      <circle cx="6" cy="18" r="2.8" />
+      <circle cx="18" cy="18" r="2.8" />
+      <path d="M8 16 17.5 3.5M16 16 6.5 3.5" />
     </svg>
   )
 }

@@ -142,7 +142,7 @@ function familiaDeColor(hex) {
 
 /* ── catálogo ─────────────────────────────────────────────────────────────
  *
- * categoria       unas · pestanas · facial · cuerpo
+ * categoria       unas · herramientas · pestanas · facial · cuerpo
  * tipo_variante   color (swatch circular) · aroma (chip de texto) · null
  * uso_profesional true cuando el envase lo declara o el producto solo tiene
  *                 sentido dentro de un servicio de manicura
@@ -226,7 +226,7 @@ const CATALOGO = [
     id: "TF-LIMA-100-180",
     nombre: "Lima Tiffany 100/180",
     marca: "TIFFANY",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: false,
     precio_divisa: 0.5,
     presentacion: null,
@@ -435,7 +435,7 @@ const CATALOGO = [
     id: "MG-CORTACUTICULA",
     nombre: "Cortacutícula de resorte",
     marca: "MAXGLOW",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 7.0,
     presentacion: null,
@@ -729,7 +729,7 @@ const CATALOGO = [
     id: "CQ-SET-PINCELES",
     nombre: "Set de pinceles",
     marca: null,
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 3.5,
     presentacion: "5 piezas",
@@ -742,7 +742,7 @@ const CATALOGO = [
     id: "CQ-CEPILLO-GRANDE",
     nombre: "Cepillo grande para manicure",
     marca: null,
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 1.0,
     presentacion: null,
@@ -774,7 +774,7 @@ const CATALOGO = [
     id: "TF-TIJERA-CUTICULA",
     nombre: "Tijera para cutícula Tiffany",
     marca: "TIFFANY",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 5.5,
     presentacion: null,
@@ -789,7 +789,7 @@ const CATALOGO = [
     id: "TF-TIJERA-PRO",
     nombre: "Tijera para cutícula Tiffany Pro",
     marca: "TIFFANY",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 6.5,
     presentacion: null,
@@ -804,7 +804,7 @@ const CATALOGO = [
     id: "TF-TIJERA-CURVA",
     nombre: "Tijera para cutícula curva Tiffany",
     marca: "TIFFANY",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 7.0,
     presentacion: null,
@@ -819,7 +819,7 @@ const CATALOGO = [
     id: "TF-CORTA-RESORTE",
     nombre: "Cortacutícula de resorte Tiffany Expert",
     marca: "TIFFANY",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 7.5,
     presentacion: null,
@@ -834,7 +834,7 @@ const CATALOGO = [
     id: "MG-CORTA-JAW14",
     nombre: "Cortacutícula profesional Jaw 14",
     marca: "MAXGLOW",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 7.5,
     presentacion: null,
@@ -849,7 +849,7 @@ const CATALOGO = [
     id: "MG-CORTA-SHARP",
     nombre: "Cortacutícula Sharp",
     marca: "MAXGLOW",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 6.5,
     presentacion: "4 mm",
@@ -864,7 +864,7 @@ const CATALOGO = [
     id: "CQ-TIJERA-PROFESIONAL",
     nombre: "Tijera para cutícula profesional",
     marca: null,
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 4.5,
     presentacion: null,
@@ -879,7 +879,7 @@ const CATALOGO = [
     id: "MG-PUNTAS-PEDICURE",
     nombre: "Puntas para pedicure",
     marca: "MAXGLOW",
-    categoria: "unas",
+    categoria: "herramientas",
     uso_profesional: true,
     precio_divisa: 6.0,
     presentacion: "4 puntas",
@@ -1102,7 +1102,7 @@ const CATALOGO = [
  * Rebeca; la manicurista encuentra lo suyo por la etiqueta.
  */
 
-const PESO_CATEGORIA = { unas: 0, pestanas: 1, facial: 2, cuerpo: 3 };
+const PESO_CATEGORIA = { unas: 0, herramientas: 1, pestanas: 2, facial: 3, cuerpo: 4 };
 const RECARGO_BOLIVARES = 1.35;
 
 async function construir() {
@@ -1193,7 +1193,7 @@ async function construir() {
   console.log(`productos     ${productos.length}`);
   console.log(`variantes     ${fotos}`);
   console.log(`uso pro       ${pro} (${Math.round((pro / productos.length) * 100)} %)`);
-  for (const c of ["unas", "pestanas", "facial", "cuerpo"]) {
+  for (const c of ["unas", "herramientas", "pestanas", "facial", "cuerpo"]) {
     console.log(`  ${c.padEnd(12)}${productos.filter((p) => p.categoria === c).length}`);
   }
   const dudosos = productos
