@@ -767,6 +767,332 @@ const CATALOGO = [
     variantes: [{ tono: null, archivo: "Pétalos de jabón 1.5$.png" }],
   },
 
+  /* ── Agregados el 22-09: fotos editadas por la dueña ───────────────────
+   * Datos que salen del nombre de archivo y de la etiqueta visible; los textos
+   * son borrador. marca: null cuando el envase no muestra ninguna. */
+  {
+    id: "TF-TIJERA-CUTICULA",
+    nombre: "Tijera para cutícula Tiffany",
+    marca: "TIFFANY",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 5.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Tijera Tifany 5.5$.png" },
+    ],
+  },
+  {
+    id: "TF-TIJERA-PRO",
+    nombre: "Tijera para cutícula Tiffany Pro",
+    marca: "TIFFANY",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 6.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Tijera Tifany pro 6.5$.png" },
+    ],
+  },
+  {
+    id: "TF-TIJERA-CURVA",
+    nombre: "Tijera para cutícula curva Tiffany",
+    marca: "TIFFANY",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 7.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Tifany tijera curva 7$.png" },
+    ],
+  },
+  {
+    id: "TF-CORTA-RESORTE",
+    nombre: "Cortacutícula de resorte Tiffany Expert",
+    marca: "TIFFANY",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 7.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Cortacuticula de resorte Tifany 7.5$.png" },
+    ],
+  },
+  {
+    id: "MG-CORTA-JAW14",
+    nombre: "Cortacutícula profesional Jaw 14",
+    marca: "MAXGLOW",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 7.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Cortacuticula Maxglow profesional 7.5$ jaw 14.png" },
+    ],
+  },
+  {
+    id: "MG-CORTA-SHARP",
+    nombre: "Cortacutícula Sharp",
+    marca: "MAXGLOW",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 6.5,
+    presentacion: "4 mm",
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "CORTA CUTICULA Sharp 6.5.png" },
+    ],
+  },
+  {
+    id: "CQ-TIJERA-PROFESIONAL",
+    nombre: "Tijera para cutícula profesional",
+    marca: null,
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 4.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Tijera exmacristal profesional 4.5$.png" },
+    ],
+  },
+  {
+    id: "MG-PUNTAS-PEDICURE",
+    nombre: "Puntas para pedicure",
+    marca: "MAXGLOW",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 6.0,
+    presentacion: "4 puntas",
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Puntas uso profesional maxglw 6$.png" },
+    ],
+  },
+  {
+    id: "CQ-CELULOSAS-CORAZON",
+    nombre: "Celulosas sin pelusa",
+    marca: null,
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 2.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Celulosas sin pelusa 2$.png" },
+    ],
+  },
+  {
+    id: "CQ-ALMOHADA-LASHISTA",
+    nombre: "Almohada para lashista",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 22.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Almohadas para lashista 22$.png" },
+    ],
+  },
+  {
+    id: "MY-LIBRETA-PESTANAS",
+    nombre: "Libreta de pestañas",
+    marca: "M&Y",
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 4.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Set de libros de pestañas 4$.png" },
+    ],
+  },
+  {
+    id: "CQ-CEPILLO-PESTANAS",
+    nombre: "Cepillo para pestañas",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 1.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Cepillo para pestañas 1.5$.png" },
+    ],
+  },
+  {
+    id: "CQ-MICROBLUSH",
+    nombre: "Microblush",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 1.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Rosa", archivo: "Microblush 1.5$ rosa.png", swatch_hex: "#FEAED9" },
+      { tono: "Púrpura", archivo: "Microblush 1.5$ purpura.png", swatch_hex: "#9D2CD2" },
+      { tono: "Celeste", archivo: "Microblush 1.5$ celeste.png", swatch_hex: "#B2D8FD" },
+      { tono: "Verde", archivo: "Microblush 1.5$ verde.png", swatch_hex: "#71E2BF" },
+      { tono: "Negro", archivo: "Microblush 1.5$ negro.png", swatch_hex: "#1C1D1F" },
+    ],
+  },
+  {
+    id: "CQ-MICROHISOPOS",
+    nombre: "Microhisopos",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 1.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Microhisopos 1$.png" },
+    ],
+  },
+  {
+    id: "CQ-PIPETA-LAVADO",
+    nombre: "Pipeta de lavado",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 1.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Rosa", archivo: "Pipetas 1.5$ rosa.png", swatch_hex: "#F8B6C1" },
+      { tono: "Celeste", archivo: "Pipetas 1.5$ celeste.png", swatch_hex: "#9EEAE3" },
+      { tono: "Blanco", archivo: "Pipetas 1.5$ blanco.png", swatch_hex: "#E3E4E6" },
+    ],
+  },
+  {
+    id: "CQ-LAPIZ-VISAGISMO",
+    nombre: "Lápiz de visagismo",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 1.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Lápiz de visagismo 1.5$.png" },
+    ],
+  },
+  {
+    id: "CQ-LAPIZ-VISAGISMO-BLANCO",
+    nombre: "Lápiz blanco de visagismo",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 1.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Lápiz de visajismo 1$.png" },
+    ],
+  },
+  {
+    id: "CQ-NAVAJA",
+    nombre: "Navaja",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: true,
+    precio_divisa: 1.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Navaja 1.5$.png" },
+    ],
+  },
+  {
+    id: "MG-DISCOS-ALGODON",
+    nombre: "Discos de algodón",
+    marca: "MAXGLOW",
+    categoria: "facial",
+    uso_profesional: false,
+    precio_divisa: 2.5,
+    presentacion: "100 discos",
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Algodón discos 2.5$.png" },
+    ],
+  },
+  {
+    id: "CQ-PALETA-EXFOLIANTE",
+    nombre: "Paleta exfoliante de silicona",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: false,
+    precio_divisa: 1.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Rosa", archivo: "Paleta exfoliante 1.5$ rosa.png", swatch_hex: "#D5A7B3" },
+      { tono: "Verde", archivo: "Paleta exfoliante 1.5$ verde.png", swatch_hex: "#9DD1C6" },
+    ],
+  },
+  {
+    id: "CQ-GEL-SABILA",
+    nombre: "Gel de sábila",
+    marca: null,
+    categoria: "facial",
+    uso_profesional: false,
+    precio_divisa: 3.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada por la dueña a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "Gel d sábila 3$.png" },
+    ],
+  },
+
 ];
 
 /* ── construcción ─────────────────────────────────────────────────────────

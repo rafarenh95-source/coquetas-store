@@ -219,5 +219,110 @@
     "descripcion": "Pétalos de jabón en forma de corazón, en colores pastel. Bolsa con 1000 unidades.",
     "modo_uso": "Toma unos pétalos y frótalos entre las manos húmedas hasta que hagan espuma.",
     "rendimiento": "Bolsa con 1000 unidades."
+  },
+  "TF-TIJERA-CUTICULA": {
+    "descripcion": "Tijera de acero inoxidable para cutícula, de la serie Tiffany. Punta fina para cortar con precisión.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": ""
+  },
+  "TF-TIJERA-PRO": {
+    "descripcion": "Tijera para cutícula de la línea Pro de Tiffany, afilada de fábrica y resistente a los desinfectantes.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": ""
+  },
+  "TF-TIJERA-CURVA": {
+    "descripcion": "Tijera de acero inoxidable con punta curva, para seguir la forma de la cutícula sin pellizcar la piel.",
+    "modo_uso": "Apoya la curva hacia la uña y corta en tramos cortos. Desinfecta después de cada uso.",
+    "rendimiento": ""
+  },
+  "TF-CORTA-RESORTE": {
+    "descripcion": "Cortacutícula de acero con doble resorte, de la línea Expert de Tiffany. El resorte abre solo y tu mano solo corta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio."
+  },
+  "MG-CORTA-JAW14": {
+    "descripcion": "Cortacutícula profesional Maxglow, de acero inoxidable y mordida 14.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio."
+  },
+  "MG-CORTA-SHARP": {
+    "descripcion": "Cortacutícula profesional Maxglow con filo de 4 mm, con protector para la punta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio."
+  },
+  "CQ-TIJERA-PROFESIONAL": {
+    "descripcion": "Tijera de punta fina para cutícula, de uso profesional.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": ""
+  },
+  "MG-PUNTAS-PEDICURE": {
+    "descripcion": "Estuche de puntas para torno, de uso profesional en pedicure.",
+    "modo_uso": "Coloca la punta en el torno, trabaja a baja velocidad sobre la piel seca y límpiala al terminar.",
+    "rendimiento": "Estuche con 4 puntas."
+  },
+  "CQ-CELULOSAS-CORAZON": {
+    "descripcion": "Celulosas sin pelusa en forma de corazón, en su caja dispensadora. Limpian la uña sin dejar fibras.",
+    "modo_uso": "Humedece con alcohol o removedor y pasa sobre la uña.",
+    "rendimiento": "Caja dispensadora."
+  },
+  "CQ-ALMOHADA-LASHISTA": {
+    "descripcion": "Almohada ergonómica para el servicio de pestañas: sostiene el cuello de la clienta y deja la cabeza estable mientras trabajas.",
+    "modo_uso": "Colócala bajo el cuello de la clienta, con la parte curva hacia arriba.",
+    "rendimiento": "Funda de terciopelo."
+  },
+  "MY-LIBRETA-PESTANAS": {
+    "descripcion": "Libreta de pestañas por racimos de M&Y, con varios largos organizados en filas.",
+    "modo_uso": "Toma cada racimo con pinza por la base y aplícalo con adhesivo para pestañas.",
+    "rendimiento": ""
+  },
+  "CQ-CEPILLO-PESTANAS": {
+    "descripcion": "Cepillo de cerdas suaves para limpiar pestañas y cejas antes del servicio.",
+    "modo_uso": "Pásalo con el limpiador de pestañas, desde la raíz hacia las puntas.",
+    "rendimiento": ""
+  },
+  "CQ-MICROBLUSH": {
+    "descripcion": "Aplicadores desechables de punta fina, para colocar adhesivo, primer o productos en pestañas, cejas y uñas.",
+    "modo_uso": "Usa uno por clienta y deséchalo al terminar.",
+    "rendimiento": ""
+  },
+  "CQ-MICROHISOPOS": {
+    "descripcion": "Palitos de madera con punta de algodón, para retocar y limpiar en detalle.",
+    "modo_uso": "Úsalos para limpiar bordes, retirar excesos o aplicar producto en zonas pequeñas.",
+    "rendimiento": ""
+  },
+  "CQ-PIPETA-LAVADO": {
+    "descripcion": "Frasco con pico curvo para lavar pestañas y enjuagar con precisión, sin salpicar.",
+    "modo_uso": "Llena con agua o limpiador y presiona suave para dirigir el chorro.",
+    "rendimiento": ""
+  },
+  "CQ-LAPIZ-VISAGISMO": {
+    "descripcion": "Lápiz para marcar el diseño de cejas antes del servicio.",
+    "modo_uso": "Marca los puntos de referencia del diseño sobre la piel limpia y seca.",
+    "rendimiento": ""
+  },
+  "CQ-LAPIZ-VISAGISMO-BLANCO": {
+    "descripcion": "Lápiz blanco para dibujar el diseño de cejas; se nota sobre cualquier tono de piel.",
+    "modo_uso": "Traza el contorno de la ceja sobre la piel limpia y seca. Se retira con agua micelar.",
+    "rendimiento": ""
+  },
+  "CQ-NAVAJA": {
+    "descripcion": "Navaja de hoja recambiable para perfilar y retirar el vello fino.",
+    "modo_uso": "Tensa la piel y desliza la hoja a favor del vello, sin presionar.",
+    "rendimiento": ""
+  },
+  "MG-DISCOS-ALGODON": {
+    "descripcion": "Discos de algodón para desmaquillar y aplicar tónicos o agua micelar.",
+    "modo_uso": "Empapa un disco y pásalo por el rostro sin arrastrar.",
+    "rendimiento": "Paquete de 100 discos."
+  },
+  "CQ-PALETA-EXFOLIANTE": {
+    "descripcion": "Paleta de silicona con cerdas suaves de un lado y espátula del otro, para limpiar el rostro y aplicar mascarillas.",
+    "modo_uso": "Con el rostro húmedo, masajea en círculos con las cerdas; usa la espátula para extender la mascarilla.",
+    "rendimiento": ""
+  },
+  "CQ-GEL-SABILA": {
+    "descripcion": "Gel hidratante de sábila (aloe vera) que calma y refresca la piel.",
+    "modo_uso": "Aplica una capa sobre la piel limpia y deja que absorba.",
+    "rendimiento": ""
   }
 }

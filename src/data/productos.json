@@ -1090,6 +1090,39 @@
     "orden": 19
   },
   {
+    "producto_id": "CQ-CELULOSAS-CORAZON",
+    "nombre": "Celulosas sin pelusa",
+    "marca": null,
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Celulosas sin pelusa en forma de corazón, en su caja dispensadora. Limpian la uña sin dejar fibras.",
+    "modo_uso": "Humedece con alcohol o removedor y pasa sobre la uña.",
+    "rendimiento": "Caja dispensadora.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-CELULOSAS-CORAZON-01.webp"
+        ],
+        "origen": [
+          "Celulosas sin pelusa 2$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 20
+  },
+  {
     "producto_id": "CQ-CEPILLO-GRANDE",
     "nombre": "Cepillo grande para manicure",
     "marca": null,
@@ -1120,7 +1153,7 @@
         "disponible": true
       }
     ],
-    "orden": 20
+    "orden": 21
   },
   {
     "producto_id": "MG-CORTACUTICULA",
@@ -1152,7 +1185,106 @@
         "disponible": true
       }
     ],
-    "orden": 21
+    "orden": 22
+  },
+  {
+    "producto_id": "TF-CORTA-RESORTE",
+    "nombre": "Cortacutícula de resorte Tiffany Expert",
+    "marca": "TIFFANY",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 7.5,
+    "precio_referencia": 10.13,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Cortacutícula de acero con doble resorte, de la línea Expert de Tiffany. El resorte abre solo y tu mano solo corta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-CORTA-RESORTE-01.webp"
+        ],
+        "origen": [
+          "Cortacuticula de resorte Tifany 7.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 23
+  },
+  {
+    "producto_id": "MG-CORTA-JAW14",
+    "nombre": "Cortacutícula profesional Jaw 14",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 7.5,
+    "precio_referencia": 10.13,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Cortacutícula profesional Maxglow, de acero inoxidable y mordida 14.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORTA-JAW14-01.webp"
+        ],
+        "origen": [
+          "Cortacuticula Maxglow profesional 7.5$ jaw 14.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 24
+  },
+  {
+    "producto_id": "MG-CORTA-SHARP",
+    "nombre": "Cortacutícula Sharp",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 6.5,
+    "precio_referencia": 8.78,
+    "nota_precio": null,
+    "presentacion": "4 mm",
+    "descripcion": "Cortacutícula profesional Maxglow con filo de 4 mm, con protector para la punta.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORTA-SHARP-01.webp"
+        ],
+        "origen": [
+          "CORTA CUTICULA Sharp 6.5.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 25
   },
   {
     "producto_id": "MG-ESPUMA-MANI",
@@ -1208,7 +1340,7 @@
         "disponible": true
       }
     ],
-    "orden": 22
+    "orden": 26
   },
   {
     "producto_id": "MG-FINISH-15",
@@ -1240,7 +1372,7 @@
         "disponible": true
       }
     ],
-    "orden": 23
+    "orden": 27
   },
   {
     "producto_id": "MG-JELLY-BUILDER",
@@ -1296,7 +1428,7 @@
         "disponible": true
       }
     ],
-    "orden": 24
+    "orden": 28
   },
   {
     "producto_id": "MG-LIMPIA-PINCELES",
@@ -1328,7 +1460,7 @@
         "disponible": true
       }
     ],
-    "orden": 25
+    "orden": 29
   },
   {
     "producto_id": "MY-MOLDES-DUAL",
@@ -1361,7 +1493,7 @@
         "disponible": true
       }
     ],
-    "orden": 26
+    "orden": 30
   },
   {
     "producto_id": "MX-PEGA-7",
@@ -1394,7 +1526,7 @@
         "disponible": true
       }
     ],
-    "orden": 27
+    "orden": 31
   },
   {
     "producto_id": "MG-POLYGEL",
@@ -1498,7 +1630,7 @@
         "disponible": true
       }
     ],
-    "orden": 28
+    "orden": 32
   },
   {
     "producto_id": "MG-PRIMER",
@@ -1530,7 +1662,7 @@
         "disponible": true
       }
     ],
-    "orden": 29
+    "orden": 33
   },
   {
     "producto_id": "MY-PROTEIN-BASE",
@@ -1575,7 +1707,7 @@
         "disponible": true
       }
     ],
-    "orden": 30
+    "orden": 34
   },
   {
     "producto_id": "MG-PROTEIN-BOND",
@@ -1607,7 +1739,40 @@
         "disponible": true
       }
     ],
-    "orden": 31
+    "orden": 35
+  },
+  {
+    "producto_id": "MG-PUNTAS-PEDICURE",
+    "nombre": "Puntas para pedicure",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 6,
+    "precio_referencia": 8.1,
+    "nota_precio": null,
+    "presentacion": "4 puntas",
+    "descripcion": "Estuche de puntas para torno, de uso profesional en pedicure.",
+    "modo_uso": "Coloca la punta en el torno, trabaja a baja velocidad sobre la piel seca y límpiala al terminar.",
+    "rendimiento": "Estuche con 4 puntas.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-PUNTAS-PEDICURE-01.webp"
+        ],
+        "origen": [
+          "Puntas uso profesional maxglw 6$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 36
   },
   {
     "producto_id": "MG-TOP-COAT-REC",
@@ -1639,7 +1804,7 @@
         "disponible": true
       }
     ],
-    "orden": 32
+    "orden": 37
   },
   {
     "producto_id": "MG-SANITIZANTE",
@@ -1671,7 +1836,7 @@
         "disponible": true
       }
     ],
-    "orden": 33
+    "orden": 38
   },
   {
     "producto_id": "CQ-SET-PINCELES",
@@ -1704,7 +1869,139 @@
         "disponible": true
       }
     ],
-    "orden": 34
+    "orden": 39
+  },
+  {
+    "producto_id": "TF-TIJERA-CURVA",
+    "nombre": "Tijera para cutícula curva Tiffany",
+    "marca": "TIFFANY",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 7,
+    "precio_referencia": 9.45,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tijera de acero inoxidable con punta curva, para seguir la forma de la cutícula sin pellizcar la piel.",
+    "modo_uso": "Apoya la curva hacia la uña y corta en tramos cortos. Desinfecta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-TIJERA-CURVA-01.webp"
+        ],
+        "origen": [
+          "Tifany tijera curva 7$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 40
+  },
+  {
+    "producto_id": "CQ-TIJERA-PROFESIONAL",
+    "nombre": "Tijera para cutícula profesional",
+    "marca": null,
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 4.5,
+    "precio_referencia": 6.08,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tijera de punta fina para cutícula, de uso profesional.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-TIJERA-PROFESIONAL-01.webp"
+        ],
+        "origen": [
+          "Tijera exmacristal profesional 4.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 41
+  },
+  {
+    "producto_id": "TF-TIJERA-CUTICULA",
+    "nombre": "Tijera para cutícula Tiffany",
+    "marca": "TIFFANY",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 5.5,
+    "precio_referencia": 7.43,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tijera de acero inoxidable para cutícula, de la serie Tiffany. Punta fina para cortar con precisión.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-TIJERA-CUTICULA-01.webp"
+        ],
+        "origen": [
+          "Tijera Tifany 5.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 42
+  },
+  {
+    "producto_id": "TF-TIJERA-PRO",
+    "nombre": "Tijera para cutícula Tiffany Pro",
+    "marca": "TIFFANY",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 6.5,
+    "precio_referencia": 8.78,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tijera para cutícula de la línea Pro de Tiffany, afilada de fábrica y resistente a los desinfectantes.",
+    "modo_uso": "Corta solo la cutícula ya ablandada, siguiendo su borde. Desinfecta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-TIJERA-PRO-01.webp"
+        ],
+        "origen": [
+          "Tijera Tifany pro 6.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 43
   },
   {
     "producto_id": "MG-TOALLAS-REMOV",
@@ -1736,7 +2033,7 @@
         "disponible": true
       }
     ],
-    "orden": 35
+    "orden": 44
   },
   {
     "producto_id": "MG-TOP-COAT-15",
@@ -1768,7 +2065,7 @@
         "disponible": true
       }
     ],
-    "orden": 36
+    "orden": 45
   },
   {
     "producto_id": "MG-TIPS-500",
@@ -1800,7 +2097,7 @@
         "disponible": true
       }
     ],
-    "orden": 37
+    "orden": 46
   },
   {
     "producto_id": "MY-TIPS-500",
@@ -1833,7 +2130,7 @@
         "disponible": true
       }
     ],
-    "orden": 38
+    "orden": 47
   },
   {
     "producto_id": "MG-AGUA-ROSAS",
@@ -1865,7 +2162,184 @@
         "disponible": true
       }
     ],
-    "orden": 39
+    "orden": 48
+  },
+  {
+    "producto_id": "MG-DISCOS-ALGODON",
+    "nombre": "Discos de algodón",
+    "marca": "MAXGLOW",
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 2.5,
+    "precio_referencia": 3.38,
+    "nota_precio": null,
+    "presentacion": "100 discos",
+    "descripcion": "Discos de algodón para desmaquillar y aplicar tónicos o agua micelar.",
+    "modo_uso": "Empapa un disco y pásalo por el rostro sin arrastrar.",
+    "rendimiento": "Paquete de 100 discos.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-DISCOS-ALGODON-01.webp"
+        ],
+        "origen": [
+          "Algodón discos 2.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 49
+  },
+  {
+    "producto_id": "CQ-GEL-SABILA",
+    "nombre": "Gel de sábila",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Gel hidratante de sábila (aloe vera) que calma y refresca la piel.",
+    "modo_uso": "Aplica una capa sobre la piel limpia y deja que absorba.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-GEL-SABILA-01.webp"
+        ],
+        "origen": [
+          "Gel d sábila 3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 50
+  },
+  {
+    "producto_id": "CQ-PALETA-EXFOLIANTE",
+    "nombre": "Paleta exfoliante de silicona",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Paleta de silicona con cerdas suaves de un lado y espátula del otro, para limpiar el rostro y aplicar mascarillas.",
+    "modo_uso": "Con el rostro húmedo, masajea en círculos con las cerdas; usa la espátula para extender la mascarilla.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Rosa",
+        "swatch_hex": "#D5A7B3",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-PALETA-EXFOLIANTE-01.webp"
+        ],
+        "origen": [
+          "Paleta exfoliante 1.5$ rosa.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Verde",
+        "swatch_hex": "#9DD1C6",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-PALETA-EXFOLIANTE-02.webp"
+        ],
+        "origen": [
+          "Paleta exfoliante 1.5$ verde.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 51
+  },
+  {
+    "producto_id": "CQ-ALMOHADA-LASHISTA",
+    "nombre": "Almohada para lashista",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 22,
+    "precio_referencia": 29.7,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Almohada ergonómica para el servicio de pestañas: sostiene el cuello de la clienta y deja la cabeza estable mientras trabajas.",
+    "modo_uso": "Colócala bajo el cuello de la clienta, con la parte curva hacia arriba.",
+    "rendimiento": "Funda de terciopelo.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-ALMOHADA-LASHISTA-01.webp"
+        ],
+        "origen": [
+          "Almohadas para lashista 22$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 52
+  },
+  {
+    "producto_id": "CQ-CEPILLO-PESTANAS",
+    "nombre": "Cepillo para pestañas",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Cepillo de cerdas suaves para limpiar pestañas y cejas antes del servicio.",
+    "modo_uso": "Pásalo con el limpiador de pestañas, desde la raíz hacia las puntas.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-CEPILLO-PESTANAS-01.webp"
+        ],
+        "origen": [
+          "Cepillo para pestañas 1.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 53
   },
   {
     "producto_id": "MG-GASAS-PESTANAS",
@@ -1921,7 +2395,310 @@
         "disponible": true
       }
     ],
-    "orden": 40
+    "orden": 54
+  },
+  {
+    "producto_id": "CQ-LAPIZ-VISAGISMO-BLANCO",
+    "nombre": "Lápiz blanco de visagismo",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 1,
+    "precio_referencia": 1.35,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Lápiz blanco para dibujar el diseño de cejas; se nota sobre cualquier tono de piel.",
+    "modo_uso": "Traza el contorno de la ceja sobre la piel limpia y seca. Se retira con agua micelar.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-LAPIZ-VISAGISMO-BLANCO-01.webp"
+        ],
+        "origen": [
+          "Lápiz de visajismo 1$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 55
+  },
+  {
+    "producto_id": "CQ-LAPIZ-VISAGISMO",
+    "nombre": "Lápiz de visagismo",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Lápiz para marcar el diseño de cejas antes del servicio.",
+    "modo_uso": "Marca los puntos de referencia del diseño sobre la piel limpia y seca.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-LAPIZ-VISAGISMO-01.webp"
+        ],
+        "origen": [
+          "Lápiz de visagismo 1.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 56
+  },
+  {
+    "producto_id": "MY-LIBRETA-PESTANAS",
+    "nombre": "Libreta de pestañas",
+    "marca": "M&Y",
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 4,
+    "precio_referencia": 5.4,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Libreta de pestañas por racimos de M&Y, con varios largos organizados en filas.",
+    "modo_uso": "Toma cada racimo con pinza por la base y aplícalo con adhesivo para pestañas.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MY-LIBRETA-PESTANAS-01.webp"
+        ],
+        "origen": [
+          "Set de libros de pestañas 4$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 57
+  },
+  {
+    "producto_id": "CQ-MICROBLUSH",
+    "nombre": "Microblush",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Aplicadores desechables de punta fina, para colocar adhesivo, primer o productos en pestañas, cejas y uñas.",
+    "modo_uso": "Usa uno por clienta y deséchalo al terminar.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Rosa",
+        "swatch_hex": "#FEAED9",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-MICROBLUSH-01.webp"
+        ],
+        "origen": [
+          "Microblush 1.5$ rosa.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Púrpura",
+        "swatch_hex": "#9D2CD2",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-MICROBLUSH-02.webp"
+        ],
+        "origen": [
+          "Microblush 1.5$ purpura.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Celeste",
+        "swatch_hex": "#B2D8FD",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-MICROBLUSH-03.webp"
+        ],
+        "origen": [
+          "Microblush 1.5$ celeste.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Verde",
+        "swatch_hex": "#71E2BF",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-MICROBLUSH-04.webp"
+        ],
+        "origen": [
+          "Microblush 1.5$ verde.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Negro",
+        "swatch_hex": "#1C1D1F",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-MICROBLUSH-05.webp"
+        ],
+        "origen": [
+          "Microblush 1.5$ negro.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 58
+  },
+  {
+    "producto_id": "CQ-MICROHISOPOS",
+    "nombre": "Microhisopos",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 1,
+    "precio_referencia": 1.35,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Palitos de madera con punta de algodón, para retocar y limpiar en detalle.",
+    "modo_uso": "Úsalos para limpiar bordes, retirar excesos o aplicar producto en zonas pequeñas.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-MICROHISOPOS-01.webp"
+        ],
+        "origen": [
+          "Microhisopos 1$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 59
+  },
+  {
+    "producto_id": "CQ-NAVAJA",
+    "nombre": "Navaja",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Navaja de hoja recambiable para perfilar y retirar el vello fino.",
+    "modo_uso": "Tensa la piel y desliza la hoja a favor del vello, sin presionar.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-NAVAJA-01.webp"
+        ],
+        "origen": [
+          "Navaja 1.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 60
+  },
+  {
+    "producto_id": "CQ-PIPETA-LAVADO",
+    "nombre": "Pipeta de lavado",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": true,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Frasco con pico curvo para lavar pestañas y enjuagar con precisión, sin salpicar.",
+    "modo_uso": "Llena con agua o limpiador y presiona suave para dirigir el chorro.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Rosa",
+        "swatch_hex": "#F8B6C1",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-PIPETA-LAVADO-01.webp"
+        ],
+        "origen": [
+          "Pipetas 1.5$ rosa.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Celeste",
+        "swatch_hex": "#9EEAE3",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-PIPETA-LAVADO-02.webp"
+        ],
+        "origen": [
+          "Pipetas 1.5$ celeste.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Blanco",
+        "swatch_hex": "#E3E4E6",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-PIPETA-LAVADO-03.webp"
+        ],
+        "origen": [
+          "Pipetas 1.5$ blanco.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 61
   },
   {
     "producto_id": "MG-ATOMIZADOR-TALCO",
@@ -1953,7 +2730,7 @@
         "disponible": true
       }
     ],
-    "orden": 41
+    "orden": 62
   },
   {
     "producto_id": "MG-BOMBAS-EFERV",
@@ -1985,7 +2762,7 @@
         "disponible": true
       }
     ],
-    "orden": 42
+    "orden": 63
   },
   {
     "producto_id": "MG-BODY-BUTTER",
@@ -2017,7 +2794,7 @@
         "disponible": true
       }
     ],
-    "orden": 43
+    "orden": 64
   },
   {
     "producto_id": "MY-PETALOS-JABON",
@@ -2050,6 +2827,6 @@
         "disponible": true
       }
     ],
-    "orden": 44
+    "orden": 65
   }
 ]
