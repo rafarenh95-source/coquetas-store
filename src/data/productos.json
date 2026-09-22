@@ -2133,153 +2133,10 @@
     "orden": 47
   },
   {
-    "producto_id": "MG-AGUA-ROSAS",
-    "nombre": "Agua de rosas",
-    "marca": "MAXGLOW",
-    "categoria": "facial",
-    "uso_profesional": false,
-    "precio_divisa": 3.5,
-    "precio_referencia": 4.73,
-    "nota_precio": null,
-    "presentacion": "250 ml",
-    "descripcion": "Agua de rosas con extracto natural. Tonifica e hidrata después de limpiar, y baja el enrojecimiento.",
-    "modo_uso": "Aplica con algodón o rocía sobre el rostro limpio, antes de la crema.",
-    "rendimiento": "Frasco de 250 ml.",
-    "destacado": false,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/MG-AGUA-ROSAS-01.webp"
-        ],
-        "origen": [
-          "Agua de rosas 3.5$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 48
-  },
-  {
-    "producto_id": "MG-DISCOS-ALGODON",
-    "nombre": "Discos de algodón",
-    "marca": "MAXGLOW",
-    "categoria": "facial",
-    "uso_profesional": false,
-    "precio_divisa": 2.5,
-    "precio_referencia": 3.38,
-    "nota_precio": null,
-    "presentacion": "100 discos",
-    "descripcion": "Discos de algodón para desmaquillar y aplicar tónicos o agua micelar.",
-    "modo_uso": "Empapa un disco y pásalo por el rostro sin arrastrar.",
-    "rendimiento": "Paquete de 100 discos.",
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/MG-DISCOS-ALGODON-01.webp"
-        ],
-        "origen": [
-          "Algodón discos 2.5$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 49
-  },
-  {
-    "producto_id": "CQ-GEL-SABILA",
-    "nombre": "Gel de sábila",
-    "marca": null,
-    "categoria": "facial",
-    "uso_profesional": false,
-    "precio_divisa": 3,
-    "precio_referencia": 4.05,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Gel hidratante de sábila (aloe vera) que calma y refresca la piel.",
-    "modo_uso": "Aplica una capa sobre la piel limpia y deja que absorba.",
-    "rendimiento": null,
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": null,
-    "variantes": [
-      {
-        "tono": null,
-        "swatch_hex": null,
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/CQ-GEL-SABILA-01.webp"
-        ],
-        "origen": [
-          "Gel d sábila 3$.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 50
-  },
-  {
-    "producto_id": "CQ-PALETA-EXFOLIANTE",
-    "nombre": "Paleta exfoliante de silicona",
-    "marca": null,
-    "categoria": "facial",
-    "uso_profesional": false,
-    "precio_divisa": 1.5,
-    "precio_referencia": 2.03,
-    "nota_precio": null,
-    "presentacion": null,
-    "descripcion": "Paleta de silicona con cerdas suaves de un lado y espátula del otro, para limpiar el rostro y aplicar mascarillas.",
-    "modo_uso": "Con el rostro húmedo, masajea en círculos con las cerdas; usa la espátula para extender la mascarilla.",
-    "rendimiento": null,
-    "destacado": false,
-    "foto_editada": true,
-    "disponible": true,
-    "tipo_variante": "color",
-    "variantes": [
-      {
-        "tono": "Rosa",
-        "swatch_hex": "#D5A7B3",
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/CQ-PALETA-EXFOLIANTE-01.webp"
-        ],
-        "origen": [
-          "Paleta exfoliante 1.5$ rosa.png"
-        ],
-        "disponible": true
-      },
-      {
-        "tono": "Verde",
-        "swatch_hex": "#9DD1C6",
-        "swatch_revisar": false,
-        "imagenes": [
-          "/img/productos/CQ-PALETA-EXFOLIANTE-02.webp"
-        ],
-        "origen": [
-          "Paleta exfoliante 1.5$ verde.png"
-        ],
-        "disponible": true
-      }
-    ],
-    "orden": 51
-  },
-  {
     "producto_id": "CQ-ALMOHADA-LASHISTA",
     "nombre": "Almohada para lashista",
     "marca": null,
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 22,
     "precio_referencia": 29.7,
@@ -2306,13 +2163,13 @@
         "disponible": true
       }
     ],
-    "orden": 52
+    "orden": 48
   },
   {
     "producto_id": "CQ-CEPILLO-PESTANAS",
     "nombre": "Cepillo para pestañas",
     "marca": null,
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 1.5,
     "precio_referencia": 2.03,
@@ -2339,13 +2196,13 @@
         "disponible": true
       }
     ],
-    "orden": 53
+    "orden": 49
   },
   {
     "producto_id": "MG-GASAS-PESTANAS",
     "nombre": "Gasas mágicas para pestañas",
     "marca": "MAXGLOW",
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 2,
     "precio_referencia": 2.7,
@@ -2395,13 +2252,13 @@
         "disponible": true
       }
     ],
-    "orden": 54
+    "orden": 50
   },
   {
     "producto_id": "CQ-LAPIZ-VISAGISMO-BLANCO",
     "nombre": "Lápiz blanco de visagismo",
     "marca": null,
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 1,
     "precio_referencia": 1.35,
@@ -2428,13 +2285,13 @@
         "disponible": true
       }
     ],
-    "orden": 55
+    "orden": 51
   },
   {
     "producto_id": "CQ-LAPIZ-VISAGISMO",
     "nombre": "Lápiz de visagismo",
     "marca": null,
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 1.5,
     "precio_referencia": 2.03,
@@ -2461,13 +2318,13 @@
         "disponible": true
       }
     ],
-    "orden": 56
+    "orden": 52
   },
   {
     "producto_id": "MY-LIBRETA-PESTANAS",
     "nombre": "Libreta de pestañas",
     "marca": "M&Y",
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 4,
     "precio_referencia": 5.4,
@@ -2494,13 +2351,13 @@
         "disponible": true
       }
     ],
-    "orden": 57
+    "orden": 53
   },
   {
     "producto_id": "CQ-MICROBLUSH",
     "nombre": "Microblush",
     "marca": null,
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 1.5,
     "precio_referencia": 2.03,
@@ -2575,13 +2432,13 @@
         "disponible": true
       }
     ],
-    "orden": 58
+    "orden": 54
   },
   {
     "producto_id": "CQ-MICROHISOPOS",
     "nombre": "Microhisopos",
     "marca": null,
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 1,
     "precio_referencia": 1.35,
@@ -2608,13 +2465,13 @@
         "disponible": true
       }
     ],
-    "orden": 59
+    "orden": 55
   },
   {
     "producto_id": "CQ-NAVAJA",
     "nombre": "Navaja",
     "marca": null,
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 1.5,
     "precio_referencia": 2.03,
@@ -2641,13 +2498,13 @@
         "disponible": true
       }
     ],
-    "orden": 60
+    "orden": 56
   },
   {
     "producto_id": "CQ-PIPETA-LAVADO",
     "nombre": "Pipeta de lavado",
     "marca": null,
-    "categoria": "facial",
+    "categoria": "pestanas",
     "uso_profesional": true,
     "precio_divisa": 1.5,
     "precio_referencia": 2.03,
@@ -2694,6 +2551,149 @@
         ],
         "origen": [
           "Pipetas 1.5$ blanco.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 57
+  },
+  {
+    "producto_id": "MG-AGUA-ROSAS",
+    "nombre": "Agua de rosas",
+    "marca": "MAXGLOW",
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": "250 ml",
+    "descripcion": "Agua de rosas con extracto natural. Tonifica e hidrata después de limpiar, y baja el enrojecimiento.",
+    "modo_uso": "Aplica con algodón o rocía sobre el rostro limpio, antes de la crema.",
+    "rendimiento": "Frasco de 250 ml.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-AGUA-ROSAS-01.webp"
+        ],
+        "origen": [
+          "Agua de rosas 3.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 58
+  },
+  {
+    "producto_id": "MG-DISCOS-ALGODON",
+    "nombre": "Discos de algodón",
+    "marca": "MAXGLOW",
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 2.5,
+    "precio_referencia": 3.38,
+    "nota_precio": null,
+    "presentacion": "100 discos",
+    "descripcion": "Discos de algodón para desmaquillar y aplicar tónicos o agua micelar.",
+    "modo_uso": "Empapa un disco y pásalo por el rostro sin arrastrar.",
+    "rendimiento": "Paquete de 100 discos.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-DISCOS-ALGODON-01.webp"
+        ],
+        "origen": [
+          "Algodón discos 2.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 59
+  },
+  {
+    "producto_id": "CQ-GEL-SABILA",
+    "nombre": "Gel de sábila",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Gel hidratante de sábila (aloe vera) que calma y refresca la piel.",
+    "modo_uso": "Aplica una capa sobre la piel limpia y deja que absorba.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-GEL-SABILA-01.webp"
+        ],
+        "origen": [
+          "Gel d sábila 3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 60
+  },
+  {
+    "producto_id": "CQ-PALETA-EXFOLIANTE",
+    "nombre": "Paleta exfoliante de silicona",
+    "marca": null,
+    "categoria": "facial",
+    "uso_profesional": false,
+    "precio_divisa": 1.5,
+    "precio_referencia": 2.03,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Paleta de silicona con cerdas suaves de un lado y espátula del otro, para limpiar el rostro y aplicar mascarillas.",
+    "modo_uso": "Con el rostro húmedo, masajea en círculos con las cerdas; usa la espátula para extender la mascarilla.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Rosa",
+        "swatch_hex": "#D5A7B3",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-PALETA-EXFOLIANTE-01.webp"
+        ],
+        "origen": [
+          "Paleta exfoliante 1.5$ rosa.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Verde",
+        "swatch_hex": "#9DD1C6",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-PALETA-EXFOLIANTE-02.webp"
+        ],
+        "origen": [
+          "Paleta exfoliante 1.5$ verde.png"
         ],
         "disponible": true
       }

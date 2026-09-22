@@ -126,6 +126,7 @@ for (const href of enlaces) {
 const esperado = {
   todo: productos.length,
   unas: productos.filter((x) => x.categoria === "unas").length,
+  pestanas: productos.filter((x) => x.categoria === "pestanas").length,
   facial: productos.filter((x) => x.categoria === "facial").length,
   cuerpo: productos.filter((x) => x.categoria === "cuerpo").length,
 };

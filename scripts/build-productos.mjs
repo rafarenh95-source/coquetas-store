@@ -142,7 +142,7 @@ function familiaDeColor(hex) {
 
 /* ── catálogo ─────────────────────────────────────────────────────────────
  *
- * categoria       unas · facial · cuerpo
+ * categoria       unas · pestanas · facial · cuerpo
  * tipo_variante   color (swatch circular) · aroma (chip de texto) · null
  * uso_profesional true cuando el envase lo declara o el producto solo tiene
  *                 sentido dentro de un servicio de manicura
@@ -540,7 +540,7 @@ const CATALOGO = [
     id: "MG-GASAS-PESTANAS",
     nombre: "Gasas mágicas para pestañas",
     marca: "MAXGLOW",
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 2.0,
     presentacion: "300 piezas",
@@ -909,7 +909,7 @@ const CATALOGO = [
     id: "CQ-ALMOHADA-LASHISTA",
     nombre: "Almohada para lashista",
     marca: null,
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 22.0,
     presentacion: null,
@@ -924,7 +924,7 @@ const CATALOGO = [
     id: "MY-LIBRETA-PESTANAS",
     nombre: "Libreta de pestañas",
     marca: "M&Y",
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 4.0,
     presentacion: null,
@@ -939,7 +939,7 @@ const CATALOGO = [
     id: "CQ-CEPILLO-PESTANAS",
     nombre: "Cepillo para pestañas",
     marca: null,
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 1.5,
     presentacion: null,
@@ -954,7 +954,7 @@ const CATALOGO = [
     id: "CQ-MICROBLUSH",
     nombre: "Microblush",
     marca: null,
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 1.5,
     presentacion: null,
@@ -973,7 +973,7 @@ const CATALOGO = [
     id: "CQ-MICROHISOPOS",
     nombre: "Microhisopos",
     marca: null,
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 1.0,
     presentacion: null,
@@ -988,7 +988,7 @@ const CATALOGO = [
     id: "CQ-PIPETA-LAVADO",
     nombre: "Pipeta de lavado",
     marca: null,
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 1.5,
     presentacion: null,
@@ -1005,7 +1005,7 @@ const CATALOGO = [
     id: "CQ-LAPIZ-VISAGISMO",
     nombre: "Lápiz de visagismo",
     marca: null,
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 1.5,
     presentacion: null,
@@ -1020,7 +1020,7 @@ const CATALOGO = [
     id: "CQ-LAPIZ-VISAGISMO-BLANCO",
     nombre: "Lápiz blanco de visagismo",
     marca: null,
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 1.0,
     presentacion: null,
@@ -1035,7 +1035,7 @@ const CATALOGO = [
     id: "CQ-NAVAJA",
     nombre: "Navaja",
     marca: null,
-    categoria: "facial",
+    categoria: "pestanas",
     uso_profesional: true,
     precio_divisa: 1.5,
     presentacion: null,
@@ -1102,7 +1102,7 @@ const CATALOGO = [
  * Rebeca; la manicurista encuentra lo suyo por la etiqueta.
  */
 
-const PESO_CATEGORIA = { unas: 0, facial: 1, cuerpo: 2 };
+const PESO_CATEGORIA = { unas: 0, pestanas: 1, facial: 2, cuerpo: 3 };
 const RECARGO_BOLIVARES = 1.35;
 
 async function construir() {
@@ -1193,7 +1193,7 @@ async function construir() {
   console.log(`productos     ${productos.length}`);
   console.log(`variantes     ${fotos}`);
   console.log(`uso pro       ${pro} (${Math.round((pro / productos.length) * 100)} %)`);
-  for (const c of ["unas", "facial", "cuerpo"]) {
+  for (const c of ["unas", "pestanas", "facial", "cuerpo"]) {
     console.log(`  ${c.padEnd(12)}${productos.filter((p) => p.categoria === c).length}`);
   }
   const dudosos = productos

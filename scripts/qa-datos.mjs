@@ -76,7 +76,7 @@ for (const p of productos) {
     fallo(`${p.producto_id}: tiene ${p.variantes.length} variantes pero tipo_variante es null`);
   }
 
-  if (!["unas", "facial", "cuerpo"].includes(p.categoria)) {
+  if (!["unas", "pestanas", "facial", "cuerpo"].includes(p.categoria)) {
     fallo(`${p.producto_id}: categoría desconocida "${p.categoria}"`);
   }
 }
@@ -128,7 +128,7 @@ if (fs.existsSync("dist")) {
 console.log(`productos      ${productos.length}`);
 console.log(`variantes      ${productos.reduce((n, p) => n + p.variantes.length, 0)}`);
 console.log(`imágenes       ${imagenes} referenciadas · ${faltantes} faltan`);
-console.log(`categorías     ${["unas", "facial", "cuerpo"].map((c) => `${c} ${productos.filter((p) => p.categoria === c).length}`).join(" · ")}`);
+console.log(`categorías     ${["unas", "pestanas", "facial", "cuerpo"].map((c) => `${c} ${productos.filter((p) => p.categoria === c).length}`).join(" · ")}`);
 console.log();
 
 if (avisos.length) {

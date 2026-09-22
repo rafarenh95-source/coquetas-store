@@ -28,6 +28,7 @@ import tienda from "../data/tienda.json";
 
 const CATEGORIAS_BASE = [
   { id: "unas", texto: "Uñas", icono: "unas" as const },
+  { id: "pestanas", texto: "Pestañas y cejas", icono: "pestanas" as const },
   { id: "facial", texto: "Cuidado facial", icono: "facial" as const },
   { id: "cuerpo", texto: "Cuerpo y spa", icono: "cuerpo" as const },
 ];
@@ -36,9 +37,16 @@ const CATEGORIAS_BASE = [
    tenga, o si no hay ninguno destacado en esa categoría, la del primero por
    orden. Así la tarjeta de categoría no depende de mantener una lista aparte
    -- solo de la misma bandera `destacado` que ya se usa en los datos. */
+/* Cuando ningún producto de la categoría está destacado, la primera por orden
+   puede no representarla bien (en pestañas saldría la almohada). */
+const FOTO_DE_CATEGORIA: Record<string, string> = { pestanas: "MY-LIBRETA-PESTANAS" };
+
 const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
   const deLaCategoria = productos.filter((p) => p.categoria === c.id);
-  const conFoto = deLaCategoria.find((p) => p.destacado) ?? deLaCategoria[0];
+  const conFoto =
+    deLaCategoria.find((p) => p.producto_id === FOTO_DE_CATEGORIA[c.id]) ??
+    deLaCategoria.find((p) => p.destacado) ??
+    deLaCategoria[0];
   return {
     ...c,
     cantidad: deLaCategoria.length,
@@ -49,6 +57,7 @@ const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
 const NOMBRES: Record<string, string> = {
   todo: "Todo",
   unas: "Uñas",
+  pestanas: "Pestañas y cejas",
   facial: "Cuidado facial",
   cuerpo: "Cuerpo y spa",
 };
@@ -113,7 +122,7 @@ const enlaceListaCompleta = tienda.whatsapp
       completa en cuanto se toca una categoría o se escribe en el buscador. */}
   <div id="vista-portada" class="contenedor mt-5 scroll-mt-[84px]">
     <p class="t-etiqueta text-purpura">Categorías</p>
-    <div class="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <div class="mt-2 grid grid-cols-2 gap-3 md:grid-cols-5">
       {
         CATEGORIAS.map((c) => (
           <a href="#grilla" data-categoria-tile={c.id} class="group block bg-papel">
@@ -137,8 +146,8 @@ const enlaceListaCompleta = tienda.whatsapp
 
       {/* La cuarta tarjeta es un bloque de color, no una foto: es la única
           categoría que no tiene un producto que la represente sola. */}
-      <a href="#grilla" data-categoria-tile="todo" class="group block bg-papel">
-        <div class="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-ciruela text-crema">
+      <a href="#grilla" data-categoria-tile="todo" class="group col-span-2 block bg-papel md:col-span-1">
+        <div class="relative flex aspect-[8/3] items-center justify-center overflow-hidden bg-ciruela text-crema md:aspect-[4/3]">
           <Icono nombre="todo" tamano={30} class="transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-110" />
         </div>
         <div class="flex items-center justify-between gap-1 p-2">
@@ -247,6 +256,7 @@ const enlaceListaCompleta = tienda.whatsapp
     const NOMBRES: Record<string, string> = {
       todo: "Todo",
       unas: "Uñas",
+      pestanas: "Pestañas y cejas",
       facial: "Cuidado facial",
       cuerpo: "Cuerpo y spa",
     };
