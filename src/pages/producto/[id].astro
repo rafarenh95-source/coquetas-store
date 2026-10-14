@@ -20,6 +20,7 @@ import Bolsa from "../../components/Bolsa.astro";
 import Precio from "../../components/Precio.astro";
 import Swatches from "../../components/Swatches.astro";
 import BarraProducto from "../../components/BarraProducto.astro";
+import Cantidad from "../../components/Cantidad.astro";
 import productos from "../../data/productos.json";
 
 export function getStaticPaths() {
@@ -39,6 +40,8 @@ const srcset = (src: string) =>
     .map((w) => `${src.replace(".webp", `-${w}.webp`)} ${w}w`)
     .concat(`${src} 1000w`)
     .join(", ");
+
+const monto = new Intl.NumberFormat("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) => b.texto);
 ---
@@ -72,6 +75,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
       data-presentacion={p.presentacion ?? ""}
       data-precio={p.precio_divisa}
       data-referencia={p.precio_referencia}
+      data-stock={p.stock ?? undefined}
     >
       {/* ── Fotografía ──────────────────────────────────────────────── */}
       <div>
@@ -136,14 +140,20 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
           )
         }
 
+        {/* El botón dice el total de lo que se va a agregar (precio × cantidad),
+            no el precio de una. Si no cabe junto a la cantidad (teléfono de
+            320 px con un total largo), baja a su propio renglón a lo ancho. */}
         <div class="mt-2 flex flex-col gap-1" data-cta-principal>
-          <button
-            type="button"
-            data-agregar
-            class="presionable t-etiqueta flex min-h-[48px] w-full items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            Agregar · ${p.precio_divisa.toFixed(2).replace(".", ",")}
-          </button>
+          <div class="flex flex-wrap items-stretch gap-1">
+            <Cantidad nombre={p.nombre} max={p.stock ?? null} />
+            <button
+              type="button"
+              data-agregar
+              class="presionable t-etiqueta flex min-h-[48px] grow basis-[200px] items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Agregar<span data-precio-total>&nbsp;· ${monto.format(p.precio_divisa)}</span>
+            </button>
+          </div>
           <p class="t-caption text-ciruela/70">
             Te confirmamos disponibilidad y cuándo lo tienes.
           </p>

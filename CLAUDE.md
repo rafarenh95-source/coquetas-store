@@ -18,6 +18,8 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
    Con el mismo servidor, `node scripts/qa-movil.mjs` — debe decir «Móvil: sin avisos» (revisa
    320/360/375/390/412/430/768 px: desbordes, zonas táctiles < 44 px, textos cortados, campos
    < 16 px). `--capturas=<carpeta>` guarda capturas de cada pantalla en cada ancho.
+   Y `node scripts/qa-cantidad.mjs` — flujo del selector de cantidad y la bolsa; debe decir
+   «Cantidad: sin fallos».
 5. Revisar visualmente con Playwright (`playwright-core`, `channel: "msedge"`) en 390 px y 1280 px.
    Los scripts que importan `playwright-core` o `sharp` tienen que estar dentro de la carpeta del
    proyecto para que Node los encuentre.
@@ -42,6 +44,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   (PESO_CATEGORIA e informe), `qa-datos.mjs` y `qa-sitio.mjs`. Cambiar una categoría = tocar todos.
 - Foto de cada tarjeta de categoría: `FOTO_DE_CATEGORIA` en `Catalogo.astro`.
 - Variantes de color con foto compartida o color puesto a mano: `swatch_hex` en la variante.
+- Stock: opcional, `stock` en el producto o en la variante (hoy ningún producto lo trae). Si está,
+  es el tope del selector de cantidad; si no, el tope es 99 (`TOPE_SIN_STOCK` en `cantidad.js`).
+  Para cargarlo hay que pasarlo también por `build-productos.mjs`.
 - Fotos editadas (con IA o por la dueña) llevan `foto_editada: true`: la ficha dice «Foto editada…»
   en vez de «sin retoque de color».
 
@@ -62,6 +67,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 
 - Manual de marca: `manual_de_identidad_visual_coquetas.md`. Colores crema, papel, ciruela, púrpura,
   magenta (magenta solo para la acción principal). GFS Didot solo en títulos ≥ 24 px.
+- Cantidad: selector «− número +» (`Cantidad.astro` + `scripts/cantidad.js`, clases compartidas en
+  `cantidad-estilos.js`) en tarjeta, ficha y cada fila de la bolsa. Agregar suma la cantidad elegida
+  y ya **no abre la bolsa**: muestra un aviso «N unidades agregadas» con botón «Ver bolsa».
 - Portada: buscador + tarjetas de categoría; al tocar una se abre su grilla. Sin productos destacados
   en la portada (la dueña los quitó).
 - Móvil: todo lo tocable mide ≥ 44 × 44 px; cuerpo de texto 16 px; zonas seguras (notch y barra

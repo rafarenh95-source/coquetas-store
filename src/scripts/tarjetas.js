@@ -12,6 +12,12 @@
  */
 
 import { agregar } from "./bolsa.js";
+import { valor, fijar, fijarTope } from "./cantidad.js";
+
+/* Stock del tono elegido; si el tono no lo trae, el del producto; si ninguno,
+   null (cantidad.js pone su tope general). */
+const stockDe = (tarjeta, radio) =>
+  Number(radio?.dataset.stock) || Number(tarjeta.dataset.stock) || null;
 
 const srcset = (src) =>
   [400, 550, 700]
@@ -45,6 +51,8 @@ function seleccionar(tarjeta, boton) {
 
   const btn = tarjeta.querySelector("[data-agregar-tarjeta]");
   if (btn) btn.disabled = agotado;
+
+  fijarTope(tarjeta.querySelector("[data-cantidad]"), stockDe(tarjeta, boton));
 }
 
 document.addEventListener("click", (e) => {
@@ -64,15 +72,24 @@ document.addEventListener("click", (e) => {
   if (!boton) return;
 
   const variante = tarjeta.querySelector('[role="radio"][aria-checked="true"]');
+  const grupo = tarjeta.querySelector("[data-cantidad]");
 
-  agregar({
-    id: tarjeta.dataset.id,
-    nombre: tarjeta.dataset.nombre,
-    presentacion: tarjeta.dataset.presentacion || null,
-    precio: Number(tarjeta.dataset.precio),
-    referencia: Number(tarjeta.dataset.referencia),
-    tono: variante?.dataset.tono ?? null,
-  });
+  agregar(
+    {
+      id: tarjeta.dataset.id,
+      nombre: tarjeta.dataset.nombre,
+      presentacion: tarjeta.dataset.presentacion || null,
+      precio: Number(tarjeta.dataset.precio),
+      referencia: Number(tarjeta.dataset.referencia),
+      tono: variante?.dataset.tono ?? null,
+      max: stockDe(tarjeta, variante),
+    },
+    grupo ? valor(grupo) : 1
+  );
+
+  /* Vuelve a 1: la próxima vez que se toque «Agregar» en esta tarjeta, que
+     no repita sin querer la cantidad de antes. */
+  if (grupo) fijar(grupo, 1);
 });
 
 /* Flechas dentro del grupo de tonos, igual que en la ficha. */

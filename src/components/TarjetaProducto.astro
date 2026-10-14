@@ -21,6 +21,7 @@
 
 import Precio from "./Precio.astro";
 import Swatches from "./Swatches.astro";
+import Cantidad from "./Cantidad.astro";
 
 interface Props {
   producto: any;
@@ -47,6 +48,7 @@ const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : "Variante"} de ${p
   data-presentacion={p.presentacion ?? ""}
   data-precio={p.precio_divisa}
   data-referencia={p.precio_referencia}
+  data-stock={p.stock ?? undefined}
   class="group flex h-full flex-col bg-papel"
 >
   <a
@@ -96,13 +98,20 @@ const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : "Variante"} de ${p
     {/* Contorno ciruela y no relleno magenta: son treinta y cinco tarjetas, y
         treinta y cinco botones magenta romperían el reparto de color del manual
         y dejarían de destacar justo lo que debe destacar. */}
-    <button
-      type="button"
-      data-agregar-tarjeta
-      aria-label={`Agregar ${p.nombre} a la bolsa`}
-      class="presionable t-etiqueta inline-flex min-h-[44px] w-full items-center justify-center border border-ciruela/40 px-2 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela hover:bg-ciruela hover:text-crema disabled:cursor-not-allowed disabled:opacity-40"
-    >
-      Agregar
-    </button>
+    {/* Cantidad y «Agregar» comparten renglón cuando caben (teléfono, una
+        tarjeta por fila). En las tarjetas angostas de tablet y escritorio el
+        botón baja solo a su propio renglón: flex-wrap con una base mínima, sin
+        un punto de corte por tamaño de pantalla que adivinar. */}
+    <div class="flex flex-wrap items-stretch gap-1">
+      <Cantidad nombre={p.nombre} max={p.stock ?? null} />
+      <button
+        type="button"
+        data-agregar-tarjeta
+        aria-label={`Agregar ${p.nombre} a la bolsa`}
+        class="presionable t-etiqueta inline-flex min-h-[44px] grow basis-[112px] items-center justify-center border border-ciruela/40 px-2 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela hover:bg-ciruela hover:text-crema disabled:cursor-not-allowed disabled:opacity-40"
+      >
+        Agregar
+      </button>
+    </div>
   </div>
 </article>

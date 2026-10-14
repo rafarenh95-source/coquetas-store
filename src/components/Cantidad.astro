@@ -1,0 +1,45 @@
+---
+/**
+ * Selector de cantidad («−», número, «+») para la tarjeta y la ficha.
+ *
+ * El comportamiento vive en scripts/cantidad.js y las clases en
+ * scripts/cantidad-estilos.js, compartidas con las filas de la bolsa.
+ *
+ * Sin JavaScript se ve el número 1 y los botones no hacen nada; como la bolsa
+ * entera depende de JavaScript, no hay un estado a medias que cuidar.
+ */
+
+import { GRUPO, PASO, CAMPO, ICONO_MENOS, ICONO_MAS } from "../scripts/cantidad-estilos.js";
+
+interface Props {
+  nombre: string;
+  /** Stock disponible, si se conoce. Sin él, el tope lo pone cantidad.js. */
+  max?: number | null;
+}
+
+const { nombre, max = null } = Astro.props;
+---
+
+<div data-cantidad data-max={max ?? undefined} class={GRUPO} role="group" aria-label={`Cantidad de ${nombre}`}>
+  <button type="button" data-cantidad-menos class={PASO} aria-label={`Una unidad menos de ${nombre}`} disabled>
+    <Fragment set:html={ICONO_MENOS} />
+  </button>
+  <input
+    type="text"
+    inputmode="numeric"
+    pattern="[0-9]*"
+    autocomplete="off"
+    enterkeyhint="done"
+    value="1"
+    data-cantidad-valor
+    role="spinbutton"
+    aria-valuemin="1"
+    aria-valuenow="1"
+    aria-valuemax={max ?? 99}
+    aria-label={`Unidades de ${nombre}`}
+    class={CAMPO}
+  />
+  <button type="button" data-cantidad-mas class={PASO} aria-label={`Una unidad más de ${nombre}`}>
+    <Fragment set:html={ICONO_MAS} />
+  </button>
+</div>

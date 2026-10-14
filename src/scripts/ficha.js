@@ -7,6 +7,9 @@
  */
 
 import { agregar } from "./bolsa.js";
+import { valor, fijar, fijarTope } from "./cantidad.js";
+
+const monto = new Intl.NumberFormat("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 const raiz = document.querySelector("[data-producto]");
 if (raiz) {
@@ -17,6 +20,18 @@ if (raiz) {
   const agregarBtn = raiz.querySelector("[data-agregar]");
   const lupa = document.querySelector("[data-lupa]");
   const lupaFoto = document.querySelector("[data-lupa-foto]");
+  const grupo = raiz.querySelector("[data-cantidad]");
+  const precio = Number(raiz.dataset.precio);
+  const stockDe = (boton) => Number(boton?.dataset.stock) || Number(raiz.dataset.stock) || null;
+
+  /* Los botones de agregar (el principal y los de la barra fija) dicen el
+     total de lo que se va a agregar: precio × cantidad. */
+  function pintarTotal(n) {
+    for (const t of document.querySelectorAll("[data-precio-total]")) {
+      t.textContent = `\u00a0· $${monto.format(precio * n)}`;
+    }
+  }
+  grupo?.addEventListener("cantidad", (e) => pintarTotal(e.detail.valor));
 
   let elegida = 0;
 
@@ -51,6 +66,8 @@ if (raiz) {
     avisoAgotado?.classList.toggle("hidden", !agotado);
     if (agregarBtn) agregarBtn.disabled = agotado;
     for (const b of document.querySelectorAll("[data-agregar-barra]")) b.disabled = agotado;
+
+    fijarTope(grupo, stockDe(boton));
   }
 
   /* Las fotos de los demás tonos se traen de fondo para que el primer cambio
@@ -93,14 +110,19 @@ if (raiz) {
 
   /* ── a la bolsa ───────────────────────────────────────────────────── */
   function alaBolsa() {
-    agregar({
-      id: raiz.dataset.id,
-      nombre: raiz.dataset.nombre,
-      presentacion: raiz.dataset.presentacion || null,
-      precio: Number(raiz.dataset.precio),
-      referencia: Number(raiz.dataset.referencia),
-      tono: botones[elegida]?.dataset.tono ?? null,
-    });
+    agregar(
+      {
+        id: raiz.dataset.id,
+        nombre: raiz.dataset.nombre,
+        presentacion: raiz.dataset.presentacion || null,
+        precio,
+        referencia: Number(raiz.dataset.referencia),
+        tono: botones[elegida]?.dataset.tono ?? null,
+        max: stockDe(botones[elegida]),
+      },
+      grupo ? valor(grupo) : 1
+    );
+    if (grupo) fijar(grupo, 1);
   }
 
   agregarBtn?.addEventListener("click", alaBolsa);

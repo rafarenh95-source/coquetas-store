@@ -11,6 +11,8 @@
  */
 
 import { proyectar, elastico, resorte, rastreador } from "./resorte.js";
+import { fijar, TOPE_SIN_STOCK } from "./cantidad.js";
+import { GRUPO, PASO, CAMPO, ICONO_MENOS, ICONO_MAS } from "./cantidad-estilos.js";
 
 const CLAVE = "coquetas:bolsa";
 
@@ -43,20 +45,84 @@ function clave(item) {
   return `${item.id}::${item.tono ?? ""}`;
 }
 
-export function agregar(item) {
+const topeDe = (item) => (Number(item?.max) >= 1 ? Number(item.max) : TOPE_SIN_STOCK);
+
+/**
+ * Agrega «cantidad» unidades. Si la pieza (con ese tono) ya estaba, se suman.
+ * Nunca pasa del tope (el stock, si se conoce). Devuelve cuántas entraron de
+ * verdad, para que la confirmación no prometa unidades que no se agregaron.
+ *
+ * Ya no abre la bolsa: con el selector de cantidad, abrirla tapaba la
+ * confirmación y obligaba a cerrarla para seguir eligiendo. En su lugar sale
+ * un aviso breve con un botón «Ver bolsa».
+ */
+export function agregar(item, cantidad = 1) {
   const items = leer();
+  const maximo = topeDe(item);
+  const pedidas = Math.max(1, Math.trunc(Number(cantidad) || 1));
   const existente = items.find((i) => clave(i) === clave(item));
-  if (existente) existente.cantidad += 1;
-  else items.push({ ...item, cantidad: 1 });
+  const yaHabia = existente?.cantidad ?? 0;
+  const enBolsa = Math.min(yaHabia + pedidas, maximo);
+  const agregadas = enBolsa - yaHabia;
+
+  if (existente) Object.assign(existente, { cantidad: enBolsa, max: item.max ?? existente.max ?? null });
+  else items.push({ ...item, cantidad: enBolsa });
   escribir(items);
-  abrir();
+
+  avisarAgregado(item, agregadas, enBolsa, maximo);
+  return { agregadas, enBolsa, tope: maximo };
 }
 
-function cambiarCantidad(k, delta) {
-  const items = leer()
-    .map((i) => (clave(i) === k ? { ...i, cantidad: i.cantidad + delta } : i))
-    .filter((i) => i.cantidad > 0);
+function fijarCantidad(k, n) {
+  const items = leer().map((i) =>
+    clave(i) === k ? { ...i, cantidad: Math.min(Math.max(1, n), topeDe(i)) } : i
+  );
   escribir(items);
+}
+
+function quitar(k) {
+  escribir(leer().filter((i) => clave(i) !== k));
+}
+
+/* ── aviso ──────────────────────────────────────────────────────────────────
+   Una línea que confirma qué entró, sin robar el foco (role="status" la lee
+   el lector de pantalla por su cuenta). Se va sola a los 4 s, salvo mientras
+   el dedo, el ratón o el foco están encima. */
+
+let temporizadorAviso = null;
+const unidades = (n) => `${n} ${n === 1 ? "unidad" : "unidades"}`;
+
+function avisarAgregado(item, agregadas, enBolsa, maximo) {
+  const aviso = document.querySelector("[data-aviso]");
+  if (!aviso) return;
+
+  const titulo = aviso.querySelector("[data-aviso-titulo]");
+  const detalle = aviso.querySelector("[data-aviso-detalle]");
+  const nombre = [item.nombre, item.tono].filter(Boolean).join(" · ");
+
+  if (agregadas > 0) {
+    titulo.textContent = `${unidades(agregadas)} ${agregadas === 1 ? "agregada" : "agregadas"}`;
+    detalle.textContent = enBolsa > agregadas ? `${nombre} · ${unidades(enBolsa)} en tu bolsa` : nombre;
+  } else {
+    titulo.textContent = "No se agregó nada";
+    detalle.textContent = `Ya tienes el máximo disponible de ${nombre} (${maximo}).`;
+  }
+
+  aviso.dataset.visible = "true";
+  programarCierreAviso();
+}
+
+function programarCierreAviso() {
+  clearTimeout(temporizadorAviso);
+  temporizadorAviso = setTimeout(cerrarAviso, 4000);
+}
+
+function cerrarAviso(forzar = false) {
+  const aviso = document.querySelector("[data-aviso]");
+  if (!aviso?.dataset.visible) return;
+  if (!forzar && (aviso.matches(":hover") || aviso.contains(document.activeElement)))
+    return programarCierreAviso();
+  delete aviso.dataset.visible;
 }
 
 /* ── tasa ───────────────────────────────────────────────────────────────── */
@@ -127,7 +193,9 @@ function pintar() {
   for (const n of document.querySelectorAll("[data-bolsa-abrir]")) {
     n.setAttribute(
       "aria-label",
-      unidades === 0 ? "La bolsa está vacía" : `Ver la bolsa, ${unidades} piezas`
+      unidades === 0
+        ? "La bolsa está vacía"
+        : `Ver la bolsa, ${unidades} ${unidades === 1 ? "pieza" : "piezas"}`
     );
   }
 
@@ -138,6 +206,22 @@ function pintar() {
 
   vacia?.classList.toggle("hidden", unidades > 0);
   resumen?.classList.toggle("hidden", unidades === 0);
+
+  /* La lista se vuelve a dibujar entera en cada cambio. Para no tirar el foco
+     de quien la maneja con teclado, se apunta qué control tenía el foco y en
+     qué fila, y se le devuelve después. */
+  const enfocado = document.activeElement;
+  const filaEnfocada = enfocado instanceof Element ? enfocado.closest("[data-clave]") : null;
+  const recuerdo = filaEnfocada && lista.contains(filaEnfocada)
+    ? {
+        clave: filaEnfocada.dataset.clave,
+        indice: [...lista.children].indexOf(filaEnfocada),
+        control: ["data-cantidad-menos", "data-cantidad-mas", "data-cantidad-valor", "data-quitar"].find((a) =>
+          enfocado.hasAttribute(a)
+        ),
+      }
+    : null;
+
   lista.innerHTML = "";
 
   const nodo = (etiqueta, clases, texto) => {
@@ -150,39 +234,94 @@ function pintar() {
   for (const i of items) {
     const k = clave(i);
     const detalle = [i.presentacion, i.tono].filter(Boolean).join(" · ");
+    const quien = [i.nombre, i.tono].filter(Boolean).join(" ");
 
+    /* Arriba: nombre y total de la línea. Abajo: cantidad y eliminar. En un
+       teléfono de 320 px no caben los cuatro en un renglón sin apretar el
+       nombre hasta dejarlo ilegible. */
     const datos = nodo("div", "min-w-0");
     datos.append(
       nodo("p", "font-sans text-[15px] leading-tight font-semibold text-ciruela", i.nombre),
-      nodo("p", "t-caption text-ciruela/70", detalle),
-      nodo("p", "t-caption text-ciruela tabular-nums", "$" + dinero.format(i.precio * i.cantidad))
+      nodo("p", "t-caption text-ciruela/70", detalle)
     );
 
-    const paso = (signo, atributo, etiqueta) => {
-      const b = nodo(
-        "button",
-        "presionable t-etiqueta h-[44px] w-[44px] border border-ciruela/25 text-ciruela hover:border-ciruela",
-        signo
-      );
+    const precio = nodo("div", "shrink-0 text-right");
+    precio.append(
+      nodo("p", "font-sans text-[15px] leading-tight font-semibold text-ciruela tabular-nums", "$" + dinero.format(i.precio * i.cantidad))
+    );
+    if (i.cantidad > 1) {
+      precio.append(nodo("p", "t-caption text-ciruela/70 tabular-nums", `$${dinero.format(i.precio)} c/u`));
+    }
+
+    const arriba = nodo("div", "flex items-start justify-between gap-2");
+    arriba.append(datos, precio);
+
+    /* El mismo selector de la tarjeta y la ficha. */
+    const grupo = nodo("div", GRUPO);
+    grupo.dataset.cantidad = "";
+    grupo.dataset.max = String(topeDe(i));
+    grupo.setAttribute("role", "group");
+    grupo.setAttribute("aria-label", `Cantidad de ${quien}`);
+
+    const paso = (atributo, icono, etiqueta) => {
+      const b = nodo("button", PASO);
       b.type = "button";
-      b.setAttribute(atributo, k);
-      b.setAttribute("aria-label", `${etiqueta} ${i.nombre}${i.tono ? ` ${i.tono}` : ""}`);
+      b.setAttribute(atributo, "");
+      b.setAttribute("aria-label", `${etiqueta} ${quien}`);
+      b.innerHTML = icono;
       return b;
     };
 
-    const controles = nodo("div", "flex shrink-0 items-center gap-[4px]");
-    controles.append(
-      paso("–", "data-menos", "Quitar una unidad de"),
-      nodo("span", "t-caption w-[24px] text-center tabular-nums text-ciruela", String(i.cantidad)),
-      paso("+", "data-mas", "Agregar una unidad de")
-    );
+    const campo = nodo("input", CAMPO);
+    Object.assign(campo, { type: "text", inputMode: "numeric", autocomplete: "off", value: String(i.cantidad) });
+    campo.setAttribute("pattern", "[0-9]*");
+    campo.setAttribute("enterkeyhint", "done");
+    campo.setAttribute("data-cantidad-valor", "");
+    campo.setAttribute("role", "spinbutton");
+    campo.setAttribute("aria-valuemin", "1");
+    campo.setAttribute("aria-label", `Unidades de ${quien}`);
 
-    const fila = nodo(
-      "li",
-      "flex items-start justify-between gap-2 border-b border-ciruela/10 py-2"
+    grupo.append(
+      paso("data-cantidad-menos", ICONO_MENOS, "Una unidad menos de"),
+      campo,
+      paso("data-cantidad-mas", ICONO_MAS, "Una unidad más de")
     );
-    fila.append(datos, controles);
+    fijar(grupo, i.cantidad, { avisar: false });
+
+    const eliminar = nodo(
+      "button",
+      "presionable t-caption inline-flex min-h-[44px] items-center gap-1 px-1 text-ciruela/70 underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+    );
+    eliminar.type = "button";
+    eliminar.setAttribute("data-quitar", "");
+    eliminar.setAttribute("aria-label", `Eliminar ${quien} de la bolsa`);
+    eliminar.innerHTML =
+      '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 8.5h6.6l.7-8.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+    eliminar.append("Eliminar");
+
+    const abajo = nodo("div", "mt-1 flex items-center justify-between gap-2");
+    abajo.append(grupo, eliminar);
+
+    const fila = nodo("li", "border-b border-ciruela/10 py-2");
+    fila.dataset.clave = k;
+    fila.append(arriba, abajo);
     lista.appendChild(fila);
+  }
+
+  if (recuerdo) {
+    const filas = [...lista.children];
+    const misma = filas.find((f) => f.dataset.clave === recuerdo.clave);
+    let destino = null;
+    if (misma) {
+      destino = misma.querySelector(`[${recuerdo.control}]`);
+      // El «−» se apaga al llegar a 1: el foco pasa al número, no se pierde.
+      if (!destino || destino.disabled) destino = misma.querySelector("[data-cantidad-valor]");
+    } else {
+      // Se eliminó la fila: el foco va a la siguiente, o a cerrar si era la última.
+      const vecina = filas[Math.min(recuerdo.indice, filas.length - 1)];
+      destino = vecina?.querySelector("[data-quitar]") ?? document.querySelector("[data-bolsa-cerrar]");
+    }
+    destino?.focus();
   }
 
   const enDivisa = document.querySelector("[data-bolsa-divisa]");
@@ -402,11 +541,14 @@ document.addEventListener("click", (e) => {
 
   if (t.closest("[data-bolsa-cerrar]") || t.closest("[data-bolsa-fondo]")) return cerrar();
 
-  const menos = t.closest("[data-menos]");
-  if (menos) return cambiarCantidad(menos.getAttribute("data-menos"), -1);
+  const quitarBtn = t.closest("[data-quitar]");
+  const filaQuitar = quitarBtn?.closest("[data-clave]");
+  if (filaQuitar) return quitar(filaQuitar.dataset.clave);
 
-  const mas = t.closest("[data-mas]");
-  if (mas) return cambiarCantidad(mas.getAttribute("data-mas"), 1);
+  if (t.closest("[data-aviso-ver]")) {
+    cerrarAviso(true);
+    return abrir();
+  }
 
   const copiar = t.closest("[data-bolsa-copiar]");
   if (copiar) {
@@ -417,6 +559,12 @@ document.addEventListener("click", (e) => {
       setTimeout(() => aviso.classList.add("hidden"), 2500);
     });
   }
+});
+
+/* El selector de cada fila avisa con «cantidad»; aquí se guarda. */
+document.addEventListener("cantidad", (e) => {
+  const fila = e.target instanceof Element ? e.target.closest("[data-bolsa-lista] [data-clave]") : null;
+  if (fila) fijarCantidad(fila.dataset.clave, e.detail.valor);
 });
 
 document.addEventListener("keydown", (e) => {

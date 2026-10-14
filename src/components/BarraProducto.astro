@@ -27,7 +27,8 @@ const monto = new Intl.NumberFormat("es-VE", {
 });
 
 const conVariantes = p.variantes.length > 1;
-const etiquetaBoton = `Agregar · $${monto.format(p.precio_divisa)}`;
+/* El precio del botón lo mantiene al día ficha.js: dice el total de la
+   cantidad elegida, igual que el botón principal. */
 
 /* Fondo crema sólido y sin desenfoque: el desenfoque de lo que pasa por
    detrás se recalcula en cada cuadro del desplazamiento y en un teléfono de gama
@@ -69,10 +70,9 @@ const base =
     <button
       type="button"
       data-agregar-barra
-      aria-label={etiquetaBoton}
       class="presionable t-etiqueta inline-flex min-h-[44px] shrink-0 items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
     >
-      Agregar<span aria-hidden="true" class="max-[359px]:hidden">&nbsp;· ${monto.format(p.precio_divisa)}</span>
+      Agregar<span data-precio-total class="max-[359px]:hidden">&nbsp;· ${monto.format(p.precio_divisa)}</span>
     </button>
   </div>
 </div>
@@ -105,7 +105,7 @@ const base =
       data-agregar-barra
       class="presionable t-etiqueta inline-flex min-h-[44px] shrink-0 items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
     >
-      {etiquetaBoton}
+      Agregar<span data-precio-total>&nbsp;· ${monto.format(p.precio_divisa)}</span>
     </button>
   </div>
 </div>

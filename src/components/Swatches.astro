@@ -19,6 +19,7 @@
 
 interface Variante {
   tono: string | null;
+  stock?: number | null;
   swatch_hex: string | null;
   disponible: boolean;
   imagenes: string[];
@@ -107,6 +108,7 @@ const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${varia
                 disabled={!v.disponible}
                 tabindex={i === 0 ? 0 : -1}
                 data-variante={i}
+                data-stock={v.stock ?? undefined}
                 data-tono={v.tono}
                 data-imagen={v.imagenes[0]}
                 class:list={[
@@ -126,6 +128,7 @@ const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${varia
                 disabled={!v.disponible}
                 tabindex={i === 0 ? 0 : -1}
                 data-variante={i}
+                data-stock={v.stock ?? undefined}
                 data-tono={v.tono}
                 data-imagen={v.imagenes[0]}
 class:list={[

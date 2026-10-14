@@ -201,7 +201,11 @@ if (tonoElegido !== conVariantes.variantes[2].tono) {
 await p.click("[data-agregar]");
 await p.waitForTimeout(500);
 
-if (!(await p.isVisible("[data-bolsa-panel][data-abierta]"))) fallo("bolsa", "no se abre al agregar");
+/* Agregar ya no abre la bolsa: confirma con un aviso y deja seguir eligiendo. */
+if (!(await p.$("[data-aviso][data-visible]"))) fallo("bolsa", "no aparece el aviso al agregar");
+const avisoTitulo = (await p.textContent("[data-aviso-titulo]"))?.trim();
+if (avisoTitulo !== "1 unidad agregada") fallo("bolsa", `el aviso dice "${avisoTitulo}"`);
+if (await p.isVisible("[data-bolsa-panel][data-abierta]")) fallo("bolsa", "se abre sola al agregar");
 
 /* persiste al navegar */
 await p.goto(`${BASE}/producto/${sinVariantes.producto_id.toLowerCase()}`, {
@@ -244,10 +248,13 @@ if (!texto.includes(conVariantes.variantes[2].tono)) {
 if (!texto.includes(sinVariantes.nombre)) fallo("bolsa", "el mensaje no incluye el segundo producto");
 
 /* vaciar deja el estado vacío, no una lista rota */
+await p.evaluate(() => window.scrollTo(0, 0));
+await p.click("[data-bolsa-abrir]");
+await p.waitForTimeout(500);
 for (let i = 0; i < 4; i++) {
-  const menos = await p.$("[data-menos]");
-  if (!menos) break;
-  await menos.click();
+  const quitar = await p.$("[data-bolsa-lista] [data-quitar]");
+  if (!quitar) break;
+  await quitar.click();
   await p.waitForTimeout(250);
 }
 if (await p.isVisible("[data-bolsa-resumen]")) fallo("bolsa", "el resumen sigue visible con la bolsa vacía");

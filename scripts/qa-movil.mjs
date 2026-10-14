@@ -50,7 +50,9 @@ const PANTALLAS = [
     completa: false,
     accion: async (p) => {
       await p.click("[data-agregar]");
-      // Agregar abre la bolsa sola.
+      await p.waitForTimeout(300);
+      await p.evaluate(() => window.scrollTo(0, 0));
+      await p.click("[data-bolsa-abrir]");
       await p.waitForTimeout(1000);
     },
   },

@@ -16,6 +16,39 @@ import tienda from "../data/tienda.json";
 import Icono from "./Icono.astro";
 ---
 
+{/* ── Aviso «3 unidades agregadas» ──────────────────────────────────────
+    Siempre en el documento y vacío en reposo: una región role="status" que
+    aparece de golpe con el texto ya puesto no siempre la anuncia el lector de
+    pantalla; una que ya estaba y cambia de texto, sí.
+
+    En el teléfono va por encima del botón flotante de WhatsApp y de la barra
+    de la ficha (88 px), y respeta la barra de gestos. */}
+<div
+  data-aviso
+  role="status"
+  aria-live="polite"
+  class="group pointer-events-none fixed inset-x-0 bottom-[calc(88px+env(safe-area-inset-bottom))] z-40 flex justify-center px-2 md:bottom-[calc(24px+env(safe-area-inset-bottom))]"
+>
+  <div
+    class="sobre-ciruela invisible flex w-full max-w-[400px] translate-y-2 items-center gap-2 py-1 pr-1 pl-3 opacity-0 shadow-[0_4px_16px_rgba(43,10,38,0.28)] transition-[opacity,transform,visibility] duration-[var(--paso-lento)] ease-[var(--curva)] group-data-[visible]:pointer-events-auto group-data-[visible]:visible group-data-[visible]:translate-y-0 group-data-[visible]:opacity-100"
+  >
+    <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" fill="none" class="shrink-0">
+      <path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <div class="min-w-0 flex-1 py-1">
+      <p data-aviso-titulo class="font-sans text-[15px] leading-tight font-semibold"></p>
+      <p data-aviso-detalle class="t-caption truncate text-crema/80"></p>
+    </div>
+    <button
+      type="button"
+      data-aviso-ver
+      class="presionable t-etiqueta inline-flex min-h-[44px] shrink-0 items-center px-2 underline decoration-1 underline-offset-2"
+    >
+      Ver bolsa
+    </button>
+  </div>
+</div>
+
 <div
   data-bolsa-panel
   inert
