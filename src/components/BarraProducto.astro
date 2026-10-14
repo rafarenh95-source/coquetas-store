@@ -29,10 +29,15 @@ const monto = new Intl.NumberFormat("es-VE", {
 const conVariantes = p.variantes.length > 1;
 const etiquetaBoton = `Agregar · $${monto.format(p.precio_divisa)}`;
 
-/* invisible, no solo transparente: si solo baja la opacidad, el botón sigue
+/* Fondo crema sólido y sin desenfoque: el desenfoque de lo que pasa por
+   detrás se recalcula en cada cuadro del desplazamiento y en un teléfono de gama
+   baja se nota como tirones. Translúcido sin desenfoque, el texto de abajo se
+   transparentaba y ensuciaba el nombre del producto.
+
+   invisible, no solo transparente: si solo baja la opacidad, el botón sigue
    estando en el orden de tabulación y se aterriza en él sin verlo. */
 const base =
-  "invisible data-[visible]:visible fixed inset-x-0 z-30 border-ciruela/15 bg-crema/95 backdrop-blur-sm transition-[opacity,transform] duration-[var(--paso-lento)] ease-[var(--curva)]";
+  "invisible data-[visible]:visible fixed inset-x-0 z-30 border-ciruela/15 bg-crema transition-[opacity,transform] duration-[var(--paso-lento)] ease-[var(--curva)]";
 ---
 
 {/* ── Teléfono: abajo, al alcance del pulgar ─────────────────────────── */}
@@ -40,30 +45,34 @@ const base =
   data-barra-producto
   class:list={[
     base,
-    "bottom-0 translate-y-full border-t opacity-0 md:hidden",
+    "zona-segura-abajo bottom-0 translate-y-full border-t opacity-0 md:hidden",
     "data-[visible]:translate-y-0 data-[visible]:opacity-100",
   ]}
 >
+  {/* En un teléfono de 320 px, «Agregar · $1,70» dejaba al nombre menos de
+      100 px y «semipermanente» no cabía ni en dos renglones. Ahí el precio pasa
+      junto al nombre y el botón dice solo «Agregar»: la misma información,
+      repartida para que nada se corte. */}
   <div class="contenedor flex items-center gap-2 py-2">
     <div class="min-w-0 flex-1">
-      <p class="font-sans text-[15px] leading-tight font-semibold text-ciruela truncate">
+      <p class="line-clamp-2 font-sans text-[15px] leading-tight font-semibold break-words text-ciruela">
         {p.nombre}
       </p>
-      {
-        conVariantes && (
-          <p class="t-caption truncate text-ciruela/70" data-barra-tono>
-            {p.variantes[0].tono}
-          </p>
-        )
-      }
+      <p class="t-caption truncate text-ciruela/70">
+        <span class="font-semibold text-ciruela tabular-nums min-[360px]:hidden">
+          ${monto.format(p.precio_divisa)}{conVariantes && " · "}
+        </span>
+        {conVariantes && <span data-barra-tono>{p.variantes[0].tono}</span>}
+      </p>
     </div>
 
     <button
       type="button"
       data-agregar-barra
+      aria-label={etiquetaBoton}
       class="presionable t-etiqueta inline-flex min-h-[44px] shrink-0 items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
     >
-      {etiquetaBoton}
+      Agregar<span aria-hidden="true" class="max-[359px]:hidden">&nbsp;· ${monto.format(p.precio_divisa)}</span>
     </button>
   </div>
 </div>

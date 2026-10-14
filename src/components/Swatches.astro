@@ -38,9 +38,11 @@ const esColor = tipo === "color";
 const indicador = modo === "indicador";
 const enTarjeta = modo === "tarjeta";
 
-/* En la tarjeta todo va un punto más pequeño. */
-const medidaColor = enTarjeta ? "h-[30px] w-[30px]" : "h-[36px] w-[36px]";
-const medidaChip = enTarjeta ? "min-h-[34px] px-2 py-1" : "min-h-[40px] px-2 py-1";
+/* 36 px a la vista + 4 px de zona extra por lado (.objetivo-amplio) = 44 px
+   para el dedo, también en la tarjeta: antes eran 30 + 8 = 38, y entre catorce
+   tonos seguidos se tocaba el vecino. */
+const medidaColor = "h-[36px] w-[36px]";
+const medidaChip = enTarjeta ? "min-h-[36px] px-2 py-1" : "min-h-[40px] px-2 py-1";
 
 const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${variantes
   .map((v) => v.tono)
@@ -91,7 +93,7 @@ const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${varia
           class:list={[
             "flex items-center gap-1",
             enTarjeta && esColor
-              ? "sin-riel -mx-2 flex-nowrap overflow-x-auto px-2 py-[2px]"
+              ? "sin-riel -mx-2 flex-nowrap overflow-x-auto overscroll-x-contain px-2 py-[4px]"
               : "flex-wrap",
           ]}
         >

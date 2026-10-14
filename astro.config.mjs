@@ -21,7 +21,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  /* La hoja de estilos va dentro de cada página y no en un archivo aparte:
+     en 4G lenta eso era una ida y vuelta más antes de poder pintar nada
+     (~190 ms según Lighthouse móvil). Comprimida pesa unos 6 KB. */
   build: {
-    inlineStylesheets: "auto",
+    inlineStylesheets: "always",
   },
 });

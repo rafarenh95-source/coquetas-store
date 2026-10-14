@@ -65,7 +65,10 @@ import Icono from "./Icono.astro";
       <ul data-bolsa-lista class="flex flex-col"></ul>
     </div>
 
-    <div data-bolsa-resumen class="hidden border-t border-ciruela/15 px-3 py-3">
+    <div
+      data-bolsa-resumen
+      class="hidden border-t border-ciruela/15 px-3 pt-3 pb-[max(24px,env(safe-area-inset-bottom))]"
+    >
       <div class="flex items-baseline justify-between">
         <span class="t-etiqueta text-ciruela/70">Subtotal</span>
         <span

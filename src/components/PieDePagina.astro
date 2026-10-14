@@ -43,7 +43,12 @@ const pasos = [
 ];
 ---
 
-<footer id="como-comprar" class="mt-12 scroll-mt-4 pb-8">
+{/* Abajo deja sitio al botón flotante de WhatsApp y a la barra de la ficha,
+    que van fijos sobre el final de la página en el teléfono. */}
+<footer
+  id="como-comprar"
+  class="mt-12 scroll-mt-4 pb-[calc(96px+env(safe-area-inset-bottom))] md:pb-8"
+>
   <div class="contenedor">
     <h2 class="t-h2 text-ciruela">Cómo comprar</h2>
 

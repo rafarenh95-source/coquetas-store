@@ -47,12 +47,17 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
   <Encabezado />
 
   <main id="contenido" class="contenedor pb-12">
-    <nav aria-label="Miga de pan" class="py-3">
-      <ol class="t-caption flex items-center gap-1 text-ciruela/70">
-        <li><a href="/" class="hover:text-ciruela">Catálogo</a></li>
+    <nav aria-label="Miga de pan" class="py-1">
+      <ol class="t-caption flex flex-wrap items-center gap-x-1 text-ciruela/70">
+        <li>
+          <a href="/" class="inline-flex min-h-[44px] min-w-[44px] items-center hover:text-ciruela">Catálogo</a>
+        </li>
         <li aria-hidden="true">›</li>
         <li>
-          <a href={`/?categoria=${p.categoria}`} class="hover:text-ciruela">
+          <a
+            href={`/?categoria=${p.categoria}`}
+            class="inline-flex min-h-[44px] min-w-[44px] items-center hover:text-ciruela"
+          >
             {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}
           </a>
         </li>
@@ -157,8 +162,11 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
       </div>
     </div>
 
-    <p class="mt-8">
-      <a href="/#catalogo" class="t-etiqueta text-ciruela/70 hover:text-ciruela">
+    <p class="mt-6">
+      <a
+        href="/#catalogo"
+        class="t-etiqueta inline-flex min-h-[44px] items-center text-ciruela/70 hover:text-ciruela"
+      >
         ← Volver al catálogo
       </a>
     </p>
@@ -170,7 +178,14 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
     class="m-auto max-h-[90dvh] max-w-[90vw] bg-crema p-2 backdrop:bg-ciruela/60"
     aria-label={`${p.nombre} en grande`}
   >
-    <img data-lupa-foto src={primera.imagenes[0]} alt="" class="max-h-[80dvh] w-auto" />
+    <img
+      data-lupa-foto
+      src={primera.imagenes[0]}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      class="max-h-[80dvh] w-auto"
+    />
     <button
       type="button"
       data-lupa-cerrar

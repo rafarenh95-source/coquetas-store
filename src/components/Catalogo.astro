@@ -82,17 +82,28 @@ const enlaceListaCompleta = tienda.whatsapp
 ---
 
 <section id="catalogo" class="scroll-mt-2">
+  {/* Decide la vista antes de que se dibuje nada. Si se esperaba al script
+      del final, con ?categoria= en el enlace se pintaban primero las tarjetas
+      de categoría y luego desaparecían: la página entera daba un salto (CLS
+      0,89 medido en un teléfono lento). La regla de CSS que lee este atributo
+      está en global.css; el script de abajo lo retira al tomar el control. */}
+  <script is:inline define:vars={{ validas: Object.keys(NOMBRES) }}>
+    var inicial = new URLSearchParams(location.search).get("categoria");
+    document.documentElement.dataset.vistaInicial =
+      inicial && validas.indexOf(inicial) > -1 ? "grilla" : "portada";
+  </script>
+
   <div class="contenedor pt-4 md:pt-6">
     <h1 class="t-h2 text-ciruela">Catálogo</h1>
 
     <p class="t-lead mt-2 text-ciruela/80">Una muestra de nuestras piezas favoritas.</p>
 
     {/* Acceso directo al pie sin cruzar las tarjetas. El enlace equivalente
-        del encabezado solo se ve desde 1024px (no hay sitio para texto junto a
+        del encabezado solo se ve desde 1280px (no hay sitio para texto junto a
         los íconos en móvil) -- este es la versión que sí llega al teléfono. */}
     <a
       href="#como-comprar"
-      class="presionable t-etiqueta mt-2 inline-flex items-center gap-1 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+      class="presionable t-etiqueta mt-1 inline-flex min-h-[44px] items-center gap-1 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
     >
       Cómo comprar
       <Icono nombre="chevron" tamano={13} />
@@ -128,23 +139,42 @@ const enlaceListaCompleta = tienda.whatsapp
       completa en cuanto se toca una categoría o se escribe en el buscador. */}
   <div id="vista-portada" class="contenedor mt-5 scroll-mt-[84px]">
     <p class="t-etiqueta text-purpura">Categorías</p>
-    <div class="mt-2 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+    {/* En el teléfono la foto va cuadrada y sin relleno: en 4:3 con margen, el
+        producto quedaba del tamaño de una uña. El nombre y la cantidad van uno
+        sobre otro porque «HERRAMIENTAS» con su espaciado no comparte renglón con
+        el número en una tarjeta de 136 px (teléfono de 320); ahí además el
+        espaciado entre letras baja un poco para que quepa sin bajar de 12 px. La imagen pide el
+        tamaño que de verdad ocupa (400 px y no la de 1000): en datos móviles son
+        cinco fotos menos que pesan el doble. */}
+    <div class="mt-2 grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3 lg:grid-cols-6">
       {
-        CATEGORIAS.map((c) => (
-          <a href="#grilla" data-categoria-tile={c.id} class="group block bg-papel">
-            <div class="relative aspect-[4/3] overflow-hidden bg-crema">
+        CATEGORIAS.map((c, i) => (
+          <a href="#grilla" data-categoria-tile={c.id} class="presionable group block bg-papel">
+            <div class="relative aspect-square overflow-hidden bg-crema">
               {c.imagen && (
                 <img
                   src={c.imagen}
+                  srcset={[400, 550, 700]
+                    .map((w) => `${c.imagen.replace(".webp", `-${w}.webp`)} ${w}w`)
+                    .join(", ")}
+                  sizes="(min-width: 1280px) 180px, (min-width: 1024px) 15vw, (min-width: 768px) 30vw, 46vw"
                   alt=""
-                  loading="eager"
-                  class="h-full w-full object-contain p-3 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
+                  width="1000"
+                  height="1000"
+                  loading={i < 4 ? "eager" : "lazy"}
+                  fetchpriority={i < 2 ? "high" : "auto"}
+                  decoding={i < 2 ? "sync" : "async"}
+                  class="h-full w-full object-contain p-1 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
                 />
               )}
             </div>
-            <div class="flex items-center justify-between gap-1 p-2">
-              <span class="t-etiqueta text-ciruela">{c.texto}</span>
-              <span class="t-caption shrink-0 text-ciruela/60">{c.cantidad}</span>
+            <div class="flex flex-col gap-[2px] px-[10px] py-[12px] min-[360px]:p-2">
+              <span class="t-etiqueta tracking-[0.08em] text-ciruela min-[360px]:tracking-[0.16em]">
+                {c.texto}
+              </span>
+              <span class="t-caption text-ciruela/60">
+                {c.cantidad} {c.cantidad === 1 ? "producto" : "productos"}
+              </span>
             </div>
           </a>
         ))
@@ -152,13 +182,15 @@ const enlaceListaCompleta = tienda.whatsapp
 
       {/* La cuarta tarjeta es un bloque de color, no una foto: es la única
           categoría que no tiene un producto que la represente sola. */}
-      <a href="#grilla" data-categoria-tile="todo" class="group block bg-papel">
-        <div class="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-ciruela text-crema">
+      <a href="#grilla" data-categoria-tile="todo" class="presionable group block bg-papel">
+        <div class="relative flex aspect-square items-center justify-center overflow-hidden bg-ciruela text-crema">
           <Icono nombre="todo" tamano={30} class="transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-110" />
         </div>
-        <div class="flex items-center justify-between gap-1 p-2">
-          <span class="t-etiqueta text-ciruela">Todo</span>
-          <span class="t-caption shrink-0 text-ciruela/60">{productos.length}</span>
+        <div class="flex flex-col gap-[2px] px-[10px] py-[12px] min-[360px]:p-2">
+          <span class="t-etiqueta tracking-[0.08em] text-ciruela min-[360px]:tracking-[0.16em]">
+            Todo
+          </span>
+          <span class="t-caption text-ciruela/60">{productos.length} productos</span>
         </div>
       </a>
     </div>
@@ -166,11 +198,15 @@ const enlaceListaCompleta = tienda.whatsapp
 
   {/* ── Grilla: una categoría (o los resultados del buscador) a la vez ──── */}
   <div id="vista-grilla" class="contenedor mt-6 scroll-mt-[84px]">
-    <div class="mb-3 flex items-center justify-between gap-2 border-t border-ciruela/15 pt-4">
+    {/* Siempre en dos renglones (volver arriba, categoría debajo). Al cargar, el
+        rótulo dice «Todo · 65 productos» y el script lo cambia enseguida: si
+        compartían renglón, según el ancho del texto la fila crecía o encogía y la
+        grilla entera daba un salto. */}
+    <div class="mb-3 flex flex-col items-start border-t border-ciruela/15 pt-3">
       <a
         href="#vista-portada"
         data-volver
-        class="presionable t-etiqueta inline-flex items-center gap-1 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+        class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
       >
         <Icono nombre="chevron" tamano={13} class="rotate-90" />
         Todas las categorías
@@ -190,9 +226,13 @@ const enlaceListaCompleta = tienda.whatsapp
       class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-2 md:grid-cols-3 md:gap-3 lg:grid-cols-4"
     >
       {
-        productos.map((p, i) => (
+        /* Ninguna tarjeta con prioridad: al cargar, la grilla está escondida
+           detrás de las categorías, y una foto «eager» se descarga aunque no se
+           vea — eran ~100 KB de fotos grandes que nadie miraba. Con carga
+           diferida, el navegador las pide en cuanto la grilla aparece. */
+        productos.map((p) => (
           <div data-categoria={p.categoria} class="contents">
-            <TarjetaProducto producto={p} prioridad={i < 4} />
+            <TarjetaProducto producto={p} />
           </div>
         ))
       }
@@ -356,5 +396,8 @@ const enlaceListaCompleta = tienda.whatsapp
       vistaGrilla!.hidden = true;
       aplicarFiltros();
     }
+
+    /* Desde aquí manda el atributo hidden; la regla del primer pintado sobra. */
+    delete document.documentElement.dataset.vistaInicial;
   }
 </script>

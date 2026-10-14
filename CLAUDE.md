@@ -15,6 +15,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 3. `node scripts/qa-datos.mjs` — sin fallos (los avisos «sin rendimiento» son conocidos).
 4. Levantar `npx astro preview --port 4322` (en segundo plano) y correr `node scripts/qa-sitio.mjs`
    — debe decir «Sitio: sin fallos» y 0 violaciones axe.
+   Con el mismo servidor, `node scripts/qa-movil.mjs` — debe decir «Móvil: sin avisos» (revisa
+   320/360/375/390/412/430/768 px: desbordes, zonas táctiles < 44 px, textos cortados, campos
+   < 16 px). `--capturas=<carpeta>` guarda capturas de cada pantalla en cada ancho.
 5. Revisar visualmente con Playwright (`playwright-core`, `channel: "msedge"`) en 390 px y 1280 px.
    Los scripts que importan `playwright-core` o `sharp` tienen que estar dentro de la carpeta del
    proyecto para que Node los encuentre.
@@ -61,6 +64,11 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   magenta (magenta solo para la acción principal). GFS Didot solo en títulos ≥ 24 px.
 - Portada: buscador + tarjetas de categoría; al tocar una se abre su grilla. Sin productos destacados
   en la portada (la dueña los quitó).
+- Móvil: todo lo tocable mide ≥ 44 × 44 px; cuerpo de texto 16 px; zonas seguras (notch y barra
+  de gestos) con `env(safe-area-inset-*)` y `viewport-fit=cover`. Los botones del encabezado
+  llevan texto solo desde 1024 px y los enlaces «Catálogo / Cómo comprar» desde 1280 px: si no,
+  el encabezado se sale de la pantalla. La vista inicial del catálogo (categorías o grilla) se
+  decide con un script en línea antes de pintar, para que `?categoria=` no haga saltar la página.
 
 ## Pendientes conocidos
 

@@ -161,7 +161,7 @@ function pintar() {
     const paso = (signo, atributo, etiqueta) => {
       const b = nodo(
         "button",
-        "t-etiqueta h-[36px] w-[36px] border border-ciruela/25 text-ciruela hover:border-ciruela",
+        "presionable t-etiqueta h-[44px] w-[44px] border border-ciruela/25 text-ciruela hover:border-ciruela",
         signo
       );
       b.type = "button";
@@ -170,7 +170,7 @@ function pintar() {
       return b;
     };
 
-    const controles = nodo("div", "flex shrink-0 items-center gap-1");
+    const controles = nodo("div", "flex shrink-0 items-center gap-[4px]");
     controles.append(
       paso("–", "data-menos", "Quitar una unidad de"),
       nodo("span", "t-caption w-[24px] text-center tabular-nums text-ciruela", String(i.cantidad)),

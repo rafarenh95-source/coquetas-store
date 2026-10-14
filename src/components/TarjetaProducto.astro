@@ -70,9 +70,11 @@ const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : "Variante"} de ${p
     </div>
 
     <div class="flex min-h-[3.5em] flex-col gap-[2px]">
-      <h3 class="font-sans text-[15px] leading-tight font-semibold text-ciruela">
+      {/* h2 y no h3: la tarjeta cuelga directamente del H1 «Catálogo»; saltarse
+          un nivel desorienta a quien navega por titulares con lector de pantalla. */}
+      <h2 class="font-sans text-[16px] leading-tight font-semibold text-ciruela">
         {p.nombre}
-      </h3>
+      </h2>
       {p.presentacion && <p class="t-caption text-ciruela/60">{p.presentacion}</p>}
     </div>
 
@@ -98,7 +100,7 @@ const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : "Variante"} de ${p
       type="button"
       data-agregar-tarjeta
       aria-label={`Agregar ${p.nombre} a la bolsa`}
-      class="presionable t-etiqueta inline-flex min-h-[40px] w-full items-center justify-center border border-ciruela/40 px-2 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela hover:bg-ciruela hover:text-crema disabled:cursor-not-allowed disabled:opacity-40"
+      class="presionable t-etiqueta inline-flex min-h-[44px] w-full items-center justify-center border border-ciruela/40 px-2 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela hover:bg-ciruela hover:text-crema disabled:cursor-not-allowed disabled:opacity-40"
     >
       Agregar
     </button>

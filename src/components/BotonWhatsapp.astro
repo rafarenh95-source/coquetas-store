@@ -44,7 +44,7 @@ const flotante = variante === "flotante";
         rel="noopener"
         data-wa-flotante
         aria-label={texto}
-        class="presionable fixed right-2 bottom-2 z-40 flex h-[56px] w-[56px] translate-y-3 scale-90 items-center justify-center rounded-full bg-magenta text-crema opacity-0 shadow-[0_4px_16px_rgba(43,10,38,0.28)] transition-[opacity,transform] duration-[var(--paso-lento)] ease-[var(--curva)] data-[visible]:translate-y-0 data-[visible]:scale-100 data-[visible]:opacity-100 hover:bg-purpura md:right-4 md:bottom-4 md:h-[60px] md:w-[60px]"
+        class="presionable fixed right-[max(16px,env(safe-area-inset-right))] bottom-[calc(16px+env(safe-area-inset-bottom))] z-40 flex h-[56px] w-[56px] translate-y-3 scale-90 items-center justify-center rounded-full bg-magenta text-crema opacity-0 shadow-[0_4px_16px_rgba(43,10,38,0.28)] transition-[opacity,transform] duration-[var(--paso-lento)] ease-[var(--curva)] data-[visible]:translate-y-0 data-[visible]:scale-100 data-[visible]:opacity-100 hover:bg-purpura md:right-4 md:bottom-4 md:h-[60px] md:w-[60px]"
       >
         <Icono nombre="whatsapp" tamano={28} />
       </a>
