@@ -2,9 +2,10 @@
 /**
  * Menú: un panel que entra desde la derecha (donde está el botón que lo abre).
  *
- * Contenido aprobado por la dueña: ver catálogo, las cinco categorías, cómo
- * comprar, preguntas frecuentes, dónde estamos, precios al mayor, TikTok y
- * pedir por WhatsApp (este último en magenta: es la acción principal).
+ * Contenido aprobado por la dueña: ver catálogo, las cinco categorías,
+ * preguntas frecuentes, dónde estamos, precios al mayor, TikTok y pedir por
+ * WhatsApp (este último en magenta: es la acción principal). «Cómo comprar»
+ * no va aparte: es una de las preguntas frecuentes (decisión de la dueña).
  *
  * <dialog> nativo con showModal(): Escape lo cierra, el fondo queda inerte (el
  * tabulador no se escapa), el foco vuelve al botón al cerrar y el lector de
@@ -92,12 +93,6 @@ const icono = "inline-flex h-[32px] w-[32px] shrink-0 items-center justify-cente
           </ul>
         </li>
 
-        <li>
-          <a href="/#como-comprar" class={fila}>
-            <span class={icono}><Icono nombre="elegir" tamano={16} /></span>
-            Cómo comprar
-          </a>
-        </li>
         <li>
           <a href="/#preguntas" class={fila}>
             <span class={icono}><Icono nombre="confirmar" tamano={16} /></span>

@@ -78,11 +78,11 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   avance con movimiento reducido. Flechas redondas a los lados, a la altura de las fotos
   (`FlechaCarrusel.astro`). Categorías arranca 650 ms después (`data-desfase`).
 - Preguntas frecuentes en el pie (`PieDePagina.astro`, textos en `src/data/preguntas.json`; salen
-  también como FAQPage en la portada). «¿Cómo compro?» (id `como-comprar`) es la primera, abierta;
+  también como FAQPage en la portada). Todas empiezan cerradas (decisión de la dueña). «¿Cómo compro?» (id `como-comprar`) es la primera;
   los enlaces «Cómo comprar» la abren.
 - Encabezado: logo + WhatsApp (desde 360 px) + bolsa + menú ☰. El menú (`Menu.astro`, `<dialog>`
-  nativo que entra desde la derecha) lleva: ver catálogo, las 5 categorías, cómo comprar, preguntas
-  frecuentes, dónde estamos, precios al mayor, TikTok y pedir por WhatsApp (aprobado por la dueña).
+  nativo que entra desde la derecha) lleva: ver catálogo, las 5 categorías, preguntas frecuentes
+  (ahí dentro está «¿Cómo compro?», no suelto), dónde estamos, precios al mayor, TikTok y pedir por WhatsApp (aprobado por la dueña).
   Mapa y TikTok ya no están en el encabezado. Sin «Cómo comprar» bajo el título.
 - Portada: buscador, luego el carrusel «Favoritos de Coquetas» (solo la foto; lleva a la ficha) (lista `MUESTRA` en
   `Catalogo.astro`: esmalte semipermanente, brillo color, exfoliante, veloterapia; NO usa la

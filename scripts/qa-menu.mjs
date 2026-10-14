@@ -82,12 +82,15 @@ await p.click("dialog[data-menu] [data-ver-portada]");
 await p.waitForTimeout(700);
 ok(!(await p.$eval("#vista-portada", (x) => x.hidden)), "«Ver catálogo» no vuelve a la portada");
 
-await p.click('#preguntas-frecuentes, #pago summary').catch(() => {});
+/* «Cómo comprar» no va suelto en el menú: es una de las preguntas
+   frecuentes, y todas llegan cerradas (decisión de la dueña). */
+ok(!(await p.$('dialog[data-menu] a[href*="como-comprar"]')), "el menú tiene «Cómo comprar» suelto");
 await p.click("[data-menu-abrir]");
 await p.waitForTimeout(400);
-await p.click('dialog[data-menu] a[href="/#como-comprar"]');
+await p.click('dialog[data-menu] a[href="/#preguntas"]');
 await p.waitForTimeout(800);
-ok(await p.$eval("#como-comprar", (d) => d.open), "«Cómo comprar» del menú no abre la pregunta");
+ok(await p.$eval("#preguntas", (s) => { const r = s.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; }), "«Preguntas frecuentes» del menú no lleva a las preguntas");
+ok((await p.$$eval("#preguntas details", (ds) => ds.filter((d) => d.open).length)) === 0, "hay preguntas abiertas sin que nadie las abriera");
 
 // Favoritos: solo fotos, que llevan a la ficha
 const fav = await p.evaluate(() => {

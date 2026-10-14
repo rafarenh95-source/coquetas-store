@@ -2,11 +2,11 @@
 /**
  * Pie de página: preguntas frecuentes, contacto y la línea legal.
  *
- * «Cómo comprar» es la primera pregunta y viene abierta: es la duda que más
- * frena la compra (manual §4, «no saber cuándo llega el pedido»), así que sus
- * tres pasos dicen qué pasa después de escribir, no solo dónde. Los enlaces
- * «Cómo comprar» del encabezado y del catálogo llevan aquí y la abren si
- * alguien la había cerrado.
+ * Todas las preguntas empiezan cerradas: cada quien abre la que le interesa
+ * (decisión de la dueña). «Cómo comprar» va primera porque es la duda que más
+ * frena la compra (manual §4, «no saber cuándo llega el pedido»); sus tres
+ * pasos dicen qué pasa después de escribir, no solo dónde. El enlace «Cómo
+ * comprar» del menú lleva aquí y sí la abre, porque eso es lo que se pidió.
  *
  * Los textos viven en src/data/preguntas.json (la dueña puede corregirlos ahí).
  * Los mismos textos salen como datos estructurados FAQPage en la portada.
@@ -74,7 +74,6 @@ const botonRespuesta =
           <details
             id={q.id}
             name="preguntas-frecuentes"
-            open={i === 0}
             class="group scroll-mt-[84px] border-b border-ciruela/15"
           >
             <summary class="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-2 py-2 text-ciruela transition-colors duration-[var(--paso)] hover:text-purpura [&::-webkit-details-marker]:hidden">
