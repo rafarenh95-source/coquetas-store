@@ -1,26 +1,37 @@
 ---
 /**
- * Pie de página.
+ * Pie de página: preguntas frecuentes, contacto y la línea legal.
  *
- * «No saber cuándo llega el pedido» es una de las frenadas de Rebeca (manual §4)
- * y el punto de contacto de entrega exige «la fecha que se prometió». Por eso el
- * bloque de cómo comprar dice qué pasa después de escribir, no solo dónde.
+ * «Cómo comprar» es la primera pregunta y viene abierta: es la duda que más
+ * frena la compra (manual §4, «no saber cuándo llega el pedido»), así que sus
+ * tres pasos dicen qué pasa después de escribir, no solo dónde. Los enlaces
+ * «Cómo comprar» del encabezado y del catálogo llevan aquí y la abren si
+ * alguien la había cerrado.
+ *
+ * Los textos viven en src/data/preguntas.json (la dueña puede corregirlos ahí).
+ * Los mismos textos salen como datos estructurados FAQPage en la portada.
+ *
+ * Acordeón nativo (<details name>): se abre con el dedo, con Enter o Espacio,
+ * el lector de pantalla lo anuncia como expandible, y con «name» solo queda
+ * una respuesta abierta a la vez. Cero JavaScript para funcionar.
  *
  * La línea legal sobre la tasa BCV no es adorno: la Ley de Precios Justos obliga
  * a expresar el precio según la tasa oficial vigente.
  */
 
 import tienda from "../data/tienda.json";
+import preguntas from "../data/preguntas.json";
 import Icono from "./Icono.astro";
 
-/* El mismo mensaje precargado que usa el botón "Pedir la lista completa" al
-   final del catálogo: si el texto de esta tarjeta invita a pedirla, el chat
-   no puede abrirse en blanco y obligar a escribirlo de cero. */
-const enlaceWhatsapp = tienda.whatsapp
-  ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(
-      "Hola Coquetas Store, quiero ver la lista completa de productos disponibles."
-    )}`
-  : null;
+const whatsapp = (mensaje: string) =>
+  tienda.whatsapp
+    ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(mensaje)}`
+    : null;
+
+/* El chat no se abre en blanco: llega con el mensaje que corresponde. */
+const enlaceLista = whatsapp("Hola Coquetas Store, quiero ver la lista completa de productos disponibles.");
+const enlaceMayor = whatsapp("Hola Coquetas Store, quiero los precios al mayor.");
+const enlaceConsulta = whatsapp("Hola Coquetas Store, tengo una pregunta.");
 
 /* Cuando se cargue la dirección exacta, el enlace apunta a ella. Mientras
    tanto busca el negocio por nombre y ciudad, que ya deja a la clienta en la
@@ -41,93 +52,114 @@ const pasos = [
   },
   { icono: "confirmar" as const, texto: "Confirmamos disponibilidad y tu compra queda lista." },
 ];
+
+/* Botón de contorno dentro de las respuestas: el magenta queda para la acción
+   principal (manual), y seis botones magenta en una lista lo gastarían. */
+const botonRespuesta =
+  "presionable t-etiqueta mt-2 inline-flex min-h-[44px] items-center gap-1 border border-ciruela px-3 text-ciruela transition-colors duration-[var(--paso)] hover:bg-ciruela hover:text-crema";
 ---
 
 {/* Abajo deja sitio al botón flotante de WhatsApp y a la barra de la ficha,
     que van fijos sobre el final de la página en el teléfono. */}
 <footer
-  id="como-comprar"
+  id="preguntas"
   class="mt-12 scroll-mt-4 pb-[calc(96px+env(safe-area-inset-bottom))] md:pb-8"
 >
   <div class="contenedor">
-    <h2 class="t-h2 text-ciruela">Cómo comprar</h2>
+    <h2 class="t-h2 text-ciruela">Preguntas frecuentes</h2>
 
-    {/* Un ícono por paso antes que el número: se entiende el qué de un
-        vistazo, sin tener que leer la frase completa primero. */}
-    <ol class="mt-3 grid gap-3 md:grid-cols-3">
+    <div class="mt-3 border-t border-ciruela/15">
       {
-        pasos.map((paso, i) => (
-          <li class="bg-papel p-3">
-            <div class="flex items-center gap-2">
-              <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-crema text-purpura">
-                <Icono nombre={paso.icono} tamano={18} />
-              </span>
-              <p class="t-etiqueta text-purpura">0{i + 1}</p>
+        preguntas.map((q, i) => (
+          <details
+            id={q.id}
+            name="preguntas-frecuentes"
+            open={i === 0}
+            class="group scroll-mt-[84px] border-b border-ciruela/15"
+          >
+            <summary class="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-2 py-2 text-ciruela transition-colors duration-[var(--paso)] hover:text-purpura [&::-webkit-details-marker]:hidden">
+              <span class="font-sans text-[16px] leading-snug font-semibold">{q.pregunta}</span>
+              {/* La flecha gira al abrir: dice «esto se despliega» sin texto. */}
+              <Icono
+                nombre="chevron"
+                tamano={16}
+                class="shrink-0 text-purpura transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-open:rotate-180"
+              />
+            </summary>
+
+            <div class="pb-4">
+              {q.id === "como-comprar" ? (
+                /* Un ícono por paso antes que el número: se entiende el qué de
+                   un vistazo, sin tener que leer la frase completa primero. */
+                <ol class="grid gap-2 md:grid-cols-3 md:gap-3">
+                  {pasos.map((paso, j) => (
+                    <li class="bg-papel p-3">
+                      <div class="flex items-center gap-2">
+                        <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-crema text-purpura">
+                          <Icono nombre={paso.icono} tamano={18} />
+                        </span>
+                        <p class="t-etiqueta text-purpura">0{j + 1}</p>
+                      </div>
+                      <p class="t-cuerpo mt-2 text-ciruela/85">{paso.texto}</p>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <p class="t-cuerpo max-w-[60ch] text-ciruela/85">{q.respuesta}</p>
+              )}
+
+              {q.id === "mas-productos" && enlaceLista && (
+                <a href={enlaceLista} target="_blank" rel="noopener" class={botonRespuesta}>
+                  <Icono nombre="whatsapp" tamano={16} />
+                  Pedir la lista completa
+                </a>
+              )}
+
+              {q.id === "ubicacion" && (
+                <a href={enlaceMapa} target="_blank" rel="noopener" class={botonRespuesta}>
+                  <Icono nombre="ubicacion" tamano={16} />
+                  Ver en el mapa
+                </a>
+              )}
+
+              {q.id === "mayor" && enlaceMayor && (
+                <a href={enlaceMayor} target="_blank" rel="noopener" class={botonRespuesta}>
+                  <Icono nombre="whatsapp" tamano={16} />
+                  Pedir precios al mayor
+                </a>
+              )}
             </div>
-            <p class="t-cuerpo mt-2 text-ciruela/85">{paso.texto}</p>
-          </li>
+          </details>
         ))
       }
-    </ol>
+    </div>
 
-    {/* ── Dónde nos encuentras · cómo escribirnos ──────────────────────── */}
-    <div class="mt-6 grid gap-3 md:grid-cols-2">
-      <div class="flex flex-col bg-papel p-3">
-        <p class="t-etiqueta text-purpura">Dónde nos encuentras</p>
+    {/* Cierre: lo que no está en la lista se pregunta. Aquí sí va el magenta,
+        es la acción principal de la sección. */}
+    <div class="mt-6 flex flex-col bg-papel p-3">
+      <p class="t-etiqueta text-purpura">¿Tienes otra pregunta?</p>
+      <p class="t-cuerpo mt-2 text-ciruela/85">Escríbenos por WhatsApp.</p>
+      <p class="t-caption mt-1 text-ciruela/70">{tienda.promesa_respuesta}</p>
 
-        <address class="mt-2 not-italic">
-          {tienda.direccion && <p class="t-cuerpo text-ciruela">{tienda.direccion}</p>}
-          <p class="t-cuerpo text-ciruela">
-            {tienda.ciudad}, {tienda.estado}.
-          </p>
-        </address>
-
-        {tienda.horario && <p class="t-caption mt-1 text-ciruela/70">{tienda.horario}</p>}
-
-        {/* Un solo botón: una vez dentro de Google Maps, la propia app ya
-            ofrece la ruta -- un segundo botón aquí solo ahorraba un toque
-            que la clienta puede dar dentro del mapa igual. */}
-        <div class="mt-3">
-          <a
-            href={enlaceMapa}
-            target="_blank"
-            rel="noopener"
-            class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 border border-ciruela px-3 text-ciruela transition-colors duration-[var(--paso)] hover:bg-ciruela hover:text-crema"
-          >
-            <Icono nombre="ubicacion" tamano={16} />
-            Ver en el mapa
-          </a>
-        </div>
-      </div>
-
-      <div class="flex flex-col bg-papel p-3">
-        <p class="t-etiqueta text-purpura">Escríbenos</p>
-
-        <p class="t-cuerpo mt-2 text-ciruela/85">
-          Solicita la lista completa de productos por WhatsApp.
-        </p>
-        <p class="t-caption mt-1 text-ciruela/70">{tienda.promesa_respuesta}</p>
-
-        <div class="mt-3">
-          {
-            enlaceWhatsapp ? (
-              <a
-                href={enlaceWhatsapp}
-                target="_blank"
-                rel="noopener"
-                class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
-              >
-                <Icono nombre="whatsapp" tamano={17} />
-                Escribir por WhatsApp
-              </a>
-            ) : (
-              <p class="t-caption max-w-[36ch] border border-ciruela/25 p-2 text-ciruela/70">
-                Falta el número de WhatsApp. Se pone una sola vez en el archivo de datos de la
-                tienda y aparece en todo el sitio.
-              </p>
-            )
-          }
-        </div>
+      <div class="mt-3">
+        {
+          enlaceConsulta ? (
+            <a
+              href={enlaceConsulta}
+              target="_blank"
+              rel="noopener"
+              class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
+            >
+              <Icono nombre="whatsapp" tamano={17} />
+              Escribir por WhatsApp
+            </a>
+          ) : (
+            <p class="t-caption max-w-[36ch] border border-ciruela/25 p-2 text-ciruela/70">
+              Falta el número de WhatsApp. Se pone una sola vez en el archivo de datos de la
+              tienda y aparece en todo el sitio.
+            </p>
+          )
+        }
       </div>
     </div>
 
@@ -142,3 +174,20 @@ const pasos = [
     </p>
   </div>
 </footer>
+
+<script>
+  /* Los enlaces «Cómo comprar» llevan a #como-comprar: si esa respuesta estaba
+     cerrada, se abre al llegar. Sirve también cuando el ancla ya estaba en la
+     dirección (ahí el navegador no avisa de ningún cambio). */
+  function abrirDesdeAncla(hash: string) {
+    const destino = hash ? document.getElementById(hash.slice(1)) : null;
+    if (destino instanceof HTMLDetailsElement) destino.open = true;
+  }
+
+  document.addEventListener("click", (e) => {
+    const enlace = (e.target as Element)?.closest?.<HTMLAnchorElement>('a[href*="#"]');
+    if (enlace && enlace.pathname === location.pathname) abrirDesdeAncla(enlace.hash);
+  });
+  window.addEventListener("hashchange", () => abrirDesdeAncla(location.hash));
+  abrirDesdeAncla(location.hash);
+</script>

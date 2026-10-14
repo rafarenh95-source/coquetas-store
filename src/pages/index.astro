@@ -17,6 +17,7 @@ import Bolsa from "../components/Bolsa.astro";
 import BotonWhatsapp from "../components/BotonWhatsapp.astro";
 import productos from "../data/productos.json";
 import tienda from "../data/tienda.json";
+import preguntas from "../data/preguntas.json";
 ---
 
 <Base
@@ -66,7 +67,29 @@ import tienda from "../data/tienda.json";
           }
         : {}),
       ...(tienda.mapa ? { hasMap: tienda.mapa, sameAs: [tienda.mapa] } : {}),
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "08:30",
+        closes: "17:00",
+      },
+      paymentAccepted: "Binance, pago móvil, transferencia, Zelle, efectivo",
       currenciesAccepted: "USD, VES",
+    })}
+  />
+
+  {/* Preguntas frecuentes: los mismos textos del pie, para que el buscador
+      pueda mostrarlas como respuesta directa. */}
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: preguntas.map((q) => ({
+        "@type": "Question",
+        name: q.pregunta,
+        acceptedAnswer: { "@type": "Answer", text: q.respuesta },
+      })),
     })}
   />
 

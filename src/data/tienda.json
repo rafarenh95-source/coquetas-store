@@ -11,9 +11,9 @@
     "valor": 820.1018,
     "fecha": "2026-09-09"
   },
-  "_pendiente": "direccion: calle y referencia, para escribirla bajo el nombre de la ciudad. horario: p. ej. 'Lunes a sábado, 9:00 a 18:00'. instagram: usuario sin arroba.",
+  "_pendiente": "direccion: calle y referencia, para escribirla bajo el nombre de la ciudad. instagram: usuario sin arroba.",
   "direccion": null,
-  "horario": null,
+  "horario": "Lunes a sábado, de 8:30 a. m. a 5:00 p. m.",
   "mapa": "https://maps.google.com/?cid=867189525018855144",
   "coordenadas": {
     "lat": 10.5644234,

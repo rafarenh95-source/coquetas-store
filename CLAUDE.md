@@ -74,6 +74,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   avanza solo cada 3,5 s con vuelta sin fin (copias `[data-copia]` ocultas al lector), se pausa
   al tocar / ratón encima / foco de teclado / botón de pausa (obligatorio, WCAG 2.2.2); sin avance
   con movimiento reducido. 1,5 tarjetas visibles en teléfono → 2,5 · 3,5 · 4,5.
+- Preguntas frecuentes en el pie (`PieDePagina.astro`, textos en `src/data/preguntas.json`; salen
+  también como FAQPage en la portada). «¿Cómo compro?» (id `como-comprar`) es la primera, abierta;
+  los enlaces «Cómo comprar» la abren.
 - Portada: buscador + tarjetas de categoría; al tocar una se abre su grilla. Sin productos destacados
   en la portada (la dueña los quitó).
 - Móvil: todo lo tocable mide ≥ 44 × 44 px; cuerpo de texto 16 px; zonas seguras (notch y barra
@@ -84,7 +87,7 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 
 ## Pendientes conocidos
 
-- Usuario de Instagram sin cargar (`tienda.json` → `instagram: null`); dirección y horario vacíos.
+- Usuario de Instagram sin cargar (`tienda.json` → `instagram: null`); dirección vacía.
 - Textos de los productos nuevos son borrador: la dueña puede corregirlos.
 - Algunas fotos vienen de imágenes del proveedor (gel de sábila, almohada lashista, lápiz de
   visagismo de 1,50 $, pipetas): reemplazar si la dueña manda fotos reales.

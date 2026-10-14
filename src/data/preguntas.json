@@ -1,0 +1,32 @@
+[
+  {
+    "id": "como-comprar",
+    "pregunta": "¿Cómo compro?",
+    "respuesta": "Eliges lo que quieras, lo agregas a la bolsa y nos escribes por WhatsApp. Confirmamos disponibilidad y tu compra queda lista."
+  },
+  {
+    "id": "mas-productos",
+    "pregunta": "¿Tienen más productos de los que se ven?",
+    "respuesta": "Sí, más de 200. Pide la lista completa por WhatsApp."
+  },
+  {
+    "id": "ubicacion",
+    "pregunta": "¿Dónde están ubicados?",
+    "respuesta": "En San Francisco, estado Zulia."
+  },
+  {
+    "id": "pago",
+    "pregunta": "¿Qué formas de pago aceptan?",
+    "respuesta": "Binance, pago móvil, transferencia, Zelle y efectivo. Los precios están en dólares; en cada producto ves también cuánto es pagando en bolívares, con la tasa BCV del día."
+  },
+  {
+    "id": "retiro",
+    "pregunta": "¿Puedo pasar a buscar mi pedido?",
+    "respuesta": "Sí. Puedes retirarlo en la tienda de lunes a sábado, de 8:30 a. m. a 5:00 p. m."
+  },
+  {
+    "id": "mayor",
+    "pregunta": "¿Tienen precios al mayor?",
+    "respuesta": "Sí, tenemos precios especiales al mayor. Escríbenos por WhatsApp y te los enviamos."
+  }
+]
