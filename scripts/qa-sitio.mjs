@@ -133,8 +133,13 @@ const esperado = {
 };
 
 for (const [cat, n] of Object.entries(esperado)) {
-  await p.goto(BASE + "/", { waitUntil: "networkidle" });
-  await p.click(`[data-categoria-tile="${cat}"]`);
+  /* «Todo» ya no tiene tarjeta (la dueña la quitó): se llega por el enlace. */
+  if (cat === "todo") {
+    await p.goto(BASE + "/?categoria=todo", { waitUntil: "networkidle" });
+  } else {
+    await p.goto(BASE + "/", { waitUntil: "networkidle" });
+    await p.click(`[data-carrusel-diapositiva]:not([data-copia]) [data-categoria-tile="${cat}"]`);
+  }
   await p.waitForTimeout(400);
   const visibles = await p.$$eval("#grilla > div:not(.hidden)", (ns) => ns.length);
   if (visibles !== n) fallo("/", `categoría ${cat}: ${visibles} tarjetas, esperaba ${n}`);

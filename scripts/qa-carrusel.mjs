@@ -33,6 +33,9 @@ async function abrir(opciones = {}, ruta = "/") {
   const p = await c.newPage();
   p.on("pageerror", (e) => errores.push(e.message));
   await p.goto(BASE + ruta, { waitUntil: "networkidle" });
+  /* El carrusel solo avanza a la vista; en el teléfono está debajo de la
+     muestra de productos, así que se baja hasta él. */
+  await p.evaluate(() => document.querySelector("[data-carrusel]")?.scrollIntoView({ block: "center", behavior: "instant" }));
   await p.waitForTimeout(500);
   return { c, p };
 }

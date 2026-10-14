@@ -59,6 +59,12 @@ const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
   };
 });
 
+/* Muestra de la portada: los productos marcados como «destacado» en los
+   datos, en su orden. Los elige la dueña (hoy: esmalte semipermanente, gel
+   color, agua micelar, exfoliante y veloterapia). */
+const destacados = productos.filter((p) => p.destacado);
+const TITULO_MUESTRA = "Una muestra de nuestros productos";
+
 const NOMBRES: Record<string, string> = {
   todo: "Todo",
   unas: "Uñas",
@@ -138,6 +144,48 @@ const enlaceListaCompleta = tienda.whatsapp
       Vista inicial con JavaScript. El script la esconde y muestra la grilla
       completa en cuanto se toca una categoría o se escribe en el buscador. */}
   <div id="vista-portada" class="contenedor mt-5 scroll-mt-[84px]">
+    {/* ── Muestra de productos ───────────────────────────────────────────
+        Una fila de tarjetas completas (tono, cantidad, agregar) para que se
+        pueda comprar sin entrar a ninguna categoría. A diferencia del
+        carrusel de categorías, esta NO avanza sola: dos filas moviéndose a la
+        vez, una encima de otra, marean y no dejan leer los precios. Se mueve
+        con el dedo o con las flechas (scripts/fila.js). */}
+    {
+      destacados.length > 0 && (
+        <div data-fila role="region" aria-labelledby="titulo-muestra" class="mb-6">
+          <div class="flex items-center justify-between gap-2">
+            <p id="titulo-muestra" class="t-etiqueta text-purpura">
+              {TITULO_MUESTRA}
+            </p>
+            <div data-fila-controles hidden class="flex shrink-0 items-center gap-[4px]">
+              <button type="button" data-fila-anterior aria-label="Productos anteriores" class="presionable inline-flex h-[44px] w-[44px] items-center justify-center border border-ciruela/25 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela disabled:cursor-not-allowed disabled:text-ciruela/30 disabled:hover:border-ciruela/25" disabled>
+                <Icono nombre="chevron" tamano={14} class="rotate-90" />
+              </button>
+              <button type="button" data-fila-siguiente aria-label="Más productos" class="presionable inline-flex h-[44px] w-[44px] items-center justify-center border border-ciruela/25 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela disabled:cursor-not-allowed disabled:text-ciruela/30 disabled:hover:border-ciruela/25">
+                <Icono nombre="chevron" tamano={14} class="-rotate-90" />
+              </button>
+            </div>
+          </div>
+          <div
+            data-fila-pista
+            class="a-sangre sin-riel mt-2 flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain scroll-px-[var(--sangria)] md:gap-3"
+          >
+            {/* min-w-0: sin él, la fila de 14 tonos (que se desliza por dentro)
+                le impone su ancho a la tarjeta y la estira más que las vecinas. */}
+            {destacados.map((p, i) => (
+              <div data-fila-item class="flex min-w-0 shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-72px)/3.5)] lg:basis-[calc((100%-96px)/4.5)] [&>article]:w-full [&>article]:min-w-0">
+                <TarjetaProducto
+                  producto={p}
+                  prioridad={i < 2}
+                  sizes="(min-width: 1280px) 234px, (min-width: 1024px) 20vw, (min-width: 768px) 26vw, (min-width: 640px) 36vw, 62vw"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
     {/* ── Carrusel de categorías ─────────────────────────────────────────
         Una fila que se desliza con el dedo (scroll-snap nativo: el navegador
         hace el deslizamiento y la inercia, así que va fluido hasta en un
@@ -188,7 +236,7 @@ const enlaceListaCompleta = tienda.whatsapp
       >
       {
         CATEGORIAS.map((c, i) => (
-          <div role="group" aria-roledescription="diapositiva" aria-label={`${i + 1} de ${CATEGORIAS.length + 1}`} data-carrusel-diapositiva class="flex shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-72px)/3.5)] lg:basis-[calc((100%-96px)/4.5)]">
+          <div role="group" aria-roledescription="diapositiva" aria-label={`${i + 1} de ${CATEGORIAS.length}`} data-carrusel-diapositiva class="flex shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-72px)/3.5)] lg:basis-[calc((100%-96px)/4.5)]">
           <a href="#grilla" data-categoria-tile={c.id} class="presionable group flex w-full flex-col bg-papel">
             <div class="relative aspect-square overflow-hidden bg-crema">
               {c.imagen && (
@@ -219,19 +267,9 @@ const enlaceListaCompleta = tienda.whatsapp
         ))
       }
 
-      {/* La cuarta tarjeta es un bloque de color, no una foto: es la única
-          categoría que no tiene un producto que la represente sola. */}
-      <div role="group" aria-roledescription="diapositiva" aria-label={`${CATEGORIAS.length + 1} de ${CATEGORIAS.length + 1}`} data-carrusel-diapositiva class="flex shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-72px)/3.5)] lg:basis-[calc((100%-96px)/4.5)]">
-      <a href="#grilla" data-categoria-tile="todo" class="presionable group flex w-full flex-col bg-papel">
-        <div class="relative flex aspect-square items-center justify-center overflow-hidden bg-ciruela text-crema">
-          <Icono nombre="todo" tamano={30} class="transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-110" />
-        </div>
-        <div class="flex flex-1 flex-col gap-[2px] px-[10px] py-[12px] min-[360px]:p-2">
-          <span class="t-etiqueta text-ciruela">Todo</span>
-          <span class="t-caption text-ciruela/60">{productos.length} productos</span>
-        </div>
-      </a>
-      </div>
+      {/* Ya no hay tarjeta «Todo» (decisión de la dueña): la muestra de arriba
+          y el buscador cubren a quien quiere mirar sin elegir categoría. La
+          vista «todo» sigue existiendo para los resultados del buscador. */}
       </div>
 
       {/* Puntos: solo dicen dónde se está. No son botones (seis botones de
@@ -324,6 +362,7 @@ const enlaceListaCompleta = tienda.whatsapp
 <script>
   import "../scripts/tarjetas.js";
   import "../scripts/carrusel.js";
+  import "../scripts/fila.js";
 
   const grilla = document.getElementById("grilla");
   const vacio = document.getElementById("sin-resultados");

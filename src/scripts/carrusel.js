@@ -256,14 +256,24 @@ if (raiz && pista) {
   /* ── cuándo se ve ────────────────────────────────────────────────────── */
   new IntersectionObserver(
     ([entrada]) => {
-      visible = entrada.isIntersecting;
       // Si la página abrió en la grilla, el carrusel estaba escondido y no se
-      // pudo medir: se mide al aparecer.
-      if (visible && !paso) prepararMedidas();
+      // pudo medir: se mide apenas asoma (aunque sea un borde), no a la mitad.
+      if (entrada.isIntersecting && !paso) prepararMedidas();
+      // Avanzar solo, en cambio, únicamente si se ve al menos la mitad.
+      visible = entrada.intersectionRatio >= 0.5;
       actualizar();
     },
-    { threshold: 0.5 }
+    { threshold: [0, 0.5] }
   ).observe(pista);
+
+  /* Al pasar de escondido (vista de grilla) a visible, la pista deja de medir
+     0: es el momento de tomar medidas, aunque esté más abajo en la página. */
+  new ResizeObserver(() => {
+    if (!paso && pista.clientWidth > 0) {
+      prepararMedidas();
+      actualizar();
+    }
+  }).observe(pista);
 
   document.addEventListener("visibilitychange", () => actualizar());
   movimientoReducido.addEventListener?.("change", () => actualizar());

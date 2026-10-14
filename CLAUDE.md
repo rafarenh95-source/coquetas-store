@@ -77,8 +77,10 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 - Preguntas frecuentes en el pie (`PieDePagina.astro`, textos en `src/data/preguntas.json`; salen
   también como FAQPage en la portada). «¿Cómo compro?» (id `como-comprar`) es la primera, abierta;
   los enlaces «Cómo comprar» la abren.
-- Portada: buscador + tarjetas de categoría; al tocar una se abre su grilla. Sin productos destacados
-  en la portada (la dueña los quitó).
+- Portada: buscador, luego una fila «Una muestra de nuestros productos» (los `destacado: true`,
+  deslizable, sin avance automático, `scripts/fila.js`; título en `TITULO_MUESTRA` de
+  `Catalogo.astro`), luego el carrusel de categorías. Al tocar una categoría se abre su grilla.
+  Sin tarjeta «Todo» (la dueña la quitó); `?categoria=todo` y el buscador siguen funcionando.
 - Móvil: todo lo tocable mide ≥ 44 × 44 px; cuerpo de texto 16 px; zonas seguras (notch y barra
   de gestos) con `env(safe-area-inset-*)` y `viewport-fit=cover`. Los botones del encabezado
   llevan texto solo desde 1024 px y los enlaces «Catálogo / Cómo comprar» desde 1280 px: si no,

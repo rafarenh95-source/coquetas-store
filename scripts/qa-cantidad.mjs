@@ -43,7 +43,8 @@ await p.evaluate(() => localStorage.clear());
 await p.reload({ waitUntil: "networkidle" });
 await p.waitForTimeout(800);
 
-const tarjeta = p.locator(`[data-tarjeta][data-id="${conTonos.producto_id}"]`);
+// En la grilla: el mismo producto puede estar también en la muestra de la portada.
+const tarjeta = p.locator(`#grilla [data-tarjeta][data-id="${conTonos.producto_id}"]`);
 const campo = tarjeta.locator("[data-cantidad-valor]");
 const menos = tarjeta.locator("[data-cantidad-menos]");
 const mas = tarjeta.locator("[data-cantidad-mas]");

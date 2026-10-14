@@ -26,9 +26,15 @@ import Cantidad from "./Cantidad.astro";
 interface Props {
   producto: any;
   prioridad?: boolean;
+  /** Cuánto ocupa la foto en pantalla; cambia entre la grilla y la fila de muestra. */
+  sizes?: string;
 }
 
-const { producto: p, prioridad = false } = Astro.props;
+const {
+  producto: p,
+  prioridad = false,
+  sizes = "(min-width: 1280px) 270px, (min-width: 768px) 30vw, (min-width: 640px) 45vw, 92vw",
+} = Astro.props;
 
 const primera = p.variantes[0];
 const src = primera.imagenes[0];
@@ -60,7 +66,7 @@ const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : "Variante"} de ${p
         data-foto-tarjeta
         src={src}
         srcset={srcset}
-        sizes="(min-width: 1280px) 270px, (min-width: 768px) 30vw, (min-width: 640px) 45vw, 92vw"
+        sizes={sizes}
         alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
         width="1000"
         height="1000"
