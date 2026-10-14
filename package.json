@@ -11,7 +11,7 @@
     "logos": "node scripts/preparar-logos.mjs",
     "fuentes": "node scripts/preparar-fuentes.mjs",
     "contraste": "node scripts/verificar-contraste.mjs",
-    "qa": "node scripts/qa-datos.mjs && node scripts/qa-sitio.mjs && node scripts/qa-movil.mjs && node scripts/qa-cantidad.mjs && node scripts/qa-carrusel.mjs",
+    "qa": "node scripts/qa-datos.mjs && node scripts/qa-sitio.mjs && node scripts/qa-movil.mjs && node scripts/qa-cantidad.mjs && node scripts/qa-carrusel.mjs && node scripts/qa-menu.mjs",
     "fotos:ia": "node scripts/editar-fotos-ia.mjs"
   },
   "type": "module",

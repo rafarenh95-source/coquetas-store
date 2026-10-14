@@ -1,0 +1,220 @@
+---
+/**
+ * Menú: un panel que entra desde la derecha (donde está el botón que lo abre).
+ *
+ * Contenido aprobado por la dueña: ver catálogo, las cinco categorías, cómo
+ * comprar, preguntas frecuentes, dónde estamos, precios al mayor, TikTok y
+ * pedir por WhatsApp (este último en magenta: es la acción principal).
+ *
+ * <dialog> nativo con showModal(): Escape lo cierra, el fondo queda inerte (el
+ * tabulador no se escapa), el foco vuelve al botón al cerrar y el lector de
+ * pantalla lo anuncia como diálogo. Sin JavaScript el botón no hace nada,
+ * pero todo lo del menú sigue en la página (pie y preguntas frecuentes).
+ *
+ * Entrada con la curva de los cajones de iOS (0.32, 0.72, 0, 1) en 280 ms;
+ * salida más corta. Con movimiento reducido el global.css deja solo la
+ * opacidad.
+ */
+
+import Icono from "./Icono.astro";
+import tienda from "../data/tienda.json";
+
+const whatsapp = (mensaje: string) =>
+  tienda.whatsapp ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(mensaje)}` : null;
+
+const consultaMapa = tienda.direccion
+  ? `${tienda.direccion}, ${tienda.ciudad}, ${tienda.estado}, Venezuela`
+  : `${tienda.nombre}, ${tienda.ciudad}, ${tienda.estado}, Venezuela`;
+const enlaceMapa =
+  tienda.mapa ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consultaMapa)}`;
+
+const categorias = [
+  { id: "unas", texto: "Uñas", icono: "unas" as const },
+  { id: "herramientas", texto: "Herramientas", icono: "herramientas" as const },
+  { id: "pestanas", texto: "Pestañas y cejas", icono: "pestanas" as const },
+  { id: "facial", texto: "Cuidado facial", icono: "facial" as const },
+  { id: "cuerpo", texto: "Cuerpo y spa", icono: "cuerpo" as const },
+];
+
+const enlaceMayor = whatsapp("Hola Coquetas Store, quiero los precios al mayor.");
+const enlacePedido = whatsapp("Hola Coquetas Store, quiero hacer un pedido.");
+const enlaceTiktok = tienda.tiktok ? `https://www.tiktok.com/@${tienda.tiktok}` : null;
+
+const fila =
+  "flex min-h-[52px] items-center gap-2 border-b border-ciruela/10 font-sans text-[16px] font-semibold text-ciruela transition-colors duration-[var(--paso)] hover:text-purpura";
+const subfila =
+  "flex min-h-[48px] items-center gap-2 pl-1 font-sans text-[16px] text-ciruela/85 transition-colors duration-[var(--paso)] hover:text-purpura";
+const icono = "inline-flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full bg-crema text-purpura";
+---
+
+<dialog
+  data-menu
+  aria-label="Menú"
+  class="menu-cajon m-0 ml-auto h-dvh max-h-none w-[88vw] max-w-[380px] overflow-y-auto overscroll-contain bg-papel p-0 text-ciruela backdrop:bg-ciruela/40"
+>
+  <div class="flex min-h-full flex-col px-3 pt-[max(8px,env(safe-area-inset-top))] pb-[max(24px,env(safe-area-inset-bottom))]">
+    <div class="flex items-center justify-between border-b border-ciruela/15 py-1">
+      <p class="t-h3 text-ciruela">Menú</p>
+      <button
+        type="button"
+        data-menu-cerrar
+        aria-label="Cerrar el menú"
+        class="presionable flex h-[44px] w-[44px] items-center justify-center text-ciruela/70 transition-colors duration-[var(--paso)] hover:text-ciruela"
+      >
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="none">
+          <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    <nav aria-label="Secciones" class="mt-1">
+      <ul>
+        <li>
+          <a href="/#catalogo" data-ver-portada class={fila}>
+            <span class={icono}><Icono nombre="todo" tamano={16} /></span>
+            Ver catálogo
+          </a>
+        </li>
+
+        <li class="border-b border-ciruela/10 py-1">
+          <p class="t-etiqueta pt-2 pb-1 text-purpura">Categorías</p>
+          <ul>
+            {
+              categorias.map((c) => (
+                <li>
+                  <a href={`/?categoria=${c.id}`} data-ir-categoria={c.id} class={subfila}>
+                    <Icono nombre={c.icono} tamano={18} class="shrink-0 text-purpura" />
+                    {c.texto}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </li>
+
+        <li>
+          <a href="/#como-comprar" class={fila}>
+            <span class={icono}><Icono nombre="elegir" tamano={16} /></span>
+            Cómo comprar
+          </a>
+        </li>
+        <li>
+          <a href="/#preguntas" class={fila}>
+            <span class={icono}><Icono nombre="confirmar" tamano={16} /></span>
+            Preguntas frecuentes
+          </a>
+        </li>
+        <li>
+          <a href={enlaceMapa} target="_blank" rel="noopener" class={fila}>
+            <span class={icono}><Icono nombre="ubicacion" tamano={16} /></span>
+            Dónde estamos
+          </a>
+        </li>
+        {
+          enlaceMayor && (
+            <li>
+              <a href={enlaceMayor} target="_blank" rel="noopener" class={fila}>
+                <span class={icono}><Icono nombre="whatsapp" tamano={16} /></span>
+                Precios al mayor
+              </a>
+            </li>
+          )
+        }
+        {
+          enlaceTiktok && (
+            <li>
+              <a href={enlaceTiktok} target="_blank" rel="noopener" class={fila}>
+                <span class={icono}><Icono nombre="tiktok" tamano={15} /></span>
+                Síguenos en TikTok
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </nav>
+
+    <div class="mt-auto pt-4">
+      {
+        enlacePedido && (
+          <a
+            href={enlacePedido}
+            target="_blank"
+            rel="noopener"
+            class="presionable t-etiqueta flex min-h-[48px] w-full items-center justify-center gap-1 bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
+          >
+            <Icono nombre="whatsapp" tamano={17} />
+            Pedir por WhatsApp
+          </a>
+        )
+      }
+      {tienda.horario && <p class="t-caption mt-2 text-center text-ciruela/70">{tienda.horario}</p>}
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const menu = document.querySelector<HTMLDialogElement>("[data-menu]");
+
+  if (menu) {
+    document.addEventListener("click", (e) => {
+      const t = e.target as Element;
+      if (t.closest?.("[data-menu-abrir]")) {
+        menu.showModal();
+        return;
+      }
+      if (!menu.open) return;
+      // Cerrar: la X, tocar el velo de fuera o elegir cualquier enlace (la
+      // navegación sigue su curso; en la misma página baja hasta su sitio).
+      if (t === menu || t.closest("[data-menu-cerrar]") || t.closest("[data-menu] a")) menu.close();
+    });
+  }
+</script>
+
+<style>
+  /* Entrada desde la derecha; salida más rápida que la entrada. display y
+     overlay con allow-discrete para que la salida se vea antes de que el
+     diálogo desaparezca (donde no hay soporte, simplemente aparece). */
+  .menu-cajon {
+    translate: 100% 0;
+    transition:
+      translate 200ms cubic-bezier(0.32, 0.72, 0, 1),
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
+  }
+  .menu-cajon[open] {
+    translate: 0 0;
+    transition-duration: 280ms;
+  }
+  @starting-style {
+    .menu-cajon[open] {
+      translate: 100% 0;
+    }
+  }
+  .menu-cajon::backdrop {
+    opacity: 0;
+    transition:
+      opacity 200ms ease,
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
+  }
+  .menu-cajon[open]::backdrop {
+    opacity: 1;
+  }
+  @starting-style {
+    .menu-cajon[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  /* La página de atrás no se desliza mientras el menú está abierto. */
+  :global(html:has(dialog[data-menu][open])) {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-cajon,
+    .menu-cajon[open] {
+      translate: 0 0;
+    }
+  }
+</style>

@@ -19,7 +19,8 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
    320/360/375/390/412/430/768 px: desbordes, zonas táctiles < 44 px, textos cortados, campos
    < 16 px). `--capturas=<carpeta>` guarda capturas de cada pantalla en cada ancho.
    Y `node scripts/qa-cantidad.mjs` — flujo del selector de cantidad y la bolsa; debe decir
-   «Cantidad: sin fallos». `node scripts/qa-carrusel.mjs` (tarda ~1 min) — «Carrusel: sin fallos».
+   «Cantidad: sin fallos». `node scripts/qa-carrusel.mjs` (tarda ~2 min) — «Carrusel: sin fallos».
+   `node scripts/qa-menu.mjs` — «Menú: sin fallos».
 5. Revisar visualmente con Playwright (`playwright-core`, `channel: "msedge"`) en 390 px y 1280 px.
    Los scripts que importan `playwright-core` o `sharp` tienen que estar dentro de la carpeta del
    proyecto para que Node los encuentre.
@@ -79,7 +80,11 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 - Preguntas frecuentes en el pie (`PieDePagina.astro`, textos en `src/data/preguntas.json`; salen
   también como FAQPage en la portada). «¿Cómo compro?» (id `como-comprar`) es la primera, abierta;
   los enlaces «Cómo comprar» la abren.
-- Portada: buscador, luego el carrusel «Favoritos de Coquetas» (lista `MUESTRA` en
+- Encabezado: logo + WhatsApp (desde 360 px) + bolsa + menú ☰. El menú (`Menu.astro`, `<dialog>`
+  nativo que entra desde la derecha) lleva: ver catálogo, las 5 categorías, cómo comprar, preguntas
+  frecuentes, dónde estamos, precios al mayor, TikTok y pedir por WhatsApp (aprobado por la dueña).
+  Mapa y TikTok ya no están en el encabezado. Sin «Cómo comprar» bajo el título.
+- Portada: buscador, luego el carrusel «Favoritos de Coquetas» (solo la foto; lleva a la ficha) (lista `MUESTRA` en
   `Catalogo.astro`: esmalte semipermanente, brillo color, exfoliante, veloterapia; NO usa la
   bandera `destacado`, que decide la foto de cada categoría), luego el de categorías. Al tocar una
   categoría se abre su grilla. Sin tarjeta «Todo» (la dueña la quitó); `?categoria=todo` y el
@@ -92,6 +97,8 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 
 ## Pendientes conocidos
 
+- Banner con fotos de la tienda en lugar del título «Catálogo»: la dueña va a mandar 3-5 fotos
+  horizontales (fachada, estantes, mostrador, detalle).
 - Usuario de Instagram sin cargar (`tienda.json` → `instagram: null`); dirección vacía.
 - Textos de los productos nuevos son borrador: la dueña puede corregirlos.
 - Algunas fotos vienen de imágenes del proveedor (gel de sábila, almohada lashista, lápiz de

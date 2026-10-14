@@ -78,12 +78,19 @@ const PISTA =
   "sin-riel flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-[var(--sangria)] scroll-px-[var(--sangria)] md:gap-3";
 const SANGRE = "relative mt-2 -mx-[var(--sangria)]";
 /* Tarjetas visibles a la vez: categorías 1,5 · 2,5 · 3,5 · 4,5; favoritos
-   1,5 · 2,5 · 2,5 · 3,5 (son cuatro: con 4,5 cabrían todas y no habría nada
-   que deslizar en la computadora). */
+   (solo la foto, más chicas) 2,5 · 3,5 · 3,5 · 3,5 (son cuatro: con más
+   visibles cabrían todas y no habría nada que deslizar en la computadora). */
 const DIAPO_CATEGORIA =
   "flex min-w-0 shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-72px)/3.5)] lg:basis-[calc((100%-96px)/4.5)]";
 const DIAPO_MUESTRA =
-  "flex min-w-0 shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-48px)/2.5)] lg:basis-[calc((100%-72px)/3.5)] [&>article]:w-full [&>article]:min-w-0";
+  "flex min-w-0 shrink-0 snap-start basis-[calc((100%-32px)/2.5)] sm:basis-[calc((100%-48px)/3.5)] md:basis-[calc((100%-72px)/3.5)]";
+
+/* Fotos de producto en 400 / 550 / 700 / 1000 px. */
+const srcsetDe = (src: string) =>
+  [400, 550, 700]
+    .map((w) => `${src.replace(".webp", `-${w}.webp`)} ${w}w`)
+    .concat(`${src} 1000w`)
+    .join(", ");
 
 const NOMBRES: Record<string, string> = {
   todo: "Todo",
@@ -123,17 +130,8 @@ const enlaceListaCompleta = tienda.whatsapp
     <h1 class="t-h2 text-ciruela">Catálogo</h1>
 
     <p class="t-lead mt-2 text-ciruela/80">Una muestra de nuestras piezas favoritas.</p>
-
-    {/* Acceso directo al pie sin cruzar las tarjetas. El enlace equivalente
-        del encabezado solo se ve desde 1280px (no hay sitio para texto junto a
-        los íconos en móvil) -- este es la versión que sí llega al teléfono. */}
-    <a
-      href="#como-comprar"
-      class="presionable t-etiqueta mt-1 inline-flex min-h-[44px] items-center gap-1 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
-    >
-      Cómo comprar
-      <Icono nombre="chevron" tamano={13} />
-    </a>
+    {/* «Cómo comprar» ya no va aquí (decisión de la dueña): está en el menú y
+        en las preguntas frecuentes. */}
   </div>
 
   <div
@@ -200,11 +198,27 @@ const enlaceListaCompleta = tienda.whatsapp
                   data-carrusel-diapositiva
                   class={DIAPO_MUESTRA}
                 >
-                  <TarjetaProducto
-                    producto={p}
-                    prioridad={i < 2}
-                    sizes="(min-width: 1280px) 310px, (min-width: 1024px) 26vw, (min-width: 640px) 36vw, 62vw"
-                  />
+                  {/* Solo la foto (decisión de la dueña): una muestra rápida.
+                      Tocarla abre la ficha, donde están el precio y los tonos. */}
+                  <a
+                    href={`/producto/${p.producto_id.toLowerCase()}`}
+                    class="presionable group block w-full bg-papel"
+                  >
+                    <div class="aspect-square overflow-hidden">
+                      <img
+                        src={p.variantes[0].imagenes[0]}
+                        srcset={srcsetDe(p.variantes[0].imagenes[0])}
+                        sizes="(min-width: 1280px) 310px, (min-width: 768px) 26vw, (min-width: 640px) 27vw, 38vw"
+                        alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
+                        width="1000"
+                        height="1000"
+                        loading={i < 3 ? "eager" : "lazy"}
+                        fetchpriority={i < 2 ? "high" : "auto"}
+                        decoding="async"
+                        class="h-full w-full object-contain p-1 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  </a>
                 </div>
               ))}
             </div>
@@ -458,6 +472,18 @@ const enlaceListaCompleta = tienda.whatsapp
     volver?.addEventListener("click", (e) => {
       e.preventDefault();
       mostrarPortada();
+    });
+
+    /* «Ver catálogo» y las categorías del menú: aquí en la portada se
+       resuelven sin recargar la página (en las demás páginas, el enlace
+       normal lleva a /?categoria=… y la portada se abre ya filtrada). */
+    document.addEventListener("click", (e) => {
+      const a = (e.target as Element).closest?.<HTMLAnchorElement>("a[data-ver-portada], a[data-ir-categoria]");
+      if (!a) return;
+      e.preventDefault();
+      document.querySelector<HTMLDialogElement>("dialog[data-menu]")?.close();
+      if (a.dataset.irCategoria) mostrarGrilla(a.dataset.irCategoria);
+      else mostrarPortada();
     });
 
     buscador.addEventListener("input", () => {

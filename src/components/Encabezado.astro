@@ -4,49 +4,29 @@
  *
  * Fondo crema porque el logo solo puede ir sobre crema o papel (manual §5).
  *
- * Los accesos que resuelven algo van aquí arriba: ir a la tienda, pedir por
- * WhatsApp, seguir en TikTok y ver la bolsa. En móvil y tablet son iconos para que
- * quepan junto al lockup completo — el manual pide 180 px de mínimo para el
- * horizontal, y con texto en los botones no cabrían.
- *
- * No todos caben a la vez en un teléfono angosto, así que se retiran en
- * orden de qué tan reemplazable es cada uno por otra vía: primero TikTok
- * (< 412 px), luego el mapa (< 360 px) — los dos siguen alcanzables desde el
- * pie. WhatsApp y la bolsa no se ocultan nunca: son los dos que resuelven la
- * compra. Sin este orden, el navegador ensancha el viewport para que quepa
- * el encabezado entero y la página se ve encogida.
+ * Arriba quedan solo las tres cosas que resuelven: pedir por WhatsApp, ver la
+ * bolsa y abrir el menú (decisión de la dueña). El mapa, TikTok, las
+ * categorías y las preguntas viven en el menú. En teléfono y tablet son
+ * iconos para que quepan junto al lockup completo — el manual pide 180 px de
+ * mínimo para el horizontal; desde 1024 px llevan texto.
  *
  * Cada botón mide 44 × 44, el mínimo para el dedo. Cuentas en el ancho más
- * justo de cada tramo (logo 180 + 8 de aire + botones de 44 con 4 entre sí):
- *   320 px → 2 botones = 280 de 288 disponibles
+ * justo (logo 180 + 8 de aire + botones de 44 con 4 entre sí):
  *   360 px → 3 botones = 328 de 328
- *   412 px → 4 botones = 376 de 380
+ *   320 px → no caben 3: WhatsApp se retira de aquí (sigue en el menú y en
+ *            el botón flotante), quedan bolsa y menú = 280 de 288.
  */
 
 import Logo from "./Logo.astro";
 import Icono from "./Icono.astro";
+import Menu from "./Menu.astro";
 import tienda from "../data/tienda.json";
-
-const enlaces = [
-  { texto: "Catálogo", href: "/#catalogo" },
-  { texto: "Cómo comprar", href: "/#como-comprar" },
-];
-
-const consultaMapa = tienda.direccion
-  ? `${tienda.direccion}, ${tienda.ciudad}, ${tienda.estado}, Venezuela`
-  : `${tienda.nombre}, ${tienda.ciudad}, ${tienda.estado}, Venezuela`;
-
-const enlaceMapa =
-  tienda.mapa ??
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consultaMapa)}`;
 
 const enlaceWhatsapp = tienda.whatsapp
   ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(
       "Hola Coquetas Store, quiero hacer un pedido."
     )}`
   : null;
-
-const enlaceTiktok = tienda.tiktok ? `https://www.tiktok.com/@${tienda.tiktok}` : null;
 
 /* Sin utilidad de display: la pone cada acción, para que ocultar una no
    dependa del orden en que Tailwind escriba las clases. */
@@ -66,34 +46,6 @@ const accion =
     </a>
 
     <nav aria-label="Principal" class="flex shrink-0 items-center gap-[4px] md:gap-2">
-      <ul class="hidden items-center gap-3 xl:flex">
-        {
-          enlaces.map((e) => (
-            <li>
-              <a
-                href={e.href}
-                class={`${accion} inline-flex t-etiqueta px-1 text-ciruela/70 hover:text-ciruela`}
-              >
-                {e.texto}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-
-      {/* Ir a la tienda */}
-      <a
-        href={enlaceMapa}
-        target="_blank"
-        rel="noopener"
-        aria-label="Ver la tienda en el mapa"
-        class={`${accion} hidden w-[44px] border border-ciruela/25 text-ciruela/75 min-[360px]:inline-flex hover:border-ciruela hover:text-ciruela lg:w-auto lg:px-2`}
-        data-accion-mapa
-      >
-        <Icono nombre="ubicacion" tamano={19} />
-        <span class="t-etiqueta hidden lg:inline">Tienda</span>
-      </a>
-
       {/* Pedir por WhatsApp */}
       {
         enlaceWhatsapp && (
@@ -103,26 +55,10 @@ const accion =
             rel="noopener"
             aria-label="Pedir por WhatsApp"
             data-wa-referencia
-            class={`${accion} inline-flex w-[44px] bg-magenta text-crema hover:bg-purpura lg:w-auto lg:px-2`}
+            class={`${accion} hidden w-[44px] bg-magenta text-crema min-[360px]:inline-flex hover:bg-purpura lg:w-auto lg:px-2`}
           >
             <Icono nombre="whatsapp" tamano={19} />
             <span class="t-etiqueta hidden lg:inline">Pedir</span>
-          </a>
-        )
-      }
-
-      {/* Seguir en TikTok */}
-      {
-        enlaceTiktok && (
-          <a
-            href={enlaceTiktok}
-            target="_blank"
-            rel="noopener"
-            aria-label="Ver Coquetas Store en TikTok"
-            class={`${accion} hidden w-[44px] border border-ciruela/25 text-ciruela/75 min-[412px]:inline-flex hover:border-ciruela hover:text-ciruela lg:w-auto lg:px-2`}
-          >
-            <Icono nombre="tiktok" tamano={17} />
-            <span class="t-etiqueta hidden lg:inline">TikTok</span>
           </a>
         )
       }
@@ -154,6 +90,22 @@ const accion =
           >0</span
         >
       </button>
+
+      {/* Menú */}
+      <button
+        type="button"
+        data-menu-abrir
+        aria-label="Abrir el menú"
+        aria-haspopup="dialog"
+        class={`${accion} inline-flex w-[44px] border border-ciruela/25 text-ciruela hover:border-ciruela hover:text-purpura lg:w-auto lg:px-2`}
+      >
+        <svg viewBox="0 0 20 20" width="19" height="19" aria-hidden="true" fill="none">
+          <path d="M3.5 6h13M3.5 10h13M3.5 14h13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+        <span class="t-etiqueta hidden lg:inline">Menú</span>
+      </button>
     </nav>
   </div>
+
+  <Menu />
 </header>
