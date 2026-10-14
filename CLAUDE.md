@@ -19,7 +19,7 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
    320/360/375/390/412/430/768 px: desbordes, zonas táctiles < 44 px, textos cortados, campos
    < 16 px). `--capturas=<carpeta>` guarda capturas de cada pantalla en cada ancho.
    Y `node scripts/qa-cantidad.mjs` — flujo del selector de cantidad y la bolsa; debe decir
-   «Cantidad: sin fallos».
+   «Cantidad: sin fallos». `node scripts/qa-carrusel.mjs` (tarda ~1 min) — «Carrusel: sin fallos».
 5. Revisar visualmente con Playwright (`playwright-core`, `channel: "msedge"`) en 390 px y 1280 px.
    Los scripts que importan `playwright-core` o `sharp` tienen que estar dentro de la carpeta del
    proyecto para que Node los encuentre.
@@ -70,6 +70,10 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 - Cantidad: selector «− número +» (`Cantidad.astro` + `scripts/cantidad.js`, clases compartidas en
   `cantidad-estilos.js`) en tarjeta, ficha y cada fila de la bolsa. Agregar suma la cantidad elegida
   y ya **no abre la bolsa**: muestra un aviso «N unidades agregadas» con botón «Ver bolsa».
+- Categorías en carrusel horizontal (`scripts/carrusel.js`, sin librerías): scroll-snap nativo,
+  avanza solo cada 3,5 s con vuelta sin fin (copias `[data-copia]` ocultas al lector), se pausa
+  al tocar / ratón encima / foco de teclado / botón de pausa (obligatorio, WCAG 2.2.2); sin avance
+  con movimiento reducido. 1,5 tarjetas visibles en teléfono → 2,5 · 3,5 · 4,5.
 - Portada: buscador + tarjetas de categoría; al tocar una se abre su grilla. Sin productos destacados
   en la portada (la dueña los quitó).
 - Móvil: todo lo tocable mide ≥ 44 × 44 px; cuerpo de texto 16 px; zonas seguras (notch y barra

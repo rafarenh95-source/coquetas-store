@@ -138,18 +138,58 @@ const enlaceListaCompleta = tienda.whatsapp
       Vista inicial con JavaScript. El script la esconde y muestra la grilla
       completa en cuanto se toca una categoría o se escribe en el buscador. */}
   <div id="vista-portada" class="contenedor mt-5 scroll-mt-[84px]">
-    <p class="t-etiqueta text-purpura">Categorías</p>
-    {/* En el teléfono la foto va cuadrada y sin relleno: en 4:3 con margen, el
-        producto quedaba del tamaño de una uña. El nombre y la cantidad van uno
-        sobre otro porque «HERRAMIENTAS» con su espaciado no comparte renglón con
-        el número en una tarjeta de 136 px (teléfono de 320); ahí además el
-        espaciado entre letras baja un poco para que quepa sin bajar de 12 px. La imagen pide el
-        tamaño que de verdad ocupa (400 px y no la de 1000): en datos móviles son
-        cinco fotos menos que pesan el doble. */}
-    <div class="mt-2 grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3 lg:grid-cols-6">
+    {/* ── Carrusel de categorías ─────────────────────────────────────────
+        Una fila que se desliza con el dedo (scroll-snap nativo: el navegador
+        hace el deslizamiento y la inercia, así que va fluido hasta en un
+        teléfono de gama baja). Siempre asoma media tarjeta de la siguiente para
+        que se entienda que hay más.
+
+        Avanza solo cada 3,5 s y da la vuelta sin fin; se detiene al tocarlo,
+        al pasar el ratón o al enfocarlo con el teclado, y no arranca si el
+        teléfono pide movimiento reducido. El botón de pausa no es opcional:
+        las pautas de accesibilidad (WCAG 2.2.2) piden poder detener todo lo
+        que se mueve solo. Comportamiento en scripts/carrusel.js.
+
+        Sin JavaScript queda una fila deslizable a mano, sin controles. */}
+    <div
+      data-carrusel
+      role="region"
+      aria-roledescription="carrusel"
+      aria-labelledby="titulo-categorias"
+    >
+      <div class="flex items-center justify-between gap-2">
+        <p id="titulo-categorias" class="t-etiqueta text-purpura">Categorías</p>
+        <div data-carrusel-controles hidden class="flex items-center gap-[4px]">
+          <button type="button" data-carrusel-pausa aria-label="Pausar el carrusel" class="presionable inline-flex h-[44px] w-[44px] items-center justify-center border border-ciruela/25 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela">
+            <svg data-icono-pausa viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none">
+              <path d="M5.5 3.5v9M10.5 3.5v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+            <svg data-icono-reanudar viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" class="hidden">
+              <path d="M5 3.5v9l7-4.5-7-4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <button type="button" data-carrusel-anterior aria-label="Categoría anterior" class="presionable inline-flex h-[44px] w-[44px] items-center justify-center border border-ciruela/25 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela">
+            <Icono nombre="chevron" tamano={14} class="rotate-90" />
+          </button>
+          <button type="button" data-carrusel-siguiente aria-label="Categoría siguiente" class="presionable inline-flex h-[44px] w-[44px] items-center justify-center border border-ciruela/25 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela">
+            <Icono nombre="chevron" tamano={14} class="-rotate-90" />
+          </button>
+        </div>
+      </div>
+
+      {/* La pista llega hasta el borde de la pantalla (a-sangre) y el encaje
+          se alinea con el margen del texto (scroll-padding), como en las
+          tiendas de aplicaciones. Ancho de tarjeta: 1,5 visibles en el
+          teléfono, 2,5 · 3,5 · 4,5 a medida que crece la pantalla. */}
+      <div
+        data-carrusel-pista
+        aria-live="off"
+        class="a-sangre sin-riel mt-2 flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain scroll-px-[var(--sangria)] md:gap-3"
+      >
       {
         CATEGORIAS.map((c, i) => (
-          <a href="#grilla" data-categoria-tile={c.id} class="presionable group block bg-papel">
+          <div role="group" aria-roledescription="diapositiva" aria-label={`${i + 1} de ${CATEGORIAS.length + 1}`} data-carrusel-diapositiva class="flex shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-72px)/3.5)] lg:basis-[calc((100%-96px)/4.5)]">
+          <a href="#grilla" data-categoria-tile={c.id} class="presionable group flex w-full flex-col bg-papel">
             <div class="relative aspect-square overflow-hidden bg-crema">
               {c.imagen && (
                 <img
@@ -157,42 +197,47 @@ const enlaceListaCompleta = tienda.whatsapp
                   srcset={[400, 550, 700]
                     .map((w) => `${c.imagen.replace(".webp", `-${w}.webp`)} ${w}w`)
                     .join(", ")}
-                  sizes="(min-width: 1280px) 180px, (min-width: 1024px) 15vw, (min-width: 768px) 30vw, 46vw"
+                  sizes="(min-width: 1280px) 234px, (min-width: 1024px) 20vw, (min-width: 768px) 26vw, (min-width: 640px) 36vw, 62vw"
                   alt=""
                   width="1000"
                   height="1000"
-                  loading={i < 4 ? "eager" : "lazy"}
+                  loading={i < 2 ? "eager" : "lazy"}
                   fetchpriority={i < 2 ? "high" : "auto"}
                   decoding={i < 2 ? "sync" : "async"}
                   class="h-full w-full object-contain p-1 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
                 />
               )}
             </div>
-            <div class="flex flex-col gap-[2px] px-[10px] py-[12px] min-[360px]:p-2">
-              <span class="t-etiqueta tracking-[0.08em] text-ciruela min-[360px]:tracking-[0.16em]">
-                {c.texto}
-              </span>
+            <div class="flex flex-1 flex-col gap-[2px] px-[10px] py-[12px] min-[360px]:p-2">
+              <span class="t-etiqueta text-ciruela">{c.texto}</span>
               <span class="t-caption text-ciruela/60">
                 {c.cantidad} {c.cantidad === 1 ? "producto" : "productos"}
               </span>
             </div>
           </a>
+          </div>
         ))
       }
 
       {/* La cuarta tarjeta es un bloque de color, no una foto: es la única
           categoría que no tiene un producto que la represente sola. */}
-      <a href="#grilla" data-categoria-tile="todo" class="presionable group block bg-papel">
+      <div role="group" aria-roledescription="diapositiva" aria-label={`${CATEGORIAS.length + 1} de ${CATEGORIAS.length + 1}`} data-carrusel-diapositiva class="flex shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-72px)/3.5)] lg:basis-[calc((100%-96px)/4.5)]">
+      <a href="#grilla" data-categoria-tile="todo" class="presionable group flex w-full flex-col bg-papel">
         <div class="relative flex aspect-square items-center justify-center overflow-hidden bg-ciruela text-crema">
           <Icono nombre="todo" tamano={30} class="transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-110" />
         </div>
-        <div class="flex flex-col gap-[2px] px-[10px] py-[12px] min-[360px]:p-2">
-          <span class="t-etiqueta tracking-[0.08em] text-ciruela min-[360px]:tracking-[0.16em]">
-            Todo
-          </span>
+        <div class="flex flex-1 flex-col gap-[2px] px-[10px] py-[12px] min-[360px]:p-2">
+          <span class="t-etiqueta text-ciruela">Todo</span>
           <span class="t-caption text-ciruela/60">{productos.length} productos</span>
         </div>
       </a>
+      </div>
+      </div>
+
+      {/* Puntos: solo dicen dónde se está. No son botones (seis botones de
+          44 px no caben junto a las flechas en 320 px); para moverse están
+          las flechas, el dedo y el teclado. */}
+      <div data-carrusel-puntos aria-hidden="true" hidden class="mt-2 flex justify-center gap-[6px]"></div>
     </div>
   </div>
 
@@ -278,6 +323,7 @@ const enlaceListaCompleta = tienda.whatsapp
 
 <script>
   import "../scripts/tarjetas.js";
+  import "../scripts/carrusel.js";
 
   const grilla = document.getElementById("grilla");
   const vacio = document.getElementById("sin-resultados");
@@ -286,7 +332,6 @@ const enlaceListaCompleta = tienda.whatsapp
   const portada = document.getElementById("vista-portada");
   const vistaGrilla = document.getElementById("vista-grilla");
   const categoriaNombre = document.getElementById("categoria-nombre");
-  const tiles = document.querySelectorAll<HTMLAnchorElement>("[data-categoria-tile]");
   const volver = document.querySelector<HTMLAnchorElement>("[data-volver]");
 
   if (grilla && buscador && portada && vistaGrilla && categoriaNombre) {
@@ -363,11 +408,13 @@ const enlaceListaCompleta = tienda.whatsapp
       portada!.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    tiles.forEach((tile) => {
-      tile.addEventListener("click", (e) => {
-        e.preventDefault();
-        mostrarGrilla(tile.dataset.categoriaTile ?? "todo");
-      });
+    /* Por delegación y no una por tarjeta: el carrusel agrega copias de las
+       tarjetas para dar la vuelta sin fin, y esas copias también se tocan. */
+    portada.addEventListener("click", (e) => {
+      const tile = (e.target as Element).closest<HTMLAnchorElement>("[data-categoria-tile]");
+      if (!tile) return;
+      e.preventDefault();
+      mostrarGrilla(tile.dataset.categoriaTile ?? "todo");
     });
 
     volver?.addEventListener("click", (e) => {
