@@ -1,5 +1,10 @@
 /**
- * Filas deslizables sin avance automático (la muestra de productos).
+ * SIN USO desde que «Favoritos de Coquetas» pasó a avanzar sola con
+ * scripts/carrusel.js (decisión de la dueña). Se conserva por si vuelve a
+ * hacer falta una fila deslizable que NO avance sola: basta importarlo y
+ * marcar la fila con data-fila / data-fila-pista / data-fila-item.
+ *
+ * Filas deslizables sin avance automático.
  *
  * El deslizamiento es el scroll nativo con scroll-snap; aquí solo están las
  * flechas para quien usa ratón: avanzan de a una tarjeta y se apagan en los

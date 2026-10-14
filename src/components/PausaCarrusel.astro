@@ -1,0 +1,25 @@
+---
+/**
+ * Botón de pausa de un carrusel que avanza solo.
+ *
+ * No es decorativo: las pautas de accesibilidad (WCAG 2.2.2) piden que todo lo
+ * que se mueve solo se pueda detener. Discreto (sin borde) junto al título.
+ * Escondido sin JavaScript y cuando el sistema pide movimiento reducido,
+ * porque entonces el carrusel no avanza solo y no hay nada que pausar.
+ */
+---
+
+<button
+  type="button"
+  data-carrusel-pausa
+  hidden
+  aria-label="Pausar el carrusel"
+  class="presionable inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center text-ciruela/70 transition-colors duration-[var(--paso)] hover:text-ciruela"
+>
+  <svg data-icono-pausa viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none">
+    <path d="M5.5 3.5v9M10.5 3.5v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+  </svg>
+  <svg data-icono-reanudar viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" class="hidden">
+    <path d="M5 3.5v9l7-4.5-7-4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+  </svg>
+</button>

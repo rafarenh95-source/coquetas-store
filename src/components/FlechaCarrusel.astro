@@ -1,0 +1,37 @@
+---
+/**
+ * Flecha de un carrusel: un círculo a un lado de la fila, a la altura del
+ * centro de las fotos (scripts/carrusel.js le pone la altura exacta; el 50 %
+ * es solo el punto de partida).
+ *
+ * Fondo papel casi opaco con borde y sombra suaves: va encima de las fotos y
+ * tiene que verse sobre cualquiera, sin tapar el producto. 44 × 44 para el
+ * dedo. Escondida hasta que el script confirma que hay algo que deslizar.
+ */
+
+import Icono from "./Icono.astro";
+
+interface Props {
+  direccion: "anterior" | "siguiente";
+  etiqueta: string;
+}
+
+const { direccion, etiqueta } = Astro.props;
+const atributo = { [`data-carrusel-${direccion}`]: "" };
+---
+
+<button
+  type="button"
+  {...atributo}
+  hidden
+  aria-label={etiqueta}
+  style="top: 50%"
+  class:list={[
+    "presionable absolute z-10 flex h-[44px] w-[44px] -translate-y-1/2 items-center justify-center rounded-full",
+    "border border-ciruela/15 bg-papel/95 text-ciruela shadow-[0_2px_10px_rgba(43,10,38,0.18)]",
+    "transition-colors duration-[var(--paso)] hover:bg-crema",
+    direccion === "anterior" ? "left-1" : "right-1",
+  ]}
+>
+  <Icono nombre="chevron" tamano={16} class={direccion === "anterior" ? "rotate-90" : "-rotate-90"} />
+</button>

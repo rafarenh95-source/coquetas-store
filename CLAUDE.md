@@ -70,17 +70,20 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 - Cantidad: selector «− número +» (`Cantidad.astro` + `scripts/cantidad.js`, clases compartidas en
   `cantidad-estilos.js`) en tarjeta, ficha y cada fila de la bolsa. Agregar suma la cantidad elegida
   y ya **no abre la bolsa**: muestra un aviso «N unidades agregadas» con botón «Ver bolsa».
-- Categorías en carrusel horizontal (`scripts/carrusel.js`, sin librerías): scroll-snap nativo,
-  avanza solo cada 3,5 s con vuelta sin fin (copias `[data-copia]` ocultas al lector), se pausa
-  al tocar / ratón encima / foco de teclado / botón de pausa (obligatorio, WCAG 2.2.2); sin avance
-  con movimiento reducido. 1,5 tarjetas visibles en teléfono → 2,5 · 3,5 · 4,5.
+- Carruseles de la portada (`scripts/carrusel.js`, sin librerías; uno por cada `[data-carrusel]`):
+  scroll-snap nativo, avanzan solos de a una tarjeta con **1,3 s de pausa** (`PAUSA`, decisión de la
+  dueña) y vuelta sin fin (copias `[data-copia]` ocultas al lector). Se pausan al tocar / ratón
+  encima / foco de teclado / botón de pausa (`PausaCarrusel.astro`, obligatorio, WCAG 2.2.2); sin
+  avance con movimiento reducido. Flechas redondas a los lados, a la altura de las fotos
+  (`FlechaCarrusel.astro`). Categorías arranca 650 ms después (`data-desfase`).
 - Preguntas frecuentes en el pie (`PieDePagina.astro`, textos en `src/data/preguntas.json`; salen
   también como FAQPage en la portada). «¿Cómo compro?» (id `como-comprar`) es la primera, abierta;
   los enlaces «Cómo comprar» la abren.
-- Portada: buscador, luego una fila «Una muestra de nuestros productos» (los `destacado: true`,
-  deslizable, sin avance automático, `scripts/fila.js`; título en `TITULO_MUESTRA` de
-  `Catalogo.astro`), luego el carrusel de categorías. Al tocar una categoría se abre su grilla.
-  Sin tarjeta «Todo» (la dueña la quitó); `?categoria=todo` y el buscador siguen funcionando.
+- Portada: buscador, luego el carrusel «Favoritos de Coquetas» (lista `MUESTRA` en
+  `Catalogo.astro`: esmalte semipermanente, brillo color, exfoliante, veloterapia; NO usa la
+  bandera `destacado`, que decide la foto de cada categoría), luego el de categorías. Al tocar una
+  categoría se abre su grilla. Sin tarjeta «Todo» (la dueña la quitó); `?categoria=todo` y el
+  buscador siguen funcionando. `scripts/fila.js` queda sin uso (fila sin avance automático).
 - Móvil: todo lo tocable mide ≥ 44 × 44 px; cuerpo de texto 16 px; zonas seguras (notch y barra
   de gestos) con `env(safe-area-inset-*)` y `viewport-fit=cover`. Los botones del encabezado
   llevan texto solo desde 1024 px y los enlaces «Catálogo / Cómo comprar» desde 1280 px: si no,
