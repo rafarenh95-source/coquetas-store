@@ -54,18 +54,21 @@ for (const [w, h] of [[320, 640], [390, 844], [768, 1024], [1280, 900]]) {
       n: reales.length,
       copias: fotos.length - reales.length,
       copiasOcultas: fotos.filter((x) => x.hasAttribute("data-copia-desfile")).every((x) => x.getAttribute("aria-hidden") === "true"),
-      proporcion: cajas.every((r) => Math.abs(r.width / r.height - 12 / 5) < 0.03),
+      // Teléfono: cuadradas (fotos para teléfono); desde 640 px: 12:5
+      proporcion: cajas.every((r) => Math.abs(r.width / r.height - (innerWidth < 640 ? 1 : 12 / 5)) < 0.03),
+      fotoCorrecta: (innerWidth < 640) === reales[0].querySelector("picture img").currentSrc.includes("tienda-movil"),
       iguales: new Set(cajas.map((r) => Math.round(r.width))).size === 1,
       selloVisible: sello.width >= 30,
       mitadExacta: Math.abs(pista.scrollWidth / 2 - reales.length * (cajas[0].width + gap)) < 1.5,
-      alts: reales.every((x) => x.querySelector("img").alt.length > 5),
-      primeraPrioridad: reales[0].querySelector("img").getAttribute("fetchpriority") === "high",
+      alts: reales.every((x) => x.querySelector("picture img").alt.length > 5),
+      primeraPrioridad: reales[0].querySelector("picture img").getAttribute("fetchpriority") === "high",
       h1: document.querySelector("h1")?.textContent.trim(),
     };
   });
   ok(f.desborde === 0, `${w}px: la página se desborda ${f.desborde}px`);
   ok(f.n === 4 && f.copias === 4 && f.copiasOcultas, `${w}px: fotos ${f.n} + copias ${f.copias} (ocultas al lector: ${f.copiasOcultas})`);
-  ok(f.proporcion, `${w}px: las fotos no están en 12:5`);
+  ok(f.proporcion, `${w}px: las fotos no tienen la proporción esperada`);
+  ok(f.fotoCorrecta, `${w}px: carga el juego de fotos equivocado (teléfono/computadora)`);
   ok(f.iguales, `${w}px: las fotos no miden lo mismo`);
   ok(f.selloVisible, `${w}px: no se ve el sello`);
   ok(f.mitadExacta, `${w}px: la media cinta no calza con 4 fotos + huecos (la vuelta daría un salto)`);

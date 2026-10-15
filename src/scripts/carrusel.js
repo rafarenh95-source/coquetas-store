@@ -42,9 +42,15 @@ function iniciar(raiz) {
   const flechas = [flechaAnterior, flechaSiguiente].filter(Boolean);
   const puntosCaja = raiz.querySelector("[data-carrusel-puntos]");
   const desfase = Number(raiz.dataset.desfase) || 0;
+  /* data-sin-avance: fila quieta, solo flechas, dedo y teclado (las
+     categorías, por decisión de la dueña). */
+  const sinAvance = raiz.hasAttribute("data-sin-avance");
 
-  /* ── copias para la vuelta sin fin ───────────────────────────────────── */
-  for (const d of reales) {
+  /* ── copias para la vuelta sin fin ─────────────────────────────────────
+     Solo en las filas que avanzan solas. Una fila quieta tiene principio y
+     fin: sus flechas se esconden en cada extremo y no hace falta dar la vuelta
+     (con copias, en la computadora asomaba una sexta tarjeta repetida). */
+  if (!sinAvance) for (const d of reales) {
     const copia = d.cloneNode(true);
     copia.removeAttribute("role");
     copia.removeAttribute("aria-roledescription");
@@ -70,7 +76,8 @@ function iniciar(raiz) {
   }
 
   /** Si todas las tarjetas caben a la vez, no hay nada que deslizar. */
-  const hayDesborde = () => paso > 0 && pista.scrollWidth / 2 > pista.clientWidth + 2;
+  const hayDesborde = () =>
+    paso > 0 && (sinAvance ? pista.scrollWidth : pista.scrollWidth / 2) > pista.clientWidth + 2;
 
   const indiceActual = () => {
     if (!paso) return 0;
@@ -81,7 +88,7 @@ function iniciar(raiz) {
   /* Las flechas van a la altura del centro de las fotos, no del centro de la
      tarjeta entera (que incluye nombre, precio y botones). */
   function posicionarFlechas() {
-    const foto = reales[0].querySelector(".aspect-square");
+    const foto = reales[0].querySelector("[data-carrusel-foto], .aspect-square");
     const caja = flechas[0]?.parentElement;
     if (!foto || !caja) return;
     const r = foto.getBoundingClientRect();
@@ -103,6 +110,24 @@ function iniciar(raiz) {
       p.classList.toggle("bg-ciruela", i === actual);
       p.classList.toggle("bg-ciruela/25", i !== actual);
     });
+    pintarFlechas();
+  }
+
+  /* Fila quieta: «anterior» no aparece al principio ni «siguiente» al final.
+     Si la flecha que se esconde tenía el foco del teclado, pasa a la otra. */
+  function pintarFlechas() {
+    if (!sinAvance || !hayDesborde()) return;
+    const max = pista.scrollWidth - pista.clientWidth;
+    const estados = [
+      [flechaAnterior, pista.scrollLeft <= 2],
+      [flechaSiguiente, pista.scrollLeft >= max - 2],
+    ];
+    for (const [flecha, ocultar] of estados) {
+      if (!flecha || flecha.hidden === ocultar) continue;
+      const teniaFoco = flecha === document.activeElement;
+      flecha.hidden = ocultar;
+      if (teniaFoco && ocultar) (flecha === flechaAnterior ? flechaSiguiente : flechaAnterior)?.focus();
+    }
   }
 
   /* ── movimiento ──────────────────────────────────────────────────────── */
@@ -116,6 +141,10 @@ function iniciar(raiz) {
   function anterior() {
     if (!paso) return;
     let i = Math.round(pista.scrollLeft / paso);
+    if (sinAvance) {
+      pista.scrollTo({ left: Math.max(0, (i - 1) * paso), behavior: suave() });
+      return;
+    }
     if (i <= 0) {
       // Desde la primera: salto invisible a su copia, y de ahí hacia atrás.
       pista.scrollTo({ left: vuelta, behavior: "instant" });
@@ -127,7 +156,7 @@ function iniciar(raiz) {
   /** Dentro de la copia → a la tarjeta real equivalente, sin que se note. */
   function alTerminarDesplazamiento() {
     if (tocando) return;
-    if (paso && pista.scrollLeft >= vuelta - 1) {
+    if (!sinAvance && paso && pista.scrollLeft >= vuelta - 1) {
       pista.scrollTo({ left: pista.scrollLeft - vuelta, behavior: "instant" });
     }
     pintarPuntos();
@@ -163,6 +192,7 @@ function iniciar(raiz) {
   let primeraVez = true;
 
   const puedeAvanzar = () =>
+    !sinAvance &&
     !pausadoPorBoton &&
     !tocando &&
     !encima &&

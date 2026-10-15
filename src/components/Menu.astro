@@ -2,7 +2,7 @@
 /**
  * Menú: un panel que entra desde la derecha (donde está el botón que lo abre).
  *
- * Contenido aprobado por la dueña: ver catálogo, las cinco categorías,
+ * Contenido aprobado por la dueña: buscador (arriba), ver catálogo, las cinco categorías,
  * preguntas frecuentes, dónde estamos, precios al mayor, TikTok y pedir por
  * WhatsApp (este último en magenta: es la acción principal). «Cómo comprar»
  * no va aparte: es una de las preguntas frecuentes (decisión de la dueña).
@@ -67,6 +67,38 @@ const icono = "inline-flex h-[32px] w-[32px] shrink-0 items-center justify-cente
         </svg>
       </button>
     </div>
+
+    {/* Buscador: lo primero del menú (decisión de la dueña: fuera de la
+        portada, con su lupa aquí). Es un formulario de verdad: sin JavaScript
+        o desde otra página lleva a /?buscar=…; en la portada, Catalogo.astro
+        lo resuelve sin recargar. */}
+    <form data-menu-buscar action="/" method="get" role="search" class="mt-2">
+      <label for="menu-buscar" class="sr-only">Buscar un producto</label>
+      <div class="relative">
+        <Icono
+          nombre="buscar"
+          tamano={17}
+          class="pointer-events-none absolute top-1/2 left-2 -translate-y-1/2 text-ciruela/50"
+        />
+        <input
+          id="menu-buscar"
+          name="buscar"
+          type="search"
+          inputmode="search"
+          enterkeyhint="search"
+          autocomplete="off"
+          placeholder="Buscar un producto"
+          class="t-cuerpo min-h-[48px] w-full border border-ciruela/25 bg-crema py-1 pr-[52px] pl-[44px] text-ciruela placeholder:text-ciruela/50"
+        />
+        <button
+          type="submit"
+          aria-label="Buscar"
+          class="presionable absolute top-0 right-0 flex h-full w-[48px] items-center justify-center bg-ciruela text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
+        >
+          <Icono nombre="chevron" tamano={16} class="-rotate-90" />
+        </button>
+      </div>
+    </form>
 
     <nav aria-label="Secciones" class="mt-1">
       <ul>

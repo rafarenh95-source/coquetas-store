@@ -18,19 +18,26 @@
  * Fotos preparadas con scripts/preparar-banner.mjs.
  */
 
+/* Dos juegos de fotos, los dos diseñados por la dueña: en el teléfono,
+   cuadradas («Carrusel móvil Coquetas Store», más altas); desde 640 px,
+   horizontales 12:5 («Carrusel Coquetas Store»). La tercera no es la misma
+   foto en los dos juegos (05 en computadora, 06 en teléfono). */
 const FOTOS = [
-  { n: "01", alt: "Fachada de Coquetas Store" },
-  { n: "04", alt: "Interior de la tienda: mostradores de uñas y cabello" },
-  { n: "05", alt: "Interior de la tienda: mostrador central" },
-  { n: "07", alt: "Interior de la tienda: maquillaje y ropa interior" },
+  { pc: "01", movil: "01", alt: "Fachada de Coquetas Store" },
+  { pc: "04", movil: "04", alt: "Interior de la tienda: mostradores de uñas y cabello" },
+  { pc: "05", movil: "06", alt: "Interior de la tienda: mostradores centrales" },
+  { pc: "07", movil: "07", alt: "Interior de la tienda: maquillaje y ropa interior" },
 ];
 
-const srcset = (n: string) =>
+const srcsetPc = (n: string) =>
   [480, 720, 1080, 1440].map((w) => `/img/tienda/tienda-${n}-${w}.webp ${w}w`).join(", ");
+const srcsetMovil = (n: string) =>
+  [360, 540, 720, 1080].map((w) => `/img/tienda/tienda-movil-${n}-${w}.webp ${w}w`).join(", ");
 
-/* El ancho de cada foto: casi toda la pantalla en el teléfono, 720 px (el del
-   diseño) desde 1024. */
-const sizes = "(min-width: 1024px) 720px, (min-width: 768px) 60vw, (min-width: 640px) 70vw, 86vw";
+/* Ancho de cada foto: en el teléfono 72 % de la pantalla (asoma la siguiente);
+   desde 640 px, 70 % · 60 % · 720 px (el del diseño). */
+const sizesPc = "(min-width: 1024px) 720px, (min-width: 768px) 60vw, 70vw";
+const MOVIL = "(max-width: 639px)";
 ---
 
 <section
@@ -48,23 +55,28 @@ const sizes = "(min-width: 1024px) 720px, (min-width: 768px) 60vw, (min-width: 6
           <div
             data-copia-desfile={copia ? "" : undefined}
             aria-hidden={copia ? "true" : undefined}
-            class="relative aspect-[12/5] w-[86vw] shrink-0 overflow-hidden rounded-[12px] bg-papel shadow-[0_8px_24px_rgba(43,10,38,0.07)] sm:w-[70vw] md:w-[60vw] md:rounded-[16px] lg:w-[720px]"
+            class="relative aspect-square w-[72vw] shrink-0 overflow-hidden rounded-[12px] bg-papel shadow-[0_8px_24px_rgba(43,10,38,0.07)] sm:aspect-[12/5] sm:w-[70vw] md:w-[60vw] md:rounded-[16px] lg:w-[720px]"
           >
-            <img
-              src={`/img/tienda/tienda-${f.n}-720.webp`}
-              srcset={srcset(f.n)}
-              sizes={sizes}
-              alt={copia ? "" : f.alt}
-              width="1440"
-              height="600"
-              loading={!copia && i < 2 ? "eager" : "lazy"}
-              fetchpriority={!copia && i === 0 ? "high" : "auto"}
-              decoding={!copia && i === 0 ? "sync" : "async"}
-              class="absolute inset-0 h-full w-full object-cover"
-            />
+            <picture>
+              <source media={MOVIL} srcset={srcsetMovil(f.movil)} sizes="72vw" width="1080" height="1080" />
+              <img
+                src={`/img/tienda/tienda-${f.pc}-720.webp`}
+                srcset={srcsetPc(f.pc)}
+                sizes={sizesPc}
+                alt={copia ? "" : f.alt}
+                width="1440"
+                height="600"
+                loading={!copia && i < 2 ? "eager" : "lazy"}
+                fetchpriority={!copia && i === 0 ? "high" : "auto"}
+                decoding={!copia && i === 0 ? "sync" : "async"}
+                class="absolute inset-0 h-full w-full object-cover"
+              />
+            </picture>
+            {/* Degradado: un poco más marcado en la cuadrada (0,34), como en
+                el diseño para teléfono. */}
             <div
               aria-hidden="true"
-              class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(122,1,119,0.28)_0%,rgba(122,1,119,0)_38%)]"
+              class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(122,1,119,0.34)_0%,rgba(122,1,119,0)_34%)] sm:bg-[linear-gradient(to_top,rgba(122,1,119,0.28)_0%,rgba(122,1,119,0)_38%)]"
             />
             <div
               aria-hidden="true"

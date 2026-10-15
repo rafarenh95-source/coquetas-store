@@ -81,8 +81,15 @@ const SANGRE = "relative mt-2 -mx-[var(--sangria)]";
 /* Tarjetas visibles a la vez: categorías 1,5 · 2,5 · 3,5 · 4,5; favoritos
    (solo la foto, más chicas) 2,5 · 3,5 · 3,5 · 3,5 (son cuatro: con más
    visibles cabrían todas y no habría nada que deslizar en la computadora). */
+/* Categorías: tarjetas chicas con ícono, ~3 a la vista en el teléfono
+   (decisión de la dueña) con un pedacito de la cuarta; nunca menos de 96 px,
+   que es lo que pide «Herramientas» para caber en un renglón. En 320 px no
+   caben tres: van dos y media (si no, la tercera quedaba cortada por 8 px). Desde 640 px
+   caben las cinco y no hay nada que deslizar (las flechas se esconden solas). */
+const PISTA_CATEGORIA =
+  "sin-riel flex snap-x snap-mandatory gap-[12px] overflow-x-auto overscroll-x-contain px-[var(--sangria)] scroll-px-[var(--sangria)] md:gap-3";
 const DIAPO_CATEGORIA =
-  "flex min-w-0 shrink-0 snap-start basis-[calc((100%-16px)/1.5)] sm:basis-[calc((100%-32px)/2.5)] md:basis-[calc((100%-72px)/3.5)] lg:basis-[calc((100%-96px)/4.5)]";
+  "flex min-w-0 shrink-0 snap-start basis-[calc((100%-12px)/2.4)] min-[360px]:basis-[max(96px,calc((100%-24px)/3.25))] sm:basis-[calc((100%-48px)/5)] md:basis-[calc((100%-96px)/5)]";
 const DIAPO_MUESTRA =
   "flex min-w-0 shrink-0 snap-start basis-[calc((100%-32px)/2.5)] sm:basis-[calc((100%-48px)/3.5)] md:basis-[calc((100%-72px)/3.5)]";
 
@@ -122,9 +129,11 @@ const enlaceListaCompleta = tienda.whatsapp
       0,89 medido en un teléfono lento). La regla de CSS que lee este atributo
       está en global.css; el script de abajo lo retira al tomar el control. */}
   <script is:inline define:vars={{ validas: Object.keys(NOMBRES) }}>
-    var inicial = new URLSearchParams(location.search).get("categoria");
+    var params = new URLSearchParams(location.search);
+    var inicial = params.get("categoria");
+    var buscando = (params.get("buscar") || "").trim();
     document.documentElement.dataset.vistaInicial =
-      inicial && validas.indexOf(inicial) > -1 ? "grilla" : "portada";
+      buscando || (inicial && validas.indexOf(inicial) > -1) ? "grilla" : "portada";
   </script>
 
   {/* Donde iba el título «Catálogo» va la cinta de fotos de la tienda
@@ -133,29 +142,9 @@ const enlaceListaCompleta = tienda.whatsapp
   <h1 class="sr-only">Catálogo de Coquetas Store</h1>
   <BannerTienda />
 
-  <div
-    class="sticky top-0 z-20 mt-4 bg-crema py-1 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-4 after:bg-gradient-to-b after:from-crema after:to-transparent"
-  >
-    <div class="contenedor">
-      {/* ── Buscador ──────────────────────────────────────────────────── */}
-      <div class="relative min-w-0">
-        <Icono
-          nombre="buscar"
-          tamano={17}
-          class="pointer-events-none absolute top-1/2 left-2 -translate-y-1/2 text-ciruela/45"
-        />
-        <input
-          type="search"
-          inputmode="search"
-          autocomplete="off"
-          data-buscador
-          placeholder="Buscar un producto"
-          aria-label="Buscar un producto por nombre"
-          class="t-cuerpo min-h-[44px] w-full border border-ciruela/25 bg-papel py-2 pr-3 pl-8 text-ciruela placeholder:text-ciruela/45 focus-visible:outline-none"
-        />
-      </div>
-    </div>
-  </div>
+  {/* El buscador ya no va aquí (decisión de la dueña): está arriba de todo
+      dentro del menú, con su lupa. Al buscar se llega a la grilla con
+      ?buscar=… (o sin recargar, si ya se está en la portada). */}
 
   {/* ── Portada: solo categorías ──────────────────────────────────────────
       Vista inicial con JavaScript. El script la esconde y muestra la grilla
@@ -203,7 +192,7 @@ const enlaceListaCompleta = tienda.whatsapp
                     href={`/producto/${p.producto_id.toLowerCase()}`}
                     class="presionable group block w-full bg-papel"
                   >
-                    <div class="aspect-square overflow-hidden">
+                    <div data-carrusel-foto class="aspect-square overflow-hidden">
                       <img
                         src={p.variantes[0].imagenes[0]}
                         srcset={srcsetDe(p.variantes[0].imagenes[0])}
@@ -231,17 +220,16 @@ const enlaceListaCompleta = tienda.whatsapp
 
     <div
       data-carrusel="categorias"
-      data-desfase="650"
+      data-sin-avance
       role="region"
       aria-roledescription="carrusel"
       aria-labelledby="titulo-categorias"
     >
       <div class="flex min-h-[44px] items-center justify-between gap-2">
         <p id="titulo-categorias" class="t-etiqueta text-purpura">Categorías</p>
-        <PausaCarrusel />
       </div>
       <div class={SANGRE}>
-        <div data-carrusel-pista aria-live="off" class={PISTA}>
+        <div data-carrusel-pista aria-live="off" class={PISTA_CATEGORIA}>
           {
             CATEGORIAS.map((c, i) => (
               <div
@@ -251,30 +239,22 @@ const enlaceListaCompleta = tienda.whatsapp
                 data-carrusel-diapositiva
                 class={DIAPO_CATEGORIA}
               >
-                <a href="#grilla" data-categoria-tile={c.id} class="presionable group flex w-full flex-col bg-papel">
-                  <div class="relative aspect-square overflow-hidden bg-crema">
-                    {c.imagen && (
-                      <img
-                        src={c.imagen}
-                        srcset={[400, 550, 700]
-                          .map((w) => `${c.imagen.replace(".webp", `-${w}.webp`)} ${w}w`)
-                          .join(", ")}
-                        sizes="(min-width: 1280px) 234px, (min-width: 1024px) 20vw, (min-width: 768px) 26vw, (min-width: 640px) 36vw, 62vw"
-                        alt=""
-                        width="1000"
-                        height="1000"
-                        loading="lazy"
-                        decoding="async"
-                        class="h-full w-full object-contain p-1 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
-                      />
-                    )}
-                  </div>
-                  <div class="flex flex-1 flex-col gap-[2px] px-[10px] py-[12px] min-[360px]:p-2">
-                    <span class="t-etiqueta text-ciruela">{c.texto}</span>
-                    <span class="t-caption text-ciruela/60">
-                      {c.cantidad} {c.cantidad === 1 ? "producto" : "productos"}
-                    </span>
-                  </div>
+                {/* Ícono en vez de foto (decisión de la dueña): los mismos del
+                    menú, en grande sobre un círculo crema. */}
+                <a
+                  href="#grilla"
+                  data-categoria-tile={c.id}
+                  class="presionable group flex w-full flex-col items-center gap-1 bg-papel px-[6px] pt-2 pb-[12px] text-center"
+                >
+                  <span
+                    data-carrusel-foto
+                    class="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-crema text-purpura transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.06] md:h-[80px] md:w-[80px]"
+                  >
+                    <Icono nombre={c.icono} tamano={30} />
+                  </span>
+                  <span class="font-sans text-[13px] leading-tight font-semibold text-ciruela md:text-[15px]">
+                    {c.texto}
+                  </span>
                 </a>
               </div>
             ))
@@ -286,9 +266,6 @@ const enlaceListaCompleta = tienda.whatsapp
         <FlechaCarrusel direccion="siguiente" etiqueta="Categoría siguiente" />
       </div>
 
-      {/* Puntos: solo dicen dónde se está. Para moverse están las flechas, el
-          dedo y el teclado. */}
-      <div data-carrusel-puntos aria-hidden="true" hidden class="mt-2 flex justify-center gap-[6px]"></div>
     </div>
   </div>
 
@@ -378,14 +355,14 @@ const enlaceListaCompleta = tienda.whatsapp
 
   const grilla = document.getElementById("grilla");
   const vacio = document.getElementById("sin-resultados");
-  const buscador = document.querySelector<HTMLInputElement>("[data-buscador]");
+  const formBuscar = document.querySelector<HTMLFormElement>("[data-menu-buscar]");
   const recuento = document.querySelector("[data-recuento]");
   const portada = document.getElementById("vista-portada");
   const vistaGrilla = document.getElementById("vista-grilla");
   const categoriaNombre = document.getElementById("categoria-nombre");
   const volver = document.querySelector<HTMLAnchorElement>("[data-volver]");
 
-  if (grilla && buscador && portada && vistaGrilla && categoriaNombre) {
+  if (grilla && portada && vistaGrilla && categoriaNombre) {
     /* `.contents` en el envoltorio dejaría la tarjeta sin contenedor propio para
        esconder, así que se marca la tarjeta misma con la categoría y el nombre. */
     const tarjetas = Array.from(grilla.children) as HTMLElement[];
@@ -405,7 +382,8 @@ const enlaceListaCompleta = tienda.whatsapp
     };
 
     let categoriaActual = "todo";
-    let textoBusqueda = "";
+    let textoBusqueda = ""; // en minúsculas, para comparar
+    let textoMostrado = ""; // tal como se escribió, para el rótulo
 
     function aplicarFiltros() {
       let visibles = 0;
@@ -425,25 +403,29 @@ const enlaceListaCompleta = tienda.whatsapp
       vacio?.classList.toggle("hidden", visibles > 0);
 
       const etiqueta = textoBusqueda
-        ? `"${buscador.value.trim()}"`
+        ? `"${textoMostrado}"`
         : (NOMBRES[categoriaActual] ?? categoriaActual);
       const unidad = visibles === 1 ? "producto" : "productos";
       categoriaNombre!.textContent = `${etiqueta} · ${visibles} ${unidad}`;
 
       if (recuento) {
         recuento.textContent = textoBusqueda
-          ? `${visibles} ${visibles === 1 ? "resultado" : "resultados"} para "${buscador.value.trim()}".`
+          ? `${visibles} ${visibles === 1 ? "resultado" : "resultados"} para "${textoMostrado}".`
           : `${visibles} ${visibles === 1 ? "pieza" : "piezas"} en ${NOMBRES[categoriaActual] ?? categoriaActual}.`;
       }
 
       const url = new URL(location.href);
       if (categoriaActual === "todo") url.searchParams.delete("categoria");
       else url.searchParams.set("categoria", categoriaActual);
+      if (textoBusqueda) url.searchParams.set("buscar", textoMostrado);
+      else url.searchParams.delete("buscar");
       history.replaceState(null, "", url);
     }
 
     function mostrarGrilla(cat: string) {
       categoriaActual = NOMBRES[cat] ? cat : "todo";
+      textoBusqueda = "";
+      textoMostrado = "";
       portada!.hidden = true;
       vistaGrilla!.hidden = false;
       aplicarFiltros();
@@ -454,8 +436,11 @@ const enlaceListaCompleta = tienda.whatsapp
       vistaGrilla!.hidden = true;
       portada!.hidden = false;
       textoBusqueda = "";
-      buscador.value = "";
+      textoMostrado = "";
       categoriaActual = "todo";
+      /* Deja la dirección limpia (sin ?categoria= ni ?buscar=): si se recarga
+         o se comparte, se abre la portada y no la última búsqueda. */
+      aplicarFiltros();
       portada!.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
@@ -485,21 +470,35 @@ const enlaceListaCompleta = tienda.whatsapp
       else mostrarPortada();
     });
 
-    buscador.addEventListener("input", () => {
-      textoBusqueda = buscador.value.trim().toLowerCase();
-      /* Escribir desde la portada salta directo a los resultados: quien ya
-         sabe qué busca no debería tener que tocar una categoría primero. */
-      if (textoBusqueda && !portada!.hidden) {
-        portada!.hidden = true;
-        vistaGrilla!.hidden = false;
-      }
+    /* Búsqueda: en todas las categorías, resultados en la grilla. */
+    function buscar(texto: string) {
+      textoMostrado = texto.trim();
+      textoBusqueda = textoMostrado.toLowerCase();
+      categoriaActual = "todo";
+      portada!.hidden = true;
+      vistaGrilla!.hidden = false;
       aplicarFiltros();
+      vistaGrilla!.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    /* El buscador del menú: aquí en la portada se resuelve sin recargar (en
+       las demás páginas el formulario lleva a /?buscar=…). */
+    formBuscar?.addEventListener("submit", (e) => {
+      const texto = (new FormData(formBuscar).get("buscar") ?? "").toString().trim();
+      e.preventDefault();
+      if (!texto) return;
+      document.querySelector<HTMLDialogElement>("dialog[data-menu]")?.close();
+      buscar(texto);
     });
 
     /* Si se llega con ?categoria=unas desde un enlace compartido, se abre
        directo en la grilla de esa categoría, sin pasar por la portada. */
-    const inicial = new URL(location.href).searchParams.get("categoria");
-    if (inicial && NOMBRES[inicial]) {
+    const params = new URL(location.href).searchParams;
+    const inicial = params.get("categoria");
+    const buscado = (params.get("buscar") ?? "").trim();
+    if (buscado) {
+      buscar(buscado);
+    } else if (inicial && NOMBRES[inicial]) {
       mostrarGrilla(inicial);
     } else {
       portada!.hidden = false;

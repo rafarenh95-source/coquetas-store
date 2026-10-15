@@ -147,19 +147,24 @@ for (const [cat, n] of Object.entries(esperado)) {
   if (!portadaOculta) fallo("/", `categoría ${cat}: la portada no se esconde al elegirla`);
 }
 
-/* buscador desde la portada: salta directo a los resultados, sin pasar por
-   una categoría primero */
+/* buscador (en el menú, decisión de la dueña): lleva directo a los
+   resultados, sin pasar por una categoría primero */
 await p.goto(BASE + "/", { waitUntil: "networkidle" });
+if (await p.$("#catalogo input[type=search]")) fallo("/", "sigue el buscador en la portada");
 const busquedaEsperada = productos.filter((x) => x.nombre.toLowerCase().includes("crema")).length;
-await p.fill("[data-buscador]", "crema");
+await p.click("[data-menu-abrir]");
 await p.waitForTimeout(400);
+await p.fill("#menu-buscar", "crema");
+await p.press("#menu-buscar", "Enter");
+await p.waitForTimeout(600);
 const conBusqueda = await p.$$eval("#grilla > div:not(.hidden)", (ns) => ns.length);
 if (conBusqueda !== busquedaEsperada) {
   fallo("/", `buscador "crema": ${conBusqueda} tarjetas, esperaba ${busquedaEsperada}`);
 }
 if (await p.evaluate(() => document.getElementById("vista-portada").hidden) === false) {
-  fallo("/", "escribir en el buscador desde la portada no revela la grilla");
+  fallo("/", "buscar desde el menú no revela la grilla");
 }
+if (await p.$eval("dialog[data-menu]", (d) => d.open)) fallo("/", "buscar no cierra el menú");
 
 /* volver limpia el buscador, regresa a la portada, y desde ahí se puede
    elegir otra categoría sin recargar */
@@ -168,8 +173,8 @@ await p.waitForTimeout(400);
 if (!(await p.evaluate(() => !document.getElementById("vista-portada").hidden))) {
   fallo("/", "'volver' no regresa a la portada");
 }
-if ((await p.inputValue("[data-buscador]")) !== "") {
-  fallo("/", "'volver' no limpia el buscador");
+if (new URL(p.url()).searchParams.get("buscar")) {
+  fallo("/", "'volver' no limpia la búsqueda de la dirección");
 }
 await p.click('[data-categoria-tile="unas"]');
 await p.waitForTimeout(400);
