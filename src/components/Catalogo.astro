@@ -22,6 +22,7 @@
  */
 
 import TarjetaProducto from "./TarjetaProducto.astro";
+import BannerTienda from "./BannerTienda.astro";
 import FlechaCarrusel from "./FlechaCarrusel.astro";
 import PausaCarrusel from "./PausaCarrusel.astro";
 import Icono from "./Icono.astro";
@@ -126,13 +127,11 @@ const enlaceListaCompleta = tienda.whatsapp
       inicial && validas.indexOf(inicial) > -1 ? "grilla" : "portada";
   </script>
 
-  <div class="contenedor pt-4 md:pt-6">
-    <h1 class="t-h2 text-ciruela">Catálogo</h1>
-
-    <p class="t-lead mt-2 text-ciruela/80">Una muestra de nuestras piezas favoritas.</p>
-    {/* «Cómo comprar» ya no va aquí (decisión de la dueña): está en el menú y
-        en las preguntas frecuentes. */}
-  </div>
+  {/* Donde iba el título «Catálogo» va la cinta de fotos de la tienda
+      (decisión de la dueña). El H1 sigue existiendo para el lector de
+      pantalla y el buscador, pero no se ve. */}
+  <h1 class="sr-only">Catálogo de Coquetas Store</h1>
+  <BannerTienda />
 
   <div
     class="sticky top-0 z-20 mt-4 bg-crema py-1 after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-4 after:bg-gradient-to-b after:from-crema after:to-transparent"

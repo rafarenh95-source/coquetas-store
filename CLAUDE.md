@@ -20,7 +20,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
    < 16 px). `--capturas=<carpeta>` guarda capturas de cada pantalla en cada ancho.
    Y `node scripts/qa-cantidad.mjs` — flujo del selector de cantidad y la bolsa; debe decir
    «Cantidad: sin fallos». `node scripts/qa-carrusel.mjs` (tarda ~2 min) — «Carrusel: sin fallos».
-   `node scripts/qa-menu.mjs` — «Menú: sin fallos».
+   `node scripts/qa-menu.mjs` — «Menú: sin fallos». `node scripts/qa-banner.mjs` — «Banner: sin fallos».
+   (Lighthouse tarda o no termina por la cinta de fotos que nunca se detiene: usar
+   `--max-wait-for-load=25000`.)
 5. Revisar visualmente con Playwright (`playwright-core`, `channel: "msedge"`) en 390 px y 1280 px.
    Los scripts que importan `playwright-core` o `sharp` tienen que estar dentro de la carpeta del
    proyecto para que Node los encuentre.
@@ -84,7 +86,13 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   nativo que entra desde la derecha) lleva: ver catálogo, las 5 categorías, preguntas frecuentes
   (ahí dentro está «¿Cómo compro?», no suelto), dónde estamos, precios al mayor, TikTok y pedir por WhatsApp (aprobado por la dueña).
   Mapa y TikTok ya no están en el encabezado. Sin «Cómo comprar» bajo el título.
-- Portada: buscador, luego el carrusel «Favoritos de Coquetas» (solo la foto; lleva a la ficha) (lista `MUESTRA` en
+- Banner de la tienda (`BannerTienda.astro` + `scripts/desfile.js`), en lugar del título «Catálogo»
+  (el H1 queda solo para lectores de pantalla): diseño de la dueña en Claude Design. Cinta continua
+  de 4 fotos del local (12:5, esquinas redondeadas, filete rosa, degradado púrpura, sello de la
+  marca sobre círculo papel) a 40 px/s, animación CSS. Se detiene con ratón encima, dedo apoyado,
+  fuera de pantalla y botón de pausa; con movimiento reducido queda una fila deslizable. Fotos en
+  `public/img/tienda/` generadas con `node scripts/preparar-banner.mjs <carpeta del zip del diseño>`.
+- Portada: banner, buscador, luego el carrusel «Favoritos de Coquetas» (solo la foto; lleva a la ficha) (lista `MUESTRA` en
   `Catalogo.astro`: esmalte semipermanente, brillo color, exfoliante, veloterapia; NO usa la
   bandera `destacado`, que decide la foto de cada categoría), luego el de categorías. Al tocar una
   categoría se abre su grilla. Sin tarjeta «Todo» (la dueña la quitó); `?categoria=todo` y el
@@ -97,8 +105,6 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 
 ## Pendientes conocidos
 
-- Banner con fotos de la tienda en lugar del título «Catálogo»: la dueña va a mandar 3-5 fotos
-  horizontales (fachada, estantes, mostrador, detalle).
 - Usuario de Instagram sin cargar (`tienda.json` → `instagram: null`); dirección vacía.
 - Textos de los productos nuevos son borrador: la dueña puede corregirlos.
 - Algunas fotos vienen de imágenes del proveedor (gel de sábila, almohada lashista, lápiz de

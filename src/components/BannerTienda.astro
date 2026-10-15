@@ -1,0 +1,158 @@
+---
+/**
+ * Banner de la tienda: una cinta de fotos del local que pasa sola, sin
+ * detenerse, de borde a borde de la pantalla. Diseño de la dueña en Claude
+ * Design («Carrusel Coquetas Store»): foto 12:5 con esquinas redondeadas,
+ * degradado púrpura suave abajo, filete rosa por dentro y el sello de la
+ * marca sobre un círculo papel (el logo solo va sobre crema o papel, §5).
+ * Velocidad 40 px/s, la del diseño.
+ *
+ * El movimiento es una animación CSS (corre fuera del hilo principal: no se
+ * traba aunque la página esté cargando, y gasta poco en un teléfono de gama
+ * baja). La cinta lleva las fotos dos veces y se desplaza exactamente la
+ * mitad, así que la vuelta no se nota. scripts/desfile.js ajusta la duración
+ * al ancho real y maneja las pausas: ratón encima, dedo apoyado, fuera de
+ * pantalla y el botón de pausa (WCAG 2.2.2). Con movimiento reducido no se
+ * mueve: queda una fila que se desliza con el dedo.
+ *
+ * Fotos preparadas con scripts/preparar-banner.mjs.
+ */
+
+const FOTOS = [
+  { n: "01", alt: "Fachada de Coquetas Store" },
+  { n: "04", alt: "Interior de la tienda: mostradores de uñas y cabello" },
+  { n: "05", alt: "Interior de la tienda: mostrador central" },
+  { n: "07", alt: "Interior de la tienda: maquillaje y ropa interior" },
+];
+
+const srcset = (n: string) =>
+  [480, 720, 1080, 1440].map((w) => `/img/tienda/tienda-${n}-${w}.webp ${w}w`).join(", ");
+
+/* El ancho de cada foto: casi toda la pantalla en el teléfono, 720 px (el del
+   diseño) desde 1024. */
+const sizes = "(min-width: 1024px) 720px, (min-width: 768px) 60vw, (min-width: 640px) 70vw, 86vw";
+---
+
+<section
+  data-desfile
+  aria-roledescription="carrusel"
+  aria-label="Fotos de la tienda"
+  class="desfile relative overflow-hidden py-3 md:py-5"
+>
+  {/* pr = el mismo hueco que entre fotos: así la cinta mide justo el doble
+      de una vuelta y desplazarla el 50 % la deja calzada sin salto. */}
+  <div data-desfile-pista class="desfile-pista flex w-max gap-2 pr-2 md:gap-3 md:pr-3">
+    {
+      [false, true].map((copia) =>
+        FOTOS.map((f, i) => (
+          <div
+            data-copia-desfile={copia ? "" : undefined}
+            aria-hidden={copia ? "true" : undefined}
+            class="relative aspect-[12/5] w-[86vw] shrink-0 overflow-hidden rounded-[12px] bg-papel shadow-[0_8px_24px_rgba(43,10,38,0.07)] sm:w-[70vw] md:w-[60vw] md:rounded-[16px] lg:w-[720px]"
+          >
+            <img
+              src={`/img/tienda/tienda-${f.n}-720.webp`}
+              srcset={srcset(f.n)}
+              sizes={sizes}
+              alt={copia ? "" : f.alt}
+              width="1440"
+              height="600"
+              loading={!copia && i < 2 ? "eager" : "lazy"}
+              fetchpriority={!copia && i === 0 ? "high" : "auto"}
+              decoding={!copia && i === 0 ? "sync" : "async"}
+              class="absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(122,1,119,0.28)_0%,rgba(122,1,119,0)_38%)]"
+            />
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute inset-[8px] rounded-[8px] border border-rosa-fuerte/85 md:inset-[12px] md:rounded-[10px]"
+            />
+            <div
+              aria-hidden="true"
+              class="absolute right-[14px] bottom-[14px] flex h-[48px] w-[48px] items-center justify-center rounded-full bg-papel shadow-[0_0_0_1px_var(--color-rosa-fuerte),0_8px_24px_rgba(43,10,38,0.12)] md:right-[28px] md:bottom-[28px] md:h-[72px] md:w-[72px]"
+            >
+              <img
+                src="/img/tienda/sello-coquetas.webp"
+                alt=""
+                width="62"
+                height="62"
+                loading={!copia && i === 0 ? "eager" : "lazy"}
+                class="h-[40px] w-[40px] md:h-[62px] md:w-[62px]"
+              />
+            </div>
+          </div>
+        ))
+      )
+    }
+  </div>
+
+  {/* Pausa: sobre la esquina de la cinta, en un círculo papel para que se
+      vea encima de cualquier foto. */}
+  <button
+    type="button"
+    data-desfile-pausa
+    hidden
+    aria-label="Pausar las fotos"
+    class="presionable absolute top-[20px] right-[max(8px,env(safe-area-inset-right))] z-10 flex h-[44px] w-[44px] items-center justify-center rounded-full border border-ciruela/15 bg-papel/95 text-ciruela shadow-[0_2px_10px_rgba(43,10,38,0.18)] transition-colors duration-[var(--paso)] hover:bg-crema md:top-[36px] md:right-4"
+  >
+    <svg data-icono-pausa viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none">
+      <path d="M5.5 3.5v9M10.5 3.5v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+    </svg>
+    <svg data-icono-reanudar viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" class="hidden">
+      <path d="M5 3.5v9l7-4.5-7-4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+    </svg>
+  </button>
+</section>
+
+<style>
+  .desfile-pista {
+    animation: desfile var(--duracion, 60s) linear infinite;
+    will-change: translate;
+  }
+
+  @keyframes desfile {
+    to {
+      translate: -50% 0;
+    }
+  }
+
+  /* Detenida: botón de pausa, dedo apoyado o fuera de pantalla. */
+  .desfile[data-detenido] .desfile-pista {
+    animation-play-state: paused;
+  }
+
+  /* Ratón encima: solo con puntero fino (en el teléfono el «hover» lo
+     dispara el toque y la dejaría parada). */
+  @media (hover: hover) and (pointer: fine) {
+    .desfile:hover .desfile-pista {
+      animation-play-state: paused;
+    }
+  }
+
+  /* Movimiento reducido: sin cinta. Quedan las cuatro fotos en una fila que
+     se desliza con el dedo, sin copias. */
+  @media (prefers-reduced-motion: reduce) {
+    .desfile {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .desfile-pista {
+      animation: none;
+      padding-inline: 16px;
+    }
+    .desfile-pista > * {
+      scroll-snap-align: center;
+    }
+    .desfile-pista > [data-copia-desfile] {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import "../scripts/desfile.js";
+</script>
