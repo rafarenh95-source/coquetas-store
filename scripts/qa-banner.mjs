@@ -4,7 +4,7 @@
  *     vista, sin desbordar la página;
  *   · la vuelta sin salto: media cinta = 4 fotos exactas (sin huecos);
  *   · velocidad ~40 px/s; se detiene con el ratón encima, con el dedo
- *     apoyado y con el botón de pausa; con movimiento reducido no se mueve.
+ *     apoyado (sin botón de pausa); con movimiento reducido no se mueve.
  *
  *   npx astro preview --port 4322 &
  *   node scripts/qa-banner.mjs [--capturas=carpeta]
@@ -98,19 +98,7 @@ for (const [w, h] of [[320, 640], [390, 844], [768, 1024], [1280, 900]]) {
   ok(Math.abs((await posicion(p)) - h0) < 1, "con el ratón encima sigue moviéndose");
   await p.mouse.move(5, 890);
 
-  await p.click("[data-desfile-pausa]");
-  await p.mouse.move(5, 890);
-  ok((await p.getAttribute("[data-desfile-pausa]", "aria-label")) === "Reanudar las fotos", "el botón no cambia a «Reanudar»");
-  const b0 = await posicion(p);
-  await p.waitForTimeout(1200);
-  ok(Math.abs((await posicion(p)) - b0) < 1, "pausada con el botón sigue moviéndose");
-  await p.click("[data-desfile-pausa]");
-  await p.mouse.move(5, 890);
-  const r0 = await posicion(p);
-  await p.waitForTimeout(1000);
-  ok(Math.abs((await posicion(p)) - r0) > 20, "al reanudar con el botón no se mueve");
-  const tam = await p.$eval("[data-desfile-pausa]", (x) => x.getBoundingClientRect());
-  ok(tam.width >= 44 && tam.height >= 44, "el botón de pausa mide menos de 44 px");
+  ok(!(await p.$("[data-desfile-pausa]")), "el banner tiene botón de pausa (la dueña lo quitó)");
   await c.close();
 }
 
@@ -136,11 +124,9 @@ for (const [w, h] of [[320, 640], [390, 844], [768, 1024], [1280, 900]]) {
   ok(Math.abs((await posicion(p)) - m0) < 1, "con movimiento reducido se mueve");
   const r = await p.evaluate(() => ({
     copiasVisibles: [...document.querySelectorAll("[data-copia-desfile]")].some((x) => getComputedStyle(x).display !== "none"),
-    pausa: !document.querySelector("[data-desfile-pausa]").hidden,
     deslizable: (() => { const d = document.querySelector("[data-desfile]"); return d.scrollWidth > d.clientWidth; })(),
   }));
   ok(!r.copiasVisibles, "con movimiento reducido se ven las fotos repetidas");
-  ok(!r.pausa, "con movimiento reducido se ve el botón de pausa");
   ok(r.deslizable, "con movimiento reducido no se puede deslizar a mano");
   await c.close();
 }

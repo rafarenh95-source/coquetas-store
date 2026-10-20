@@ -12,8 +12,8 @@
  * traba aunque la página esté cargando, y gasta poco en un teléfono de gama
  * baja). La cinta lleva las fotos dos veces y se desplaza exactamente la
  * mitad, así que la vuelta no se nota. scripts/desfile.js ajusta la duración
- * al ancho real y maneja las pausas: ratón encima, dedo apoyado, fuera de
- * pantalla y el botón de pausa (WCAG 2.2.2). Con movimiento reducido no se
+ * al ancho real y maneja las pausas: ratón encima, dedo apoyado y fuera de
+ * pantalla. Sin botón de pausa (la dueña lo quitó). Con movimiento reducido no se
  * mueve: queda una fila que se desliza con el dedo.
  *
  * Fotos preparadas con scripts/preparar-banner.mjs.
@@ -99,23 +99,6 @@ const MOVIL = "(max-width: 639px)";
       )
     }
   </div>
-
-  {/* Pausa: sobre la esquina de la cinta, en un círculo papel para que se
-      vea encima de cualquier foto. */}
-  <button
-    type="button"
-    data-desfile-pausa
-    hidden
-    aria-label="Pausar las fotos"
-    class="presionable absolute top-2 right-[max(8px,env(safe-area-inset-right))] z-10 flex h-[44px] w-[44px] items-center justify-center rounded-full border border-ciruela/15 bg-papel/95 text-ciruela shadow-[0_2px_10px_rgba(43,10,38,0.18)] transition-colors duration-[var(--paso)] hover:bg-crema md:top-4 md:right-4"
-  >
-    <svg data-icono-pausa viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none">
-      <path d="M5.5 3.5v9M10.5 3.5v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-    </svg>
-    <svg data-icono-reanudar viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" class="hidden">
-      <path d="M5 3.5v9l7-4.5-7-4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
-    </svg>
-  </button>
 </section>
 
 <style>
@@ -130,7 +113,7 @@ const MOVIL = "(max-width: 639px)";
     }
   }
 
-  /* Detenida: botón de pausa, dedo apoyado o fuera de pantalla. */
+  /* Detenida: dedo apoyado o fuera de pantalla. */
   .desfile[data-detenido] .desfile-pista {
     animation-play-state: paused;
   }

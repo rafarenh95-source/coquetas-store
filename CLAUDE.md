@@ -95,8 +95,8 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   de 4 fotos del local PEGADAS formando una línea continua (sin hueco, sin esquinas redondeadas,
   sin sombra ni filete; decisión de la dueña), con degradado púrpura y sello de la marca
   sobre círculo papel a 40 px/s, animación CSS. En el teléfono, fotos CUADRADAS (`tienda-movil-*`,
-  zip «Carrusel móvil»); desde 640 px, 12:5 (`tienda-*`). Van en `<picture>`. Se detiene con ratón encima, dedo apoyado,
-  fuera de pantalla y botón de pausa; con movimiento reducido queda una fila deslizable. Fotos en
+  zip «Carrusel móvil»); desde 640 px, 12:5 (`tienda-*`). Van en `<picture>`. Se detiene con ratón encima, dedo apoyado y
+  fuera de pantalla; **sin botón de pausa** (la dueña lo quitó); con movimiento reducido queda una fila deslizable. Fotos en
   `public/img/tienda/` generadas con `node scripts/preparar-banner.mjs <carpeta del zip del diseño>`.
 - Buscador: ya no está en la portada; va arriba de todo dentro del menú (formulario `[data-menu-buscar]`,
   `?buscar=…`; en la portada se resuelve sin recargar). «Todas las categorías» limpia la dirección.
