@@ -97,15 +97,15 @@ const SANGRE = "relative mt-2 -mx-[var(--sangria)]";
 /* Tarjetas visibles a la vez: categorías 1,5 · 2,5 · 3,5 · 4,5; favoritos
    (solo la foto, más chicas) 2,5 · 3,5 · 3,5 · 3,5 (son cuatro: con más
    visibles cabrían todas y no habría nada que deslizar en la computadora). */
-/* Categorías: tarjetas chicas con ícono, ~3 a la vista en el teléfono
-   (decisión de la dueña) con un pedacito de la cuarta; nunca menos de 96 px,
-   que es lo que pide «Herramientas» para caber en un renglón. En 320 px no
-   caben tres: van dos y media (si no, la tercera quedaba cortada por 8 px). Desde 640 px
-   caben las cinco y no hay nada que deslizar (las flechas se esconden solas). */
+/* Categorías: tarjetas con ícono, un 30 % más grandes que antes (decisión de
+   la dueña): ~2,5 a la vista en el teléfono, nunca menos de 125 px (lo que
+   pide «Herramientas» con letra de 17 px para caber en un renglón). Desde
+   640 px, ~3,85 a la vista: ya no caben las cinco, así que aparece la flecha
+   «siguiente» (las flechas se esconden solas en cada extremo). */
 const PISTA_CATEGORIA =
   "sin-riel flex snap-x snap-mandatory gap-[12px] overflow-x-auto overscroll-x-contain px-[var(--sangria)] scroll-px-[var(--sangria)] md:gap-3";
 const DIAPO_CATEGORIA =
-  "flex min-w-0 shrink-0 snap-start basis-[calc((100%-12px)/2.4)] min-[360px]:basis-[max(96px,calc((100%-24px)/3.25))] sm:basis-[calc((100%-48px)/5)] md:basis-[calc((100%-96px)/5)]";
+  "flex min-w-0 shrink-0 snap-start basis-[max(125px,calc((100%-24px)/2.5))] sm:basis-[calc((100%-48px)/3.85)] md:basis-[calc((100%-48px)/3.85)]";
 const DIAPO_MUESTRA =
   "flex min-w-0 shrink-0 snap-start basis-[calc((100%-32px)/2.5)] sm:basis-[calc((100%-48px)/3.5)] md:basis-[calc((100%-72px)/3.5)]";
 
@@ -259,15 +259,15 @@ const enlaceListaCompleta = tienda.whatsapp
                 <a
                   href="#grilla"
                   data-categoria-tile={c.id}
-                  class="presionable group flex w-full flex-col items-center gap-1 bg-papel px-[6px] pt-2 pb-[12px] text-center"
+                  class="presionable group flex w-full flex-col items-center gap-[6px] bg-papel px-[6px] pt-[10px] pb-4 text-center"
                 >
                   <span
                     data-carrusel-foto
-                    class="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-crema text-purpura transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.06] md:h-[80px] md:w-[80px]"
+                    class="flex h-[78px] w-[78px] items-center justify-center rounded-full bg-crema text-purpura transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.06] md:h-[104px] md:w-[104px]"
                   >
-                    <Icono nombre={c.icono} tamano={30} />
+                    <Icono nombre={c.icono} tamano={39} />
                   </span>
-                  <span class="font-sans text-[13px] leading-tight font-semibold text-ciruela md:text-[15px]">
+                  <span class="font-sans text-[17px] leading-tight font-semibold text-ciruela md:text-[19px]">
                     {c.texto}
                   </span>
                 </a>

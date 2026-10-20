@@ -81,8 +81,12 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   avisado a la dueña). Flechas redondas a los lados, a la altura de las fotos
   (`FlechaCarrusel.astro`, centradas en `[data-carrusel-foto]`).
 - Categorías: fila QUIETA (`data-sin-avance`: sin avance, sin pausa, sin copias ni puntos) con
-  íconos en círculo crema (los del menú) en vez de fotos; ~3 a la vista en el teléfono (2,5 en
-  320 px), las 5 desde 640 px. Sus flechas solo aparecen hacia donde hay más (decisión de la dueña).
+  íconos en círculo crema (los del menú) en vez de fotos; tarjetas un 30 % más grandes que antes
+  (decisión de la dueña): ~2,5 a la vista en el teléfono (mínimo 125 px de ancho), ~3,85 desde
+  640 px (ya no caben las 5 a la vez). Sus flechas solo aparecen hacia donde hay más (decisión de la dueña).
+- Flechas de los carruseles (`FlechaCarrusel.astro`): solo la flechita, sin círculo (decisión de la dueña);
+  el botón sigue midiendo 44 × 44 px. Si en la computadora de la dueña no se mueve nada: tiene
+  desactivados los efectos de animación de Windows, y el sitio lo respeta (movimiento reducido).
 - Preguntas frecuentes en el pie (`PieDePagina.astro`, textos en `src/data/preguntas.json`; salen
   también como FAQPage en la portada). Todas empiezan cerradas (decisión de la dueña). «¿Cómo compro?» (id `como-comprar`) es la primera;
   los enlaces «Cómo comprar» la abren.

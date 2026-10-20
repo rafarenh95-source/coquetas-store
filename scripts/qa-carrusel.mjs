@@ -128,13 +128,13 @@ for (const [w, h] of [[320, 568], [360, 740], [390, 844], [430, 932], [768, 1024
   comprobar(k.anchos === 1 && k.altos === 1, `${w}px categorías: las tarjetas no miden lo mismo`);
   comprobar(!k.nombresCortados, `${w}px categorías: nombre cortado`);
   if (w < 640) {
-    comprobar(k.enteras >= (w < 360 ? 2 : 3), `${w}px categorías: se ven ${k.enteras} enteras`);
+    comprobar(k.enteras >= 2, `${w}px categorías: se ven ${k.enteras} enteras`);
     comprobar(k.asoma, `${w}px categorías: no asoma la siguiente`);
     comprobar(!k.ant, `${w}px categorías: «anterior» visible al principio`);
     comprobar(k.sig && k.sig.lado && k.sig.t44 && k.sig.foto, `${w}px categorías: «siguiente» mal puesta o ausente`);
   } else {
-    comprobar(k.enteras === 5, `${w}px categorías: no se ven las 5 (${k.enteras})`);
-    comprobar(!k.ant && !k.sig, `${w}px categorías: sobran flechas`);
+    comprobar(k.enteras >= 3, `${w}px categorías: se ven ${k.enteras} enteras`);
+    comprobar(!k.ant && k.sig && k.sig.t44, `${w}px categorías: flechas mal (solo «siguiente» al principio)`);
   }
 
   if (carpeta) {

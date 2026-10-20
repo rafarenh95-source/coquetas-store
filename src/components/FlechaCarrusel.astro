@@ -1,12 +1,13 @@
 ---
 /**
- * Flecha de un carrusel: un círculo a un lado de la fila, a la altura del
- * centro de las fotos (scripts/carrusel.js le pone la altura exacta; el 50 %
- * es solo el punto de partida).
+ * Flecha de un carrusel: solo la flechita, sin círculo (decisión de la dueña),
+ * a un lado de la fila y a la altura del centro de las fotos (scripts/
+ * carrusel.js le pone la altura exacta; el 50 % es solo el punto de partida).
  *
- * Fondo papel casi opaco con borde y sombra suaves: va encima de las fotos y
- * tiene que verse sobre cualquiera, sin tapar el producto. 44 × 44 para el
- * dedo. Escondida hasta que el script confirma que hay algo que deslizar.
+ * Sin fondo: un halo blanco fino detrás del trazo la deja legible sobre
+ * cualquier foto sin tapar el producto. El botón sigue midiendo 44 × 44
+ * (zona táctil), aunque lo que se ve es la flecha. Escondida hasta que el
+ * script confirma que hay algo que deslizar.
  */
 
 import Icono from "./Icono.astro";
@@ -27,11 +28,11 @@ const atributo = { [`data-carrusel-${direccion}`]: "" };
   aria-label={etiqueta}
   style="top: 50%"
   class:list={[
-    "presionable absolute z-10 flex h-[44px] w-[44px] -translate-y-1/2 items-center justify-center rounded-full",
-    "border border-ciruela/15 bg-papel/95 text-ciruela shadow-[0_2px_10px_rgba(43,10,38,0.18)]",
-    "transition-colors duration-[var(--paso)] hover:bg-crema",
-    direccion === "anterior" ? "left-1" : "right-1",
+    "presionable absolute z-10 flex h-[44px] w-[44px] -translate-y-1/2 items-center justify-center",
+    "text-ciruela/80 [filter:drop-shadow(0_0_2px_rgba(255,250,247,0.95))_drop-shadow(0_0_5px_rgba(255,250,247,0.8))]",
+    "transition-colors duration-[var(--paso)] hover:text-ciruela",
+    direccion === "anterior" ? "left-0" : "right-0",
   ]}
 >
-  <Icono nombre="chevron" tamano={16} class={direccion === "anterior" ? "rotate-90" : "-rotate-90"} />
+  <Icono nombre="chevron" tamano={22} class={direccion === "anterior" ? "rotate-90" : "-rotate-90"} />
 </button>
