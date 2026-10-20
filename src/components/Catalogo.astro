@@ -34,6 +34,7 @@ const CATEGORIAS_BASE = [
   { id: "pestanas", texto: "Pestañas y cejas", icono: "pestanas" as const },
   { id: "facial", texto: "Cuidado facial", icono: "facial" as const },
   { id: "cuerpo", texto: "Cuerpo y spa", icono: "cuerpo" as const },
+  { id: "cabello", texto: "Cabello", icono: "cabello" as const },
 ];
 
 /* Foto de portada de cada categoría: la del primer producto destacado que
@@ -123,6 +124,7 @@ const NOMBRES: Record<string, string> = {
   pestanas: "Pestañas y cejas",
   facial: "Cuidado facial",
   cuerpo: "Cuerpo y spa",
+  cabello: "Cabello",
 };
 
 /* El aviso de que esto es una muestra vive en dos momentos, no uno:
@@ -394,6 +396,7 @@ const enlaceListaCompleta = tienda.whatsapp
       pestanas: "Pestañas y cejas",
       facial: "Cuidado facial",
       cuerpo: "Cuerpo y spa",
+      cabello: "Cabello",
     };
 
     let categoriaActual = "todo";

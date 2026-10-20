@@ -21,7 +21,15 @@ const SALIDA = path.resolve("src/data/productos.json");
 
 /* ── resolución de archivos tolerante a acentos y mayúsculas ─────────────── */
 
-const archivos = fs.readdirSync(ORIGEN).filter((f) => f.toLowerCase().endsWith(".png"));
+/* Lotes nuevos en subcarpetas: sus archivos se nombran «subcarpeta/archivo.png». */
+const SUBCARPETAS = ["02_CATALOGO_PREMIUM"];
+const esPng = (f) => f.toLowerCase().endsWith(".png");
+const archivos = [
+  ...fs.readdirSync(ORIGEN).filter(esPng),
+  ...SUBCARPETAS.filter((d) => fs.existsSync(path.join(ORIGEN, d))).flatMap((d) =>
+    fs.readdirSync(path.join(ORIGEN, d)).filter(esPng).map((f) => `${d}/${f}`)
+  ),
+];
 const indice = new Map(archivos.map((f) => [f.normalize("NFC").toLowerCase(), f]));
 
 function resolver(nombre) {
@@ -142,7 +150,7 @@ function familiaDeColor(hex) {
 
 /* ── catálogo ─────────────────────────────────────────────────────────────
  *
- * categoria       unas · herramientas · pestanas · facial · cuerpo
+ * categoria       unas · herramientas · pestanas · facial · cuerpo · cabello
  * tipo_variante   color (swatch circular) · aroma (chip de texto) · null
  * uso_profesional true cuando el envase lo declara o el producto solo tiene
  *                 sentido dentro de un servicio de manicura
@@ -1093,6 +1101,240 @@ const CATALOGO = [
     ],
   },
 
+  /* ── Lote «02_CATALOGO_PREMIUM» (fotos en esa subcarpeta) ─────────────── */
+  {
+    id: "NL-ACRILICO-1OZ",
+    nombre: "Acrílico Premium Nailed",
+    marca: "NAILED",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 8.0,
+    presentacion: "1 oz (28,35 g)",
+    destacado: false,
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/ACRILICO_NAILED_DE_1_OZ_8$.png" },
+    ],
+  },
+  {
+    id: "MG-LIGHT-BUILDER",
+    nombre: "Light builder gel",
+    marca: "MAXGLOW",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 3.0,
+    presentacion: "20 g",
+    destacado: false,
+    tipo_variante: "codigo",
+    variantes: [
+      { tono: "29", archivo: "02_CATALOGO_PREMIUM/Builder_nueva_presentación_3$_29.png" },
+    ],
+  },
+  {
+    id: "MB-CERA-CUTICULA",
+    nombre: "Cera para cutícula 4 en 1",
+    marca: "MONBRAY",
+    categoria: "unas",
+    uso_profesional: false,
+    precio_divisa: 2.0,
+    presentacion: "20 g",
+    destacado: false,
+    tipo_variante: "aroma",
+    variantes: [
+      { tono: "Coco", archivo: "02_CATALOGO_PREMIUM/Cera_d_cutícula_2$_coco.png" },
+      { tono: "Lavanda", archivo: "02_CATALOGO_PREMIUM/Cera_d_cutícula_2$_lavanda.png" },
+      { tono: "Rosa", archivo: "02_CATALOGO_PREMIUM/Cera_d_cutícula_2$_rosa.png" },
+      { tono: "Vainilla", archivo: "02_CATALOGO_PREMIUM/Cera_d_cutícula_2$_vainilla.png" },
+    ],
+  },
+  {
+    id: "MG-TIPS-COFFIN-NUM",
+    nombre: "Tips coffin por número",
+    marca: "MAXGLOW",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 1.9,
+    presentacion: "112 piezas",
+    destacado: false,
+    tipo_variante: "codigo",
+    variantes: [
+      { tono: "N.º 0+", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_0_más.png" },
+      { tono: "N.º 4", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_4.png" },
+      { tono: "N.º 4,5", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_4.5.png" },
+      { tono: "N.º 5", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_5.png" },
+      { tono: "N.º 5,5", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_5.5.png" },
+      { tono: "N.º 6", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_6.png" },
+      { tono: "N.º 6,5", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_6.5.png" },
+      { tono: "N.º 7", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_7.png" },
+      { tono: "N.º 8", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_8.png" },
+      { tono: "N.º 9", archivo: "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_9.png" },
+    ],
+  },
+  {
+    id: "MG-TIPS-JELLY-ALMOND",
+    nombre: "Uñas jelly tips almond",
+    marca: "MAXGLOW",
+    categoria: "unas",
+    uso_profesional: false,
+    precio_divisa: 4.5,
+    presentacion: "280 piezas",
+    destacado: false,
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Uñas_jelly_tips_280_piezas_Almond_4.5$.png" },
+    ],
+  },
+  {
+    id: "SN-OJO-GATO",
+    nombre: "Ojo de gato Shine Cat Eyes",
+    marca: "SULLI NAILS",
+    categoria: "unas",
+    uso_profesional: false,
+    precio_divisa: 2.5,
+    presentacion: "10 ml",
+    destacado: false,
+    // Un solo frasco para todos los tonos: el color sale de la carta de la dueña.
+    tipo_variante: "color",
+    variantes: [
+      { tono: "N.º 03", archivo: "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png", swatch_hex: "#F4A07A" },
+      { tono: "N.º 05", archivo: "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png", swatch_hex: "#9B7BD8" },
+      { tono: "N.º 06", archivo: "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png", swatch_hex: "#1F78D1" },
+      { tono: "N.º 07", archivo: "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png", swatch_hex: "#D4A21F" },
+      { tono: "N.º 09", archivo: "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png", swatch_hex: "#D2467F" },
+      { tono: "N.º 10", archivo: "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png", swatch_hex: "#4B5AA6" },
+    ],
+  },
+  {
+    id: "MB-CORTACUTICULA",
+    nombre: "Cortacutícula Monbray",
+    marca: "MONBRAY",
+    categoria: "herramientas",
+    uso_profesional: true,
+    precio_divisa: 3.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Cortacuticula_monbray_3$.png" },
+    ],
+  },
+  {
+    id: "MG-DREL-35K",
+    nombre: "Drel de 35 RPM",
+    marca: "MAXGLOW",
+    categoria: "herramientas",
+    uso_profesional: true,
+    precio_divisa: 38.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Negro", archivo: "02_CATALOGO_PREMIUM/Drel_de_35_rpm_blanco_y_negro_38$_Negro.png", swatch_hex: "#1C1D1F" },
+      // Sin foto del blanco todavía: comparte la del negro (cambiar cuando la dueña la mande).
+      { tono: "Blanco", archivo: "02_CATALOGO_PREMIUM/Drel_de_35_rpm_blanco_y_negro_38$_Negro.png", swatch_hex: "#F2F2F0" },
+    ],
+  },
+  {
+    id: "SN-LAMPARA-ALAMBRICA",
+    nombre: "Lámpara UV/LED alámbrica",
+    marca: "SUNONE",
+    categoria: "herramientas",
+    uso_profesional: true,
+    precio_divisa: 10.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Lámpara_alámbrica_10$.png" },
+    ],
+  },
+  {
+    id: "CQ-LAMPARA-72W",
+    nombre: "Lámpara recargable 72 W con piedras",
+    marca: null,
+    categoria: "herramientas",
+    uso_profesional: true,
+    precio_divisa: 45.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Lámpara_recargable_72_wts_con_piedras_45$.png" },
+    ],
+  },
+  {
+    id: "CQ-LAMPARA-ROSADA",
+    nombre: "Lámpara recargable luz rosada",
+    marca: null,
+    categoria: "herramientas",
+    uso_profesional: true,
+    precio_divisa: 35.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Lámpara_recargable_luz_rosada_35$.png" },
+    ],
+  },
+  {
+    id: "TF-PINCEL-LINER",
+    nombre: "Pincel liner Tiffany",
+    marca: "TIFFANY",
+    categoria: "herramientas",
+    uso_profesional: true,
+    precio_divisa: 2.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Turquesa", archivo: "02_CATALOGO_PREMIUM/Pinceles_liner_Tifany_2$_Turquesa.png", swatch_hex: "#2EB8A6" },
+    ],
+  },
+  {
+    id: "CQ-POSA-MANOS",
+    nombre: "Posa manos",
+    marca: null,
+    categoria: "herramientas",
+    uso_profesional: true,
+    precio_divisa: 22.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Fucsia", archivo: "02_CATALOGO_PREMIUM/Posa_manos_22$_Fucsia.png", swatch_hex: "#D8186E" },
+    ],
+  },
+  {
+    id: "EVO-PIGMENTO-CEJAS",
+    nombre: "Pigmento para cejas EVO",
+    marca: "EVO",
+    categoria: "pestanas",
+    uso_profesional: true,
+    precio_divisa: 6.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Castaño oscuro", archivo: "02_CATALOGO_PREMIUM/Evo_6$.png", swatch_hex: "#4A2C1E" },
+    ],
+  },
+  {
+    id: "CQ-GORRO-TERMICO",
+    nombre: "Gorro térmico",
+    marca: null,
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 7.0,
+    presentacion: null,
+    destacado: false,
+    tipo_variante: "codigo",
+    variantes: [
+      { tono: "Crema estampado", archivo: "02_CATALOGO_PREMIUM/Gorros_térmicos_7$_Crema_Estampado.png" },
+      { tono: "Negro estampado", archivo: "02_CATALOGO_PREMIUM/Gorros_térmicos_7$_Negro_Estampado.png" },
+      { tono: "Rosa ositos", archivo: "02_CATALOGO_PREMIUM/Gorros_térmicos_7$_Rosa_Ositos.png" },
+      { tono: "Rosa pandas", archivo: "02_CATALOGO_PREMIUM/Gorros_térmicos_7$_Rosa_Pandas.png" },
+    ],
+  },
 ];
 
 /* ── construcción ─────────────────────────────────────────────────────────
@@ -1102,7 +1344,7 @@ const CATALOGO = [
  * Rebeca; la manicurista encuentra lo suyo por la etiqueta.
  */
 
-const PESO_CATEGORIA = { unas: 0, herramientas: 1, pestanas: 2, facial: 3, cuerpo: 4 };
+const PESO_CATEGORIA = { unas: 0, herramientas: 1, pestanas: 2, facial: 3, cuerpo: 4, cabello: 5 };
 const RECARGO_BOLIVARES = 1.35;
 
 async function construir() {
@@ -1193,7 +1435,7 @@ async function construir() {
   console.log(`productos     ${productos.length}`);
   console.log(`variantes     ${fotos}`);
   console.log(`uso pro       ${pro} (${Math.round((pro / productos.length) * 100)} %)`);
-  for (const c of ["unas", "herramientas", "pestanas", "facial", "cuerpo"]) {
+  for (const c of ["unas", "herramientas", "pestanas", "facial", "cuerpo", "cabello"]) {
     console.log(`  ${c.padEnd(12)}${productos.filter((p) => p.categoria === c).length}`);
   }
   const dudosos = productos

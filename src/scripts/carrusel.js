@@ -149,13 +149,26 @@ function iniciar(raiz) {
       // Desde la primera: salto invisible a su copia, y de ahí hacia atrás.
       pista.scrollTo({ left: vuelta, behavior: "instant" });
       i = n;
+      /* El salto dispara su propio «scrollend» (y el encaje lo corre unos
+         píxeles). Sin esto, ese aviso devolvía la fila a la primera tarjeta
+         y cortaba el movimiento hacia atrás: la flecha no hacía nada. */
+      destinoAnterior = (i - 1) * paso;
+      clearTimeout(guardiaAnterior);
+      guardiaAnterior = setTimeout(() => (destinoAnterior = null), GUARDIA_MOVIMIENTO);
     }
     pista.scrollTo({ left: (i - 1) * paso, behavior: suave() });
   }
 
+  let destinoAnterior = null; // adónde va «anterior» tras el salto desde la primera
+  let guardiaAnterior = null;
+
   /** Dentro de la copia → a la tarjeta real equivalente, sin que se note. */
   function alTerminarDesplazamiento() {
     if (tocando) return;
+    if (destinoAnterior !== null) {
+      if (Math.abs(pista.scrollLeft - destinoAnterior) > paso / 2) return; // aún en camino
+      destinoAnterior = null;
+    }
     if (!sinAvance && paso && pista.scrollLeft >= vuelta - 1) {
       pista.scrollTo({ left: pista.scrollLeft - vuelta, behavior: "instant" });
     }

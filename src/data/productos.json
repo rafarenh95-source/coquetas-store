@@ -560,6 +560,74 @@
     "orden": 7
   },
   {
+    "producto_id": "MB-CERA-CUTICULA",
+    "nombre": "Cera para cutícula 4 en 1",
+    "marca": "MONBRAY",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": "20 g",
+    "descripcion": "Cera para cutícula Monbray 4 en 1, vegana, con aceites vegetales: bálsamo, removedor de cutículas, revitaliza y suaviza.",
+    "modo_uso": "Toma un poco con el dedo y masajea sobre la cutícula y el contorno de la uña. Úsala antes de empujar la cutícula o al terminar el servicio.",
+    "rendimiento": "Pote de 20 g.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "aroma",
+    "variantes": [
+      {
+        "tono": "Coco",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-CERA-CUTICULA-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Cera_d_cutícula_2$_coco.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Lavanda",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-CERA-CUTICULA-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Cera_d_cutícula_2$_lavanda.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Rosa",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-CERA-CUTICULA-03.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Cera_d_cutícula_2$_rosa.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Vainilla",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-CERA-CUTICULA-04.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Cera_d_cutícula_2$_vainilla.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 8
+  },
+  {
     "producto_id": "EG-ESM-TRAD",
     "nombre": "Esmalte tradicional",
     "marca": "EMERGIRL",
@@ -625,7 +693,99 @@
         "disponible": true
       }
     ],
-    "orden": 8
+    "orden": 9
+  },
+  {
+    "producto_id": "SN-OJO-GATO",
+    "nombre": "Ojo de gato Shine Cat Eyes",
+    "marca": "SULLI NAILS",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 2.5,
+    "precio_referencia": 3.38,
+    "nota_precio": null,
+    "presentacion": "10 ml",
+    "descripcion": "Gel semipermanente efecto ojo de gato Sulli Nails Shine Cat Eyes, con brillo magnético que se mueve con la luz.",
+    "modo_uso": "Aplica sobre la base curada, acerca el imán para dibujar el reflejo y cura en lámpara UV/LED. Repite en una segunda capa y sella con top coat.",
+    "rendimiento": "Frasco de 10 ml (0,33 fl oz). Se retira con removedor (soak-off).",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "N.º 03",
+        "swatch_hex": "#F4A07A",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SN-OJO-GATO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 05",
+        "swatch_hex": "#9B7BD8",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SN-OJO-GATO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 06",
+        "swatch_hex": "#1F78D1",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SN-OJO-GATO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 07",
+        "swatch_hex": "#D4A21F",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SN-OJO-GATO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 09",
+        "swatch_hex": "#D2467F",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SN-OJO-GATO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 10",
+        "swatch_hex": "#4B5AA6",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SN-OJO-GATO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/SULLI_NAILS_SHINE_OJOS_DE_GATO_0.33_FL.OZ.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 10
   },
   {
     "producto_id": "MG-TIPS-JELLY",
@@ -657,7 +817,39 @@
         "disponible": true
       }
     ],
-    "orden": 9
+    "orden": 11
+  },
+  {
+    "producto_id": "MG-TIPS-JELLY-ALMOND",
+    "nombre": "Uñas jelly tips almond",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": false,
+    "precio_divisa": 4.5,
+    "precio_referencia": 6.08,
+    "nota_precio": null,
+    "presentacion": "280 piezas",
+    "descripcion": "Tips jelly Maxglow de forma almendra, blandos y translúcidos, para alargar la uña sin construir con gel desde cero.",
+    "modo_uso": "Elige el tip que calce en tu uña, pega con gel constructor y cura. Recorta y lima a la forma que quieras.",
+    "rendimiento": "Caja con 280 piezas en tamaños surtidos.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-JELLY-ALMOND-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Uñas_jelly_tips_280_piezas_Almond_4.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 12
   },
   {
     "producto_id": "MG-ACE-CUT-PRO",
@@ -713,7 +905,39 @@
         "disponible": true
       }
     ],
-    "orden": 10
+    "orden": 13
+  },
+  {
+    "producto_id": "NL-ACRILICO-1OZ",
+    "nombre": "Acrílico Premium Nailed",
+    "marca": "NAILED",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 8,
+    "precio_referencia": 10.8,
+    "nota_precio": null,
+    "presentacion": "1 oz (28,35 g)",
+    "descripcion": "Polvo acrílico Premium Acrylics de Nailed, de grano fino y tono rosado natural, para esculpir y reforzar uñas.",
+    "modo_uso": "Toma una perla con el pincel humedecido en monómero, colócala sobre la uña o el molde y modela. Deja secar al aire, lima y da forma.",
+    "rendimiento": "Pote de 1 oz (28,35 g).",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/NL-ACRILICO-1OZ-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/ACRILICO_NAILED_DE_1_OZ_8$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 14
   },
   {
     "producto_id": "MY-BASE-COAT-8",
@@ -746,7 +970,7 @@
         "disponible": true
       }
     ],
-    "orden": 11
+    "orden": 15
   },
   {
     "producto_id": "MG-BASE-GEL-10",
@@ -778,7 +1002,7 @@
         "disponible": true
       }
     ],
-    "orden": 12
+    "orden": 16
   },
   {
     "producto_id": "MG-BASE-GEL-15",
@@ -810,7 +1034,7 @@
         "disponible": true
       }
     ],
-    "orden": 13
+    "orden": 17
   },
   {
     "producto_id": "MG-BRUSH-ON-GEL",
@@ -842,7 +1066,7 @@
         "disponible": true
       }
     ],
-    "orden": 14
+    "orden": 18
   },
   {
     "producto_id": "MG-BUILDER-GEL",
@@ -874,7 +1098,7 @@
         "disponible": true
       }
     ],
-    "orden": 15
+    "orden": 19
   },
   {
     "producto_id": "MB-BUILDER-GEL",
@@ -991,7 +1215,7 @@
         "disponible": true
       }
     ],
-    "orden": 16
+    "orden": 20
   },
   {
     "producto_id": "TF-BUILDER-10",
@@ -1023,7 +1247,7 @@
         "disponible": true
       }
     ],
-    "orden": 17
+    "orden": 21
   },
   {
     "producto_id": "TF-BUILDER-15",
@@ -1055,7 +1279,7 @@
         "disponible": true
       }
     ],
-    "orden": 18
+    "orden": 22
   },
   {
     "producto_id": "CQ-CELULOSAS-CORAZON",
@@ -1088,7 +1312,7 @@
         "disponible": true
       }
     ],
-    "orden": 19
+    "orden": 23
   },
   {
     "producto_id": "MG-ESPUMA-MANI",
@@ -1144,7 +1368,7 @@
         "disponible": true
       }
     ],
-    "orden": 20
+    "orden": 24
   },
   {
     "producto_id": "MG-FINISH-15",
@@ -1176,7 +1400,7 @@
         "disponible": true
       }
     ],
-    "orden": 21
+    "orden": 25
   },
   {
     "producto_id": "MG-JELLY-BUILDER",
@@ -1232,7 +1456,39 @@
         "disponible": true
       }
     ],
-    "orden": 22
+    "orden": 26
+  },
+  {
+    "producto_id": "MG-LIGHT-BUILDER",
+    "nombre": "Light builder gel",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": "20 g",
+    "descripcion": "Light builder gel Maxglow en la nueva presentación de 20 g: gel constructor ligero para nivelar, reforzar y alargar la uña.",
+    "modo_uso": "Aplica una capa fina, coloca una perla en el centro y deja que se nivele. Cura en lámpara, retira la capa pegajosa y lima.",
+    "rendimiento": "Pote de 20 g (0,7 oz). El tono es el número 29 de la carta.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "codigo",
+    "variantes": [
+      {
+        "tono": "29",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-LIGHT-BUILDER-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Builder_nueva_presentación_3$_29.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 27
   },
   {
     "producto_id": "MG-LIMPIA-PINCELES",
@@ -1264,7 +1520,7 @@
         "disponible": true
       }
     ],
-    "orden": 23
+    "orden": 28
   },
   {
     "producto_id": "MY-MOLDES-DUAL",
@@ -1297,7 +1553,7 @@
         "disponible": true
       }
     ],
-    "orden": 24
+    "orden": 29
   },
   {
     "producto_id": "MX-PEGA-7",
@@ -1330,7 +1586,7 @@
         "disponible": true
       }
     ],
-    "orden": 25
+    "orden": 30
   },
   {
     "producto_id": "MG-POLYGEL",
@@ -1434,7 +1690,7 @@
         "disponible": true
       }
     ],
-    "orden": 26
+    "orden": 31
   },
   {
     "producto_id": "MG-PRIMER",
@@ -1466,7 +1722,7 @@
         "disponible": true
       }
     ],
-    "orden": 27
+    "orden": 32
   },
   {
     "producto_id": "MY-PROTEIN-BASE",
@@ -1511,7 +1767,7 @@
         "disponible": true
       }
     ],
-    "orden": 28
+    "orden": 33
   },
   {
     "producto_id": "MG-PROTEIN-BOND",
@@ -1543,7 +1799,7 @@
         "disponible": true
       }
     ],
-    "orden": 29
+    "orden": 34
   },
   {
     "producto_id": "MG-TOP-COAT-REC",
@@ -1575,7 +1831,7 @@
         "disponible": true
       }
     ],
-    "orden": 30
+    "orden": 35
   },
   {
     "producto_id": "MG-SANITIZANTE",
@@ -1607,7 +1863,147 @@
         "disponible": true
       }
     ],
-    "orden": 31
+    "orden": 36
+  },
+  {
+    "producto_id": "MG-TIPS-COFFIN-NUM",
+    "nombre": "Tips coffin por número",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 1.9,
+    "precio_referencia": 2.57,
+    "nota_precio": null,
+    "presentacion": "112 piezas",
+    "descripcion": "Tips transparentes de forma coffin Maxglow, en bolsa de un solo número para reponer justo la talla que más usas.",
+    "modo_uso": "Elige el número que calce de borde a borde en la uña, pega con gel o pega para uñas y cura. Recorta y lima a la forma que quieras.",
+    "rendimiento": "Bolsa de 112 piezas de un mismo número.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "codigo",
+    "variantes": [
+      {
+        "tono": "N.º 0+",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_0_más.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 4",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_4.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 4,5",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-03.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_4.5.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 5",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-04.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_5.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 5,5",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-05.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_5.5.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 6",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-06.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_6.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 6,5",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-07.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_6.5.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 7",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-08.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_7.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 8",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-09.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_8.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "N.º 9",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-TIPS-COFFIN-NUM-10.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tips_por_número_1.9$_Coffin_9.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 37
   },
   {
     "producto_id": "MG-TOALLAS-REMOV",
@@ -1639,7 +2035,7 @@
         "disponible": true
       }
     ],
-    "orden": 32
+    "orden": 38
   },
   {
     "producto_id": "MG-TOP-COAT-15",
@@ -1671,7 +2067,7 @@
         "disponible": true
       }
     ],
-    "orden": 33
+    "orden": 39
   },
   {
     "producto_id": "MG-TIPS-500",
@@ -1703,7 +2099,7 @@
         "disponible": true
       }
     ],
-    "orden": 34
+    "orden": 40
   },
   {
     "producto_id": "MY-TIPS-500",
@@ -1736,7 +2132,7 @@
         "disponible": true
       }
     ],
-    "orden": 35
+    "orden": 41
   },
   {
     "producto_id": "TF-LIMA-100-180",
@@ -1768,7 +2164,7 @@
         "disponible": true
       }
     ],
-    "orden": 36
+    "orden": 42
   },
   {
     "producto_id": "CQ-CEPILLO-GRANDE",
@@ -1801,7 +2197,7 @@
         "disponible": true
       }
     ],
-    "orden": 37
+    "orden": 43
   },
   {
     "producto_id": "MG-CORTACUTICULA",
@@ -1833,7 +2229,7 @@
         "disponible": true
       }
     ],
-    "orden": 38
+    "orden": 44
   },
   {
     "producto_id": "TF-CORTA-RESORTE",
@@ -1866,7 +2262,39 @@
         "disponible": true
       }
     ],
-    "orden": 39
+    "orden": 45
+  },
+  {
+    "producto_id": "MB-CORTACUTICULA",
+    "nombre": "Cortacutícula Monbray",
+    "marca": "MONBRAY",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Cortacutícula de acero Monbray Beauty, con resorte doble y filo preciso para retirar la cutícula sin tirar.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MB-CORTACUTICULA-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Cortacuticula_monbray_3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 46
   },
   {
     "producto_id": "MG-CORTA-JAW14",
@@ -1899,7 +2327,7 @@
         "disponible": true
       }
     ],
-    "orden": 40
+    "orden": 47
   },
   {
     "producto_id": "MG-CORTA-SHARP",
@@ -1932,7 +2360,211 @@
         "disponible": true
       }
     ],
-    "orden": 41
+    "orden": 48
+  },
+  {
+    "producto_id": "MG-DREL-35K",
+    "nombre": "Drel de 35 RPM",
+    "marca": "MAXGLOW",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 38,
+    "precio_referencia": 51.3,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Drel portátil Maxglow de 35 RPM, recargable y con soporte, para limar, dar forma y retirar gel o acrílico. Disponible en negro y blanco.",
+    "modo_uso": "Elige la fresa según el trabajo, empieza a baja velocidad y sube poco a poco. Trabaja sin presionar, siempre en movimiento.",
+    "rendimiento": "Recargable. Incluye soporte.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Negro",
+        "swatch_hex": "#1C1D1F",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-DREL-35K-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Drel_de_35_rpm_blanco_y_negro_38$_Negro.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Blanco",
+        "swatch_hex": "#F2F2F0",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-DREL-35K-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Drel_de_35_rpm_blanco_y_negro_38$_Negro.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 49
+  },
+  {
+    "producto_id": "CQ-LAMPARA-72W",
+    "nombre": "Lámpara recargable 72 W con piedras",
+    "marca": null,
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 45,
+    "precio_referencia": 60.75,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Lámpara UV/LED recargable de 72 W con acabado de piedras brillantes, pantalla con el tiempo y temporizador.",
+    "modo_uso": "Carga antes de usar. Coloca la mano dentro, elige el tiempo y cura cada capa según indique el producto.",
+    "rendimiento": "Recargable, 72 W.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-LAMPARA-72W-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Lámpara_recargable_72_wts_con_piedras_45$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 50
+  },
+  {
+    "producto_id": "CQ-LAMPARA-ROSADA",
+    "nombre": "Lámpara recargable luz rosada",
+    "marca": null,
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 35,
+    "precio_referencia": 47.25,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Lámpara UV/LED recargable con luz rosada, pantalla digital y temporizador de 45 y 90 segundos.",
+    "modo_uso": "Carga antes de usar. Coloca la mano dentro, elige el tiempo y cura cada capa según indique el producto.",
+    "rendimiento": "Recargable.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-LAMPARA-ROSADA-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Lámpara_recargable_luz_rosada_35$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 51
+  },
+  {
+    "producto_id": "SN-LAMPARA-ALAMBRICA",
+    "nombre": "Lámpara UV/LED alámbrica",
+    "marca": "SUNONE",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 10,
+    "precio_referencia": 13.5,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Lámpara UV/LED SUNone con cable, para curar esmalte semipermanente, gel y builder.",
+    "modo_uso": "Conecta, coloca la mano dentro y elige el tiempo con los botones. Cura cada capa según indique el producto.",
+    "rendimiento": "Funciona conectada a la corriente.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SN-LAMPARA-ALAMBRICA-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Lámpara_alámbrica_10$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 52
+  },
+  {
+    "producto_id": "TF-PINCEL-LINER",
+    "nombre": "Pincel liner Tiffany",
+    "marca": "TIFFANY",
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Pincel liner Tiffany de pelo largo y fino, para líneas, detalles y decoraciones a mano alzada.",
+    "modo_uso": "Carga poco producto y traza en un solo movimiento, sin presionar. Limpia el pincel al terminar.",
+    "rendimiento": "Un pincel con estuche protector.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Turquesa",
+        "swatch_hex": "#2EB8A6",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-PINCEL-LINER-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Pinceles_liner_Tifany_2$_Turquesa.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 53
+  },
+  {
+    "producto_id": "CQ-POSA-MANOS",
+    "nombre": "Posa manos",
+    "marca": null,
+    "categoria": "herramientas",
+    "uso_profesional": true,
+    "precio_divisa": 22,
+    "precio_referencia": 29.7,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Posa manos acolchado para manicure, en fucsia: la clienta apoya la mano cómoda y firme durante el servicio.",
+    "modo_uso": "Colócalo sobre la mesa de trabajo y pide a la clienta que apoye la muñeca en la parte acolchada.",
+    "rendimiento": "Se limpia con un paño húmedo.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Fucsia",
+        "swatch_hex": "#D8186E",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-POSA-MANOS-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Posa_manos_22$_Fucsia.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 54
   },
   {
     "producto_id": "MG-PUNTAS-PEDICURE",
@@ -1965,7 +2597,7 @@
         "disponible": true
       }
     ],
-    "orden": 42
+    "orden": 55
   },
   {
     "producto_id": "CQ-SET-PINCELES",
@@ -1998,7 +2630,7 @@
         "disponible": true
       }
     ],
-    "orden": 43
+    "orden": 56
   },
   {
     "producto_id": "TF-TIJERA-CURVA",
@@ -2031,7 +2663,7 @@
         "disponible": true
       }
     ],
-    "orden": 44
+    "orden": 57
   },
   {
     "producto_id": "CQ-TIJERA-PROFESIONAL",
@@ -2064,7 +2696,7 @@
         "disponible": true
       }
     ],
-    "orden": 45
+    "orden": 58
   },
   {
     "producto_id": "TF-TIJERA-CUTICULA",
@@ -2097,7 +2729,7 @@
         "disponible": true
       }
     ],
-    "orden": 46
+    "orden": 59
   },
   {
     "producto_id": "TF-TIJERA-PRO",
@@ -2130,7 +2762,7 @@
         "disponible": true
       }
     ],
-    "orden": 47
+    "orden": 60
   },
   {
     "producto_id": "CQ-ALMOHADA-LASHISTA",
@@ -2163,7 +2795,7 @@
         "disponible": true
       }
     ],
-    "orden": 48
+    "orden": 61
   },
   {
     "producto_id": "CQ-CEPILLO-PESTANAS",
@@ -2196,7 +2828,7 @@
         "disponible": true
       }
     ],
-    "orden": 49
+    "orden": 62
   },
   {
     "producto_id": "MG-GASAS-PESTANAS",
@@ -2252,7 +2884,7 @@
         "disponible": true
       }
     ],
-    "orden": 50
+    "orden": 63
   },
   {
     "producto_id": "CQ-LAPIZ-VISAGISMO-BLANCO",
@@ -2285,7 +2917,7 @@
         "disponible": true
       }
     ],
-    "orden": 51
+    "orden": 64
   },
   {
     "producto_id": "CQ-LAPIZ-VISAGISMO",
@@ -2318,7 +2950,7 @@
         "disponible": true
       }
     ],
-    "orden": 52
+    "orden": 65
   },
   {
     "producto_id": "MY-LIBRETA-PESTANAS",
@@ -2351,7 +2983,7 @@
         "disponible": true
       }
     ],
-    "orden": 53
+    "orden": 66
   },
   {
     "producto_id": "CQ-MICROBLUSH",
@@ -2432,7 +3064,7 @@
         "disponible": true
       }
     ],
-    "orden": 54
+    "orden": 67
   },
   {
     "producto_id": "CQ-MICROHISOPOS",
@@ -2465,7 +3097,7 @@
         "disponible": true
       }
     ],
-    "orden": 55
+    "orden": 68
   },
   {
     "producto_id": "CQ-NAVAJA",
@@ -2498,7 +3130,39 @@
         "disponible": true
       }
     ],
-    "orden": 56
+    "orden": 69
+  },
+  {
+    "producto_id": "EVO-PIGMENTO-CEJAS",
+    "nombre": "Pigmento para cejas EVO",
+    "marca": "EVO",
+    "categoria": "pestanas",
+    "uso_profesional": true,
+    "precio_divisa": 6,
+    "precio_referencia": 8.1,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Pigmento para cejas EVO en castaño oscuro, con su activador, para teñir y definir las cejas.",
+    "modo_uso": "Mezcla el pigmento con el activador según las instrucciones del envase, aplica sobre la ceja limpia y deja actuar. Retira con agua.",
+    "rendimiento": "Incluye pigmento y activador.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Castaño oscuro",
+        "swatch_hex": "#4A2C1E",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EVO-PIGMENTO-CEJAS-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Evo_6$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 70
   },
   {
     "producto_id": "CQ-PIPETA-LAVADO",
@@ -2555,7 +3219,7 @@
         "disponible": true
       }
     ],
-    "orden": 57
+    "orden": 71
   },
   {
     "producto_id": "MG-AGUA-ROSAS",
@@ -2587,7 +3251,7 @@
         "disponible": true
       }
     ],
-    "orden": 58
+    "orden": 72
   },
   {
     "producto_id": "MG-DISCOS-ALGODON",
@@ -2620,7 +3284,7 @@
         "disponible": true
       }
     ],
-    "orden": 59
+    "orden": 73
   },
   {
     "producto_id": "CQ-GEL-SABILA",
@@ -2653,7 +3317,7 @@
         "disponible": true
       }
     ],
-    "orden": 60
+    "orden": 74
   },
   {
     "producto_id": "CQ-PALETA-EXFOLIANTE",
@@ -2698,7 +3362,7 @@
         "disponible": true
       }
     ],
-    "orden": 61
+    "orden": 75
   },
   {
     "producto_id": "MG-ATOMIZADOR-TALCO",
@@ -2730,7 +3394,7 @@
         "disponible": true
       }
     ],
-    "orden": 62
+    "orden": 76
   },
   {
     "producto_id": "MG-BOMBAS-EFERV",
@@ -2762,7 +3426,7 @@
         "disponible": true
       }
     ],
-    "orden": 63
+    "orden": 77
   },
   {
     "producto_id": "MG-BODY-BUTTER",
@@ -2794,7 +3458,7 @@
         "disponible": true
       }
     ],
-    "orden": 64
+    "orden": 78
   },
   {
     "producto_id": "MY-PETALOS-JABON",
@@ -2827,6 +3491,74 @@
         "disponible": true
       }
     ],
-    "orden": 65
+    "orden": 79
+  },
+  {
+    "producto_id": "CQ-GORRO-TERMICO",
+    "nombre": "Gorro térmico",
+    "marca": null,
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 7,
+    "precio_referencia": 9.45,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Gorro térmico eléctrico para tratamientos capilares: da calor parejo para que la mascarilla o la hidratación penetre mejor.",
+    "modo_uso": "Aplica el tratamiento, cubre el cabello con un gorro plástico, colócate el gorro térmico y elige la temperatura con el control.",
+    "rendimiento": "Funciona conectado a la corriente. Control de temperatura en el cable.",
+    "destacado": false,
+    "disponible": true,
+    "tipo_variante": "codigo",
+    "variantes": [
+      {
+        "tono": "Crema estampado",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-GORRO-TERMICO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Gorros_térmicos_7$_Crema_Estampado.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Negro estampado",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-GORRO-TERMICO-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Gorros_térmicos_7$_Negro_Estampado.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Rosa ositos",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-GORRO-TERMICO-03.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Gorros_térmicos_7$_Rosa_Ositos.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Rosa pandas",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-GORRO-TERMICO-04.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Gorros_térmicos_7$_Rosa_Pandas.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 80
   }
 ]

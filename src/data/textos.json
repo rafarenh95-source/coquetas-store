@@ -324,5 +324,80 @@
     "descripcion": "Gel hidratante de sábila (aloe vera) que calma y refresca la piel.",
     "modo_uso": "Aplica una capa sobre la piel limpia y deja que absorba.",
     "rendimiento": ""
+  },
+  "NL-ACRILICO-1OZ": {
+    "descripcion": "Polvo acrílico Premium Acrylics de Nailed, de grano fino y tono rosado natural, para esculpir y reforzar uñas.",
+    "modo_uso": "Toma una perla con el pincel humedecido en monómero, colócala sobre la uña o el molde y modela. Deja secar al aire, lima y da forma.",
+    "rendimiento": "Pote de 1 oz (28,35 g)."
+  },
+  "MG-LIGHT-BUILDER": {
+    "descripcion": "Light builder gel Maxglow en la nueva presentación de 20 g: gel constructor ligero para nivelar, reforzar y alargar la uña.",
+    "modo_uso": "Aplica una capa fina, coloca una perla en el centro y deja que se nivele. Cura en lámpara, retira la capa pegajosa y lima.",
+    "rendimiento": "Pote de 20 g (0,7 oz). El tono es el número 29 de la carta."
+  },
+  "MB-CERA-CUTICULA": {
+    "descripcion": "Cera para cutícula Monbray 4 en 1, vegana, con aceites vegetales: bálsamo, removedor de cutículas, revitaliza y suaviza.",
+    "modo_uso": "Toma un poco con el dedo y masajea sobre la cutícula y el contorno de la uña. Úsala antes de empujar la cutícula o al terminar el servicio.",
+    "rendimiento": "Pote de 20 g."
+  },
+  "MG-TIPS-COFFIN-NUM": {
+    "descripcion": "Tips transparentes de forma coffin Maxglow, en bolsa de un solo número para reponer justo la talla que más usas.",
+    "modo_uso": "Elige el número que calce de borde a borde en la uña, pega con gel o pega para uñas y cura. Recorta y lima a la forma que quieras.",
+    "rendimiento": "Bolsa de 112 piezas de un mismo número."
+  },
+  "MG-TIPS-JELLY-ALMOND": {
+    "descripcion": "Tips jelly Maxglow de forma almendra, blandos y translúcidos, para alargar la uña sin construir con gel desde cero.",
+    "modo_uso": "Elige el tip que calce en tu uña, pega con gel constructor y cura. Recorta y lima a la forma que quieras.",
+    "rendimiento": "Caja con 280 piezas en tamaños surtidos."
+  },
+  "MB-CORTACUTICULA": {
+    "descripcion": "Cortacutícula de acero Monbray Beauty, con resorte doble y filo preciso para retirar la cutícula sin tirar.",
+    "modo_uso": "Corta con la punta, siguiendo el borde de la cutícula ablandada. No arrastres.",
+    "rendimiento": "Herramienta de acero. Se desinfecta entre servicio y servicio."
+  },
+  "MG-DREL-35K": {
+    "descripcion": "Drel portátil Maxglow de 35 RPM, recargable y con soporte, para limar, dar forma y retirar gel o acrílico. Disponible en negro y blanco.",
+    "modo_uso": "Elige la fresa según el trabajo, empieza a baja velocidad y sube poco a poco. Trabaja sin presionar, siempre en movimiento.",
+    "rendimiento": "Recargable. Incluye soporte."
+  },
+  "SN-LAMPARA-ALAMBRICA": {
+    "descripcion": "Lámpara UV/LED SUNone con cable, para curar esmalte semipermanente, gel y builder.",
+    "modo_uso": "Conecta, coloca la mano dentro y elige el tiempo con los botones. Cura cada capa según indique el producto.",
+    "rendimiento": "Funciona conectada a la corriente."
+  },
+  "CQ-LAMPARA-72W": {
+    "descripcion": "Lámpara UV/LED recargable de 72 W con acabado de piedras brillantes, pantalla con el tiempo y temporizador.",
+    "modo_uso": "Carga antes de usar. Coloca la mano dentro, elige el tiempo y cura cada capa según indique el producto.",
+    "rendimiento": "Recargable, 72 W."
+  },
+  "CQ-LAMPARA-ROSADA": {
+    "descripcion": "Lámpara UV/LED recargable con luz rosada, pantalla digital y temporizador de 45 y 90 segundos.",
+    "modo_uso": "Carga antes de usar. Coloca la mano dentro, elige el tiempo y cura cada capa según indique el producto.",
+    "rendimiento": "Recargable."
+  },
+  "TF-PINCEL-LINER": {
+    "descripcion": "Pincel liner Tiffany de pelo largo y fino, para líneas, detalles y decoraciones a mano alzada.",
+    "modo_uso": "Carga poco producto y traza en un solo movimiento, sin presionar. Limpia el pincel al terminar.",
+    "rendimiento": "Un pincel con estuche protector."
+  },
+  "CQ-POSA-MANOS": {
+    "descripcion": "Posa manos acolchado para manicure, en fucsia: la clienta apoya la mano cómoda y firme durante el servicio.",
+    "modo_uso": "Colócalo sobre la mesa de trabajo y pide a la clienta que apoye la muñeca en la parte acolchada.",
+    "rendimiento": "Se limpia con un paño húmedo."
+  },
+  "EVO-PIGMENTO-CEJAS": {
+    "descripcion": "Pigmento para cejas EVO en castaño oscuro, con su activador, para teñir y definir las cejas.",
+    "modo_uso": "Mezcla el pigmento con el activador según las instrucciones del envase, aplica sobre la ceja limpia y deja actuar. Retira con agua.",
+    "rendimiento": "Incluye pigmento y activador."
+  },
+  "CQ-GORRO-TERMICO": {
+    "descripcion": "Gorro térmico eléctrico para tratamientos capilares: da calor parejo para que la mascarilla o la hidratación penetre mejor.",
+    "modo_uso": "Aplica el tratamiento, cubre el cabello con un gorro plástico, colócate el gorro térmico y elige la temperatura con el control.",
+    "rendimiento": "Funciona conectado a la corriente. Control de temperatura en el cable."
+  },
+  "SN-OJO-GATO": {
+    "descripcion": "Gel semipermanente efecto ojo de gato Sulli Nails Shine Cat Eyes, con brillo magnético que se mueve con la luz.",
+    "modo_uso": "Aplica sobre la base curada, acerca el imán para dibujar el reflejo y cura en lámpara UV/LED. Repite en una segunda capa y sella con top coat.",
+    "rendimiento": "Frasco de 10 ml (0,33 fl oz). Se retira con removedor (soak-off)."
   }
 }

@@ -42,7 +42,7 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   con la tasa BCV en el navegador. La leyenda legal de la tasa BCV en el pie es obligatoria (Ley de
   Precios Justos): no quitarla.
 - Categorías (en este orden): `unas` Uñas · `herramientas` Herramientas · `pestanas` Pestañas y cejas
-  · `facial` Cuidado facial · `cuerpo` Cuerpo y spa. Están repetidas en: `Catalogo.astro`
+  · `facial` Cuidado facial · `cuerpo` Cuerpo y spa · `cabello` Cabello. Están repetidas en: `Catalogo.astro`
   (CATEGORIAS_BASE y los dos NOMBRES), `producto/[id].astro`, `Icono.astro`, `build-productos.mjs`
   (PESO_CATEGORIA e informe), `qa-datos.mjs` y `qa-sitio.mjs`. Cambiar una categoría = tocar todos.
 - Foto de cada tarjeta de categoría: `FOTO_DE_CATEGORIA` en `Catalogo.astro`.
@@ -55,7 +55,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 
 ## Fotos
 
-- Originales en `C:/Users/conch/Downloads/imagenes editadas` (fondo blanco).
+- Originales en `C:/Users/conch/Downloads/imagenes editadas` (fondo blanco). Lotes nuevos pueden ir en
+  subcarpetas (hoy `02_CATALOGO_PREMIUM`): se agregan a `SUBCARPETAS` en `build-productos.mjs` y
+  el archivo se escribe «subcarpeta/archivo.png».
 - `node scripts/blanquear-fondo.mjs <archivos>` deja el fondo en blanco puro (para fotos nuevas).
 - `node scripts/procesar-fotos.mjs --solo=ID1,ID2` recorta, centra, quita el reflejo blanco del suelo,
   sin sombra, y genera 1000/700/400 px; después `node scripts/tamano-intermedio.mjs --solo=...` (550 px).

@@ -130,6 +130,7 @@ const esperado = {
   pestanas: productos.filter((x) => x.categoria === "pestanas").length,
   facial: productos.filter((x) => x.categoria === "facial").length,
   cuerpo: productos.filter((x) => x.categoria === "cuerpo").length,
+  cabello: productos.filter((x) => x.categoria === "cabello").length,
 };
 
 for (const [cat, n] of Object.entries(esperado)) {
