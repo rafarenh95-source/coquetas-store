@@ -24,7 +24,6 @@
 import TarjetaProducto from "./TarjetaProducto.astro";
 import BannerTienda from "./BannerTienda.astro";
 import FlechaCarrusel from "./FlechaCarrusel.astro";
-import PausaCarrusel from "./PausaCarrusel.astro";
 import Icono from "./Icono.astro";
 import productos from "../data/productos.json";
 import tienda from "../data/tienda.json";
@@ -66,7 +65,24 @@ const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
    orden. Los elige la dueña. Lista aparte y no la bandera «destacado» de los
    datos, porque esa bandera también decide la foto de cada categoría (el
    agua micelar salió de aquí pero sigue siendo la foto de Cuidado facial). */
-const MUESTRA = ["MG-ESM-SEMI-10", "MG-GEL-COLOR-15", "MG-EXFOLIANTE", "MG-VELOTERAPIA"];
+const MUESTRA = [
+  "MG-ESM-SEMI-10",
+  "MG-GEL-COLOR-15",
+  "MG-EXFOLIANTE",
+  "MG-VELOTERAPIA",
+  "MG-AGUA-MICELAR",
+  "MG-POLYGEL",
+  "CQ-MICROBLUSH",
+  "MG-BODY-BUTTER",
+  "MG-ACE-CUT-FLOR",
+  "MG-AGUA-ROSAS",
+  "CQ-SET-PINCELES",
+  "MG-BOMBAS-EFERV",
+  "EG-ESM-TRAD",
+  "MG-GASAS-PESTANAS",
+  "MB-BUILDER-GEL",
+  "CQ-PALETA-EXFOLIANTE",
+];
 const muestra = MUESTRA.map((id) => productos.find((p) => p.producto_id === id)).filter(
   (p): p is (typeof productos)[number] => Boolean(p)
 );
@@ -158,8 +174,8 @@ const enlaceListaCompleta = tienda.whatsapp
         Avanzan solas de a una tarjeta con 1,3 s quietas entre avance y
         avance, y dan la vuelta sin fin. Se detienen al tocarlas, al pasar el
         ratón o al enfocarlas con el teclado, y no arrancan si el teléfono
-        pide movimiento reducido. Botón de pausa junto al título (WCAG 2.2.2)
-        y flechas a los lados (FlechaCarrusel). Las dos filas arrancan
+        pide movimiento reducido. Sin botón de pausa (la dueña lo quitó de
+        Favoritos); flechas a los lados (FlechaCarrusel). Las dos filas arrancan
         desfasadas para no moverse a la vez. Todo en scripts/carrusel.js.
 
         Sin JavaScript quedan filas deslizables a mano, sin controles. */}
@@ -174,7 +190,6 @@ const enlaceListaCompleta = tienda.whatsapp
         >
           <div class="flex min-h-[44px] items-center justify-between gap-2">
             <p id="titulo-muestra" class="t-etiqueta text-purpura">{TITULO_MUESTRA}</p>
-            <PausaCarrusel />
           </div>
           <div class={SANGRE}>
             <div data-carrusel-pista aria-live="off" class={PISTA}>

@@ -2,7 +2,7 @@
  * QA de los carruseles de la portada.
  *
  *   «Favoritos de Coquetas» — avanza solo con 1,3 s de pausa, vuelta sin fin,
- *   pausas (ratón, dedo, botón), movimiento reducido, flechas, teclado.
+ *   pausas (ratón, dedo; sin botón de pausa), movimiento reducido, flechas, teclado.
  *
  *   «Categorías» — fila QUIETA con íconos (decisión de la dueña): no se mueve
  *   sola, sin pausa ni copias; ~3 a la vista en el teléfono con flechas que
@@ -119,6 +119,7 @@ for (const [w, h] of [[320, 568], [360, 740], [390, 844], [430, 932], [768, 1024
   comprobar(m.ant?.lado && m.sig?.lado, `${w}px favoritos: las flechas no están a los lados`);
   comprobar(m.ant?.t44 && m.sig?.t44, `${w}px favoritos: flechas de menos de 44 px`);
   comprobar(m.ant?.foto && m.sig?.foto, `${w}px favoritos: las flechas no están a la altura de la foto`);
+  comprobar(!m.pausa, `${w}px favoritos: tiene botón de pausa (la dueña lo quitó)`);
 
   // Categorías
   const k = await forma(p, "categorias");
@@ -216,19 +217,6 @@ for (const [w, h] of [[320, 568], [360, 740], [390, 844], [430, 932], [768, 1024
   await p.waitForTimeout(PAUSA + MOVIMIENTO + 400);
   comprobar((await estado(p, nombre)).indice !== a.indice, "al quitar el ratón no se reanuda");
 
-  await p.click(`${raiz(nombre)} [data-carrusel-pausa]`);
-  await p.mouse.move(5, 5);
-  await p.evaluate(() => document.activeElement?.blur());
-  comprobar((await p.getAttribute(`${raiz(nombre)} [data-carrusel-pausa]`, "aria-label")) === "Reanudar el carrusel", "el botón no cambia a «Reanudar»");
-  await p.waitForTimeout(MOVIMIENTO);
-  const b0 = await estado(p, nombre);
-  await p.waitForTimeout(PAUSA * 2 + MOVIMIENTO);
-  comprobar((await estado(p, nombre)).indice === b0.indice, "pausado con el botón sigue avanzando");
-  await p.click(`${raiz(nombre)} [data-carrusel-pausa]`);
-  await p.mouse.move(5, 5);
-  await p.evaluate(() => document.activeElement?.blur());
-  await p.waitForTimeout(PAUSA + MOVIMIENTO + 400);
-  comprobar((await estado(p, nombre)).indice !== b0.indice, "al reanudar con el botón no avanza");
   await c.close();
 }
 {
@@ -248,7 +236,6 @@ for (const [w, h] of [[320, 568], [360, 740], [390, 844], [430, 932], [768, 1024
   const { c, p } = await abrir({ viewport: { width: 375, height: 740 }, isMobile: true, reducedMotion: "reduce" }, "/", "muestra");
   await p.waitForTimeout(PAUSA * 2 + MOVIMIENTO);
   comprobar((await estado(p, "muestra")).indice === 0, "favoritos: con movimiento reducido avanza solo");
-  comprobar(await p.$eval(`${raiz("muestra")} [data-carrusel-pausa]`, (x) => x.hidden), "favoritos: con movimiento reducido se ve el botón de pausa");
   await p.click(`${raiz("muestra")} [data-carrusel-siguiente]`);
   await p.waitForTimeout(300);
   comprobar((await estado(p, "muestra")).indice === 1, "con movimiento reducido la flecha no avanza");
@@ -259,7 +246,8 @@ for (const [w, h] of [[320, 568], [360, 740], [390, 844], [430, 932], [768, 1024
 {
   const nombre = "muestra";
   const { c, p } = await abrir({ viewport: { width: 390, height: 844 }, isMobile: true }, "/", nombre);
-  await p.click(`${raiz(nombre)} [data-carrusel-pausa]`);
+  // Sin botón de pausa: un dedo apoyado detiene el avance mientras se prueban las flechas.
+  await p.dispatchEvent(`${raiz(nombre)} [data-carrusel-pista]`, "pointerdown", { pointerType: "touch" });
   await p.waitForTimeout(MOVIMIENTO);
   await p.evaluate((sel) => document.querySelector(`${sel} [data-carrusel-pista]`).scrollTo({ left: 0, behavior: "instant" }), raiz(nombre));
   await p.waitForTimeout(300);

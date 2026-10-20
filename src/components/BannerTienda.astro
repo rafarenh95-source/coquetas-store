@@ -2,9 +2,10 @@
 /**
  * Banner de la tienda: una cinta de fotos del local que pasa sola, sin
  * detenerse, de borde a borde de la pantalla. Diseño de la dueña en Claude
- * Design («Carrusel Coquetas Store»): foto 12:5 con esquinas redondeadas,
- * degradado púrpura suave abajo, filete rosa por dentro y el sello de la
- * marca sobre un círculo papel (el logo solo va sobre crema o papel, §5).
+ * Design («Carrusel Coquetas Store»): foto 12:5, degradado púrpura suave
+ * abajo y el sello de la marca sobre un círculo papel (el logo solo va sobre
+ * crema o papel, §5). Las fotos van pegadas formando una línea continua:
+ * sin hueco, esquinas redondeadas, sombra ni filete (decisión de la dueña).
  * Velocidad 40 px/s, la del diseño.
  *
  * El movimiento es una animación CSS (corre fuera del hilo principal: no se
@@ -44,18 +45,20 @@ const MOVIL = "(max-width: 639px)";
   data-desfile
   aria-roledescription="carrusel"
   aria-label="Fotos de la tienda"
-  class="desfile relative overflow-hidden py-3 md:py-5"
+  class="desfile relative overflow-hidden"
 >
-  {/* pr = el mismo hueco que entre fotos: así la cinta mide justo el doble
-      de una vuelta y desplazarla el 50 % la deja calzada sin salto. */}
-  <div data-desfile-pista class="desfile-pista flex w-max gap-2 pr-2 md:gap-3 md:pr-3">
+  {/* Una sola cinta continua (decisión de la dueña): las fotos van pegadas,
+      sin hueco, sin esquinas redondeadas ni marco, para que no se vean como
+      tarjetas sueltas. La cinta mide justo el doble de una vuelta, así que
+      desplazarla el 50 % la deja calzada sin salto. */}
+  <div data-desfile-pista class="desfile-pista flex w-max">
     {
       [false, true].map((copia) =>
         FOTOS.map((f, i) => (
           <div
             data-copia-desfile={copia ? "" : undefined}
             aria-hidden={copia ? "true" : undefined}
-            class="relative aspect-square w-[72vw] shrink-0 overflow-hidden rounded-[12px] bg-papel shadow-[0_8px_24px_rgba(43,10,38,0.07)] sm:aspect-[12/5] sm:w-[70vw] md:w-[60vw] md:rounded-[16px] lg:w-[720px]"
+            class="relative aspect-square w-[72vw] shrink-0 overflow-hidden bg-papel sm:aspect-[12/5] sm:w-[70vw] md:w-[60vw] lg:w-[720px]"
           >
             <picture>
               <source media={MOVIL} srcset={srcsetMovil(f.movil)} sizes="72vw" width="1080" height="1080" />
@@ -77,10 +80,6 @@ const MOVIL = "(max-width: 639px)";
             <div
               aria-hidden="true"
               class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(122,1,119,0.34)_0%,rgba(122,1,119,0)_34%)] sm:bg-[linear-gradient(to_top,rgba(122,1,119,0.28)_0%,rgba(122,1,119,0)_38%)]"
-            />
-            <div
-              aria-hidden="true"
-              class="pointer-events-none absolute inset-[8px] rounded-[8px] border border-rosa-fuerte/85 md:inset-[12px] md:rounded-[10px]"
             />
             <div
               aria-hidden="true"
@@ -108,7 +107,7 @@ const MOVIL = "(max-width: 639px)";
     data-desfile-pausa
     hidden
     aria-label="Pausar las fotos"
-    class="presionable absolute top-[20px] right-[max(8px,env(safe-area-inset-right))] z-10 flex h-[44px] w-[44px] items-center justify-center rounded-full border border-ciruela/15 bg-papel/95 text-ciruela shadow-[0_2px_10px_rgba(43,10,38,0.18)] transition-colors duration-[var(--paso)] hover:bg-crema md:top-[36px] md:right-4"
+    class="presionable absolute top-2 right-[max(8px,env(safe-area-inset-right))] z-10 flex h-[44px] w-[44px] items-center justify-center rounded-full border border-ciruela/15 bg-papel/95 text-ciruela shadow-[0_2px_10px_rgba(43,10,38,0.18)] transition-colors duration-[var(--paso)] hover:bg-crema md:top-4 md:right-4"
   >
     <svg data-icono-pausa viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none">
       <path d="M5.5 3.5v9M10.5 3.5v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>

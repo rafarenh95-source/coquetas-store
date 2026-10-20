@@ -76,8 +76,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 - Carruseles de la portada (`scripts/carrusel.js`, sin librerías; uno por cada `[data-carrusel]`):
   scroll-snap nativo, avanzan solos de a una tarjeta con **1,3 s de pausa** (`PAUSA`, decisión de la
   dueña) y vuelta sin fin (copias `[data-copia]` ocultas al lector). Se pausan al tocar / ratón
-  encima / foco de teclado / botón de pausa (`PausaCarrusel.astro`, obligatorio, WCAG 2.2.2); sin
-  avance con movimiento reducido. Flechas redondas a los lados, a la altura de las fotos
+  encima / foco de teclado; sin avance con movimiento reducido. **Favoritos ya no tiene botón de
+  pausa** (la dueña lo pidió; `PausaCarrusel.astro` queda sin uso; es un compromiso con WCAG 2.2.2,
+  avisado a la dueña). Flechas redondas a los lados, a la altura de las fotos
   (`FlechaCarrusel.astro`, centradas en `[data-carrusel-foto]`).
 - Categorías: fila QUIETA (`data-sin-avance`: sin avance, sin pausa, sin copias ni puntos) con
   íconos en círculo crema (los del menú) en vez de fotos; ~3 a la vista en el teléfono (2,5 en
@@ -91,15 +92,16 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   Mapa y TikTok ya no están en el encabezado. Sin «Cómo comprar» bajo el título.
 - Banner de la tienda (`BannerTienda.astro` + `scripts/desfile.js`), en lugar del título «Catálogo»
   (el H1 queda solo para lectores de pantalla): diseño de la dueña en Claude Design. Cinta continua
-  de 4 fotos del local (esquinas redondeadas, filete rosa, degradado púrpura, sello de la marca
-  sobre círculo papel) a 40 px/s, animación CSS. En el teléfono, fotos CUADRADAS (`tienda-movil-*`,
+  de 4 fotos del local PEGADAS formando una línea continua (sin hueco, sin esquinas redondeadas,
+  sin sombra ni filete; decisión de la dueña), con degradado púrpura y sello de la marca
+  sobre círculo papel a 40 px/s, animación CSS. En el teléfono, fotos CUADRADAS (`tienda-movil-*`,
   zip «Carrusel móvil»); desde 640 px, 12:5 (`tienda-*`). Van en `<picture>`. Se detiene con ratón encima, dedo apoyado,
   fuera de pantalla y botón de pausa; con movimiento reducido queda una fila deslizable. Fotos en
   `public/img/tienda/` generadas con `node scripts/preparar-banner.mjs <carpeta del zip del diseño>`.
 - Buscador: ya no está en la portada; va arriba de todo dentro del menú (formulario `[data-menu-buscar]`,
   `?buscar=…`; en la portada se resuelve sin recargar). «Todas las categorías» limpia la dirección.
 - Portada: banner, luego el carrusel «Favoritos de Coquetas» (solo la foto; lleva a la ficha) (lista `MUESTRA` en
-  `Catalogo.astro`: esmalte semipermanente, brillo color, exfoliante, veloterapia; NO usa la
+  `Catalogo.astro`: 16 productos de todas las categorías, los 4 primeros son los de siempre; NO usa la
   bandera `destacado`, que decide la foto de cada categoría), luego el de categorías. Al tocar una
   categoría se abre su grilla. Sin tarjeta «Todo» (la dueña la quitó); `?categoria=todo` y el
   buscador siguen funcionando. `scripts/fila.js` queda sin uso (fila sin avance automático).

@@ -2,7 +2,7 @@
  * QA del banner de la tienda (cinta de fotos de la portada):
  *   · forma de 320 px a escritorio: fotos 12:5 del mismo tamaño, sello a la
  *     vista, sin desbordar la página;
- *   · la vuelta sin salto: media cinta = 4 fotos + 4 huecos exactos;
+ *   · la vuelta sin salto: media cinta = 4 fotos exactas (sin huecos);
  *   · velocidad ~40 px/s; se detiene con el ratón encima, con el dedo
  *     apoyado y con el botón de pausa; con movimiento reducido no se mueve.
  *
@@ -47,7 +47,7 @@ for (const [w, h] of [[320, 640], [390, 844], [768, 1024], [1280, 900]]) {
     const fotos = [...pista.children];
     const cajas = fotos.map((x) => x.getBoundingClientRect());
     const sello = fotos[0].querySelector("img[src*='sello']").getBoundingClientRect();
-    const gap = parseFloat(getComputedStyle(pista).columnGap);
+    const gap = parseFloat(getComputedStyle(pista).columnGap) || 0; // sin hueco: «normal»
     const reales = fotos.filter((x) => !x.hasAttribute("data-copia-desfile"));
     return {
       desborde: document.documentElement.scrollWidth - document.documentElement.clientWidth,
