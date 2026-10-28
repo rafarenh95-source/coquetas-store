@@ -1,7 +1,7 @@
 /**
  * QA de los carruseles de la portada.
  *
- *   «Favoritos de Coquetas» — avanza solo con 1,3 s de pausa, vuelta sin fin,
+ *   «Favoritos de Coquetas» — avanza solo con 1 s de pausa, vuelta sin fin,
  *   pausas (ratón, dedo; sin botón de pausa), movimiento reducido, flechas, teclado.
  *
  *   «Categorías» — fila QUIETA con íconos (decisión de la dueña): no se mueve
@@ -19,7 +19,7 @@ import path from "node:path";
 import { chromium } from "playwright-core";
 
 const BASE = process.env.QA_BASE ?? "http://localhost:4322";
-const PAUSA = 1300; // la de scripts/carrusel.js
+const PAUSA = 1000; // la de scripts/carrusel.js
 const MOVIMIENTO = 900; // margen para el desplazamiento suave
 
 const argCapturas = process.argv.find((a) => a.startsWith("--capturas="));

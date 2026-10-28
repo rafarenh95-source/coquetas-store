@@ -103,7 +103,7 @@ const fav = await p.evaluate(() => {
     hrefs: reales.map((d) => d.querySelector("a").getAttribute("href")),
   };
 });
-ok(fav.n === 16, `favoritos: ${fav.n}`);
+ok(fav.n === 20, `favoritos: ${fav.n}`);
 ok(fav.soloFoto, "favoritos: hay algo más que la foto");
 ok(fav.alts.every(Boolean), "favoritos: foto sin texto alternativo");
 ok(fav.hrefs.every((h) => h.startsWith("/producto/")), "favoritos: no llevan a la ficha");

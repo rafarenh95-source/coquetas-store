@@ -21,7 +21,7 @@
  * tocar.
  */
 
-const PAUSA = 1300; // decisión de la dueña: 1,3 s quieto entre avance y avance
+const PAUSA = 1000; // decisión de la dueña: 1 s quieto entre avance y avance
 const ESPERA_TRAS_SOLTAR = 1500; // tiempo extra para mirar lo que se dejó a la vista
 const GUARDIA_MOVIMIENTO = 1500; // si «scrollend» no llega, se sigue igual
 

@@ -12,6 +12,7 @@
 
 import TarjetaProducto from "./TarjetaProducto.astro";
 import Icono from "./Icono.astro";
+import FlechaCarrusel from "./FlechaCarrusel.astro";
 import productos from "../data/productos.json";
 import tienda from "../data/tienda.json";
 
@@ -30,7 +31,43 @@ const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
   return { ...c, cantidad: deLaCategoria.length, muestra: deLaCategoria.slice(0, 8) };
 });
 
-const destacados = productos.filter((p) => p.destacado);
+/* «Destacados»: carrusel de la portada con SOLO la foto (decisión de la
+   dueña: sin nombre, precio ni tonos; tocarla abre la ficha). 20 productos
+   de todas las categorías, en este orden. Lista aparte y no la bandera
+   «destacado» de los datos, que sigue sirviendo para otras cosas. Avanza
+   solo con 1 s de pausa y da la vuelta sin fin: scripts/carrusel.js. */
+const DESTACADOS = [
+  "MG-ESM-SEMI-10",
+  "MG-GEL-COLOR-15",
+  "MG-EXFOLIANTE",
+  "MG-VELOTERAPIA",
+  "MG-AGUA-MICELAR",
+  "MG-POLYGEL",
+  "CQ-MICROBLUSH",
+  "MG-BODY-BUTTER",
+  "MG-ACE-CUT-FLOR",
+  "MG-AGUA-ROSAS",
+  "CQ-SET-PINCELES",
+  "MG-BOMBAS-EFERV",
+  "EG-ESM-TRAD",
+  "MG-GASAS-PESTANAS",
+  "MB-BUILDER-GEL",
+  "CQ-PALETA-EXFOLIANTE",
+  "OB-MASCARILLA-SOS",
+  "SN-OJO-GATO",
+  "KR-PERFUME-CAPILAR",
+  "CQ-LAMPARA-ROSADA",
+];
+const destacados = DESTACADOS.map((id) => productos.find((p) => p.producto_id === id)).filter(
+  (p): p is (typeof productos)[number] => Boolean(p)
+);
+
+/* Fotos de producto en 400 / 550 / 700 / 1000 px. */
+const srcsetDe = (src: string) =>
+  [400, 550, 700]
+    .map((w) => `${src.replace(".webp", `-${w}.webp`)} ${w}w`)
+    .concat(`${src} 1000w`)
+    .join(", ");
 
 const NOMBRES: Record<string, string> = {
   todo: "Todo",
@@ -86,24 +123,66 @@ const NOMBRES: Record<string, string> = {
 
     {
       destacados.length > 0 && (
-        <div class="mt-6">
-          <div class="mb-2 flex flex-wrap items-end justify-between gap-2">
-            <h2 class="font-didot text-[24px] leading-tight text-ciruela">Destacados</h2>
-            <p class="hidden font-sans text-[12px] text-ciruela/70" data-bs-tasa-linea>
-              <span data-bs-tasa />
-            </p>
+        <div
+          data-carrusel="muestra"
+          role="region"
+          aria-roledescription="carrusel"
+          aria-labelledby="titulo-destacados"
+          class="mt-6"
+        >
+          <h2 id="titulo-destacados" class="mb-2 font-didot text-[24px] leading-tight text-ciruela">Destacados</h2>
+          <div class="relative -mx-[var(--sangria)]">
+            <div
+              data-carrusel-pista
+              aria-live="off"
+              class="sin-riel flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-[var(--sangria)] scroll-px-[var(--sangria)] md:gap-3"
+            >
+              {destacados.map((p, i) => (
+                <div
+                  role="group"
+                  aria-roledescription="diapositiva"
+                  aria-label={`${i + 1} de ${destacados.length}`}
+                  data-carrusel-diapositiva
+                  class="flex min-w-0 shrink-0 snap-start basis-[calc((100%-32px)/2.5)] sm:basis-[calc((100%-48px)/3.5)] md:basis-[calc((100%-72px)/4.5)]"
+                >
+                  <a
+                    href={`/producto/${p.producto_id.toLowerCase()}`}
+                    class="presionable group block w-full overflow-hidden rounded-2xl bg-papel"
+                  >
+                    <div data-carrusel-foto class="aspect-square overflow-hidden">
+                      <img
+                        src={p.variantes[0].imagenes[0]}
+                        srcset={srcsetDe(p.variantes[0].imagenes[0])}
+                        sizes="(min-width: 1280px) 260px, (min-width: 768px) 21vw, (min-width: 640px) 27vw, 38vw"
+                        alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
+                        width="1000"
+                        height="1000"
+                        loading={i < 3 ? "eager" : "lazy"}
+                        fetchpriority={i < 2 ? "high" : "auto"}
+                        decoding="async"
+                        class="h-full w-full object-contain p-1 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+            <FlechaCarrusel direccion="anterior" etiqueta="Destacado anterior" />
+            <FlechaCarrusel direccion="siguiente" etiqueta="Destacado siguiente" />
           </div>
-          <p class="mb-3 max-w-[46ch] font-sans text-[13px] leading-snug text-ciruela/70">
-            El precio grande es en divisa. El de abajo es pagando en bolívares, y el monto en Bs usa la tasa BCV del día.
-          </p>
-          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 min-[1440px]:grid-cols-4">
-            {destacados.map((p, i) => (
-              <TarjetaProducto producto={p} prioridad={i < 2} />
-            ))}
-          </div>
+          <div data-carrusel-puntos aria-hidden="true" hidden class="mt-2 flex justify-center gap-[6px]"></div>
         </div>
       )
     }
+
+    <div class="mt-6">
+      <p class="hidden font-sans text-[12px] text-ciruela/70" data-bs-tasa-linea>
+        <span data-bs-tasa />
+      </p>
+      <p class="max-w-[46ch] font-sans text-[13px] leading-snug text-ciruela/70">
+        El precio grande es en divisa. El de abajo es pagando en bolívares, y el monto en Bs usa la tasa BCV del día.
+      </p>
+    </div>
 
     {
       CATEGORIAS.map((c) => (
@@ -226,6 +305,7 @@ const NOMBRES: Record<string, string> = {
 
 <script>
   import "../scripts/tarjetas.js";
+  import "../scripts/carrusel.js";
 
   const grilla = document.getElementById("grilla");
   const vacio = document.getElementById("sin-resultados");

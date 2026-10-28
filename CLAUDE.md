@@ -79,13 +79,20 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 
 ## Diseño
 
+- **Rediseño v2 «tipo app» (28 oct. 2026)**: la portada ya no tiene banner, menú ☰ ni carrusel de
+  categorías; buena parte de lo que sigue en esta sección describe la versión anterior. Los scripts
+  `qa-sitio/movil/cantidad/banner/menu/carrusel` todavía buscan esas piezas y fallan: hay que
+  rehacerlos para v2. **Destacados** (portada v2) = carrusel con SOLO la foto (sin nombre, precio ni
+  tonos; la dueña probó con nombre y prefirió sin), 20 productos de la lista `DESTACADOS` en
+  `Catalogo.astro`, avance solo con 1 s de pausa y vuelta sin fin (`scripts/carrusel.js`).
+
 - Manual de marca: `manual_de_identidad_visual_coquetas.md`. Colores crema, papel, ciruela, púrpura,
   magenta (magenta solo para la acción principal). GFS Didot solo en títulos ≥ 24 px.
 - Cantidad: selector «− número +» (`Cantidad.astro` + `scripts/cantidad.js`, clases compartidas en
   `cantidad-estilos.js`) en tarjeta, ficha y cada fila de la bolsa. Agregar suma la cantidad elegida
   y ya **no abre la bolsa**: muestra un aviso «N unidades agregadas» con botón «Ver bolsa».
 - Carruseles de la portada (`scripts/carrusel.js`, sin librerías; uno por cada `[data-carrusel]`):
-  scroll-snap nativo, avanzan solos de a una tarjeta con **1,3 s de pausa** (`PAUSA`, decisión de la
+  scroll-snap nativo, avanzan solos de a una tarjeta con **1 s de pausa** (`PAUSA`, decisión de la
   dueña) y vuelta sin fin (copias `[data-copia]` ocultas al lector). Se pausan al tocar / ratón
   encima / foco de teclado; sin avance con movimiento reducido. **Favoritos ya no tiene botón de
   pausa** (la dueña lo pidió; `PausaCarrusel.astro` queda sin uso; es un compromiso con WCAG 2.2.2,
