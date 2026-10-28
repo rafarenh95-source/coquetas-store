@@ -404,5 +404,25 @@
     "descripcion": "Top coat de la marca Monbray para gel UV/LED. Sella el color, le da brillo y protege la manicura para que dure más.",
     "modo_uso": "Aplica una capa fina sobre el color ya curado, cubriendo el borde libre de la uña. Cura en lámpara UV/LED.",
     "rendimiento": "Frasco de 15 ml."
+  },
+  "MG-MONOMER-EMA-60": {
+    "descripcion": "Monómero EMA de Max Glow, línea Tropical. Es el líquido que se mezcla con el polvo acrílico para esculpir y dar forma a la uña.",
+    "modo_uso": "Moja el pincel en el monómero, toma una perla de polvo acrílico y colócala sobre la uña. Trabaja en un lugar ventilado y tapa bien el frasco.",
+    "rendimiento": "Frasco de 60 ml."
+  },
+  "CQ-ESPEJO-LASHISTA": {
+    "descripcion": "Espejo de mano negro con la palabra «LASHES» en dorado. Para que tu clienta vea el resultado de sus pestañas al terminar.",
+    "modo_uso": "Entrégaselo a la clienta al final del servicio. Límpialo con un paño suave.",
+    "rendimiento": ""
+  },
+  "CQ-MEZCLADOR-PIGMENTO": {
+    "descripcion": "Mezclador de pigmento. Bate el pigmento o la pega en segundos para que quede parejo antes de usarlo.",
+    "modo_uso": "Introduce la punta en el frasco y enciéndelo unos segundos hasta que el producto quede uniforme. Limpia la punta después de cada uso.",
+    "rendimiento": ""
+  },
+  "NV-PINZAS-DUO": {
+    "descripcion": "Set de dos pinzas Navina de acero inoxidable, en acabado tornasol: una de punta en ángulo y otra de punta curva. Para aislar y colocar extensiones de pestañas.",
+    "modo_uso": "Usa una pinza para separar la pestaña natural y la otra para tomar y colocar la extensión. Desinfecta después de cada clienta.",
+    "rendimiento": "Estuche con 2 pinzas."
   }
 }

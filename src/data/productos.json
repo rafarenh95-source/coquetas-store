@@ -1556,6 +1556,39 @@
     "orden": 29
   },
   {
+    "producto_id": "MG-MONOMER-EMA-60",
+    "nombre": "Monomer EMA Tropical Max Glow",
+    "marca": "MAXGLOW",
+    "categoria": "unas",
+    "uso_profesional": true,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
+    "nota_precio": null,
+    "presentacion": "60 ml",
+    "descripcion": "Monómero EMA de Max Glow, línea Tropical. Es el líquido que se mezcla con el polvo acrílico para esculpir y dar forma a la uña.",
+    "modo_uso": "Moja el pincel en el monómero, toma una perla de polvo acrílico y colócala sobre la uña. Trabaja en un lugar ventilado y tapa bien el frasco.",
+    "rendimiento": "Frasco de 60 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-MONOMER-EMA-60-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Monomer_EMA_Max_Glow_60ml_2$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 30
+  },
+  {
     "producto_id": "MX-PEGA-7",
     "nombre": "Pega de uñas mxbon",
     "marca": "mxbon",
@@ -1586,7 +1619,7 @@
         "disponible": true
       }
     ],
-    "orden": 30
+    "orden": 31
   },
   {
     "producto_id": "MG-POLYGEL",
@@ -1690,7 +1723,7 @@
         "disponible": true
       }
     ],
-    "orden": 31
+    "orden": 32
   },
   {
     "producto_id": "MG-PRIMER",
@@ -1722,7 +1755,7 @@
         "disponible": true
       }
     ],
-    "orden": 32
+    "orden": 33
   },
   {
     "producto_id": "MY-PROTEIN-BASE",
@@ -1767,7 +1800,7 @@
         "disponible": true
       }
     ],
-    "orden": 33
+    "orden": 34
   },
   {
     "producto_id": "MG-PROTEIN-BOND",
@@ -1799,7 +1832,7 @@
         "disponible": true
       }
     ],
-    "orden": 34
+    "orden": 35
   },
   {
     "producto_id": "MG-TOP-COAT-REC",
@@ -1831,7 +1864,7 @@
         "disponible": true
       }
     ],
-    "orden": 35
+    "orden": 36
   },
   {
     "producto_id": "MG-SANITIZANTE",
@@ -1863,7 +1896,7 @@
         "disponible": true
       }
     ],
-    "orden": 36
+    "orden": 37
   },
   {
     "producto_id": "MG-TIPS-COFFIN-NUM",
@@ -2003,7 +2036,7 @@
         "disponible": true
       }
     ],
-    "orden": 37
+    "orden": 38
   },
   {
     "producto_id": "MG-TOALLAS-REMOV",
@@ -2035,7 +2068,7 @@
         "disponible": true
       }
     ],
-    "orden": 38
+    "orden": 39
   },
   {
     "producto_id": "MG-TOP-COAT-15",
@@ -2067,7 +2100,7 @@
         "disponible": true
       }
     ],
-    "orden": 39
+    "orden": 40
   },
   {
     "producto_id": "MB-TOP-COAT-BLINDADO",
@@ -2100,7 +2133,7 @@
         "disponible": true
       }
     ],
-    "orden": 40
+    "orden": 41
   },
   {
     "producto_id": "MG-TIPS-500",
@@ -2132,7 +2165,7 @@
         "disponible": true
       }
     ],
-    "orden": 41
+    "orden": 42
   },
   {
     "producto_id": "MY-TIPS-500",
@@ -2165,7 +2198,7 @@
         "disponible": true
       }
     ],
-    "orden": 42
+    "orden": 43
   },
   {
     "producto_id": "TF-LIMA-100-180",
@@ -2197,7 +2230,7 @@
         "disponible": true
       }
     ],
-    "orden": 43
+    "orden": 44
   },
   {
     "producto_id": "CQ-CEPILLO-GRANDE",
@@ -2230,7 +2263,7 @@
         "disponible": true
       }
     ],
-    "orden": 44
+    "orden": 45
   },
   {
     "producto_id": "MG-CORTACUTICULA",
@@ -2262,7 +2295,7 @@
         "disponible": true
       }
     ],
-    "orden": 45
+    "orden": 46
   },
   {
     "producto_id": "TF-CORTA-RESORTE",
@@ -2295,7 +2328,7 @@
         "disponible": true
       }
     ],
-    "orden": 46
+    "orden": 47
   },
   {
     "producto_id": "MB-CORTACUTICULA",
@@ -2327,7 +2360,7 @@
         "disponible": true
       }
     ],
-    "orden": 47
+    "orden": 48
   },
   {
     "producto_id": "MG-CORTA-JAW14",
@@ -2360,7 +2393,7 @@
         "disponible": true
       }
     ],
-    "orden": 48
+    "orden": 49
   },
   {
     "producto_id": "MG-CORTA-SHARP",
@@ -2393,7 +2426,7 @@
         "disponible": true
       }
     ],
-    "orden": 49
+    "orden": 50
   },
   {
     "producto_id": "MG-DREL-35K",
@@ -2437,7 +2470,7 @@
         "disponible": true
       }
     ],
-    "orden": 50
+    "orden": 51
   },
   {
     "producto_id": "CQ-LAMPARA-72W",
@@ -2469,7 +2502,7 @@
         "disponible": true
       }
     ],
-    "orden": 51
+    "orden": 52
   },
   {
     "producto_id": "CQ-LAMPARA-ROSADA",
@@ -2501,7 +2534,7 @@
         "disponible": true
       }
     ],
-    "orden": 52
+    "orden": 53
   },
   {
     "producto_id": "SN-LAMPARA-ALAMBRICA",
@@ -2533,7 +2566,7 @@
         "disponible": true
       }
     ],
-    "orden": 53
+    "orden": 54
   },
   {
     "producto_id": "TF-PINCEL-LINER",
@@ -2563,9 +2596,21 @@
           "02_CATALOGO_PREMIUM/Pinceles_liner_Tifany_2$_Turquesa.png"
         ],
         "disponible": true
+      },
+      {
+        "tono": "Rosa",
+        "swatch_hex": "#B8127F",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/TF-PINCEL-LINER-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Pinceles_liner_Tifany_2$_Rosa.png"
+        ],
+        "disponible": true
       }
     ],
-    "orden": 54
+    "orden": 55
   },
   {
     "producto_id": "CQ-POSA-MANOS",
@@ -2595,9 +2640,21 @@
           "02_CATALOGO_PREMIUM/Posa_manos_22$_Fucsia.png"
         ],
         "disponible": true
+      },
+      {
+        "tono": "Morado",
+        "swatch_hex": "#7349BB",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-POSA-MANOS-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Posa_manos_22$_Morado.png"
+        ],
+        "disponible": true
       }
     ],
-    "orden": 55
+    "orden": 56
   },
   {
     "producto_id": "MG-PUNTAS-PEDICURE",
@@ -2630,7 +2687,7 @@
         "disponible": true
       }
     ],
-    "orden": 56
+    "orden": 57
   },
   {
     "producto_id": "CQ-SET-PINCELES",
@@ -2663,7 +2720,7 @@
         "disponible": true
       }
     ],
-    "orden": 57
+    "orden": 58
   },
   {
     "producto_id": "TF-TIJERA-CURVA",
@@ -2696,7 +2753,7 @@
         "disponible": true
       }
     ],
-    "orden": 58
+    "orden": 59
   },
   {
     "producto_id": "CQ-TIJERA-PROFESIONAL",
@@ -2729,7 +2786,7 @@
         "disponible": true
       }
     ],
-    "orden": 59
+    "orden": 60
   },
   {
     "producto_id": "TF-TIJERA-CUTICULA",
@@ -2762,7 +2819,7 @@
         "disponible": true
       }
     ],
-    "orden": 60
+    "orden": 61
   },
   {
     "producto_id": "TF-TIJERA-PRO",
@@ -2795,7 +2852,7 @@
         "disponible": true
       }
     ],
-    "orden": 61
+    "orden": 62
   },
   {
     "producto_id": "CQ-ALMOHADA-LASHISTA",
@@ -2828,7 +2885,7 @@
         "disponible": true
       }
     ],
-    "orden": 62
+    "orden": 63
   },
   {
     "producto_id": "CQ-CEPILLO-PESTANAS",
@@ -2861,7 +2918,40 @@
         "disponible": true
       }
     ],
-    "orden": 63
+    "orden": 64
+  },
+  {
+    "producto_id": "CQ-ESPEJO-LASHISTA",
+    "nombre": "Espejo para lashista",
+    "marca": null,
+    "categoria": "pestanas",
+    "uso_profesional": true,
+    "precio_divisa": 4,
+    "precio_referencia": 5.4,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Espejo de mano negro con la palabra «LASHES» en dorado. Para que tu clienta vea el resultado de sus pestañas al terminar.",
+    "modo_uso": "Entrégaselo a la clienta al final del servicio. Límpialo con un paño suave.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-ESPEJO-LASHISTA-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Espejo_lashista_4$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 65
   },
   {
     "producto_id": "MG-GASAS-PESTANAS",
@@ -2917,7 +3007,7 @@
         "disponible": true
       }
     ],
-    "orden": 64
+    "orden": 66
   },
   {
     "producto_id": "CQ-LAPIZ-VISAGISMO-BLANCO",
@@ -2950,7 +3040,7 @@
         "disponible": true
       }
     ],
-    "orden": 65
+    "orden": 67
   },
   {
     "producto_id": "CQ-LAPIZ-VISAGISMO",
@@ -2983,7 +3073,7 @@
         "disponible": true
       }
     ],
-    "orden": 66
+    "orden": 68
   },
   {
     "producto_id": "MY-LIBRETA-PESTANAS",
@@ -3016,7 +3106,40 @@
         "disponible": true
       }
     ],
-    "orden": 67
+    "orden": 69
+  },
+  {
+    "producto_id": "CQ-MEZCLADOR-PIGMENTO",
+    "nombre": "Mezclador de pigmento",
+    "marca": null,
+    "categoria": "pestanas",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Mezclador de pigmento. Bate el pigmento o la pega en segundos para que quede parejo antes de usarlo.",
+    "modo_uso": "Introduce la punta en el frasco y enciéndelo unos segundos hasta que el producto quede uniforme. Limpia la punta después de cada uso.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-MEZCLADOR-PIGMENTO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Mezclador_pigmento_3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 70
   },
   {
     "producto_id": "CQ-MICROBLUSH",
@@ -3097,7 +3220,7 @@
         "disponible": true
       }
     ],
-    "orden": 68
+    "orden": 71
   },
   {
     "producto_id": "CQ-MICROHISOPOS",
@@ -3130,7 +3253,7 @@
         "disponible": true
       }
     ],
-    "orden": 69
+    "orden": 72
   },
   {
     "producto_id": "CQ-NAVAJA",
@@ -3163,7 +3286,7 @@
         "disponible": true
       }
     ],
-    "orden": 70
+    "orden": 73
   },
   {
     "producto_id": "EVO-PIGMENTO-CEJAS",
@@ -3195,7 +3318,40 @@
         "disponible": true
       }
     ],
-    "orden": 71
+    "orden": 74
+  },
+  {
+    "producto_id": "NV-PINZAS-DUO",
+    "nombre": "Pinzas dúo Navina",
+    "marca": "Navina",
+    "categoria": "pestanas",
+    "uso_profesional": true,
+    "precio_divisa": 4,
+    "precio_referencia": 5.4,
+    "nota_precio": null,
+    "presentacion": "2 pinzas",
+    "descripcion": "Set de dos pinzas Navina de acero inoxidable, en acabado tornasol: una de punta en ángulo y otra de punta curva. Para aislar y colocar extensiones de pestañas.",
+    "modo_uso": "Usa una pinza para separar la pestaña natural y la otra para tomar y colocar la extensión. Desinfecta después de cada clienta.",
+    "rendimiento": "Estuche con 2 pinzas.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/NV-PINZAS-DUO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Pinzas_duo_Navina_4$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 75
   },
   {
     "producto_id": "CQ-PIPETA-LAVADO",
@@ -3252,7 +3408,7 @@
         "disponible": true
       }
     ],
-    "orden": 72
+    "orden": 76
   },
   {
     "producto_id": "MG-AGUA-ROSAS",
@@ -3284,7 +3440,7 @@
         "disponible": true
       }
     ],
-    "orden": 73
+    "orden": 77
   },
   {
     "producto_id": "MG-DISCOS-ALGODON",
@@ -3317,7 +3473,7 @@
         "disponible": true
       }
     ],
-    "orden": 74
+    "orden": 78
   },
   {
     "producto_id": "CQ-GEL-SABILA",
@@ -3350,7 +3506,7 @@
         "disponible": true
       }
     ],
-    "orden": 75
+    "orden": 79
   },
   {
     "producto_id": "CQ-PALETA-EXFOLIANTE",
@@ -3395,7 +3551,7 @@
         "disponible": true
       }
     ],
-    "orden": 76
+    "orden": 80
   },
   {
     "producto_id": "MG-ATOMIZADOR-TALCO",
@@ -3427,7 +3583,7 @@
         "disponible": true
       }
     ],
-    "orden": 77
+    "orden": 81
   },
   {
     "producto_id": "MG-BOMBAS-EFERV",
@@ -3459,7 +3615,7 @@
         "disponible": true
       }
     ],
-    "orden": 78
+    "orden": 82
   },
   {
     "producto_id": "MG-BODY-BUTTER",
@@ -3491,7 +3647,7 @@
         "disponible": true
       }
     ],
-    "orden": 79
+    "orden": 83
   },
   {
     "producto_id": "MY-PETALOS-JABON",
@@ -3524,7 +3680,7 @@
         "disponible": true
       }
     ],
-    "orden": 80
+    "orden": 84
   },
   {
     "producto_id": "CQ-GORRO-TERMICO",
@@ -3592,6 +3748,6 @@
         "disponible": true
       }
     ],
-    "orden": 81
+    "orden": 85
   }
 ]

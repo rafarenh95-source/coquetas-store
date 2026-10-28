@@ -708,6 +708,19 @@ const CATALOGO = [
     variantes: [{ tono: null, archivo: "02_CATALOGO_PREMIUM/Top coat blindado Monbray.png" }],
   },
   {
+    id: "MG-MONOMER-EMA-60",
+    nombre: "Monomer EMA Tropical Max Glow",
+    marca: "MAXGLOW",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 2.0,
+    presentacion: "60 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "02_CATALOGO_PREMIUM/Monomer_EMA_Max_Glow_60ml_2$.png" }],
+  },
+  {
     id: "MX-PEGA-7",
     nombre: "Pega de uñas mxbon",
     marca: "mxbon",
@@ -1301,6 +1314,7 @@ const CATALOGO = [
     tipo_variante: "color",
     variantes: [
       { tono: "Turquesa", archivo: "02_CATALOGO_PREMIUM/Pinceles_liner_Tifany_2$_Turquesa.png", swatch_hex: "#2EB8A6" },
+      { tono: "Rosa", archivo: "02_CATALOGO_PREMIUM/Pinceles_liner_Tifany_2$_Rosa.png", swatch_hex: "#B8127F" }, // editada con IA (Higgsfield)
     ],
   },
   {
@@ -1315,6 +1329,8 @@ const CATALOGO = [
     tipo_variante: "color",
     variantes: [
       { tono: "Fucsia", archivo: "02_CATALOGO_PREMIUM/Posa_manos_22$_Fucsia.png", swatch_hex: "#D8186E" },
+      // Foto del fucsia con el cojín recoloreado al morado medido en la foto de la tienda (decisión de la dueña: igual al fucsia)
+      { tono: "Morado", archivo: "02_CATALOGO_PREMIUM/Posa_manos_22$_Morado.png", swatch_hex: "#7349BB" },
     ],
   },
   {
@@ -1330,6 +1346,45 @@ const CATALOGO = [
     variantes: [
       { tono: "Castaño oscuro", archivo: "02_CATALOGO_PREMIUM/Evo_6$.png", swatch_hex: "#4A2C1E" },
     ],
+  },
+  {
+    id: "CQ-ESPEJO-LASHISTA",
+    nombre: "Espejo para lashista",
+    marca: null,
+    categoria: "pestanas",
+    uso_profesional: true,
+    precio_divisa: 4.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "02_CATALOGO_PREMIUM/Espejo_lashista_4$.png" }],
+  },
+  {
+    id: "CQ-MEZCLADOR-PIGMENTO",
+    nombre: "Mezclador de pigmento",
+    marca: null,
+    categoria: "pestanas",
+    uso_profesional: true,
+    precio_divisa: 3.0,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "02_CATALOGO_PREMIUM/Mezclador_pigmento_3$.png" }],
+  },
+  {
+    id: "NV-PINZAS-DUO",
+    nombre: "Pinzas dúo Navina",
+    marca: "Navina",
+    categoria: "pestanas",
+    uso_profesional: true,
+    precio_divisa: 4.0,
+    presentacion: "2 pinzas",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "02_CATALOGO_PREMIUM/Pinzas_duo_Navina_4$.png" }],
   },
   {
     id: "CQ-GORRO-TERMICO",
