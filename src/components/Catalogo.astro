@@ -341,6 +341,27 @@ const enlaceListaCompleta = tienda.whatsapp
     {/* Sin esto, quien usa lector de pantalla filtra o busca y no sabe si
         pasó algo ni cuántas piezas quedaron. */}
     <p class="sr-only" role="status" aria-live="polite" data-recuento></p>
+
+    {/* Final de la lista: quien bajó hasta aquí no tiene que volver a subir a
+        dedo. «Volver arriba» lleva al inicio de esta misma lista; «Ver otras
+        categorías» abre la portada con las categorías (pedido de la dueña). */}
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-2 border-t border-ciruela/15 pt-6">
+      <a
+        href="#vista-grilla"
+        data-subir
+        class="presionable t-etiqueta inline-flex min-h-[48px] items-center gap-1 border border-ciruela/40 px-4 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela hover:bg-ciruela hover:text-crema"
+      >
+        <Icono nombre="chevron" tamano={14} class="rotate-180" />
+        Volver arriba
+      </a>
+      <a
+        href="#vista-portada"
+        data-volver
+        class="presionable t-etiqueta inline-flex min-h-[48px] items-center px-4 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+      >
+        Ver otras categorías
+      </a>
+    </div>
   </div>
 
   {/* Cierre del catálogo: el argumento completo llega cuando ya se vio algo,
@@ -366,6 +387,18 @@ const enlaceListaCompleta = tienda.whatsapp
       }
     </div>
   </div>
+  {/* Flecha flotante para subir: aparece cuando ya se bajó más de una pantalla
+      y media. Va abajo a la IZQUIERDA porque a la derecha está el botón de
+      WhatsApp, y el aviso de la bolsa ocupa el centro un poco más arriba. */}
+  <button
+    type="button"
+    data-subir
+    data-subir-flotante
+    aria-label="Volver arriba"
+    class="presionable invisible fixed bottom-[calc(16px+env(safe-area-inset-bottom))] left-[max(16px,env(safe-area-inset-left))] z-40 flex h-[48px] w-[48px] translate-y-3 items-center justify-center rounded-full border border-ciruela/25 bg-papel text-ciruela opacity-0 shadow-[0_4px_16px_rgba(43,10,38,0.18)] transition-[opacity,transform,visibility] duration-[var(--paso-lento)] ease-[var(--curva)] hover:bg-ciruela hover:text-crema data-[visible]:visible data-[visible]:translate-y-0 data-[visible]:opacity-100 md:bottom-4 md:left-4 md:h-[52px] md:w-[52px]"
+  >
+    <Icono nombre="chevron" tamano={22} class="rotate-180" />
+  </button>
 </section>
 
 <script>
@@ -379,7 +412,7 @@ const enlaceListaCompleta = tienda.whatsapp
   const portada = document.getElementById("vista-portada");
   const vistaGrilla = document.getElementById("vista-grilla");
   const categoriaNombre = document.getElementById("categoria-nombre");
-  const volver = document.querySelector<HTMLAnchorElement>("[data-volver]");
+  const volveres = document.querySelectorAll<HTMLAnchorElement>("[data-volver]");
 
   if (grilla && portada && vistaGrilla && categoriaNombre) {
     /* `.contents` en el envoltorio dejaría la tarjeta sin contenedor propio para
@@ -474,10 +507,55 @@ const enlaceListaCompleta = tienda.whatsapp
       mostrarGrilla(tile.dataset.categoriaTile ?? "todo");
     });
 
-    volver?.addEventListener("click", (e) => {
-      e.preventDefault();
-      mostrarPortada();
-    });
+    volveres.forEach((volver) =>
+      volver.addEventListener("click", (e) => {
+        e.preventDefault();
+        mostrarPortada();
+      })
+    );
+
+    /* Volver arriba: con una categoría abierta, al inicio de su lista (donde
+       están su nombre y «Todas las categorías»); en la portada, al principio
+       de la página. El foco va al nombre de la categoría para que quien usa
+       teclado o lector de pantalla también quede arriba. */
+    const sinMovimiento = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function subir() {
+      const comportamiento: ScrollBehavior = sinMovimiento() ? "auto" : "smooth";
+      if (!vistaGrilla!.hidden) {
+        vistaGrilla!.scrollIntoView({ behavior: comportamiento, block: "start" });
+        categoriaNombre!.setAttribute("tabindex", "-1");
+        categoriaNombre!.focus({ preventScroll: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: comportamiento });
+      }
+    }
+    document.querySelectorAll("[data-subir]").forEach((b) =>
+      b.addEventListener("click", (e) => {
+        e.preventDefault();
+        subir();
+      })
+    );
+
+    const flotante = document.querySelector<HTMLElement>("[data-subir-flotante]");
+    if (flotante) {
+      let pendiente = false;
+      const revisar = () => {
+        pendiente = false;
+        if (window.scrollY > window.innerHeight * 1.5) flotante.dataset.visible = "true";
+        else delete flotante.dataset.visible;
+      };
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!pendiente) {
+            pendiente = true;
+            requestAnimationFrame(revisar);
+          }
+        },
+        { passive: true }
+      );
+      revisar();
+    }
 
     /* «Ver catálogo» y las categorías del menú: aquí en la portada se
        resuelven sin recargar la página (en las demás páginas, el enlace

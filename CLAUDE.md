@@ -68,8 +68,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   sobre crema #FEEBE2), guardar como `<ID>-<NN>.png` en `imagenes editadas/fondo-crema`, y luego
   `node scripts/procesar-fotos-crema.mjs <archivos>` + `tamano-intermedio.mjs --solo=...`. Revisar siempre
   que la IA no cambie el color de tapas o etiquetas (pasó con Karseell, Dança Mística y Jelly #2: se corrige
-  con `--nota` diciendo el color real). Quedan 54 fotos viejas por pasar a este método (créditos de Higgsfield
-  agotados): están en `imagenes editadas/para-chatgpt`, ya con su nombre `<ID>-<NN>.png` e instrucciones.
+  con `--nota` diciendo el color real; también inventa textos u objetos y cambia formas: comparar siempre
+  original y resultado lado a lado). Ya pasaron por este método 73 fotos de envases claros (oct. 2026).
+  Higgsfield rechaza archivos muy pesados: achicar a 2048 px en JPEG antes de mandarlos.
 - Decisiones de la dueña: fondo **crema** (no blanco), productos **centrados**, **sin sombra** y sin
   franja blanca debajo.
 - `scripts/editar-fotos-ia.mjs` pasa fotos crudas a foto de catálogo con OpenAI (`gpt-image-2`).
@@ -112,6 +113,9 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   zip «Carrusel móvil»); desde 640 px, 12:5 (`tienda-*`). Van en `<picture>`. Se detiene con ratón encima, dedo apoyado y
   fuera de pantalla; **sin botón de pausa** (la dueña lo quitó); con movimiento reducido queda una fila deslizable. Fotos en
   `public/img/tienda/` generadas con `node scripts/preparar-banner.mjs <carpeta del zip del diseño>`.
+- Volver arriba (pedido de la dueña): al final de cada categoría, «Volver arriba» (al inicio de la lista) y
+  «Ver otras categorías»; y una flecha flotante abajo a la IZQUIERDA (a la derecha está WhatsApp) que aparece
+  tras bajar 1,5 pantallas. Solo en la portada (`Catalogo.astro`, `[data-subir]`).
 - Buscador: ya no está en la portada; va arriba de todo dentro del menú (formulario `[data-menu-buscar]`,
   `?buscar=…`; en la portada se resuelve sin recargar). «Todas las categorías» limpia la dirección.
 - Portada: banner, luego el carrusel «Favoritos de Coquetas» (solo la foto; lleva a la ficha) (lista `MUESTRA` en
