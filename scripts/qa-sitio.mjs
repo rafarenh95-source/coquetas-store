@@ -129,6 +129,7 @@ const esperado = {
   herramientas: productos.filter((x) => x.categoria === "herramientas").length,
   pestanas: productos.filter((x) => x.categoria === "pestanas").length,
   facial: productos.filter((x) => x.categoria === "facial").length,
+  maquillaje: productos.filter((x) => x.categoria === "maquillaje").length,
   cuerpo: productos.filter((x) => x.categoria === "cuerpo").length,
   cabello: productos.filter((x) => x.categoria === "cabello").length,
 };

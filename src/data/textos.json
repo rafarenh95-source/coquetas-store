@@ -424,5 +424,120 @@
     "descripcion": "Set de dos pinzas Navina de acero inoxidable, en acabado tornasol: una de punta en ángulo y otra de punta curva. Para aislar y colocar extensiones de pestañas.",
     "modo_uso": "Usa una pinza para separar la pestaña natural y la otra para tomar y colocar la extensión. Desinfecta después de cada clienta.",
     "rendimiento": "Estuche con 2 pinzas."
+  },
+  "EX-ALISADO-KIT": {
+    "descripcion": "Kit de alisado orgánico Exiva: trae el shampoo de limpieza profunda y el alisado potencializador. 100 % vegano y libre de formol.",
+    "modo_uso": "Lava con el shampoo de limpieza profunda, seca y aplica el alisado mecha por mecha. Sigue las instrucciones de la caja.",
+    "rendimiento": "Shampoo de 480 ml y alisado de 500 g."
+  },
+  "EX-ALISADO-500": {
+    "descripcion": "Tratamiento alisante Exiva en bolsa de 500 ml. Elige Alisado orgánico (reconstructor inteligente) o Afro liso extremo (para cabellos muy rizados).",
+    "modo_uso": "Aplica sobre el cabello limpio y seco, mecha por mecha. Sigue las instrucciones del envase.",
+    "rendimiento": "Bolsa de 500 ml."
+  },
+  "SL-AMPOLLA-21": {
+    "descripcion": "Ampolla Salerm 21 Boost, tratamiento intensivo de uso externo para darle fuerza y brillo al cabello.",
+    "modo_uso": "Abre la ampolla y aplica su contenido sobre el cabello húmedo. Masajea y no enjuagues.",
+    "rendimiento": "Ampolla de 13 ml."
+  },
+  "PR-LISITA-110": {
+    "descripcion": "Crema desrizadora Lisita, para alisar y relajar el rizo. Solo para uso profesional.",
+    "modo_uso": "Aplica siguiendo las instrucciones del envase. Haz antes una prueba de mechón.",
+    "rendimiento": "Pote de 110 g."
+  },
+  "OB-MASCARILLA-SOS": {
+    "descripcion": "Mascarilla Bomba Botánica S.O.S de Origen Botánico, con aceite de aguacate. Repara en profundidad y ayuda a disminuir la caída.",
+    "modo_uso": "Aplica sobre el cabello lavado, de medios a puntas. Deja actuar unos minutos y enjuaga.",
+    "rendimiento": ""
+  },
+  "OB-KERATINA": {
+    "descripcion": "Keratina Ritual de Alisado de Origen Botánico, sin formol, de origen orgánico y vegana. Trae su shampoo Paso 1 para preparar el cabello.",
+    "modo_uso": "Lava con el shampoo Paso 1, aplica la keratina siguiendo las instrucciones del envase y sella con plancha.",
+    "rendimiento": "Frasco de 120 ml o de 300 ml, más el shampoo Paso 1."
+  },
+  "OB-PERFUME-TERMO": {
+    "descripcion": "Perfume termoprotector desenredante de Origen Botánico, libre de alcohol. Perfuma, desenreda y protege el cabello del calor de la plancha y el secador.",
+    "modo_uso": "Rocía sobre el cabello húmedo o seco antes de usar calor. No hace falta enjuagar.",
+    "rendimiento": "Frasco spray de 120 ml."
+  },
+  "EL-FIBER-GLOSS": {
+    "descripcion": "Mascarilla Fiber Gloss 3X de Elegance Professional, con efecto telaraña. Repara, nutre e hidrata.",
+    "modo_uso": "Aplica sobre el cabello lavado, de medios a puntas. Deja actuar y enjuaga.",
+    "rendimiento": "Pote de 500 ml."
+  },
+  "KS-MASCARILLA-COLLAGEN": {
+    "descripcion": "Mascarilla Karseell Maca Power Collagen, para cabello seco o dañado por químicos.",
+    "modo_uso": "Aplica sobre el cabello lavado, de medios a puntas. Deja actuar unos minutos y enjuaga.",
+    "rendimiento": "Pote de 500 ml."
+  },
+  "SL-SALERM-21": {
+    "descripcion": "Salerm 21, acondicionador sin enjuague con proteínas de seda. Desenreda y deja el cabello suave.",
+    "modo_uso": "Aplica sobre el cabello húmedo y peina. No se enjuaga.",
+    "rendimiento": "Frasco de 250 ml."
+  },
+  "KX-PRE-SHAMPOO": {
+    "descripcion": "Pre shampoo Premix 3X de Keramix, con ácido hialurónico. Previene el quiebre, hidrata en profundidad y reduce el frizz.",
+    "modo_uso": "Aplica sobre el cabello seco antes del lavado. Deja actuar y luego lava con tu shampoo.",
+    "rendimiento": "Pote de 500 g."
+  },
+  "SL-CHAMPU": {
+    "descripcion": "Champú Salerm de uso profesional. Elige Anticaída (con extractos de naranja) o Proteínas (con hidrolizado de queratina).",
+    "modo_uso": "Aplica sobre el cabello mojado, masajea y enjuaga.",
+    "rendimiento": "Frasco de 360 ml."
+  },
+  "SL-TINTE-MIX": {
+    "descripcion": "Tinte Salerm Mix de coloración profesional, en tonos ultraintensos. Pregunta por WhatsApp los tonos disponibles.",
+    "modo_uso": "Mezcla con el revelador según las instrucciones del envase y aplica sobre el cabello seco.",
+    "rendimiento": "Tubo de 60 ml."
+  },
+  "KX-REPOLARIX-SOBRE": {
+    "descripcion": "Repolarix +8 de Keramix en sobre, tratamiento capilar en una sola aplicación.",
+    "modo_uso": "Aplica sobre el cabello lavado, deja actuar y enjuaga.",
+    "rendimiento": ""
+  },
+  "KX-REPOLARIX-POTE": {
+    "descripcion": "Repolarizador Repolarix de Keramix en pote de 190 g. Nutre, repara y devuelve el brillo al cabello maltratado.",
+    "modo_uso": "Aplica sobre el cabello lavado, de medios a puntas. Deja actuar unos minutos y enjuaga.",
+    "rendimiento": "Pote de 190 g."
+  },
+  "SW-IGORA-ROYAL": {
+    "descripcion": "Tinte Igora Royal de Schwarzkopf Professional, coloración permanente en crema. Pregunta por WhatsApp los tonos disponibles.",
+    "modo_uso": "Prepara y aplica según las instrucciones del envase, sobre el cabello seco.",
+    "rendimiento": ""
+  },
+  "KR-PERFUME-CAPILAR": {
+    "descripcion": "Perfume para cabello y cuerpo Kiss Ravey. Elige tu aroma: 76, 39 o Dança Mística.",
+    "modo_uso": "Rocía sobre el cabello y el cuerpo a unos 20 cm de distancia.",
+    "rendimiento": "Frasco de 250 ml."
+  },
+  "SG-TINTE-SHAMPOO": {
+    "descripcion": "Tinte shampoo 5 en 1 de Siglo: colorea mientras lavas. Elige Negro (500 ml) o Café (400 ml).",
+    "modo_uso": "Aplica sobre el cabello mojado, masajea, deja actuar unos minutos y enjuaga. Usa guantes.",
+    "rendimiento": ""
+  },
+  "GL-KERATINA-AFRO": {
+    "descripcion": "Keratina Glamour alisado afro, con aceite de ricino. Alisa el cabello crespo, lo nutre y lo regenera. Elige 250 g o 500 g.",
+    "modo_uso": "Aplica sobre el cabello limpio y seco, mecha por mecha. Sigue las instrucciones del envase.",
+    "rendimiento": ""
+  },
+  "MG-COMPACTO": {
+    "descripcion": "Polvo compacto mate de Max Glow, con espejo. Elige tu tono tocando el color.",
+    "modo_uso": "Aplica con esponja o brocha sobre el rostro para matificar y fijar el maquillaje.",
+    "rendimiento": ""
+  },
+  "MG-RUBOR": {
+    "descripcion": "Rubor compacto de Max Glow. Elige tu tono tocando el color.",
+    "modo_uso": "Aplica con brocha sobre las mejillas, difuminando hacia las sienes.",
+    "rendimiento": ""
+  },
+  "MG-CORRECTOR-COVER": {
+    "descripcion": "Corrector líquido Cover de Max Glow. Cubre ojeras e imperfecciones. Elige tu tono tocando el color.",
+    "modo_uso": "Aplica una pequeña cantidad donde lo necesites y difumina con los dedos, esponja o brocha.",
+    "rendimiento": ""
+  },
+  "CQ-CORRECTOR-BARRA": {
+    "descripcion": "Corrector en barra de cobertura cremosa. Elige tu tono tocando el color.",
+    "modo_uso": "Desliza la barra sobre la zona a cubrir y difumina con esponja o brocha.",
+    "rendimiento": ""
   }
 }

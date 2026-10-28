@@ -13,6 +13,7 @@
 
 import { agregar } from "./bolsa.js";
 import { valor, fijar, fijarTope } from "./cantidad.js";
+import { aplicarPrecio } from "./precio-variante.js";
 
 /* Stock del tono elegido; si el tono no lo trae, el del producto; si ninguno,
    null (cantidad.js pone su tope general). */
@@ -53,6 +54,8 @@ function seleccionar(tarjeta, boton) {
   if (btn) btn.disabled = agotado;
 
   fijarTope(tarjeta.querySelector("[data-cantidad]"), stockDe(tarjeta, boton));
+
+  aplicarPrecio(tarjeta, boton);
 }
 
 document.addEventListener("click", (e) => {

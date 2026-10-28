@@ -61,7 +61,7 @@ const base =
       </p>
       <p class="t-caption truncate text-ciruela/70">
         <span class="font-semibold text-ciruela tabular-nums min-[360px]:hidden">
-          ${monto.format(p.precio_divisa)}{conVariantes && " · "}
+          <span data-precio-divisa>${monto.format(p.precio_divisa)}</span>{conVariantes && " · "}
         </span>
         {conVariantes && <span data-barra-tono>{p.variantes[0].tono}</span>}
       </p>

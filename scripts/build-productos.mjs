@@ -150,8 +150,9 @@ function familiaDeColor(hex) {
 
 /* ── catálogo ─────────────────────────────────────────────────────────────
  *
- * categoria       unas · herramientas · pestanas · facial · cuerpo · cabello
- * tipo_variante   color (swatch circular) · aroma (chip de texto) · null
+ * categoria       unas · herramientas · pestanas · facial · maquillaje · cuerpo · cabello
+ * tipo_variante   color (swatch circular) · aroma (chip de texto) · tamano (chip; cada
+ *                 variante puede traer su propio precio_divisa) · null
  * uso_profesional true cuando el envase lo declara o el producto solo tiene
  *                 sentido dentro de un servicio de manicura
  */
@@ -284,7 +285,7 @@ const CATALOGO = [
     marca: "MAXGLOW",
     categoria: "unas",
     uso_profesional: true,
-    precio_divisa: 3.0,
+    precio_divisa: 2.5,
     presentacion: null,
     destacado: false,
     tipo_variante: "codigo",
@@ -300,8 +301,7 @@ const CATALOGO = [
     marca: "MAXGLOW",
     categoria: "unas",
     uso_profesional: true,
-    precio_divisa: 3.0,
-    nota_precio: "Dos por $5,00",
+    precio_divisa: 2.5,
     presentacion: null,
     destacado: false,
     tipo_variante: null,
@@ -675,7 +675,7 @@ const CATALOGO = [
     marca: "Monbray",
     categoria: "unas",
     uso_profesional: true,
-    precio_divisa: 2.5,
+    precio_divisa: 2.8,
     presentacion: null,
     destacado: false,
     foto_editada: true, // regenerada con IA a partir de la foto de la tienda
@@ -1216,7 +1216,7 @@ const CATALOGO = [
     marca: "SULLI NAILS",
     categoria: "unas",
     uso_profesional: false,
-    precio_divisa: 2.5,
+    precio_divisa: 2.0,
     presentacion: "10 ml",
     destacado: false,
     // Un solo frasco para todos los tonos: el color sale de la carta de la dueña.
@@ -1386,6 +1386,375 @@ const CATALOGO = [
     tipo_variante: null,
     variantes: [{ tono: null, archivo: "02_CATALOGO_PREMIUM/Pinzas_duo_Navina_4$.png" }],
   },
+  /* ── Lote de cabello y maquillaje (fotos editadas con Higgsfield) ──
+   * Decisión de la dueña: un solo producto por foto; cada tono o tamaño lleva
+   * su propia foto y al elegirlo en la ficha cambia la foto. */
+  {
+    id: "EX-ALISADO-KIT",
+    nombre: "Alisado orgánico Exiva con shampoo",
+    marca: "EXIVA",
+    categoria: "cabello",
+    uso_profesional: true,
+    precio_divisa: 15,
+    presentacion: "Shampoo 480 ml + alisado 500 g",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Alisado_organico_Exiva_con_shampoo_15$.png" },
+    ],
+  },
+  {
+    id: "EX-ALISADO-500",
+    nombre: "Alisado Exiva 500 ml",
+    marca: "EXIVA",
+    categoria: "cabello",
+    uso_profesional: true,
+    precio_divisa: 8,
+    presentacion: "500 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "codigo",
+    variantes: [
+      { tono: "Alisado orgánico", archivo: "02_CATALOGO_PREMIUM/Alisado_Exiva_500ml_8$_Organico.png" },
+      { tono: "Afro liso extremo", archivo: "02_CATALOGO_PREMIUM/Alisado_Exiva_500ml_8$_Afro_liso_extremo.png" },
+    ],
+  },
+  {
+    id: "SL-AMPOLLA-21",
+    nombre: "Ampolla Salerm 21 Boost",
+    marca: "Salerm",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 5.5,
+    presentacion: "13 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Ampolla_Salerm_21_Boost_5.5$.png" },
+    ],
+  },
+  {
+    id: "PR-LISITA-110",
+    nombre: "Crema desrizadora Lisita",
+    marca: "Lisita",
+    categoria: "cabello",
+    uso_profesional: true,
+    precio_divisa: 3,
+    presentacion: "110 g",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Crema_desrizadora_Lisita_3$.png" },
+    ],
+  },
+  {
+    id: "OB-MASCARILLA-SOS",
+    nombre: "Mascarilla Bomba Botánica S.O.S",
+    marca: "Origen Botánico",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 14,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Mascarilla_Origen_Botanico_14$.png" },
+    ],
+  },
+  {
+    id: "OB-KERATINA",
+    nombre: "Keratina Origen Botánico con shampoo Paso 1",
+    marca: "Origen Botánico",
+    categoria: "cabello",
+    uso_profesional: true,
+    // cada tamaño trae su propio precio; la foto de 300 ml sale de la de 120 ml (misma botella)
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "tamano",
+    variantes: [
+      { tono: "120 ml", archivo: "02_CATALOGO_PREMIUM/Keratina_Origen_Botanico_120ml_12$.png", precio_divisa: 12 },
+      { tono: "300 ml", archivo: "02_CATALOGO_PREMIUM/Keratina_Origen_Botanico_300ml_19$.png", precio_divisa: 19 },
+    ],
+  },
+  {
+    id: "OB-PERFUME-TERMO",
+    nombre: "Perfume termoprotector desenredante Origen Botánico",
+    marca: "Origen Botánico",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 9,
+    presentacion: "120 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Perfume_termoprotector_Origen_Botanico_9$.png" },
+    ],
+  },
+  {
+    id: "EL-FIBER-GLOSS",
+    nombre: "Mascarilla Fiber Gloss 3X",
+    marca: "Elegance",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 12,
+    presentacion: "500 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Mascarilla_Fiber_Gloss_12$.png" },
+    ],
+  },
+  {
+    id: "KS-MASCARILLA-COLLAGEN",
+    nombre: "Mascarilla Karseell Collagen",
+    marca: "Karseell",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 10,
+    presentacion: "500 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Mascarilla_Karseell_10$.png" },
+    ],
+  },
+  {
+    id: "SL-SALERM-21",
+    nombre: "Salerm 21 acondicionador sin enjuague",
+    marca: "Salerm",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 6,
+    presentacion: "250 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Salerm_21_6$.png" },
+    ],
+  },
+  {
+    id: "KX-PRE-SHAMPOO",
+    nombre: "Pre shampoo Premix 3X Keramix",
+    marca: "Keramix",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 9,
+    presentacion: "500 g",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Pre_shampoo_Keramix_9$.png" },
+    ],
+  },
+  {
+    id: "SL-CHAMPU",
+    nombre: "Champú Salerm",
+    marca: "Salerm",
+    categoria: "cabello",
+    uso_profesional: true,
+    precio_divisa: 6,
+    presentacion: "360 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "codigo",
+    variantes: [
+      { tono: "Anticaída", archivo: "02_CATALOGO_PREMIUM/Champu_Salerm_6$_Anticaida.png" },
+      { tono: "Proteínas", archivo: "02_CATALOGO_PREMIUM/Champu_Salerm_6$_Proteinas.png" },
+    ],
+  },
+  {
+    id: "SL-TINTE-MIX",
+    nombre: "Tinte Salerm Mix",
+    marca: "Salerm",
+    categoria: "cabello",
+    uso_profesional: true,
+    precio_divisa: 8,
+    presentacion: "60 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Tinte_Salerm_Mix_8$.png" },
+    ],
+  },
+  {
+    id: "KX-REPOLARIX-SOBRE",
+    nombre: "Repolarix +8 Keramix en sobre",
+    marca: "Keramix",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 0.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Repolarix_Keramix_sobre_0.5$.png" },
+    ],
+  },
+  {
+    id: "KX-REPOLARIX-POTE",
+    nombre: "Repolarizador Repolarix Keramix",
+    marca: "Keramix",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 8,
+    presentacion: "190 g",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de una foto del producto que mandó la dueña
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Repolarizador_Keramix_pote_8$.png" },
+    ],
+  },
+  {
+    id: "SW-IGORA-ROYAL",
+    nombre: "Tinte Igora Royal",
+    marca: "Schwarzkopf Professional",
+    categoria: "cabello",
+    uso_profesional: true,
+    precio_divisa: 8,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de una foto del producto que mandó la dueña
+    tipo_variante: null,
+    variantes: [
+      { tono: null, archivo: "02_CATALOGO_PREMIUM/Tinte_Igora_Royal_8$.png" },
+    ],
+  },
+  {
+    id: "KR-PERFUME-CAPILAR",
+    nombre: "Perfume capilar Kiss Ravey",
+    marca: "Kiss Ravey",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 6,
+    presentacion: "250 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "aroma",
+    variantes: [
+      { tono: "76", archivo: "02_CATALOGO_PREMIUM/Perfume_capilar_Kiss_Ravey_6$_76.png" },
+      { tono: "39", archivo: "02_CATALOGO_PREMIUM/Perfume_capilar_Kiss_Ravey_6$_39.png" },
+      { tono: "Dança Mística", archivo: "02_CATALOGO_PREMIUM/Perfume_capilar_Kiss_Ravey_6$_Danca_Mistica.png" },
+    ],
+  },
+  {
+    id: "SG-TINTE-SHAMPOO",
+    nombre: "Tinte shampoo 5 en 1 Siglo",
+    marca: "Siglo",
+    categoria: "cabello",
+    uso_profesional: false,
+    precio_divisa: 6,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Negro · 500 ml", archivo: "02_CATALOGO_PREMIUM/Tinte_shampoo_Siglo_6$_Negro.png", swatch_hex: "#1C1A1A" },
+      { tono: "Café · 400 ml", archivo: "02_CATALOGO_PREMIUM/Tinte_shampoo_Siglo_6$_Cafe.png", swatch_hex: "#4A2C1E" },
+    ],
+  },
+  {
+    id: "GL-KERATINA-AFRO",
+    nombre: "Keratina Glamour alisado afro",
+    marca: "Glamour Keratin",
+    categoria: "cabello",
+    uso_profesional: true,
+    // cada tamaño trae su propio precio
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "tamano",
+    variantes: [
+      { tono: "250 g", archivo: "02_CATALOGO_PREMIUM/Keratina_Glamour_alisado_afro_250g_6.5$.png", precio_divisa: 6.5 },
+      { tono: "500 g", archivo: "02_CATALOGO_PREMIUM/Keratina_Glamour_alisado_afro_500g_9.5$.png", precio_divisa: 9.5 },
+    ],
+  },
+  {
+    id: "MG-COMPACTO",
+    nombre: "Polvo compacto Max Glow",
+    marca: "MAXGLOW",
+    categoria: "maquillaje",
+    uso_profesional: false,
+    precio_divisa: 3.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Tono 1", archivo: "02_CATALOGO_PREMIUM/Compacto_Maxglow_3.5$_Tono_1.png", swatch_hex: "#DA9767" },
+      { tono: "Tono 2", archivo: "02_CATALOGO_PREMIUM/Compacto_Maxglow_3.5$_Tono_2.png", swatch_hex: "#D99C7B" },
+      { tono: "Tono 3", archivo: "02_CATALOGO_PREMIUM/Compacto_Maxglow_3.5$_Tono_3.png", swatch_hex: "#E1A276" },
+      { tono: "Tono 4", archivo: "02_CATALOGO_PREMIUM/Compacto_Maxglow_3.5$_Tono_4.png", swatch_hex: "#EFC195" },
+    ],
+  },
+  {
+    id: "MG-RUBOR",
+    nombre: "Rubor Max Glow",
+    marca: "MAXGLOW",
+    categoria: "maquillaje",
+    uso_profesional: false,
+    precio_divisa: 3,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Tono 1", archivo: "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_1.png", swatch_hex: "#E8656A" },
+      { tono: "Tono 2", archivo: "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_2.png", swatch_hex: "#FD7B90" },
+      { tono: "Tono 3", archivo: "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_3.png", swatch_hex: "#EF656B" },
+      { tono: "Tono 4", archivo: "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_4.png", swatch_hex: "#E47C85" },
+      { tono: "Tono 5", archivo: "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_5.png", swatch_hex: "#F6968A" },
+    ],
+  },
+  {
+    id: "MG-CORRECTOR-COVER",
+    nombre: "Corrector líquido Cover Max Glow",
+    marca: "MAXGLOW",
+    categoria: "maquillaje",
+    uso_profesional: false,
+    precio_divisa: 3.5,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Tono 1", archivo: "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_1.png", swatch_hex: "#E4AA7F" },
+      { tono: "Tono 2", archivo: "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_2.png", swatch_hex: "#E8B188" },
+      { tono: "Tono 3", archivo: "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_3.png", swatch_hex: "#E5B28E" },
+      { tono: "Tono 4", archivo: "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_4.png", swatch_hex: "#E3B18F" },
+      { tono: "Tono 5", archivo: "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_5.png", swatch_hex: "#E4B18F" },
+    ],
+  },
+  {
+    id: "CQ-CORRECTOR-BARRA",
+    nombre: "Corrector en barra",
+    marca: "MAXGLOW",
+    categoria: "maquillaje",
+    uso_profesional: false,
+    precio_divisa: 4,
+    presentacion: null,
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: "color",
+    variantes: [
+      { tono: "Tono 1", archivo: "02_CATALOGO_PREMIUM/Corrector_en_barra_4$_Tono_1.png", swatch_hex: "#3A2319" },
+      { tono: "Tono 2", archivo: "02_CATALOGO_PREMIUM/Corrector_en_barra_4$_Tono_2.png", swatch_hex: "#62442E" },
+      { tono: "Tono 3", archivo: "02_CATALOGO_PREMIUM/Corrector_en_barra_4$_Tono_3.png", swatch_hex: "#AE7C50" },
+      { tono: "Tono 4", archivo: "02_CATALOGO_PREMIUM/Corrector_en_barra_4$_Tono_4.png", swatch_hex: "#D9B993" },
+    ],
+  },
   {
     id: "CQ-GORRO-TERMICO",
     nombre: "Gorro térmico",
@@ -1412,7 +1781,7 @@ const CATALOGO = [
  * Rebeca; la manicurista encuentra lo suyo por la etiqueta.
  */
 
-const PESO_CATEGORIA = { unas: 0, herramientas: 1, pestanas: 2, facial: 3, cuerpo: 4, cabello: 5 };
+const PESO_CATEGORIA = { unas: 0, herramientas: 1, pestanas: 2, facial: 3, maquillaje: 4, cuerpo: 5, cabello: 6 };
 const RECARGO_BOLIVARES = 1.35;
 
 async function construir() {
@@ -1449,6 +1818,10 @@ async function construir() {
         imagenes: [`/img/productos/${p.id}-${String(indiceFoto + 1).padStart(2, "0")}.webp`],
         origen: [archivo],
         disponible: true,
+        // precio propio de la opción (p. ej. 300 ml y 120 ml): solo si la variante lo trae
+        ...(v.precio_divisa
+          ? { precio_divisa: v.precio_divisa, precio_referencia: Math.round(v.precio_divisa * RECARGO_BOLIVARES * 100) / 100 }
+          : {}),
       });
     }
 
@@ -1460,11 +1833,12 @@ async function construir() {
       marca: p.marca,
       categoria: p.categoria,
       uso_profesional: p.uso_profesional,
-      precio_divisa: p.precio_divisa,
+      // con precio por opción, el del producto es el de la primera (la que se ve al cargar)
+      precio_divisa: p.precio_divisa ?? p.variantes[0].precio_divisa,
       // Pagar en bolívares cuesta un 35 % más que pagar en divisa. Ambos
       // montos van en dólares; el monto en Bs se calcula en el cliente
       // multiplicando este por la tasa BCV del día.
-      precio_referencia: Math.round(p.precio_divisa * RECARGO_BOLIVARES * 100) / 100,
+      precio_referencia: Math.round((p.precio_divisa ?? p.variantes[0].precio_divisa) * RECARGO_BOLIVARES * 100) / 100,
       nota_precio: p.nota_precio ?? null,
       presentacion: p.presentacion,
       descripcion: textos[p.id]?.descripcion ?? "",
@@ -1503,7 +1877,7 @@ async function construir() {
   console.log(`productos     ${productos.length}`);
   console.log(`variantes     ${fotos}`);
   console.log(`uso pro       ${pro} (${Math.round((pro / productos.length) * 100)} %)`);
-  for (const c of ["unas", "herramientas", "pestanas", "facial", "cuerpo", "cabello"]) {
+  for (const c of ["unas", "herramientas", "pestanas", "facial", "maquillaje", "cuerpo", "cabello"]) {
     console.log(`  ${c.padEnd(12)}${productos.filter((p) => p.categoria === c).length}`);
   }
   const dudosos = productos

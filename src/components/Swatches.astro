@@ -23,11 +23,13 @@ interface Variante {
   swatch_hex: string | null;
   disponible: boolean;
   imagenes: string[];
+  precio_divisa?: number;
+  precio_referencia?: number;
 }
 
 interface Props {
   variantes: Variante[];
-  tipo: "color" | "aroma" | "codigo" | null;
+  tipo: "color" | "aroma" | "codigo" | "tamano" | null;
   modo?: "indicador" | "selector" | "tarjeta";
   etiqueta?: string;
 }
@@ -111,6 +113,8 @@ const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${varia
                 data-stock={v.stock ?? undefined}
                 data-tono={v.tono}
                 data-imagen={v.imagenes[0]}
+                data-precio={v.precio_divisa ?? undefined}
+                data-referencia={v.precio_referencia ?? undefined}
                 class:list={[
                   `presionable-menudo objetivo-amplio shrink-0 ${medidaColor} rounded-full border border-ciruela/25`,
                   "transition-transform duration-[var(--paso-rapido)] ease-[var(--curva)]",
@@ -131,6 +135,8 @@ const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${varia
                 data-stock={v.stock ?? undefined}
                 data-tono={v.tono}
                 data-imagen={v.imagenes[0]}
+                data-precio={v.precio_divisa ?? undefined}
+                data-referencia={v.precio_referencia ?? undefined}
 class:list={[
                   `presionable-menudo objetivo-amplio t-caption ${medidaChip} border transition-colors`,
                   // Nombres largos sin espacio (Watermelon) no tienen dónde

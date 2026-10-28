@@ -32,7 +32,7 @@ export function getStaticPaths() {
 
 const { p } = Astro.props;
 
-const CATEGORIAS = { unas: "Uñas", herramientas: "Herramientas", pestanas: "Pestañas y cejas", facial: "Cuidado facial", cuerpo: "Cuerpo y spa", cabello: "Cabello" };
+const CATEGORIAS = { unas: "Uñas", herramientas: "Herramientas", pestanas: "Pestañas y cejas", facial: "Cuidado facial", maquillaje: "Maquillaje", cuerpo: "Cuerpo y spa", cabello: "Cabello" };
 
 const primera = p.variantes[0];
 const srcset = (src: string) =>
@@ -133,7 +133,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
           p.variantes.length > 1 && (
             <div class="mt-2">
               <p class="t-etiqueta mb-1 text-ciruela/70">
-                {p.tipo_variante === "color" ? "Tono" : "Variante"}
+                {p.tipo_variante === "color" ? "Tono" : p.tipo_variante === "tamano" ? "Tamaño" : "Variante"}
               </p>
               <Swatches variantes={p.variantes} tipo={p.tipo_variante} modo="selector" />
             </div>
@@ -222,8 +222,15 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
       image: p.variantes.map((v: any) => new URL(v.imagenes[0], Astro.site).href),
       ...(p.presentacion ? { size: p.presentacion } : {}),
       offers: {
-        "@type": "Offer",
-        price: p.precio_divisa.toFixed(2),
+        // con precio por opción: rango de precios (AggregateOffer) en vez de uno solo
+        ...(p.variantes.some((v: any) => v.precio_divisa)
+          ? {
+              "@type": "AggregateOffer",
+              lowPrice: Math.min(...p.variantes.map((v: any) => v.precio_divisa ?? p.precio_divisa)).toFixed(2),
+              highPrice: Math.max(...p.variantes.map((v: any) => v.precio_divisa ?? p.precio_divisa)).toFixed(2),
+              offerCount: p.variantes.length,
+            }
+          : { "@type": "Offer", price: p.precio_divisa.toFixed(2) }),
         priceCurrency: "USD",
         availability: p.disponible
           ? "https://schema.org/InStock"

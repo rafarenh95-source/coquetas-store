@@ -8,6 +8,7 @@
 
 import { agregar } from "./bolsa.js";
 import { valor, fijar, fijarTope } from "./cantidad.js";
+import { aplicarPrecio } from "./precio-variante.js";
 
 const monto = new Intl.NumberFormat("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -21,14 +22,15 @@ if (raiz) {
   const lupa = document.querySelector("[data-lupa]");
   const lupaFoto = document.querySelector("[data-lupa-foto]");
   const grupo = raiz.querySelector("[data-cantidad]");
-  const precio = Number(raiz.dataset.precio);
+  // se lee al momento: con precio por opción cambia al elegir otra
+  const precioActual = () => Number(raiz.dataset.precio);
   const stockDe = (boton) => Number(boton?.dataset.stock) || Number(raiz.dataset.stock) || null;
 
   /* Los botones de agregar (el principal y los de la barra fija) dicen el
      total de lo que se va a agregar: precio × cantidad. */
   function pintarTotal(n) {
     for (const t of document.querySelectorAll("[data-precio-total]")) {
-      t.textContent = `\u00a0· $${monto.format(precio * n)}`;
+      t.textContent = `\u00a0· $${monto.format(precioActual() * n)}`;
     }
   }
   grupo?.addEventListener("cantidad", (e) => pintarTotal(e.detail.valor));
@@ -68,6 +70,10 @@ if (raiz) {
     for (const b of document.querySelectorAll("[data-agregar-barra]")) b.disabled = agotado;
 
     fijarTope(grupo, stockDe(boton));
+
+    if (aplicarPrecio(raiz, boton, [raiz, ...document.querySelectorAll("[data-barra-producto]")])) {
+      pintarTotal(grupo ? valor(grupo) : 1);
+    }
   }
 
   /* Las fotos de los demás tonos se traen de fondo para que el primer cambio
@@ -115,7 +121,7 @@ if (raiz) {
         id: raiz.dataset.id,
         nombre: raiz.dataset.nombre,
         presentacion: raiz.dataset.presentacion || null,
-        precio,
+        precio: precioActual(),
         referencia: Number(raiz.dataset.referencia),
         tono: botones[elegida]?.dataset.tono ?? null,
         max: stockDe(botones[elegida]),

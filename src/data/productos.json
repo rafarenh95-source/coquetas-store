@@ -701,8 +701,8 @@
     "marca": "SULLI NAILS",
     "categoria": "unas",
     "uso_profesional": false,
-    "precio_divisa": 2.5,
-    "precio_referencia": 3.38,
+    "precio_divisa": 2,
+    "precio_referencia": 2.7,
     "nota_precio": null,
     "presentacion": "10 ml",
     "descripcion": "Gel semipermanente efecto ojo de gato Sulli Nails Shine Cat Eyes, con brillo magnético que se mueve con la luz.",
@@ -1074,9 +1074,9 @@
     "marca": "MAXGLOW",
     "categoria": "unas",
     "uso_profesional": true,
-    "precio_divisa": 3,
-    "precio_referencia": 4.05,
-    "nota_precio": "Dos por $5,00",
+    "precio_divisa": 2.5,
+    "precio_referencia": 3.38,
+    "nota_precio": null,
     "presentacion": null,
     "descripcion": "Gel constructor para alargar, reforzar y corregir la curva de la uña.",
     "modo_uso": "Sobre base curada, construye el ápex y cura. Lima la forma antes de sellar.",
@@ -1106,8 +1106,8 @@
     "marca": "Monbray",
     "categoria": "unas",
     "uso_profesional": true,
-    "precio_divisa": 2.5,
-    "precio_referencia": 3.38,
+    "precio_divisa": 2.8,
+    "precio_referencia": 3.78,
     "nota_precio": null,
     "presentacion": null,
     "descripcion": "Builder gel de la marca Monbray, para dar estructura y reforzar la uña. Elige entre el transparente y siete tonos rosados y nude.",
@@ -1408,8 +1408,8 @@
     "marca": "MAXGLOW",
     "categoria": "unas",
     "uso_profesional": true,
-    "precio_divisa": 3,
-    "precio_referencia": 4.05,
+    "precio_divisa": 2.5,
+    "precio_referencia": 3.38,
     "nota_precio": null,
     "presentacion": null,
     "descripcion": "Gel constructor de textura jelly, más denso que un builder normal. Da estructura sin peso.",
@@ -3554,6 +3554,306 @@
     "orden": 80
   },
   {
+    "producto_id": "CQ-CORRECTOR-BARRA",
+    "nombre": "Corrector en barra",
+    "marca": "MAXGLOW",
+    "categoria": "maquillaje",
+    "uso_profesional": false,
+    "precio_divisa": 4,
+    "precio_referencia": 5.4,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Corrector en barra de cobertura cremosa. Elige tu tono tocando el color.",
+    "modo_uso": "Desliza la barra sobre la zona a cubrir y difumina con esponja o brocha.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Tono 1",
+        "swatch_hex": "#3A2319",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-CORRECTOR-BARRA-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_en_barra_4$_Tono_1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2",
+        "swatch_hex": "#62442E",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-CORRECTOR-BARRA-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_en_barra_4$_Tono_2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3",
+        "swatch_hex": "#AE7C50",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-CORRECTOR-BARRA-03.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_en_barra_4$_Tono_3.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 4",
+        "swatch_hex": "#D9B993",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/CQ-CORRECTOR-BARRA-04.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_en_barra_4$_Tono_4.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 81
+  },
+  {
+    "producto_id": "MG-CORRECTOR-COVER",
+    "nombre": "Corrector líquido Cover Max Glow",
+    "marca": "MAXGLOW",
+    "categoria": "maquillaje",
+    "uso_profesional": false,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Corrector líquido Cover de Max Glow. Cubre ojeras e imperfecciones. Elige tu tono tocando el color.",
+    "modo_uso": "Aplica una pequeña cantidad donde lo necesites y difumina con los dedos, esponja o brocha.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Tono 1",
+        "swatch_hex": "#E4AA7F",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORRECTOR-COVER-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2",
+        "swatch_hex": "#E8B188",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORRECTOR-COVER-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3",
+        "swatch_hex": "#E5B28E",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORRECTOR-COVER-03.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_3.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 4",
+        "swatch_hex": "#E3B18F",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORRECTOR-COVER-04.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_4.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 5",
+        "swatch_hex": "#E4B18F",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-CORRECTOR-COVER-05.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Corrector_Maxglow_Cover_3.5$_Tono_5.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 82
+  },
+  {
+    "producto_id": "MG-COMPACTO",
+    "nombre": "Polvo compacto Max Glow",
+    "marca": "MAXGLOW",
+    "categoria": "maquillaje",
+    "uso_profesional": false,
+    "precio_divisa": 3.5,
+    "precio_referencia": 4.73,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Polvo compacto mate de Max Glow, con espejo. Elige tu tono tocando el color.",
+    "modo_uso": "Aplica con esponja o brocha sobre el rostro para matificar y fijar el maquillaje.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Tono 1",
+        "swatch_hex": "#DA9767",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-COMPACTO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Compacto_Maxglow_3.5$_Tono_1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2",
+        "swatch_hex": "#D99C7B",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-COMPACTO-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Compacto_Maxglow_3.5$_Tono_2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3",
+        "swatch_hex": "#E1A276",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-COMPACTO-03.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Compacto_Maxglow_3.5$_Tono_3.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 4",
+        "swatch_hex": "#EFC195",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-COMPACTO-04.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Compacto_Maxglow_3.5$_Tono_4.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 83
+  },
+  {
+    "producto_id": "MG-RUBOR",
+    "nombre": "Rubor Max Glow",
+    "marca": "MAXGLOW",
+    "categoria": "maquillaje",
+    "uso_profesional": false,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Rubor compacto de Max Glow. Elige tu tono tocando el color.",
+    "modo_uso": "Aplica con brocha sobre las mejillas, difuminando hacia las sienes.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Tono 1",
+        "swatch_hex": "#E8656A",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-RUBOR-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_1.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 2",
+        "swatch_hex": "#FD7B90",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-RUBOR-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_2.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 3",
+        "swatch_hex": "#EF656B",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-RUBOR-03.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_3.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 4",
+        "swatch_hex": "#E47C85",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-RUBOR-04.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_4.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Tono 5",
+        "swatch_hex": "#F6968A",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/MG-RUBOR-05.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Rubor_Maxglow_3$_Tono_5.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 84
+  },
+  {
     "producto_id": "MG-ATOMIZADOR-TALCO",
     "nombre": "Atomizador de talco",
     "marca": "MAXGLOW",
@@ -3583,7 +3883,7 @@
         "disponible": true
       }
     ],
-    "orden": 81
+    "orden": 85
   },
   {
     "producto_id": "MG-BOMBAS-EFERV",
@@ -3615,7 +3915,7 @@
         "disponible": true
       }
     ],
-    "orden": 82
+    "orden": 86
   },
   {
     "producto_id": "MG-BODY-BUTTER",
@@ -3647,7 +3947,7 @@
         "disponible": true
       }
     ],
-    "orden": 83
+    "orden": 87
   },
   {
     "producto_id": "MY-PETALOS-JABON",
@@ -3680,7 +3980,40 @@
         "disponible": true
       }
     ],
-    "orden": 84
+    "orden": 88
+  },
+  {
+    "producto_id": "SL-AMPOLLA-21",
+    "nombre": "Ampolla Salerm 21 Boost",
+    "marca": "Salerm",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 5.5,
+    "precio_referencia": 7.43,
+    "nota_precio": null,
+    "presentacion": "13 ml",
+    "descripcion": "Ampolla Salerm 21 Boost, tratamiento intensivo de uso externo para darle fuerza y brillo al cabello.",
+    "modo_uso": "Abre la ampolla y aplica su contenido sobre el cabello húmedo. Masajea y no enjuagues.",
+    "rendimiento": "Ampolla de 13 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SL-AMPOLLA-21-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Ampolla_Salerm_21_Boost_5.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 89
   },
   {
     "producto_id": "CQ-GORRO-TERMICO",
@@ -3748,6 +4081,692 @@
         "disponible": true
       }
     ],
-    "orden": 85
+    "orden": 90
+  },
+  {
+    "producto_id": "OB-MASCARILLA-SOS",
+    "nombre": "Mascarilla Bomba Botánica S.O.S",
+    "marca": "Origen Botánico",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 14,
+    "precio_referencia": 18.9,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Mascarilla Bomba Botánica S.O.S de Origen Botánico, con aceite de aguacate. Repara en profundidad y ayuda a disminuir la caída.",
+    "modo_uso": "Aplica sobre el cabello lavado, de medios a puntas. Deja actuar unos minutos y enjuaga.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/OB-MASCARILLA-SOS-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Mascarilla_Origen_Botanico_14$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 91
+  },
+  {
+    "producto_id": "EL-FIBER-GLOSS",
+    "nombre": "Mascarilla Fiber Gloss 3X",
+    "marca": "Elegance",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 12,
+    "precio_referencia": 16.2,
+    "nota_precio": null,
+    "presentacion": "500 ml",
+    "descripcion": "Mascarilla Fiber Gloss 3X de Elegance Professional, con efecto telaraña. Repara, nutre e hidrata.",
+    "modo_uso": "Aplica sobre el cabello lavado, de medios a puntas. Deja actuar y enjuaga.",
+    "rendimiento": "Pote de 500 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EL-FIBER-GLOSS-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Mascarilla_Fiber_Gloss_12$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 92
+  },
+  {
+    "producto_id": "KS-MASCARILLA-COLLAGEN",
+    "nombre": "Mascarilla Karseell Collagen",
+    "marca": "Karseell",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 10,
+    "precio_referencia": 13.5,
+    "nota_precio": null,
+    "presentacion": "500 ml",
+    "descripcion": "Mascarilla Karseell Maca Power Collagen, para cabello seco o dañado por químicos.",
+    "modo_uso": "Aplica sobre el cabello lavado, de medios a puntas. Deja actuar unos minutos y enjuaga.",
+    "rendimiento": "Pote de 500 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/KS-MASCARILLA-COLLAGEN-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Mascarilla_Karseell_10$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 93
+  },
+  {
+    "producto_id": "KR-PERFUME-CAPILAR",
+    "nombre": "Perfume capilar Kiss Ravey",
+    "marca": "Kiss Ravey",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 6,
+    "precio_referencia": 8.1,
+    "nota_precio": null,
+    "presentacion": "250 ml",
+    "descripcion": "Perfume para cabello y cuerpo Kiss Ravey. Elige tu aroma: 76, 39 o Dança Mística.",
+    "modo_uso": "Rocía sobre el cabello y el cuerpo a unos 20 cm de distancia.",
+    "rendimiento": "Frasco de 250 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "aroma",
+    "variantes": [
+      {
+        "tono": "76",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/KR-PERFUME-CAPILAR-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Perfume_capilar_Kiss_Ravey_6$_76.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "39",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/KR-PERFUME-CAPILAR-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Perfume_capilar_Kiss_Ravey_6$_39.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Dança Mística",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/KR-PERFUME-CAPILAR-03.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Perfume_capilar_Kiss_Ravey_6$_Danca_Mistica.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 94
+  },
+  {
+    "producto_id": "OB-PERFUME-TERMO",
+    "nombre": "Perfume termoprotector desenredante Origen Botánico",
+    "marca": "Origen Botánico",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 9,
+    "precio_referencia": 12.15,
+    "nota_precio": null,
+    "presentacion": "120 ml",
+    "descripcion": "Perfume termoprotector desenredante de Origen Botánico, libre de alcohol. Perfuma, desenreda y protege el cabello del calor de la plancha y el secador.",
+    "modo_uso": "Rocía sobre el cabello húmedo o seco antes de usar calor. No hace falta enjuagar.",
+    "rendimiento": "Frasco spray de 120 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/OB-PERFUME-TERMO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Perfume_termoprotector_Origen_Botanico_9$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 95
+  },
+  {
+    "producto_id": "KX-PRE-SHAMPOO",
+    "nombre": "Pre shampoo Premix 3X Keramix",
+    "marca": "Keramix",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 9,
+    "precio_referencia": 12.15,
+    "nota_precio": null,
+    "presentacion": "500 g",
+    "descripcion": "Pre shampoo Premix 3X de Keramix, con ácido hialurónico. Previene el quiebre, hidrata en profundidad y reduce el frizz.",
+    "modo_uso": "Aplica sobre el cabello seco antes del lavado. Deja actuar y luego lava con tu shampoo.",
+    "rendimiento": "Pote de 500 g.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/KX-PRE-SHAMPOO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Pre_shampoo_Keramix_9$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 96
+  },
+  {
+    "producto_id": "KX-REPOLARIX-SOBRE",
+    "nombre": "Repolarix +8 Keramix en sobre",
+    "marca": "Keramix",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 0.5,
+    "precio_referencia": 0.68,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Repolarix +8 de Keramix en sobre, tratamiento capilar en una sola aplicación.",
+    "modo_uso": "Aplica sobre el cabello lavado, deja actuar y enjuaga.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/KX-REPOLARIX-SOBRE-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Repolarix_Keramix_sobre_0.5$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 97
+  },
+  {
+    "producto_id": "KX-REPOLARIX-POTE",
+    "nombre": "Repolarizador Repolarix Keramix",
+    "marca": "Keramix",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 8,
+    "precio_referencia": 10.8,
+    "nota_precio": null,
+    "presentacion": "190 g",
+    "descripcion": "Repolarizador Repolarix de Keramix en pote de 190 g. Nutre, repara y devuelve el brillo al cabello maltratado.",
+    "modo_uso": "Aplica sobre el cabello lavado, de medios a puntas. Deja actuar unos minutos y enjuaga.",
+    "rendimiento": "Pote de 190 g.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/KX-REPOLARIX-POTE-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Repolarizador_Keramix_pote_8$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 98
+  },
+  {
+    "producto_id": "SL-SALERM-21",
+    "nombre": "Salerm 21 acondicionador sin enjuague",
+    "marca": "Salerm",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 6,
+    "precio_referencia": 8.1,
+    "nota_precio": null,
+    "presentacion": "250 ml",
+    "descripcion": "Salerm 21, acondicionador sin enjuague con proteínas de seda. Desenreda y deja el cabello suave.",
+    "modo_uso": "Aplica sobre el cabello húmedo y peina. No se enjuaga.",
+    "rendimiento": "Frasco de 250 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SL-SALERM-21-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Salerm_21_6$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 99
+  },
+  {
+    "producto_id": "SG-TINTE-SHAMPOO",
+    "nombre": "Tinte shampoo 5 en 1 Siglo",
+    "marca": "Siglo",
+    "categoria": "cabello",
+    "uso_profesional": false,
+    "precio_divisa": 6,
+    "precio_referencia": 8.1,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tinte shampoo 5 en 1 de Siglo: colorea mientras lavas. Elige Negro (500 ml) o Café (400 ml).",
+    "modo_uso": "Aplica sobre el cabello mojado, masajea, deja actuar unos minutos y enjuaga. Usa guantes.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "color",
+    "variantes": [
+      {
+        "tono": "Negro · 500 ml",
+        "swatch_hex": "#1C1A1A",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SG-TINTE-SHAMPOO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tinte_shampoo_Siglo_6$_Negro.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Café · 400 ml",
+        "swatch_hex": "#4A2C1E",
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SG-TINTE-SHAMPOO-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tinte_shampoo_Siglo_6$_Cafe.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 100
+  },
+  {
+    "producto_id": "EX-ALISADO-500",
+    "nombre": "Alisado Exiva 500 ml",
+    "marca": "EXIVA",
+    "categoria": "cabello",
+    "uso_profesional": true,
+    "precio_divisa": 8,
+    "precio_referencia": 10.8,
+    "nota_precio": null,
+    "presentacion": "500 ml",
+    "descripcion": "Tratamiento alisante Exiva en bolsa de 500 ml. Elige Alisado orgánico (reconstructor inteligente) o Afro liso extremo (para cabellos muy rizados).",
+    "modo_uso": "Aplica sobre el cabello limpio y seco, mecha por mecha. Sigue las instrucciones del envase.",
+    "rendimiento": "Bolsa de 500 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "codigo",
+    "variantes": [
+      {
+        "tono": "Alisado orgánico",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EX-ALISADO-500-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Alisado_Exiva_500ml_8$_Organico.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Afro liso extremo",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EX-ALISADO-500-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Alisado_Exiva_500ml_8$_Afro_liso_extremo.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 101
+  },
+  {
+    "producto_id": "EX-ALISADO-KIT",
+    "nombre": "Alisado orgánico Exiva con shampoo",
+    "marca": "EXIVA",
+    "categoria": "cabello",
+    "uso_profesional": true,
+    "precio_divisa": 15,
+    "precio_referencia": 20.25,
+    "nota_precio": null,
+    "presentacion": "Shampoo 480 ml + alisado 500 g",
+    "descripcion": "Kit de alisado orgánico Exiva: trae el shampoo de limpieza profunda y el alisado potencializador. 100 % vegano y libre de formol.",
+    "modo_uso": "Lava con el shampoo de limpieza profunda, seca y aplica el alisado mecha por mecha. Sigue las instrucciones de la caja.",
+    "rendimiento": "Shampoo de 480 ml y alisado de 500 g.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/EX-ALISADO-KIT-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Alisado_organico_Exiva_con_shampoo_15$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 102
+  },
+  {
+    "producto_id": "SL-CHAMPU",
+    "nombre": "Champú Salerm",
+    "marca": "Salerm",
+    "categoria": "cabello",
+    "uso_profesional": true,
+    "precio_divisa": 6,
+    "precio_referencia": 8.1,
+    "nota_precio": null,
+    "presentacion": "360 ml",
+    "descripcion": "Champú Salerm de uso profesional. Elige Anticaída (con extractos de naranja) o Proteínas (con hidrolizado de queratina).",
+    "modo_uso": "Aplica sobre el cabello mojado, masajea y enjuaga.",
+    "rendimiento": "Frasco de 360 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "codigo",
+    "variantes": [
+      {
+        "tono": "Anticaída",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SL-CHAMPU-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Champu_Salerm_6$_Anticaida.png"
+        ],
+        "disponible": true
+      },
+      {
+        "tono": "Proteínas",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SL-CHAMPU-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Champu_Salerm_6$_Proteinas.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 103
+  },
+  {
+    "producto_id": "PR-LISITA-110",
+    "nombre": "Crema desrizadora Lisita",
+    "marca": "Lisita",
+    "categoria": "cabello",
+    "uso_profesional": true,
+    "precio_divisa": 3,
+    "precio_referencia": 4.05,
+    "nota_precio": null,
+    "presentacion": "110 g",
+    "descripcion": "Crema desrizadora Lisita, para alisar y relajar el rizo. Solo para uso profesional.",
+    "modo_uso": "Aplica siguiendo las instrucciones del envase. Haz antes una prueba de mechón.",
+    "rendimiento": "Pote de 110 g.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/PR-LISITA-110-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Crema_desrizadora_Lisita_3$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 104
+  },
+  {
+    "producto_id": "GL-KERATINA-AFRO",
+    "nombre": "Keratina Glamour alisado afro",
+    "marca": "Glamour Keratin",
+    "categoria": "cabello",
+    "uso_profesional": true,
+    "precio_divisa": 6.5,
+    "precio_referencia": 8.78,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Keratina Glamour alisado afro, con aceite de ricino. Alisa el cabello crespo, lo nutre y lo regenera. Elige 250 g o 500 g.",
+    "modo_uso": "Aplica sobre el cabello limpio y seco, mecha por mecha. Sigue las instrucciones del envase.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "tamano",
+    "variantes": [
+      {
+        "tono": "250 g",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/GL-KERATINA-AFRO-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Keratina_Glamour_alisado_afro_250g_6.5$.png"
+        ],
+        "disponible": true,
+        "precio_divisa": 6.5,
+        "precio_referencia": 8.78
+      },
+      {
+        "tono": "500 g",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/GL-KERATINA-AFRO-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Keratina_Glamour_alisado_afro_500g_9.5$.png"
+        ],
+        "disponible": true,
+        "precio_divisa": 9.5,
+        "precio_referencia": 12.83
+      }
+    ],
+    "orden": 105
+  },
+  {
+    "producto_id": "OB-KERATINA",
+    "nombre": "Keratina Origen Botánico con shampoo Paso 1",
+    "marca": "Origen Botánico",
+    "categoria": "cabello",
+    "uso_profesional": true,
+    "precio_divisa": 12,
+    "precio_referencia": 16.2,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Keratina Ritual de Alisado de Origen Botánico, sin formol, de origen orgánico y vegana. Trae su shampoo Paso 1 para preparar el cabello.",
+    "modo_uso": "Lava con el shampoo Paso 1, aplica la keratina siguiendo las instrucciones del envase y sella con plancha.",
+    "rendimiento": "Frasco de 120 ml o de 300 ml, más el shampoo Paso 1.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": "tamano",
+    "variantes": [
+      {
+        "tono": "120 ml",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/OB-KERATINA-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Keratina_Origen_Botanico_120ml_12$.png"
+        ],
+        "disponible": true,
+        "precio_divisa": 12,
+        "precio_referencia": 16.2
+      },
+      {
+        "tono": "300 ml",
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/OB-KERATINA-02.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Keratina_Origen_Botanico_300ml_19$.png"
+        ],
+        "disponible": true,
+        "precio_divisa": 19,
+        "precio_referencia": 25.65
+      }
+    ],
+    "orden": 106
+  },
+  {
+    "producto_id": "SW-IGORA-ROYAL",
+    "nombre": "Tinte Igora Royal",
+    "marca": "Schwarzkopf Professional",
+    "categoria": "cabello",
+    "uso_profesional": true,
+    "precio_divisa": 8,
+    "precio_referencia": 10.8,
+    "nota_precio": null,
+    "presentacion": null,
+    "descripcion": "Tinte Igora Royal de Schwarzkopf Professional, coloración permanente en crema. Pregunta por WhatsApp los tonos disponibles.",
+    "modo_uso": "Prepara y aplica según las instrucciones del envase, sobre el cabello seco.",
+    "rendimiento": null,
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SW-IGORA-ROYAL-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tinte_Igora_Royal_8$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 107
+  },
+  {
+    "producto_id": "SL-TINTE-MIX",
+    "nombre": "Tinte Salerm Mix",
+    "marca": "Salerm",
+    "categoria": "cabello",
+    "uso_profesional": true,
+    "precio_divisa": 8,
+    "precio_referencia": 10.8,
+    "nota_precio": null,
+    "presentacion": "60 ml",
+    "descripcion": "Tinte Salerm Mix de coloración profesional, en tonos ultraintensos. Pregunta por WhatsApp los tonos disponibles.",
+    "modo_uso": "Mezcla con el revelador según las instrucciones del envase y aplica sobre el cabello seco.",
+    "rendimiento": "Tubo de 60 ml.",
+    "destacado": false,
+    "foto_editada": true,
+    "disponible": true,
+    "tipo_variante": null,
+    "variantes": [
+      {
+        "tono": null,
+        "swatch_hex": null,
+        "swatch_revisar": false,
+        "imagenes": [
+          "/img/productos/SL-TINTE-MIX-01.webp"
+        ],
+        "origen": [
+          "02_CATALOGO_PREMIUM/Tinte_Salerm_Mix_8$.png"
+        ],
+        "disponible": true
+      }
+    ],
+    "orden": 108
   }
 ]

@@ -44,7 +44,7 @@ const srcset = [400, 550, 700]
   .join(", ");
 
 const conVariantes = p.variantes.length > 1;
-const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : "Variante"} de ${p.nombre}`;
+const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : p.tipo_variante === "tamano" ? "Tamaño" : "Variante"} de ${p.nombre}`;
 ---
 
 <article

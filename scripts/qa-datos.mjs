@@ -58,6 +58,11 @@ for (const p of productos) {
   if (!p.rendimiento) aviso(`${p.producto_id}: sin rendimiento`);
 
   if (!p.variantes.length) fallo(`${p.producto_id}: sin variantes`);
+  for (const v of p.variantes) {
+    if (v.precio_divisa === undefined) continue;
+    if (!(v.precio_divisa > 0)) fallo(`${p.producto_id}/${v.tono}: precio de la opción inválido`);
+    if (v.precio_referencia !== Math.round(v.precio_divisa * RECARGO * 100) / 100) fallo(`${p.producto_id}/${v.tono}: recargo en Bs de la opción no cuadra`);
+  }
 
   const tonos = p.variantes.map((v) => v.tono);
   if (p.variantes.length > 1 && new Set(tonos).size !== tonos.length) {
@@ -76,7 +81,7 @@ for (const p of productos) {
     fallo(`${p.producto_id}: tiene ${p.variantes.length} variantes pero tipo_variante es null`);
   }
 
-  if (!["unas", "herramientas", "pestanas", "facial", "cuerpo", "cabello"].includes(p.categoria)) {
+  if (!["unas", "herramientas", "pestanas", "facial", "maquillaje", "cuerpo", "cabello"].includes(p.categoria)) {
     fallo(`${p.producto_id}: categoría desconocida "${p.categoria}"`);
   }
 }
@@ -128,7 +133,7 @@ if (fs.existsSync("dist")) {
 console.log(`productos      ${productos.length}`);
 console.log(`variantes      ${productos.reduce((n, p) => n + p.variantes.length, 0)}`);
 console.log(`imágenes       ${imagenes} referenciadas · ${faltantes} faltan`);
-console.log(`categorías     ${["unas", "herramientas", "pestanas", "facial", "cuerpo", "cabello"].map((c) => `${c} ${productos.filter((p) => p.categoria === c).length}`).join(" · ")}`);
+console.log(`categorías     ${["unas", "herramientas", "pestanas", "facial", "maquillaje", "cuerpo", "cabello"].map((c) => `${c} ${productos.filter((p) => p.categoria === c).length}`).join(" · ")}`);
 console.log();
 
 if (avisos.length) {

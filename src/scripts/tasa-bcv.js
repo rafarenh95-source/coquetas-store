@@ -71,6 +71,8 @@ async function obtenerTasa(respaldo) {
 }
 
 function pintar(tasa) {
+  // precio-variante.js la usa para recalcular los Bs al cambiar de opción
+  document.documentElement.dataset.tasaBcv = String(tasa.valor);
   const fecha = new Date(tasa.fecha);
   const etiquetaFecha = Number.isNaN(fecha.getTime()) ? "" : fechaLarga.format(fecha);
 
