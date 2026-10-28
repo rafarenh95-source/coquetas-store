@@ -695,6 +695,19 @@ const CATALOGO = [
     fotos_extra: ["Builder mombray 2.5$.png"], // la carta de tonos completa, sin usar por ahora
   },
   {
+    id: "MB-TOP-COAT-BLINDADO",
+    nombre: "Top coat blindado Monbray",
+    marca: "Monbray",
+    categoria: "unas",
+    uso_profesional: true,
+    precio_divisa: 2.5,
+    presentacion: "15 ml",
+    destacado: false,
+    foto_editada: true, // editada con IA (Higgsfield) a partir de la foto de la tienda
+    tipo_variante: null,
+    variantes: [{ tono: null, archivo: "02_CATALOGO_PREMIUM/Top coat blindado Monbray.png" }],
+  },
+  {
     id: "MX-PEGA-7",
     nombre: "Pega de uñas mxbon",
     marca: "mxbon",

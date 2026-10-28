@@ -399,5 +399,10 @@
     "descripcion": "Gel semipermanente efecto ojo de gato Sulli Nails Shine Cat Eyes, con brillo magnético que se mueve con la luz.",
     "modo_uso": "Aplica sobre la base curada, acerca el imán para dibujar el reflejo y cura en lámpara UV/LED. Repite en una segunda capa y sella con top coat.",
     "rendimiento": "Frasco de 10 ml (0,33 fl oz). Se retira con removedor (soak-off)."
+  },
+  "MB-TOP-COAT-BLINDADO": {
+    "descripcion": "Top coat de la marca Monbray para gel UV/LED. Sella el color, le da brillo y protege la manicura para que dure más.",
+    "modo_uso": "Aplica una capa fina sobre el color ya curado, cubriendo el borde libre de la uña. Cura en lámpara UV/LED.",
+    "rendimiento": "Frasco de 15 ml."
   }
 }
