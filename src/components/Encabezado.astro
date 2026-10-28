@@ -1,26 +1,20 @@
 ---
 /**
- * Encabezado.
+ * Barra de arriba, fija.
  *
- * Fondo crema porque el logo solo puede ir sobre crema o papel (manual §5).
- *
- * Arriba quedan solo las tres cosas que resuelven: pedir por WhatsApp, ver la
- * bolsa y abrir el menú (decisión de la dueña). El mapa, TikTok, las
- * categorías y las preguntas viven en el menú. En teléfono y tablet son
- * iconos para que quepan junto al lockup completo — el manual pide 180 px de
- * mínimo para el horizontal; desde 1024 px llevan texto.
- *
- * Cada botón mide 44 × 44, el mínimo para el dedo. Cuentas en el ancho más
- * justo (logo 180 + 8 de aire + botones de 44 con 4 entre sí):
- *   360 px → 3 botones = 328 de 328
- *   320 px → no caben 3: WhatsApp se retira de aquí (sigue en el menú y en
- *            el botón flotante), quedan bolsa y menú = 280 de 288.
+ * En el teléfono: el logo, Información y la bolsa; debajo, el buscador.
+ * En la computadora: logo, Catálogo, Información y el teléfono; el buscador
+ * va en su propio renglón para que el texto quepa junto al pedido.
+ * El pedido en la computadora va en el panel de la derecha, no en un ícono.
  */
 
 import Logo from "./Logo.astro";
 import Icono from "./Icono.astro";
-import Menu from "./Menu.astro";
 import tienda from "../data/tienda.json";
+
+const telefono = tienda.whatsapp
+  ? `+${tienda.whatsapp.replace(/^(58)(\d{3})(\d{3})(\d{4})$/, "$1 $2 $3 $4")}`
+  : null;
 
 const enlaceWhatsapp = tienda.whatsapp
   ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(
@@ -28,84 +22,106 @@ const enlaceWhatsapp = tienda.whatsapp
     )}`
   : null;
 
-/* Sin utilidad de display: la pone cada acción, para que ocultar una no
-   dependa del orden en que Tailwind escriba las clases. */
-const accion =
-  "presionable min-h-[44px] items-center justify-center gap-1 transition-colors duration-[var(--paso)]";
+const icono =
+  "presionable inline-flex h-[44px] w-[44px] items-center justify-center rounded-xl bg-papel text-ciruela shadow-[0_0_0_1px_rgba(43,10,38,0.08)]";
 ---
 
-<header class="bg-crema">
-  <div class="contenedor flex items-center justify-between gap-1 py-2 md:gap-2 md:py-3">
+<header class="sticky top-0 z-40 border-b border-ciruela/10 bg-[#fffaf7] pt-[env(safe-area-inset-top)]">
+  <div class="contenedor flex items-center gap-2 py-2 min-[1100px]:gap-4 min-[1100px]:py-3">
     <a href="/" class="shrink-0" aria-label={`${tienda.nombre} — inicio`}>
-      <span class="md:hidden">
+      <span class="min-[1100px]:hidden">
         <Logo version="horizontal" ancho={180} />
       </span>
-      <span class="hidden md:block">
-        <Logo version="horizontal" ancho={220} />
+      <span class="hidden min-[1100px]:block">
+        <Logo version="horizontal" ancho={200} />
       </span>
     </a>
 
-    <nav aria-label="Principal" class="flex shrink-0 items-center gap-[4px] md:gap-2">
-      {/* Pedir por WhatsApp */}
-      {
-        enlaceWhatsapp && (
-          <a
-            href={enlaceWhatsapp}
-            target="_blank"
-            rel="noopener"
-            aria-label="Pedir por WhatsApp"
-            data-wa-referencia
-            class={`${accion} hidden w-[44px] bg-magenta text-crema min-[360px]:inline-flex hover:bg-purpura lg:w-auto lg:px-2`}
-          >
-            <Icono nombre="whatsapp" tamano={19} />
-            <span class="t-etiqueta hidden lg:inline">Pedir</span>
-          </a>
-        )
-      }
-
-      <button
-        type="button"
-        data-bolsa-abrir
-        aria-label="La bolsa está vacía"
-        class={`${accion} relative inline-flex w-[44px] border border-ciruela/25 text-ciruela hover:border-ciruela hover:text-purpura lg:w-auto lg:px-2`}
+    <nav aria-label="Principal" class="ml-auto flex shrink-0 items-center gap-2 min-[1100px]:gap-4">
+      <a
+        href="/#catalogo"
+        class="presionable hidden min-h-[44px] items-center font-sans text-[14px] font-semibold text-ciruela/80 hover:text-ciruela min-[1100px]:inline-flex"
       >
-        <span class="t-etiqueta hidden lg:inline">Bolsa</span>
+        Catálogo
+      </a>
+      <a
+        href="/#informacion"
+        aria-label="Información de la tienda"
+        class={`${icono} min-[1100px]:h-auto min-[1100px]:w-auto min-[1100px]:bg-transparent min-[1100px]:px-0 min-[1100px]:shadow-none`}
+      >
         <svg
-          viewBox="0 0 20 20"
+          viewBox="0 0 24 24"
           width="19"
           height="19"
           aria-hidden="true"
           fill="none"
-          class="lg:hidden"
+          class="min-[1100px]:hidden"
         >
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle>
+          <path d="M12 11v6M12 8h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+        <span class="hidden font-sans text-[14px] font-semibold text-ciruela/80 min-[1100px]:inline">Información</span>
+      </a>
+      {
+        enlaceWhatsapp && telefono && (
+          <a
+            href={enlaceWhatsapp}
+            target="_blank"
+            rel="noopener"
+            class="presionable hidden min-h-[44px] items-center font-sans text-[14px] font-semibold text-magenta min-[1100px]:inline-flex"
+          >
+            {telefono}
+          </a>
+        )
+      }
+      <button
+        type="button"
+        data-bolsa-abrir
+        aria-label="La bolsa está vacía"
+        class={`${icono} relative min-[1100px]:hidden`}
+      >
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none">
           <path
-            d="M4 6.5h12l-1 10.5H5L4 6.5Zm3 0V5a3 3 0 0 1 6 0v1.5"
+            d="M6 7h12l-1 13H7L6 7zM9 7V6a3 3 0 0 1 6 0v1"
             stroke="currentColor"
-            stroke-width="1.5"
+            stroke-width="1.8"
             stroke-linejoin="round"></path>
         </svg>
         <span
           data-bolsa-cuenta
-          class="t-etiqueta absolute -top-[2px] -right-[2px] hidden min-w-[18px] rounded-full bg-magenta px-[4px] py-[1px] text-center text-[10px] text-crema tabular-nums lg:static lg:min-w-[20px] lg:rounded-full lg:px-1 lg:py-[2px] lg:text-[12px]"
+          class="absolute -top-1 -right-1 hidden min-h-[18px] min-w-[18px] items-center justify-center rounded-full bg-magenta px-1 text-[11px] font-bold text-crema tabular-nums [&:not(.hidden)]:flex"
           >0</span
         >
-      </button>
-
-      {/* Menú */}
-      <button
-        type="button"
-        data-menu-abrir
-        aria-label="Abrir el menú"
-        aria-haspopup="dialog"
-        class={`${accion} inline-flex w-[44px] border border-ciruela/25 text-ciruela hover:border-ciruela hover:text-purpura lg:w-auto lg:px-2`}
-      >
-        <svg viewBox="0 0 20 20" width="19" height="19" aria-hidden="true" fill="none">
-          <path d="M3.5 6h13M3.5 10h13M3.5 14h13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-        </svg>
-        <span class="t-etiqueta hidden lg:inline">Menú</span>
       </button>
     </nav>
   </div>
 
-  <Menu />
+  <form action="/" method="get" role="search" data-buscar class="contenedor pb-2">
+    <label class="sr-only" for="buscar-catalogo-movil">Buscar productos</label>
+    <div
+      class="flex h-[48px] items-center gap-2 rounded-2xl bg-papel px-3 shadow-[0_0_0_1px_rgba(43,10,38,0.08)] focus-within:shadow-[0_0_0_2px_var(--color-magenta)]"
+    >
+      <Icono nombre="buscar" tamano={18} class="shrink-0 text-ciruela/60" />
+      <input
+        id="buscar-catalogo-movil"
+        name="buscar"
+        type="search"
+        enterkeyhint="search"
+        autocomplete="off"
+        placeholder="Buscar esmaltes, gel, pestañas…"
+          class="h-[44px] min-w-0 flex-1 border-0 bg-transparent font-sans text-[16px] text-ciruela outline-none placeholder:text-ciruela/50"
+      />
+      <button
+        type="button"
+        data-buscar-limpiar
+        hidden
+        aria-label="Borrar la búsqueda"
+        class="presionable inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full text-ciruela/70"
+      >
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none">
+          <path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+  </form>
 </header>

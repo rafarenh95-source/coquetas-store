@@ -9,16 +9,15 @@
  */
 
 export const GRUPO =
-  "inline-flex shrink-0 items-stretch border border-ciruela/25 bg-papel";
+  "inline-flex shrink-0 items-stretch rounded-2xl bg-[#fdeef3]";
 
 export const PASO =
-  "presionable flex h-[44px] w-[44px] shrink-0 items-center justify-center text-ciruela " +
-  "transition-colors duration-[var(--paso)] hover:bg-crema " +
-  "disabled:cursor-not-allowed disabled:text-ciruela/30 disabled:hover:bg-transparent";
+  "presionable flex h-[44px] w-[44px] shrink-0 items-center justify-center text-magenta " +
+  "disabled:cursor-not-allowed disabled:text-magenta/30";
 
 export const CAMPO =
-  "h-[44px] w-[44px] shrink-0 border-x border-ciruela/25 bg-transparent p-0 text-center " +
-  "font-sans text-[16px] font-semibold text-ciruela tabular-nums " +
+  "h-[44px] w-[44px] shrink-0 border-0 bg-transparent p-0 text-center " +
+  "font-sans text-[16px] font-extrabold text-ciruela tabular-nums " +
   "focus-visible:outline-offset-[-2px]";
 
 /* Trazos de 1,5 px, como el resto de los iconos de la tienda. */

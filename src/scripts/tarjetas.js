@@ -76,6 +76,7 @@ document.addEventListener("click", (e) => {
 
   const variante = tarjeta.querySelector('[role="radio"][aria-checked="true"]');
   const grupo = tarjeta.querySelector("[data-cantidad]");
+  const foto = tarjeta.querySelector("[data-foto-tarjeta]");
 
   agregar(
     {
@@ -85,6 +86,7 @@ document.addEventListener("click", (e) => {
       precio: Number(tarjeta.dataset.precio),
       referencia: Number(tarjeta.dataset.referencia),
       tono: variante?.dataset.tono ?? null,
+      imagen: variante?.dataset.imagen || foto?.getAttribute("src") || null,
       max: stockDe(tarjeta, variante),
     },
     grupo ? valor(grupo) : 1

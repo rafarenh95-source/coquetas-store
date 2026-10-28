@@ -21,6 +21,7 @@ import Precio from "../../components/Precio.astro";
 import Swatches from "../../components/Swatches.astro";
 import BarraProducto from "../../components/BarraProducto.astro";
 import Cantidad from "../../components/Cantidad.astro";
+import Icono from "../../components/Icono.astro";
 import productos from "../../data/productos.json";
 
 export function getStaticPaths() {
@@ -47,140 +48,156 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
 ---
 
 <Base titulo={p.nombre} descripcion={p.descripcion}>
-  <Encabezado />
-
-  <main id="contenido" class="contenedor pb-12">
-    <nav aria-label="Miga de pan" class="py-1">
-      <ol class="t-caption flex flex-wrap items-center gap-x-1 text-ciruela/70">
-        <li>
-          <a href="/" class="inline-flex min-h-[44px] min-w-[44px] items-center hover:text-ciruela">Catálogo</a>
-        </li>
-        <li aria-hidden="true">›</li>
-        <li>
-          <a
-            href={`/?categoria=${p.categoria}`}
-            class="inline-flex min-h-[44px] min-w-[44px] items-center hover:text-ciruela"
-          >
-            {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}
-          </a>
-        </li>
-      </ol>
-    </nav>
-
-    <div
-      class="grid gap-6 md:grid-cols-2 md:gap-8"
-      data-producto
-      data-id={p.producto_id}
-      data-nombre={p.nombre}
-      data-presentacion={p.presentacion ?? ""}
-      data-precio={p.precio_divisa}
-      data-referencia={p.precio_referencia}
-      data-stock={p.stock ?? undefined}
-    >
-      {/* ── Fotografía ──────────────────────────────────────────────── */}
-      <div>
-        <button
-          type="button"
-          data-ampliar
-          class="block w-full cursor-zoom-in bg-crema"
-          aria-label="Ver la foto en grande"
-        >
-          <img
-            data-foto
-            src={primera.imagenes[0]}
-            srcset={srcset(primera.imagenes[0])}
-            sizes="(min-width: 768px) 50vw, 100vw"
-            alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
-            width="1000"
-            height="1000"
-            fetchpriority="high"
-            decoding="async"
-            class="aspect-square w-full object-contain p-2"
-          />
-        </button>
-
-        {/* La leyenda tiene que ser verdad: las fotos regeneradas con IA no son «sin
-            retoque», y en los tonos el color es justo lo que la clienta mira. */}
-        <p class="t-caption mt-1 text-ciruela/60">
-          {
-            p.foto_editada
-              ? p.tipo_variante === "color"
-                ? "Foto editada a partir de la del producto real; el tono puede verse un poco distinto."
-                : "Foto editada a partir de la del producto real."
-              : "Foto del producto real, sin retoque de color."
-          }
-        </p>
+  <div class="app-shell">
+    <div class="app-main">
+      <div class="hidden md:block">
+        <Encabezado />
       </div>
 
-      {/* ── Datos ───────────────────────────────────────────────────── */}
-      <div class="flex flex-col gap-3">
-        <p class="t-etiqueta text-purpura">
-          {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}{p.marca && <Fragment> · {p.marca}</Fragment>}
-        </p>
+      <main id="contenido" class="pb-28 md:pb-12">
+        <div class="bg-[#fdf1ec]">
+          <div class="contenedor flex items-center justify-between py-2 md:hidden">
+            <a
+              href={`/?categoria=${p.categoria}`}
+              class="presionable inline-flex h-[44px] w-[44px] items-center justify-center rounded-xl bg-papel text-ciruela shadow-[0_0_0_1px_rgba(43,10,38,0.08)]"
+              aria-label={`Volver a ${CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}`}
+            >
+              <Icono nombre="chevron" tamano={18} class="rotate-90" />
+            </a>
+            <button
+              type="button"
+              data-bolsa-abrir
+              aria-label="Ver el pedido"
+              class="presionable relative inline-flex h-[44px] w-[44px] items-center justify-center rounded-xl bg-papel text-ciruela shadow-[0_0_0_1px_rgba(43,10,38,0.08)]"
+            >
+              <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none">
+                <path d="M6 7h12l-1 13H7L6 7zM9 7V6a3 3 0 0 1 6 0v1" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+              </svg>
+              <span
+                data-bolsa-cuenta
+                class="absolute -top-1 -right-1 hidden min-h-[18px] min-w-[18px] items-center justify-center rounded-full bg-magenta px-1 text-[11px] font-bold text-crema tabular-nums [&:not(.hidden)]:flex"
+                >0</span
+              >
+            </button>
+          </div>
+          <div class="contenedor hidden py-2 md:block">
+            <a
+              href={`/?categoria=${p.categoria}`}
+              class="presionable inline-flex h-[44px] items-center gap-1 font-sans text-[14px] font-semibold text-purpura"
+            >
+              <Icono nombre="chevron" tamano={16} class="rotate-90" />
+              {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}
+            </a>
+          </div>
+          <button
+            type="button"
+            data-ampliar
+            class="block w-full cursor-zoom-in"
+            aria-label="Ver la foto en grande"
+          >
+            <img
+              data-foto
+              src={primera.imagenes[0]}
+              srcset={srcset(primera.imagenes[0])}
+              sizes="(min-width: 1100px) 480px, 100vw"
+              alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
+              width="1000"
+              height="1000"
+              fetchpriority="high"
+              decoding="async"
+              class="mx-auto h-[220px] w-full max-w-[480px] object-contain p-2 md:h-auto md:aspect-square"
+            />
+          </button>
+        </div>
 
-        <h1 class="t-h3 text-ciruela">{p.nombre}</h1>
+        <div
+          class="contenedor -mt-4 rounded-t-3xl bg-[#fffaf7] pt-5"
+          data-producto
+          data-id={p.producto_id}
+          data-nombre={p.nombre}
+          data-presentacion={p.presentacion ?? ""}
+          data-precio={p.precio_divisa}
+          data-referencia={p.precio_referencia}
+          data-stock={p.stock ?? undefined}
+        >
+          <p class="font-sans text-[12px] font-bold tracking-wide text-purpura uppercase">
+            {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}{p.marca && <Fragment> · {p.marca}</Fragment>}
+          </p>
+          <h1 class="mt-1 font-didot text-[30px] leading-tight text-ciruela">{p.nombre}</h1>
+          {p.presentacion && <p class="mt-1 font-sans text-[14px] text-ciruela/60">{p.presentacion}</p>}
 
-        {p.presentacion && <p class="t-caption text-ciruela/70">{p.presentacion}</p>}
-
-        <Precio
-          divisa={p.precio_divisa}
-          referencia={p.precio_referencia}
-          nota={p.nota_precio}
-          tamano="ficha"
-        />
-
-        {
-          p.variantes.length > 1 && (
-            <div class="mt-2">
-              <p class="t-etiqueta mb-1 text-ciruela/70">
-                {p.tipo_variante === "color" ? "Tono" : p.tipo_variante === "tamano" ? "Tamaño" : "Variante"}
-              </p>
-              <Swatches variantes={p.variantes} tipo={p.tipo_variante} modo="selector" />
+          <div class="mt-3 flex items-end justify-between gap-3">
+            <div class="min-w-0 flex-1">
+              <Precio
+                divisa={p.precio_divisa}
+                referencia={p.precio_referencia}
+                nota={p.nota_precio}
+                tamano="ficha"
+              />
             </div>
-          )
-        }
-
-        {/* El botón dice el total de lo que se va a agregar (precio × cantidad),
-            no el precio de una. Si no cabe junto a la cantidad (teléfono de
-            320 px con un total largo), baja a su propio renglón a lo ancho. */}
-        <div class="mt-2 flex flex-col gap-1" data-cta-principal>
-          <div class="flex flex-wrap items-stretch gap-1">
             <Cantidad nombre={p.nombre} max={p.stock ?? null} />
+          </div>
+
+          {
+            p.variantes.length > 1 && (
+              <div class="mt-3 border-t border-ciruela/10 pt-3">
+                <p class="mb-2 font-sans text-[14px] font-bold text-ciruela">
+                  {p.tipo_variante === "color" ? "Tono" : p.tipo_variante === "aroma" ? "Aroma" : p.tipo_variante === "tamano" ? "Tamaño" : "Variante"}
+                </p>
+                <Swatches variantes={p.variantes} tipo={p.tipo_variante} modo="selector" />
+              </div>
+            )
+          }
+
+          <p class="mt-3 font-sans text-[12px] text-ciruela/60">
+            {
+              p.foto_editada
+                ? p.tipo_variante === "color"
+                  ? "Foto editada a partir de la del producto real; el tono puede verse un poco distinto."
+                  : "Foto editada a partir de la del producto real."
+                : "Foto del producto real, sin retoque de color."
+            }
+          </p>
+
+          <div class="mt-4" data-cta-principal>
             <button
               type="button"
               data-agregar
-              class="presionable t-etiqueta flex min-h-[48px] grow basis-[200px] items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
+              class="presionable inline-flex min-h-[52px] w-full items-center justify-center rounded-2xl bg-magenta px-3 font-sans text-[16px] font-bold text-crema disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Agregar<span data-precio-total>&nbsp;· ${monto.format(p.precio_divisa)}</span>
+              Agregar al pedido<span data-precio-total>&nbsp;· ${monto.format(p.precio_divisa)}</span>
             </button>
+            <p class="mt-2 font-sans text-[13px] text-ciruela/60">
+              Te confirmamos disponibilidad y cuándo lo tienes.
+            </p>
           </div>
-          <p class="t-caption text-ciruela/70">
-            Te confirmamos disponibilidad y cuándo lo tienes.
+
+          <div class="mt-6 flex flex-col gap-4">
+            {
+              bloques.map((b) => (
+                <section>
+                  <h2 class="font-sans text-[14px] font-bold text-purpura">{b.titulo}</h2>
+                  <p class="mt-1 max-w-[52ch] font-sans text-[16px] leading-relaxed text-ciruela/85">{b.texto}</p>
+                </section>
+              ))
+            }
+          </div>
+
+          <p class="mt-6">
+            <a
+              href={`/?categoria=${p.categoria}`}
+              class="inline-flex min-h-[44px] items-center font-sans text-[14px] font-semibold text-purpura"
+            >
+              Volver a {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}
+            </a>
           </p>
         </div>
+      </main>
 
-        <div class="mt-4 flex flex-col gap-4">
-          {
-            bloques.map((b) => (
-              <section>
-                <h2 class="t-etiqueta text-purpura">{b.titulo}</h2>
-                <p class="t-cuerpo mt-1 max-w-[52ch] text-ciruela/85">{b.texto}</p>
-              </section>
-            ))
-          }
-        </div>
-      </div>
+      <PieDePagina />
     </div>
-
-    <p class="mt-6">
-      <a
-        href="/#catalogo"
-        class="t-etiqueta inline-flex min-h-[44px] items-center text-ciruela/70 hover:text-ciruela"
-      >
-        ← Volver al catálogo
-      </a>
-    </p>
-  </main>
+    <Bolsa />
+  </div>
 
   {/* ── Foto en grande ────────────────────────────────────────────────── */}
   <dialog
@@ -206,9 +223,6 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
   </dialog>
 
   <BarraProducto producto={p} />
-
-  <Bolsa />
-  <PieDePagina />
 
   <script
     type="application/ld+json"

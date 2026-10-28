@@ -1,18 +1,7 @@
 ---
 /**
- * Barra persistente de la ficha.
- *
- * La ficha es larga: foto, precio, tonos, y tres bloques de texto. Al bajar a
- * leer el modo de uso, el botón de agregar quedaba fuera de pantalla y había que
- * volver a subir. Esta barra aparece justo cuando el botón principal se pierde
- * de vista, así que nunca hay dos a la vez ni un momento sin ninguno.
- *
- * Abajo en el teléfono, donde está el pulgar. Arriba en escritorio, donde está
- * la mirada. No es la misma barra en dos sitios: es la misma decisión adaptada
- * a cómo se sostiene cada aparato.
- *
- * Lleva el precio en el botón porque, cuando la barra aparece, el precio de la
- * página ya no se ve: sin él la clienta tendría que confiar de memoria.
+ * Barra de la ficha en el teléfono: total y «Agregar al pedido», siempre a
+ * la vista. En la computadora el botón principal de la ficha alcanza.
  */
 
 interface Props {
@@ -25,87 +14,26 @@ const monto = new Intl.NumberFormat("es-VE", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
-
-const conVariantes = p.variantes.length > 1;
-/* El precio del botón lo mantiene al día ficha.js: dice el total de la
-   cantidad elegida, igual que el botón principal. */
-
-/* Fondo crema sólido y sin desenfoque: el desenfoque de lo que pasa por
-   detrás se recalcula en cada cuadro del desplazamiento y en un teléfono de gama
-   baja se nota como tirones. Translúcido sin desenfoque, el texto de abajo se
-   transparentaba y ensuciaba el nombre del producto.
-
-   invisible, no solo transparente: si solo baja la opacidad, el botón sigue
-   estando en el orden de tabulación y se aterriza en él sin verlo. */
-const base =
-  "invisible data-[visible]:visible fixed inset-x-0 z-30 border-ciruela/15 bg-crema transition-[opacity,transform] duration-[var(--paso-lento)] ease-[var(--curva)]";
 ---
 
-{/* ── Teléfono: abajo, al alcance del pulgar ─────────────────────────── */}
 <div
   data-barra-producto
-  class:list={[
-    base,
-    "zona-segura-abajo bottom-0 translate-y-full border-t opacity-0 md:hidden",
-    "data-[visible]:translate-y-0 data-[visible]:opacity-100",
-  ]}
+  data-siempre
+  class="fixed inset-x-0 bottom-0 z-30 border-t border-ciruela/10 bg-[#fffaf7] pb-[env(safe-area-inset-bottom)] md:hidden"
 >
-  {/* En un teléfono de 320 px, «Agregar · $1,70» dejaba al nombre menos de
-      100 px y «semipermanente» no cabía ni en dos renglones. Ahí el precio pasa
-      junto al nombre y el botón dice solo «Agregar»: la misma información,
-      repartida para que nada se corte. */}
-  <div class="contenedor flex items-center gap-2 py-2">
-    <div class="min-w-0 flex-1">
-      <p class="line-clamp-2 font-sans text-[15px] leading-tight font-semibold break-words text-ciruela">
-        {p.nombre}
-      </p>
-      <p class="t-caption truncate text-ciruela/70">
-        <span class="font-semibold text-ciruela tabular-nums min-[360px]:hidden">
-          <span data-precio-divisa>${monto.format(p.precio_divisa)}</span>{conVariantes && " · "}
-        </span>
-        {conVariantes && <span data-barra-tono>{p.variantes[0].tono}</span>}
+  <div class="contenedor flex items-center gap-3 py-3">
+    <div class="leading-tight">
+      <p class="font-sans text-[12px] text-ciruela/60">Total</p>
+      <p data-precio-suma class="font-sans text-[19px] font-extrabold text-ciruela tabular-nums">
+        ${monto.format(p.precio_divisa)}
       </p>
     </div>
-
     <button
       type="button"
       data-agregar-barra
-      class="presionable t-etiqueta inline-flex min-h-[44px] shrink-0 items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
+      class="presionable inline-flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-2xl bg-magenta px-3 font-sans text-[16px] font-bold text-crema disabled:cursor-not-allowed disabled:opacity-40"
     >
-      Agregar<span data-precio-total class="max-[359px]:hidden">&nbsp;· ${monto.format(p.precio_divisa)}</span>
-    </button>
-  </div>
-</div>
-
-{/* ── Escritorio: arriba, donde está la mirada ───────────────────────── */}
-<div
-  data-barra-producto
-  class:list={[
-    base,
-    "top-0 hidden -translate-y-full border-b opacity-0 md:block",
-    "data-[visible]:translate-y-0 data-[visible]:opacity-100",
-  ]}
->
-  <div class="contenedor flex items-center justify-between gap-3 py-2">
-    <div class="flex min-w-0 items-baseline gap-2">
-      <p class="font-sans text-[15px] leading-tight font-semibold text-ciruela truncate">
-        {p.nombre}
-      </p>
-      {
-        conVariantes && (
-          <span class="t-caption truncate text-ciruela/70" data-barra-tono>
-            {p.variantes[0].tono}
-          </span>
-        )
-      }
-    </div>
-
-    <button
-      type="button"
-      data-agregar-barra
-      class="presionable t-etiqueta inline-flex min-h-[44px] shrink-0 items-center justify-center bg-magenta px-3 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura disabled:cursor-not-allowed disabled:opacity-40"
-    >
-      Agregar<span data-precio-total>&nbsp;· ${monto.format(p.precio_divisa)}</span>
+      Agregar al pedido
     </button>
   </div>
 </div>

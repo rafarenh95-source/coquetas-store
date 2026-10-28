@@ -14,7 +14,6 @@ import Encabezado from "../components/Encabezado.astro";
 import Catalogo from "../components/Catalogo.astro";
 import PieDePagina from "../components/PieDePagina.astro";
 import Bolsa from "../components/Bolsa.astro";
-import BotonWhatsapp from "../components/BotonWhatsapp.astro";
 import productos from "../data/productos.json";
 import tienda from "../data/tienda.json";
 import preguntas from "../data/preguntas.json";
@@ -24,20 +23,19 @@ import preguntas from "../data/preguntas.json";
   titulo="Catálogo"
   descripcion="Maquillaje, uñas y cuidado personal en San Francisco, estado Zulia. Pedidos por WhatsApp."
 >
-  <Encabezado />
+  <div class="app-shell">
+    <div class="app-main">
+      <Encabezado />
 
-  <main id="contenido">
-    {/* ── Catálogo ───────────────────────────────────────────────────────
-        No hay portada antes del catálogo. La clienta llega desde Instagram
-        sabiendo ya quién es la tienda: lo que necesita es ver los productos y
-        saber que se pide por WhatsApp, no que le presenten la marca otra vez. */}
-    <Catalogo />
-  </main>
+      <main id="contenido">
+        <Catalogo />
+      </main>
 
-  <BotonWhatsapp variante="flotante" texto="Pedir por WhatsApp" />
+      <PieDePagina />
+    </div>
 
-  <Bolsa />
-  <PieDePagina />
+    <Bolsa />
+  </div>
 
   {/* El negocio físico: coordenadas, teléfono y ficha de Google. Es lo que
       permite que aparezca como local y no solo como página. */}

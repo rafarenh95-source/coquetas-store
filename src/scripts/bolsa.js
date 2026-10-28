@@ -65,7 +65,13 @@ export function agregar(item, cantidad = 1) {
   const enBolsa = Math.min(yaHabia + pedidas, maximo);
   const agregadas = enBolsa - yaHabia;
 
-  if (existente) Object.assign(existente, { cantidad: enBolsa, max: item.max ?? existente.max ?? null });
+  if (existente) {
+    Object.assign(existente, {
+      cantidad: enBolsa,
+      max: item.max ?? existente.max ?? null,
+      imagen: item.imagen || existente.imagen || null,
+    });
+  }
   else items.push({ ...item, cantidad: enBolsa });
   escribir(items);
 
@@ -239,22 +245,25 @@ function pintar() {
     /* Arriba: nombre y total de la línea. Abajo: cantidad y eliminar. En un
        teléfono de 320 px no caben los cuatro en un renglón sin apretar el
        nombre hasta dejarlo ilegible. */
-    const datos = nodo("div", "min-w-0");
+    const datos = nodo("div", "min-w-0 flex-1");
     datos.append(
       nodo("p", "font-sans text-[15px] leading-tight font-semibold text-ciruela", i.nombre),
-      nodo("p", "t-caption text-ciruela/70", detalle)
+      nodo("p", "font-sans text-[13px] leading-snug text-ciruela/60", detalle)
     );
-
-    const precio = nodo("div", "shrink-0 text-right");
-    precio.append(
-      nodo("p", "font-sans text-[15px] leading-tight font-semibold text-ciruela tabular-nums", "$" + dinero.format(i.precio * i.cantidad))
+    datos.append(
+      nodo(
+        "p",
+        "mt-1 font-sans text-[15px] leading-tight font-extrabold text-ciruela tabular-nums",
+        "$" + dinero.format(i.precio * i.cantidad)
+      )
     );
+    const enBolivares = tasa
+      ? `$${dinero.format(i.referencia * i.cantidad)} · Bs ${dinero.format(i.referencia * i.cantidad * tasa.valor)} en bolívares`
+      : `$${dinero.format(i.referencia * i.cantidad)} en bolívares`;
+    datos.append(nodo("p", "font-sans text-[12px] leading-snug text-ciruela/70 tabular-nums", enBolivares));
     if (i.cantidad > 1) {
-      precio.append(nodo("p", "t-caption text-ciruela/70 tabular-nums", `$${dinero.format(i.precio)} c/u`));
+      datos.append(nodo("p", "font-sans text-[12px] text-ciruela/60 tabular-nums", `$${dinero.format(i.precio)} c/u`));
     }
-
-    const arriba = nodo("div", "flex items-start justify-between gap-2");
-    arriba.append(datos, precio);
 
     /* El mismo selector de la tarjeta y la ficha. */
     const grupo = nodo("div", GRUPO);
@@ -290,21 +299,31 @@ function pintar() {
 
     const eliminar = nodo(
       "button",
-      "presionable t-caption inline-flex min-h-[44px] items-center gap-1 px-1 text-ciruela/70 underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+      "presionable inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-xl text-ciruela/70 hover:text-ciruela"
     );
     eliminar.type = "button";
     eliminar.setAttribute("data-quitar", "");
-    eliminar.setAttribute("aria-label", `Eliminar ${quien} de la bolsa`);
+    eliminar.setAttribute("aria-label", `Eliminar ${quien} del pedido`);
     eliminar.innerHTML =
-      '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 8.5h6.6l.7-8.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>';
-    eliminar.append("Eliminar");
+      '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="none"><path d="M2.5 4.5h11M6 4.5V3h4v1.5M4 4.5l.7 8.5h6.6l.7-8.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>';
 
     const abajo = nodo("div", "mt-1 flex items-center justify-between gap-2");
     abajo.append(grupo, eliminar);
+    datos.append(abajo);
 
-    const fila = nodo("li", "border-b border-ciruela/10 py-2");
+    const fila = nodo("li", "flex items-center gap-3 border-b border-ciruela/10 py-3");
     fila.dataset.clave = k;
-    fila.append(arriba, abajo);
+    if (i.imagen) {
+      const foto = nodo("img", "h-16 w-16 shrink-0 rounded-xl bg-[#fdf1ec] object-contain p-1");
+      foto.src = i.imagen;
+      foto.alt = "";
+      foto.width = 64;
+      foto.height = 64;
+      foto.loading = "lazy";
+      foto.decoding = "async";
+      fila.append(foto);
+    }
+    fila.append(datos);
     lista.appendChild(fila);
   }
 
@@ -330,9 +349,20 @@ function pintar() {
   const enBs = document.querySelector("[data-bolsa-bolivares]");
   if (enBs) {
     enBs.textContent = tasa
-      ? `Bs ${dinero.format(referencia * tasa.valor)} pagando en bolívares`
+      ? `$${dinero.format(referencia)} · Bs ${dinero.format(referencia * tasa.valor)} pagando en bolívares`
       : `$${dinero.format(referencia)} pagando en bolívares`;
   }
+
+  const piezasTxt = `${unidades} ${unidades === 1 ? "producto" : "productos"}`;
+  for (const n of document.querySelectorAll("[data-bolsa-piezas], [data-barra-piezas]")) {
+    n.textContent = piezasTxt;
+  }
+  const barra = document.querySelector("[data-barra-pedido]");
+  if (barra) barra.hidden = unidades === 0;
+  const barraDivisa = document.querySelector("[data-barra-divisa]");
+  if (barraDivisa) barraDivisa.textContent = `$${dinero.format(subtotal)}`;
+  const preview = document.querySelector("[data-bolsa-preview]");
+  if (preview) preview.textContent = unidades > 0 ? construirMensaje(items) : "";
 
   const pedir = document.querySelector("[data-bolsa-pedir]");
   if (pedir instanceof HTMLAnchorElement) {
@@ -367,12 +397,47 @@ function fondoInerte(activo) {
   for (const hijo of document.body.children) {
     if (hijo.hasAttribute?.("data-bolsa-panel")) continue;
     if (hijo.tagName === "SCRIPT") continue;
+    /* El pedido vive dentro de .app-shell, al lado del catálogo. Si se
+       marcara el shell entero, el panel también quedaría inerte. */
+    if (hijo.classList?.contains("app-shell")) {
+      const principal = hijo.querySelector(".app-main");
+      if (principal) principal.inert = activo;
+      continue;
+    }
     hijo.inert = activo;
   }
 }
 
 /** Un solo sitio donde se pinta la hoja: posición y opacidad del velo van juntas. */
+const ESCRITORIO = "(min-width: 1100px)";
+const esEscritorio = () => window.matchMedia(ESCRITORIO).matches;
+
+function aplicarModo() {
+  const panel = panelEl();
+  if (!panel) return;
+  if (esEscritorio()) {
+    panel.inert = false;
+    panel.dataset.abierta = "true";
+    panel.dataset.escritorio = "true";
+    panel.setAttribute("role", "complementary");
+    panel.setAttribute("aria-modal", "false");
+    fondoInerte(false);
+    document.body.style.overflow = "";
+    posicion = 0;
+    const hoja = hojaEl();
+    if (hoja) hoja.style.transform = "none";
+  } else if (panel.dataset.escritorio) {
+    delete panel.dataset.escritorio;
+    delete panel.dataset.abierta;
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-modal", "true");
+    panel.inert = true;
+    pintarHoja(anchoHoja());
+  }
+}
+
 function pintarHoja(x) {
+  if (esEscritorio()) return;
   posicion = x;
   const hoja = hojaEl();
   const fondo = fondoEl();
@@ -409,6 +474,7 @@ function animarA(destino, velocidad = 0, alTerminar) {
 }
 
 function abrir() {
+  if (esEscritorio()) return;
   const panel = panelEl();
   if (!panel || panel.dataset.abierta) return;
 
@@ -424,6 +490,7 @@ function abrir() {
 }
 
 function cerrar(velocidad = 0) {
+  if (esEscritorio()) return;
   const panel = panelEl();
   if (!panel || !panel.dataset.abierta) return;
 
@@ -460,6 +527,7 @@ function conectarArrastre() {
   const UMBRAL = 10; // px antes de comprometerse con una dirección
 
   hoja.addEventListener("pointerdown", (e) => {
+    if (esEscritorio()) return;
     if (e.pointerType === "mouse" && e.button !== 0) return;
     if (!panelEl()?.dataset.abierta) return;
 
@@ -527,8 +595,11 @@ if (document.readyState === "loading") {
 }
 
 window.addEventListener("resize", () => {
-  if (!panelEl()?.dataset.abierta && posicion !== null) pintarHoja(anchoHoja());
+  aplicarModo();
+  if (!esEscritorio() && !panelEl()?.dataset.abierta && posicion !== null) pintarHoja(anchoHoja());
 });
+
+aplicarModo();
 
 /* ── enganches ──────────────────────────────────────────────────────────── */
 

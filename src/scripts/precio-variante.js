@@ -26,6 +26,7 @@ export function aplicarPrecio(raiz, boton, zonas = [raiz]) {
   const tasa = Number(document.documentElement.dataset.tasaBcv);
   for (const zona of zonas) {
     for (const n of zona.querySelectorAll("[data-precio-divisa]")) n.textContent = `$${monto.format(precio)}`;
+    for (const n of zona.querySelectorAll("[data-precio-referencia]")) n.textContent = `$${monto.format(referencia)}`;
     for (const n of zona.querySelectorAll("[data-bs]")) {
       n.dataset.referencia = String(referencia);
       const m = n.querySelector("[data-bs-monto]");
