@@ -3555,7 +3555,7 @@
   },
   {
     "producto_id": "CQ-CORRECTOR-BARRA",
-    "nombre": "Corrector en barra",
+    "nombre": "Corrector en barra Max Glow",
     "marca": "MAXGLOW",
     "categoria": "maquillaje",
     "uso_profesional": false,
@@ -3563,7 +3563,7 @@
     "precio_referencia": 5.4,
     "nota_precio": null,
     "presentacion": null,
-    "descripcion": "Corrector en barra de cobertura cremosa. Elige tu tono tocando el color.",
+    "descripcion": "Corrector en barra Max Glow, de cobertura cremosa. Elige tu tono tocando el color.",
     "modo_uso": "Desliza la barra sobre la zona a cubrir y difumina con esponja o brocha.",
     "rendimiento": null,
     "destacado": false,

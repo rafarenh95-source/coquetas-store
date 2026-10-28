@@ -62,6 +62,14 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 - `node scripts/procesar-fotos.mjs --solo=ID1,ID2` recorta, centra, quita el reflejo blanco del suelo,
   sin sombra, y genera 1000/700/400 px; después `node scripts/tamano-intermedio.mjs --solo=...` (550 px).
   Usar `--solo` para no rehacer las fotos ya publicadas.
+- **Envases blancos o claros** (tapas, potes, frascos): NO usar `blanquear-fondo` + `procesar-fotos`, porque
+  el recorte sobre blanco se come la tapa o el borde y el producto queda «mimetizado» en el crema (la dueña
+  lo rechazó). Método: Higgsfield con `--prompt-archivo scripts/prompt-fondo-crema.txt` (pone el producto
+  sobre crema #FEEBE2), guardar como `<ID>-<NN>.png` en `imagenes editadas/fondo-crema`, y luego
+  `node scripts/procesar-fotos-crema.mjs <archivos>` + `tamano-intermedio.mjs --solo=...`. Revisar siempre
+  que la IA no cambie el color de tapas o etiquetas (pasó con Karseell, Dança Mística y Jelly #2: se corrige
+  con `--nota` diciendo el color real). Quedan 54 fotos viejas por pasar a este método (créditos de Higgsfield
+  agotados): están en `imagenes editadas/para-chatgpt`, ya con su nombre `<ID>-<NN>.png` e instrucciones.
 - Decisiones de la dueña: fondo **crema** (no blanco), productos **centrados**, **sin sombra** y sin
   franja blanca debajo.
 - `scripts/editar-fotos-ia.mjs` pasa fotos crudas a foto de catálogo con OpenAI (`gpt-image-2`).

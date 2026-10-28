@@ -1739,7 +1739,7 @@ const CATALOGO = [
   },
   {
     id: "CQ-CORRECTOR-BARRA",
-    nombre: "Corrector en barra",
+    nombre: "Corrector en barra Max Glow",
     marca: "MAXGLOW",
     categoria: "maquillaje",
     uso_profesional: false,
