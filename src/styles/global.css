@@ -485,8 +485,34 @@ body:has([data-subir-flotante][data-visible]):has([data-barra-pedido]:not([hidde
   width: 76px;
 }
 
+/* El círculo se ve de 32 px (34 en la computadora). El área que responde al
+   dedo llega a 40 px sin agrandar lo que se pinta encima de la foto. */
+.card-mas {
+  position: absolute;
+}
+
+.card-mas::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+}
+
+@media (min-width: 1100px) {
+  .card-mas::after {
+    inset: -3px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-mas::after {
+    content: none;
+  }
+}
+
 #grilla.modo-lista .card-mas {
   position: relative;
+  right: auto;
+  bottom: auto;
   z-index: 1;
   grid-column: 2;
   grid-row: 1;
@@ -498,7 +524,7 @@ body:has([data-subir-flotante][data-visible]):has([data-barra-pedido]:not([hidde
   grid-column: 2;
   grid-row: 1;
   margin-top: 0;
-  padding-right: 52px;
+  padding-right: 40px;
 }
 
 @media (min-width: 1100px) {
