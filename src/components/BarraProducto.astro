@@ -1,39 +1,29 @@
 ---
 /**
- * Barra de la ficha en el teléfono: total y «Agregar al pedido», siempre a
- * la vista. En la computadora el botón principal de la ficha alcanza.
+ * Barra de la ficha en el teléfono, siempre a la vista: lo que suma el pedido
+ * y «Ver mi pedido», que abre la bolsa. Antes decía otra vez «Agregar al
+ * pedido» y repetía el botón de la ficha (la dueña pidió cambiarlo). Agregar
+ * y elegir unidades se hace en la ficha, con el «− N +».
  */
-
-interface Props {
-  producto: any;
-}
-
-const { producto: p } = Astro.props;
-
-const monto = new Intl.NumberFormat("es-VE", {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-});
 ---
 
-<div
+<aside
+  aria-label="Tu pedido"
   data-barra-producto
   data-siempre
   class="fixed inset-x-0 bottom-0 z-30 border-t border-ciruela/10 bg-[#fffaf7] pb-[env(safe-area-inset-bottom)] md:hidden"
 >
   <div class="contenedor flex items-center gap-3 py-3">
     <div class="leading-tight">
-      <p class="font-sans text-[12px] text-ciruela/60">Total</p>
-      <p data-precio-suma class="font-sans text-[19px] font-extrabold text-ciruela tabular-nums">
-        ${monto.format(p.precio_divisa)}
-      </p>
+      <p data-pedido-unidades class="font-sans text-[12px] text-ciruela/60">Tu pedido</p>
+      <p data-pedido-total class="font-sans text-[19px] font-extrabold text-ciruela tabular-nums">$0,00</p>
     </div>
     <button
       type="button"
-      data-agregar-barra
-      class="presionable inline-flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-2xl bg-magenta px-3 font-sans text-[16px] font-bold text-crema disabled:cursor-not-allowed disabled:opacity-40"
+      data-ver-pedido
+      class="presionable inline-flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-2xl bg-magenta px-3 font-sans text-[16px] font-bold text-crema"
     >
-      Agregar al pedido
+      Ver mi pedido
     </button>
   </div>
-</div>
+</aside>

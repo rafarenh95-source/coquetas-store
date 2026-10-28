@@ -85,6 +85,10 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   rehacerlos para v2. **Destacados** (portada v2) = carrusel con SOLO la foto (sin nombre, precio ni
   tonos; la dueña probó con nombre y prefirió sin), 20 productos de la lista `DESTACADOS` en
   `Catalogo.astro`, avance solo con 1 s de pausa y vuelta sin fin (`scripts/carrusel.js`).
+  **Ficha v2** (pedido de la dueña): foto grande (`clamp(280px,56svh,520px)` en el teléfono); sin
+  selector de cantidad previo: «Agregar al pedido · $X» se vuelve «− N en tu pedido +» (unidades de
+  esa pieza y ese tono en la bolsa; en 0 vuelve el botón; sin aviso flotante). La barra de abajo
+  dice «Ver mi pedido» (abre la bolsa) con el total del pedido. `node scripts/qa-ficha.mjs` lo revisa.
 
 - Manual de marca: `manual_de_identidad_visual_coquetas.md`. Colores crema, papel, ciruela, púrpura,
   magenta (magenta solo para la acción principal). GFS Didot solo en títulos ≥ 24 px.

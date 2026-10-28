@@ -20,7 +20,7 @@ import Bolsa from "../../components/Bolsa.astro";
 import Precio from "../../components/Precio.astro";
 import Swatches from "../../components/Swatches.astro";
 import BarraProducto from "../../components/BarraProducto.astro";
-import Cantidad from "../../components/Cantidad.astro";
+import { ICONO_MENOS, ICONO_MAS } from "../../scripts/cantidad-estilos.js";
 import Icono from "../../components/Icono.astro";
 import productos from "../../data/productos.json";
 
@@ -99,13 +99,13 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
               data-foto
               src={primera.imagenes[0]}
               srcset={srcset(primera.imagenes[0])}
-              sizes="(min-width: 1100px) 480px, 100vw"
+              sizes="(min-width: 1100px) 560px, 100vw"
               alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
               width="1000"
               height="1000"
               fetchpriority="high"
               decoding="async"
-              class="mx-auto h-[220px] w-full max-w-[480px] object-contain p-2 md:h-auto md:aspect-square"
+              class="mx-auto h-[clamp(280px,56svh,520px)] w-full max-w-[560px] object-contain md:h-auto md:aspect-square"
             />
           </button>
         </div>
@@ -126,16 +126,13 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
           <h1 class="mt-1 font-didot text-[30px] leading-tight text-ciruela">{p.nombre}</h1>
           {p.presentacion && <p class="mt-1 font-sans text-[14px] text-ciruela/60">{p.presentacion}</p>}
 
-          <div class="mt-3 flex items-end justify-between gap-3">
-            <div class="min-w-0 flex-1">
-              <Precio
-                divisa={p.precio_divisa}
-                referencia={p.precio_referencia}
-                nota={p.nota_precio}
-                tamano="ficha"
-              />
-            </div>
-            <Cantidad nombre={p.nombre} max={p.stock ?? null} />
+          <div class="mt-3">
+            <Precio
+              divisa={p.precio_divisa}
+              referencia={p.precio_referencia}
+              nota={p.nota_precio}
+              tamano="ficha"
+            />
           </div>
 
           {
@@ -167,6 +164,39 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
             >
               Agregar al pedido<span data-precio-total>&nbsp;· ${monto.format(p.precio_divisa)}</span>
             </button>
+            {/* Tras agregar, el botón se vuelve «− N +» (pedido de la dueña):
+                N son las unidades de esta pieza (y este tono) que ya están en
+                el pedido. Con «−» en 1 se quita y vuelve el botón. */}
+            <div
+              data-en-pedido
+              hidden
+              role="group"
+              aria-label={`${p.nombre} en tu pedido`}
+              class="flex min-h-[52px] items-stretch justify-between rounded-2xl bg-[#fdeef3] [&[hidden]]:hidden"
+            >
+              <button
+                type="button"
+                data-pedido-menos
+                class="presionable flex w-[60px] shrink-0 items-center justify-center rounded-l-2xl text-magenta"
+                aria-label="Quitar una unidad"
+              >
+                <Fragment set:html={ICONO_MENOS.replaceAll('"14"', '"18"')} />
+              </button>
+              <p class="flex flex-1 flex-col items-center justify-center text-center leading-tight" aria-live="polite">
+                <span class="font-sans text-[16px] font-extrabold text-ciruela tabular-nums">
+                  <span data-pedido-n>1</span> en tu pedido
+                </span>
+                <span data-pedido-subtotal class="font-sans text-[13px] text-ciruela/70 tabular-nums"></span>
+              </p>
+              <button
+                type="button"
+                data-pedido-mas
+                class="presionable flex w-[60px] shrink-0 items-center justify-center rounded-r-2xl text-magenta disabled:cursor-not-allowed disabled:text-magenta/30"
+                aria-label="Agregar una unidad"
+              >
+                <Fragment set:html={ICONO_MAS.replaceAll('"14"', '"18"')} />
+              </button>
+            </div>
             <p class="mt-2 font-sans text-[13px] text-ciruela/60">
               Te confirmamos disponibilidad y cuándo lo tienes.
             </p>

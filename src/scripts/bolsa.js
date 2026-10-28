@@ -39,6 +39,44 @@ function escribir(items) {
     /* modo privado: la bolsa funciona igual durante la visita */
   }
   pintar();
+  avisarCambio();
+}
+
+/* Cualquier cambio de la bolsa (aquí, desde la lista o desde otra pestaña)
+   se avisa con «bolsa:cambio», para que la ficha ponga al día su «− N +» y
+   el total de la barra de abajo. */
+function avisarCambio() {
+  document.dispatchEvent(new CustomEvent("bolsa:cambio"));
+}
+
+/** Unidades de una pieza (con ese tono) que ya están en el pedido. */
+export function unidadesDe(item) {
+  return leer().find((i) => clave(i) === clave(item))?.cantidad ?? 0;
+}
+
+/** Cuántas unidades hay en total y cuánto suman, en dólares. */
+export function resumenPedido() {
+  const items = leer();
+  return {
+    unidades: items.reduce((s, i) => s + i.cantidad, 0),
+    total: items.reduce((s, i) => s + i.precio * i.cantidad, 0),
+  };
+}
+
+/**
+ * Deja exactamente «n» unidades de la pieza en el pedido (el «− N +» de la
+ * ficha). Con 0 o menos, la quita. Respeta el tope. Sin aviso flotante: el
+ * número que cambia en el propio control ya lo confirma.
+ */
+export function fijarUnidades(item, n) {
+  const items = leer();
+  const k = clave(item);
+  if (n <= 0) return escribir(items.filter((i) => clave(i) !== k));
+  const cantidad = Math.min(Math.trunc(n), topeDe(item));
+  const existente = items.find((i) => clave(i) === k);
+  if (existente) existente.cantidad = cantidad;
+  else items.push({ ...item, cantidad });
+  escribir(items);
 }
 
 function clave(item) {
@@ -607,7 +645,7 @@ document.addEventListener("click", (e) => {
   const t = e.target;
   if (!(t instanceof Element)) return;
 
-  const abrirBtn = t.closest("[data-bolsa-abrir]");
+  const abrirBtn = t.closest("[data-bolsa-abrir], [data-ver-pedido]");
   if (abrirBtn) return abrir();
 
   if (t.closest("[data-bolsa-cerrar]") || t.closest("[data-bolsa-fondo]")) return cerrar();
@@ -643,4 +681,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 pintar();
-window.addEventListener("storage", pintar);
+window.addEventListener("storage", () => {
+  pintar();
+  avisarCambio();
+});

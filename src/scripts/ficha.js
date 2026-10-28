@@ -6,8 +6,8 @@
  * que se desincronicen.
  */
 
-import { agregar } from "./bolsa.js";
-import { valor, fijar, fijarTope } from "./cantidad.js";
+import { unidadesDe, fijarUnidades, resumenPedido } from "./bolsa.js";
+import { TOPE_SIN_STOCK } from "./cantidad.js";
 import { aplicarPrecio } from "./precio-variante.js";
 
 const monto = new Intl.NumberFormat("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -21,22 +21,23 @@ if (raiz) {
   const agregarBtn = raiz.querySelector("[data-agregar]");
   const lupa = document.querySelector("[data-lupa]");
   const lupaFoto = document.querySelector("[data-lupa-foto]");
-  const grupo = raiz.querySelector("[data-cantidad]");
+  const enPedido = raiz.querySelector("[data-en-pedido]");
+  const menos = raiz.querySelector("[data-pedido-menos]");
+  const mas = raiz.querySelector("[data-pedido-mas]");
+  const numero = raiz.querySelector("[data-pedido-n]");
+  const subtotal = raiz.querySelector("[data-pedido-subtotal]");
   // se lee al momento: con precio por opción cambia al elegir otra
   const precioActual = () => Number(raiz.dataset.precio);
   const stockDe = (boton) => Number(boton?.dataset.stock) || Number(raiz.dataset.stock) || null;
 
-  /* Los botones de agregar (el principal y los de la barra fija) dicen el
-     total de lo que se va a agregar: precio × cantidad. */
-  function pintarTotal(n) {
-    const texto = `$${monto.format(precioActual() * n)}`;
+  /* El botón «Agregar al pedido» dice el precio de una unidad. */
+  function pintarTotal() {
+    const texto = `$${monto.format(precioActual())}`;
     for (const t of document.querySelectorAll("[data-precio-total]")) {
       t.textContent = `\u00a0· ${texto}`;
     }
-    for (const t of document.querySelectorAll("[data-precio-suma]")) t.textContent = texto;
   }
-  grupo?.addEventListener("cantidad", (e) => pintarTotal(e.detail.valor));
-  pintarTotal(grupo ? valor(grupo) : 1);
+  pintarTotal();
 
   let elegida = 0;
 
@@ -70,13 +71,9 @@ if (raiz) {
     const agotado = boton?.disabled ?? false;
     avisoAgotado?.classList.toggle("hidden", !agotado);
     if (agregarBtn) agregarBtn.disabled = agotado;
-    for (const b of document.querySelectorAll("[data-agregar-barra]")) b.disabled = agotado;
 
-    fijarTope(grupo, stockDe(boton));
-
-    if (aplicarPrecio(raiz, boton, [raiz, ...document.querySelectorAll("[data-barra-producto]")])) {
-      pintarTotal(grupo ? valor(grupo) : 1);
-    }
+    if (aplicarPrecio(raiz, boton, [raiz])) pintarTotal();
+    pintarPedido();
   }
 
   /* Las fotos de los demás tonos se traen de fondo para que el primer cambio
@@ -117,35 +114,58 @@ if (raiz) {
     if (e.target === lupa) lupa.close();
   });
 
-  /* ── a la bolsa ───────────────────────────────────────────────────── */
-  function alaBolsa() {
-    agregar(
-      {
-        id: raiz.dataset.id,
-        nombre: raiz.dataset.nombre,
-        presentacion: raiz.dataset.presentacion || null,
-        precio: precioActual(),
-        referencia: Number(raiz.dataset.referencia),
-        tono: botones[elegida]?.dataset.tono ?? null,
-        imagen: botones[elegida]?.dataset.imagen || foto?.getAttribute("src") || null,
-        max: stockDe(botones[elegida]),
-      },
-      grupo ? valor(grupo) : 1
-    );
-    if (grupo) fijar(grupo, 1);
+  /* ── al pedido ───────────────────────────────────────────────────── */
+  const pieza = () => ({
+    id: raiz.dataset.id,
+    nombre: raiz.dataset.nombre,
+    presentacion: raiz.dataset.presentacion || null,
+    precio: precioActual(),
+    referencia: Number(raiz.dataset.referencia),
+    tono: botones[elegida]?.dataset.tono ?? null,
+    imagen: botones[elegida]?.dataset.imagen || foto?.getAttribute("src") || null,
+    max: stockDe(botones[elegida]),
+  });
+
+  /* Si la pieza (con este tono) ya está en el pedido, en lugar del botón va
+     «− N +»; si no, el botón. También pone al día la barra de abajo. */
+  function pintarPedido() {
+    const n = unidadesDe(pieza());
+    const agotado = botones[elegida]?.disabled ?? false;
+    const focoDentro = enPedido?.contains(document.activeElement);
+    if (enPedido && agregarBtn) {
+      enPedido.hidden = n === 0;
+      agregarBtn.hidden = n > 0;
+      if (n === 0 && focoDentro) agregarBtn.focus();
+    }
+    if (numero) numero.textContent = String(n);
+    if (subtotal) {
+      subtotal.textContent = n > 1 ? `${n} × $${monto.format(precioActual())} = $${monto.format(n * precioActual())}` : "";
+    }
+    if (mas) mas.disabled = agotado || n >= (stockDe(botones[elegida]) ?? TOPE_SIN_STOCK);
+    if (menos) menos.setAttribute("aria-label", n === 1 ? "Quitar del pedido" : "Quitar una unidad");
+
+    const { unidades, total } = resumenPedido();
+    for (const t of document.querySelectorAll("[data-pedido-total]")) t.textContent = `$${monto.format(total)}`;
+    for (const t of document.querySelectorAll("[data-pedido-unidades]")) {
+      t.textContent = unidades === 0 ? "Tu pedido" : `Tu pedido · ${unidades} ${unidades === 1 ? "unidad" : "unidades"}`;
+    }
   }
 
-  agregarBtn?.addEventListener("click", alaBolsa);
+  agregarBtn?.addEventListener("click", () => {
+    // sin aviso flotante: el «− 1 +» que aparece y la barra ya lo confirman
+    fijarUnidades(pieza(), unidadesDe(pieza()) + 1);
+    if (enPedido && !enPedido.hidden) mas?.focus();
+  });
+  mas?.addEventListener("click", () => fijarUnidades(pieza(), unidadesDe(pieza()) + 1));
+  menos?.addEventListener("click", () => fijarUnidades(pieza(), unidadesDe(pieza()) - 1));
+  document.addEventListener("bolsa:cambio", pintarPedido);
+  pintarPedido();
 
   /* ── barra persistente ──────────────────────────────────────────────
      Entra justo cuando el botón principal deja de verse. Un observador, no
      un listener de scroll: no se ejecuta en cada pixel. */
   const barras = document.querySelectorAll("[data-barra-producto]:not([data-siempre])");
   const ctaPrincipal = document.querySelector("[data-cta-principal]");
-
-  for (const b of document.querySelectorAll("[data-agregar-barra]")) {
-    b.addEventListener("click", alaBolsa);
-  }
 
   if (barras.length && ctaPrincipal) {
     new IntersectionObserver(
