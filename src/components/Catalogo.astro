@@ -1,29 +1,16 @@
 ---
 /**
- * Catálogo — portada de categorías, luego la grilla de una categoría a la vez.
+ * Catálogo en forma de app de pedidos.
  *
- * Antes, la portada mostraba las 35 fichas de un jalón (filtradas por una
- * categoría desplegable). En el teléfono eso era mucho scroll para llegar al
- * pie de página: quien solo quería ver «Cómo comprar» o la ubicación tenía
- * que cruzar el catálogo entero primero.
+ * Arriba, las categorías de verdad. En la portada, Destacados (los productos
+ * marcados como destacados) y una fila corta de cada categoría. Al elegir una
+ * categoría o buscar, se abre la lista completa.
  *
- * Ahora la portada muestra solo las categorías, como tarjetas grandes con
- * foto. Tocar una categoría revela su grilla completa; un enlace «Todas las
- * categorías» regresa. El buscador sigue siempre visible y, si se escribe
- * algo, salta directo a los resultados sin pasar por las categorías.
- *
- * Sin JavaScript se ven las dos cosas a la vez -- categorías arriba, la
- * grilla completa debajo -- que es un estado correcto y usable: ningún
- * producto queda inalcanzable, solo la página es más larga. Es el mismo
- * criterio que ya regía el buscador y la categoría antes de esto.
- *
- * Orden dentro de cada categoría: destacados primero, luego consumidora antes
- * que uso profesional. El recorrido por defecto es el de Rebeca.
+ * Sin JavaScript se ven la portada y la grilla a la vez: ningún producto queda
+ * inalcanzable.
  */
 
 import TarjetaProducto from "./TarjetaProducto.astro";
-import BannerTienda from "./BannerTienda.astro";
-import FlechaCarrusel from "./FlechaCarrusel.astro";
 import Icono from "./Icono.astro";
 import productos from "../data/productos.json";
 import tienda from "../data/tienda.json";
@@ -38,85 +25,12 @@ const CATEGORIAS_BASE = [
   { id: "cabello", texto: "Cabello", icono: "cabello" as const },
 ];
 
-/* Foto de portada de cada categoría: la del primer producto destacado que
-   tenga, o si no hay ninguno destacado en esa categoría, la del primero por
-   orden. Así la tarjeta de categoría no depende de mantener una lista aparte
-   -- solo de la misma bandera `destacado` que ya se usa en los datos. */
-/* Cuando ningún producto de la categoría está destacado, la primera por orden
-   puede no representarla bien (en pestañas saldría la almohada; en
-   herramientas, la lima; la tijera suelta se veía pequeña). */
-const FOTO_DE_CATEGORIA: Record<string, string> = {
-  herramientas: "MG-CORTA-SHARP",
-  pestanas: "MY-LIBRETA-PESTANAS",
-};
-
 const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
   const deLaCategoria = productos.filter((p) => p.categoria === c.id);
-  const conFoto =
-    deLaCategoria.find((p) => p.producto_id === FOTO_DE_CATEGORIA[c.id]) ??
-    deLaCategoria.find((p) => p.destacado) ??
-    deLaCategoria[0];
-  return {
-    ...c,
-    cantidad: deLaCategoria.length,
-    imagen: conFoto?.variantes[0]?.imagenes[0] ?? null,
-  };
+  return { ...c, cantidad: deLaCategoria.length, muestra: deLaCategoria.slice(0, 8) };
 });
 
-/* «Favoritos de Coquetas»: los productos de la fila de la portada, en este
-   orden. Los elige la dueña. Lista aparte y no la bandera «destacado» de los
-   datos, porque esa bandera también decide la foto de cada categoría (el
-   agua micelar salió de aquí pero sigue siendo la foto de Cuidado facial). */
-const MUESTRA = [
-  "MG-ESM-SEMI-10",
-  "MG-GEL-COLOR-15",
-  "MG-EXFOLIANTE",
-  "MG-VELOTERAPIA",
-  "MG-AGUA-MICELAR",
-  "MG-POLYGEL",
-  "CQ-MICROBLUSH",
-  "MG-BODY-BUTTER",
-  "MG-ACE-CUT-FLOR",
-  "MG-AGUA-ROSAS",
-  "CQ-SET-PINCELES",
-  "MG-BOMBAS-EFERV",
-  "EG-ESM-TRAD",
-  "MG-GASAS-PESTANAS",
-  "MB-BUILDER-GEL",
-  "CQ-PALETA-EXFOLIANTE",
-];
-const muestra = MUESTRA.map((id) => productos.find((p) => p.producto_id === id)).filter(
-  (p): p is (typeof productos)[number] => Boolean(p)
-);
-const TITULO_MUESTRA = "Favoritos de Coquetas";
-
-/* Clases compartidas por los dos carruseles. La pista llega hasta el borde
-   de la pantalla (su envoltorio se sale del contenedor) y el encaje se alinea
-   con el margen del texto (scroll-padding), como en las tiendas de apps. */
-const PISTA =
-  "sin-riel flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-[var(--sangria)] scroll-px-[var(--sangria)] md:gap-3";
-const SANGRE = "relative mt-2 -mx-[var(--sangria)]";
-/* Tarjetas visibles a la vez: categorías 1,5 · 2,5 · 3,5 · 4,5; favoritos
-   (solo la foto, más chicas) 2,5 · 3,5 · 3,5 · 3,5 (son cuatro: con más
-   visibles cabrían todas y no habría nada que deslizar en la computadora). */
-/* Categorías: tarjetas con ícono, un 30 % más grandes que antes (decisión de
-   la dueña): ~2,5 a la vista en el teléfono, nunca menos de 125 px (lo que
-   pide «Herramientas» con letra de 17 px para caber en un renglón). Desde
-   640 px, ~3,85 a la vista: ya no caben las cinco, así que aparece la flecha
-   «siguiente» (las flechas se esconden solas en cada extremo). */
-const PISTA_CATEGORIA =
-  "sin-riel flex snap-x snap-mandatory gap-[12px] overflow-x-auto overscroll-x-contain px-[var(--sangria)] scroll-px-[var(--sangria)] md:gap-3";
-const DIAPO_CATEGORIA =
-  "flex min-w-0 shrink-0 snap-start basis-[max(125px,calc((100%-24px)/2.5))] sm:basis-[calc((100%-48px)/3.85)] md:basis-[calc((100%-48px)/3.85)]";
-const DIAPO_MUESTRA =
-  "flex min-w-0 shrink-0 snap-start basis-[calc((100%-32px)/2.5)] sm:basis-[calc((100%-48px)/3.5)] md:basis-[calc((100%-72px)/3.5)]";
-
-/* Fotos de producto en 400 / 550 / 700 / 1000 px. */
-const srcsetDe = (src: string) =>
-  [400, 550, 700]
-    .map((w) => `${src.replace(".webp", `-${w}.webp`)} ${w}w`)
-    .concat(`${src} 1000w`)
-    .join(", ");
+const destacados = productos.filter((p) => p.destacado);
 
 const NOMBRES: Record<string, string> = {
   todo: "Todo",
@@ -128,26 +42,9 @@ const NOMBRES: Record<string, string> = {
   cuerpo: "Cuerpo y spa",
   cabello: "Cabello",
 };
-
-/* El aviso de que esto es una muestra vive en dos momentos, no uno:
-   arriba, una línea corta, solo para que nadie confunda la selección con el
-   inventario completo. Abajo, después de recorrer la grilla entera, el
-   argumento con el número real — que es cuando de verdad importa, porque es
-   el momento en que quien no encontró lo suyo decide si pregunta o se va. El
-   enlace no abre el chat en blanco: llega con el mensaje ya escrito. */
-const enlaceListaCompleta = tienda.whatsapp
-  ? `https://wa.me/${tienda.whatsapp}?text=${encodeURIComponent(
-      "Hola Coquetas Store, quiero ver la lista completa de productos disponibles."
-    )}`
-  : null;
 ---
 
 <section id="catalogo" class="scroll-mt-2">
-  {/* Decide la vista antes de que se dibuje nada. Si se esperaba al script
-      del final, con ?categoria= en el enlace se pintaban primero las tarjetas
-      de categoría y luego desaparecían: la página entera daba un salto (CLS
-      0,89 medido en un teléfono lento). La regla de CSS que lee este atributo
-      está en global.css; el script de abajo lo retira al tomar el control. */}
   <script is:inline define:vars={{ validas: Object.keys(NOMBRES) }}>
     var params = new URLSearchParams(location.search);
     var inicial = params.get("categoria");
@@ -156,246 +53,172 @@ const enlaceListaCompleta = tienda.whatsapp
       buscando || (inicial && validas.indexOf(inicial) > -1) ? "grilla" : "portada";
   </script>
 
-  {/* Donde iba el título «Catálogo» va la cinta de fotos de la tienda
-      (decisión de la dueña). El H1 sigue existiendo para el lector de
-      pantalla y el buscador, pero no se ve. */}
   <h1 class="sr-only">Catálogo de Coquetas Store</h1>
-  <BannerTienda />
 
-  {/* El buscador ya no va aquí (decisión de la dueña): está arriba de todo
-      dentro del menú, con su lupa. Al buscar se llega a la grilla con
-      ?buscar=… (o sin recargar, si ya se está en la portada). */}
+  <div class="contenedor pt-3">
+    <p class="inline-flex items-center gap-2 rounded-2xl bg-[#fdeef3] px-3 py-2 font-sans text-[13px] font-semibold text-purpura">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+      </svg>
+      <span>{tienda.ciudad}, Zulia · Lun–Sáb 8:30–5:00</span>
+    </p>
+  </div>
 
-  {/* ── Portada: solo categorías ──────────────────────────────────────────
-      Vista inicial con JavaScript. El script la esconde y muestra la grilla
-      completa en cuanto se toca una categoría o se escribe en el buscador. */}
-  <div id="vista-portada" class="contenedor mt-5 scroll-mt-[84px]">
-    {/* ── Dos carruseles: «Favoritos de Coquetas» y «Categorías» ─────────
-        Filas que se deslizan con el dedo (scroll-snap nativo: el navegador
-        hace el deslizamiento y la inercia, así que va fluido hasta en un
-        teléfono de gama baja). Siempre asoma media tarjeta de la siguiente.
+  <div id="vista-portada" class="contenedor mt-4">
+    <div class="sin-riel -mx-[var(--sangria)] flex gap-3 overflow-x-auto px-[var(--sangria)] pb-1">
+      {
+        CATEGORIAS.map((c) => (
+          <a
+            href={`/?categoria=${c.id}`}
+            data-categoria-tile={c.id}
+            data-chip={c.id}
+            class="presionable flex w-[76px] shrink-0 flex-col items-center gap-1 text-center"
+          >
+            <span class="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-papel text-magenta shadow-[0_0_0_1px_rgba(43,10,38,0.08)]">
+              <Icono nombre={c.icono} tamano={26} />
+            </span>
+            <span class="font-sans text-[12px] leading-tight font-semibold text-ciruela">{c.texto}</span>
+          </a>
+        ))
+      }
+    </div>
 
-        Avanzan solas de a una tarjeta con 1,3 s quietas entre avance y
-        avance, y dan la vuelta sin fin. Se detienen al tocarlas, al pasar el
-        ratón o al enfocarlas con el teclado, y no arrancan si el teléfono
-        pide movimiento reducido. Sin botón de pausa (la dueña lo quitó de
-        Favoritos); flechas a los lados (FlechaCarrusel). Las dos filas arrancan
-        desfasadas para no moverse a la vez. Todo en scripts/carrusel.js.
-
-        Sin JavaScript quedan filas deslizables a mano, sin controles. */}
     {
-      muestra.length > 0 && (
-        <div
-          data-carrusel="muestra"
-          role="region"
-          aria-roledescription="carrusel"
-          aria-labelledby="titulo-muestra"
-          class="mb-6"
-        >
-          <div class="flex min-h-[44px] items-center justify-between gap-2">
-            <p id="titulo-muestra" class="t-etiqueta text-purpura">{TITULO_MUESTRA}</p>
+      destacados.length > 0 && (
+        <div class="mt-6">
+          <div class="mb-2 flex flex-wrap items-end justify-between gap-2">
+            <h2 class="font-didot text-[24px] leading-tight text-ciruela">Destacados</h2>
+            <p class="hidden font-sans text-[12px] text-ciruela/70" data-bs-tasa-linea>
+              <span data-bs-tasa />
+            </p>
           </div>
-          <div class={SANGRE}>
-            <div data-carrusel-pista aria-live="off" class={PISTA}>
-              {muestra.map((p, i) => (
-                <div
-                  role="group"
-                  aria-roledescription="diapositiva"
-                  aria-label={`${i + 1} de ${muestra.length}`}
-                  data-carrusel-diapositiva
-                  class={DIAPO_MUESTRA}
-                >
-                  {/* Solo la foto (decisión de la dueña): una muestra rápida.
-                      Tocarla abre la ficha, donde están el precio y los tonos. */}
-                  <a
-                    href={`/producto/${p.producto_id.toLowerCase()}`}
-                    class="presionable group block w-full bg-papel"
-                  >
-                    <div data-carrusel-foto class="aspect-square overflow-hidden">
-                      <img
-                        src={p.variantes[0].imagenes[0]}
-                        srcset={srcsetDe(p.variantes[0].imagenes[0])}
-                        sizes="(min-width: 1280px) 310px, (min-width: 768px) 26vw, (min-width: 640px) 27vw, 38vw"
-                        alt={`${p.nombre}${p.presentacion ? ` ${p.presentacion}` : ""}`}
-                        width="1000"
-                        height="1000"
-                        loading={i < 3 ? "eager" : "lazy"}
-                        fetchpriority={i < 2 ? "high" : "auto"}
-                        decoding="async"
-                        class="h-full w-full object-contain p-1 transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.03]"
-                      />
-                    </div>
-                  </a>
-                </div>
-              ))}
-            </div>
-            <FlechaCarrusel direccion="anterior" etiqueta="Favorito anterior" />
-            <FlechaCarrusel direccion="siguiente" etiqueta="Favorito siguiente" />
+          <p class="mb-3 max-w-[46ch] font-sans text-[13px] leading-snug text-ciruela/70">
+            El precio grande es en divisa. El de abajo es pagando en bolívares, y el monto en Bs usa la tasa BCV del día.
+          </p>
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 min-[1440px]:grid-cols-4">
+            {destacados.map((p, i) => (
+              <TarjetaProducto producto={p} prioridad={i < 2} />
+            ))}
           </div>
-          <div data-carrusel-puntos aria-hidden="true" hidden class="mt-2 flex justify-center gap-[6px]"></div>
         </div>
       )
     }
 
-    <div
-      data-carrusel="categorias"
-      data-sin-avance
-      role="region"
-      aria-roledescription="carrusel"
-      aria-labelledby="titulo-categorias"
-    >
-      <div class="flex min-h-[44px] items-center justify-between gap-2">
-        <p id="titulo-categorias" class="t-etiqueta text-purpura">Categorías</p>
-      </div>
-      <div class={SANGRE}>
-        <div data-carrusel-pista aria-live="off" class={PISTA_CATEGORIA}>
-          {
-            CATEGORIAS.map((c, i) => (
-              <div
-                role="group"
-                aria-roledescription="diapositiva"
-                aria-label={`${i + 1} de ${CATEGORIAS.length}`}
-                data-carrusel-diapositiva
-                class={DIAPO_CATEGORIA}
-              >
-                {/* Ícono en vez de foto (decisión de la dueña): los mismos del
-                    menú, en grande sobre un círculo crema. */}
-                <a
-                  href="#grilla"
-                  data-categoria-tile={c.id}
-                  class="presionable group flex w-full flex-col items-center gap-[6px] bg-papel px-[6px] pt-[10px] pb-4 text-center"
-                >
-                  <span
-                    data-carrusel-foto
-                    class="flex h-[78px] w-[78px] items-center justify-center rounded-full bg-crema text-purpura transition-transform duration-[var(--paso-lento)] ease-[var(--curva)] group-hover:scale-[1.06] md:h-[104px] md:w-[104px]"
-                  >
-                    <Icono nombre={c.icono} tamano={39} />
-                  </span>
-                  <span class="font-sans text-[17px] leading-tight font-semibold text-ciruela md:text-[19px]">
-                    {c.texto}
-                  </span>
-                </a>
+    {
+      CATEGORIAS.map((c) => (
+        <div class="mt-7">
+          <div class="mb-2 flex items-baseline justify-between gap-2">
+            <h2 class="font-didot text-[24px] leading-tight text-ciruela">{c.texto}</h2>
+            <a
+              href={`/?categoria=${c.id}`}
+              data-categoria-tile={c.id}
+              data-chip={c.id}
+              class="presionable inline-flex min-h-[44px] items-center font-sans text-[13px] font-semibold text-purpura"
+            >
+              Ver todo
+            </a>
+          </div>
+          <div class="sin-riel -mx-[var(--sangria)] flex gap-3 overflow-x-auto px-[var(--sangria)] pb-1">
+            {c.muestra.map((p) => (
+              <div class="w-[168px] shrink-0">
+                <TarjetaProducto producto={p} sizes="168px" />
               </div>
-            ))
-          }
-          {/* Sin tarjeta «Todo» (decisión de la dueña): los favoritos de arriba
-              y el buscador cubren a quien quiere mirar sin elegir categoría. */}
+            ))}
+          </div>
         </div>
-        <FlechaCarrusel direccion="anterior" etiqueta="Categoría anterior" />
-        <FlechaCarrusel direccion="siguiente" etiqueta="Categoría siguiente" />
-      </div>
-
-    </div>
+      ))
+    }
   </div>
 
-  {/* ── Grilla: una categoría (o los resultados del buscador) a la vez ──── */}
-  <div id="vista-grilla" class="contenedor mt-6 scroll-mt-[84px]">
-    {/* Siempre en dos renglones (volver arriba, categoría debajo). Al cargar, el
-        rótulo dice «Todo · 65 productos» y el script lo cambia enseguida: si
-        compartían renglón, según el ancho del texto la fila crecía o encogía y la
-        grilla entera daba un salto. */}
-    <div class="mb-3 flex flex-col items-start border-t border-ciruela/15 pt-3">
-      <a
-        href="#vista-portada"
-        data-volver
-        class="presionable t-etiqueta inline-flex min-h-[44px] items-center gap-1 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
-      >
-        <Icono nombre="chevron" tamano={13} class="rotate-90" />
-        Todas las categorías
-      </a>
-      <p id="categoria-nombre" class="t-etiqueta text-ciruela/60">
-        Todo · {productos.length} productos
-      </p>
+  <div id="vista-grilla" class="contenedor mt-4 scroll-mt-[180px]">
+    <div class="sin-riel -mx-[var(--sangria)] flex gap-2 overflow-x-auto px-[var(--sangria)] pb-2">
+      {
+        CATEGORIAS.map((c) => (
+          <a
+            href={`/?categoria=${c.id}`}
+            data-chip={c.id}
+            class="chip presionable inline-flex min-h-[44px] shrink-0 items-center gap-1 rounded-full bg-papel px-3 font-sans text-[14px] font-semibold text-ciruela/80 shadow-[0_0_0_1px_rgba(43,10,38,0.08)]"
+          >
+            {c.texto}
+            <small class="font-medium text-ciruela/50">{c.cantidad}</small>
+          </a>
+        ))
+      }
     </div>
 
-    {/* Un solo panel gobernado por buscador + categoría: aria-labelledby
-        apunta al texto que dice en qué categoría está y cuántas hay, y el
-        script lo mantiene al día. */}
+    <div class="mt-2 flex flex-wrap items-center justify-between gap-2">
+      <div>
+        <a
+          href="/"
+          data-volver
+          class="presionable inline-flex min-h-[44px] items-center font-sans text-[13px] font-semibold text-purpura"
+        >
+          Inicio
+        </a>
+        <h2 id="categoria-nombre" class="font-didot text-[24px] leading-tight text-ciruela">
+          Todo · {productos.length} productos
+        </h2>
+      </div>
+      <div data-orden class="inline-flex rounded-xl bg-papel p-1 shadow-[0_0_0_1px_rgba(43,10,38,0.08)]" role="group" aria-label="Ordenar">
+        <button type="button" data-orden-modo="az" aria-pressed="true" class="presionable min-h-[44px] rounded-lg px-3 font-sans text-[14px] font-semibold">
+          A–Z
+        </button>
+        <button type="button" data-orden-modo="precio" aria-pressed="false" class="presionable min-h-[44px] rounded-lg px-3 font-sans text-[14px] font-semibold text-ciruela/60">
+          Precio
+        </button>
+      </div>
+    </div>
+
+    <p class="mt-1 hidden font-sans text-[12px] text-ciruela/70" data-bs-tasa-linea>
+      <span data-bs-tasa />
+    </p>
+
     <div
       id="grilla"
       role="region"
       aria-labelledby="categoria-nombre"
-      class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-2 md:grid-cols-3 md:gap-3 lg:grid-cols-4"
+      class="modo-lista mt-3 flex flex-col gap-2"
     >
       {
-        /* Ninguna tarjeta con prioridad: al cargar, la grilla está escondida
-           detrás de las categorías, y una foto «eager» se descarga aunque no se
-           vea — eran ~100 KB de fotos grandes que nadie miraba. Con carga
-           diferida, el navegador las pide en cuanto la grilla aparece. */
         productos.map((p) => (
-          <div data-categoria={p.categoria} class="contents">
+          <div data-categoria={p.categoria} data-nombre={p.nombre} data-precio={p.precio_divisa}>
             <TarjetaProducto producto={p} />
           </div>
         ))
       }
     </div>
 
-    <p
-      id="sin-resultados"
-      class="t-cuerpo mt-6 hidden text-center text-ciruela/70"
-      role="status"
-    >
+    <p id="sin-resultados" class="mt-6 hidden text-center font-sans text-[16px] text-ciruela/70" role="status">
       No hay piezas que coincidan.
     </p>
-
-    {/* Sin esto, quien usa lector de pantalla filtra o busca y no sabe si
-        pasó algo ni cuántas piezas quedaron. */}
     <p class="sr-only" role="status" aria-live="polite" data-recuento></p>
 
-    {/* Final de la lista: quien bajó hasta aquí no tiene que volver a subir a
-        dedo. «Volver arriba» lleva al inicio de esta misma lista; «Ver otras
-        categorías» abre la portada con las categorías (pedido de la dueña). */}
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-2 border-t border-ciruela/15 pt-6">
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-2 border-t border-ciruela/10 pt-6">
       <a
         href="#vista-grilla"
         data-subir
-        class="presionable t-etiqueta inline-flex min-h-[48px] items-center gap-1 border border-ciruela/40 px-4 text-ciruela transition-colors duration-[var(--paso)] hover:border-ciruela hover:bg-ciruela hover:text-crema"
+        class="presionable inline-flex min-h-[48px] items-center gap-1 rounded-2xl border border-ciruela/25 px-4 font-sans text-[14px] font-semibold text-ciruela"
       >
         <Icono nombre="chevron" tamano={14} class="rotate-180" />
         Volver arriba
       </a>
       <a
-        href="#vista-portada"
+        href="/"
         data-volver
-        class="presionable t-etiqueta inline-flex min-h-[48px] items-center px-4 text-purpura underline decoration-1 underline-offset-2 transition-colors duration-[var(--paso)] hover:text-ciruela"
+        class="presionable inline-flex min-h-[48px] items-center px-4 font-sans text-[14px] font-semibold text-purpura"
       >
         Ver otras categorías
       </a>
     </div>
   </div>
 
-  {/* Cierre del catálogo: el argumento completo llega cuando ya se vio algo,
-      no antes de empezar a mirar. Vive fuera de las dos vistas de arriba
-      porque es válido en cualquiera de las dos. */}
-  <div class="contenedor mt-10">
-    <div class="mx-auto flex max-w-[38ch] flex-col items-center gap-3 border-t border-ciruela/15 pt-8 text-center">
-      <p class="t-cuerpo text-ciruela/80">
-        Esta es apenas una muestra. Pregúntanos por WhatsApp y te enviamos la
-        lista completa: más de 200 productos disponibles.
-      </p>
-      {
-        enlaceListaCompleta && (
-          <a
-            href={enlaceListaCompleta}
-            target="_blank"
-            rel="noopener"
-            class="presionable t-etiqueta inline-flex min-h-[48px] items-center gap-1 bg-magenta px-4 text-crema transition-colors duration-[var(--paso)] hover:bg-purpura"
-          >
-            Pedir la lista completa
-          </a>
-        )
-      }
-    </div>
-  </div>
-  {/* Flecha flotante para subir: aparece cuando ya se bajó más de una pantalla
-      y media. Va abajo a la IZQUIERDA porque a la derecha está el botón de
-      WhatsApp, y el aviso de la bolsa ocupa el centro un poco más arriba. */}
   <button
     type="button"
     data-subir
     data-subir-flotante
     aria-label="Volver arriba"
-    class="presionable invisible fixed bottom-[calc(16px+env(safe-area-inset-bottom))] left-[max(16px,env(safe-area-inset-left))] z-40 flex h-[48px] w-[48px] translate-y-3 items-center justify-center rounded-full border border-ciruela/25 bg-papel text-ciruela opacity-0 shadow-[0_4px_16px_rgba(43,10,38,0.18)] transition-[opacity,transform,visibility] duration-[var(--paso-lento)] ease-[var(--curva)] hover:bg-ciruela hover:text-crema data-[visible]:visible data-[visible]:translate-y-0 data-[visible]:opacity-100 md:bottom-4 md:left-4 md:h-[52px] md:w-[52px]"
+    class="presionable invisible fixed bottom-[calc(16px+env(safe-area-inset-bottom))] left-[max(16px,env(safe-area-inset-left))] z-40 flex h-[48px] w-[48px] translate-y-3 items-center justify-center rounded-full border border-ciruela/15 bg-papel text-ciruela opacity-0 shadow-[0_4px_16px_rgba(43,10,38,0.16)] data-[visible]:visible data-[visible]:translate-y-0 data-[visible]:opacity-100"
   >
     <Icono nombre="chevron" tamano={22} class="rotate-180" />
   </button>
@@ -403,27 +226,18 @@ const enlaceListaCompleta = tienda.whatsapp
 
 <script>
   import "../scripts/tarjetas.js";
-  import "../scripts/carrusel.js";
 
   const grilla = document.getElementById("grilla");
   const vacio = document.getElementById("sin-resultados");
-  const formBuscar = document.querySelector<HTMLFormElement>("[data-menu-buscar]");
   const recuento = document.querySelector("[data-recuento]");
   const portada = document.getElementById("vista-portada");
   const vistaGrilla = document.getElementById("vista-grilla");
   const categoriaNombre = document.getElementById("categoria-nombre");
   const volveres = document.querySelectorAll<HTMLAnchorElement>("[data-volver]");
+  const forms = document.querySelectorAll<HTMLFormElement>("[data-buscar]");
+  const ordenGrupo = document.querySelector("[data-orden]");
 
   if (grilla && portada && vistaGrilla && categoriaNombre) {
-    /* `.contents` en el envoltorio dejaría la tarjeta sin contenedor propio para
-       esconder, así que se marca la tarjeta misma con la categoría y el nombre. */
-    const tarjetas = Array.from(grilla.children) as HTMLElement[];
-    tarjetas.forEach((envoltorio) => {
-      const cat = envoltorio.getAttribute("data-categoria");
-      const articulo = envoltorio.querySelector("article");
-      if (cat && articulo) articulo.setAttribute("data-categoria", cat);
-    });
-
     const NOMBRES: Record<string, string> = {
       todo: "Todo",
       unas: "Uñas",
@@ -436,75 +250,152 @@ const enlaceListaCompleta = tienda.whatsapp
     };
 
     let categoriaActual = "todo";
-    let textoBusqueda = ""; // en minúsculas, para comparar
-    let textoMostrado = ""; // tal como se escribió, para el rótulo
+    let textoBusqueda = "";
+    let textoMostrado = "";
+    let orden: "az" | "precio" = "az";
+
+    const entradas = () => Array.from(grilla.children) as HTMLElement[];
+
+    function pintarOrden() {
+      ordenGrupo?.querySelectorAll<HTMLButtonElement>("[data-orden-modo]").forEach((b) => {
+        const activo = b.dataset.ordenModo === orden;
+        b.setAttribute("aria-pressed", String(activo));
+        b.classList.toggle("bg-[#fdeef3]", activo);
+        b.classList.toggle("text-magenta", activo);
+        b.classList.toggle("text-ciruela/60", !activo);
+      });
+    }
+
+    function pintarChips() {
+      document.querySelectorAll<HTMLElement>("[data-chip]").forEach((c) => {
+        const activo = !textoBusqueda && c.dataset.chip === categoriaActual && vistaGrilla!.hidden === false;
+        c.classList.toggle("chip-on", activo);
+        if (c.tagName === "A") c.setAttribute("aria-current", activo ? "true" : "false");
+      });
+    }
 
     function aplicarFiltros() {
-      let visibles = 0;
+      const lista = entradas();
+      const visibles: HTMLElement[] = [];
 
-      for (const envoltorio of tarjetas) {
-        const articulo = envoltorio.querySelector<HTMLElement>("article");
+      for (const envoltorio of lista) {
+        const nombre = (envoltorio.dataset.nombre ?? "").toLowerCase();
         const coincideCategoria =
           categoriaActual === "todo" || envoltorio.dataset.categoria === categoriaActual;
-        const nombre = (articulo?.dataset.nombre ?? "").toLowerCase();
         const coincideTexto = !textoBusqueda || nombre.includes(textoBusqueda);
         const coincide = coincideCategoria && coincideTexto;
         envoltorio.classList.toggle("hidden", !coincide);
-        envoltorio.classList.toggle("contents", coincide);
-        if (coincide) visibles++;
+        if (coincide) visibles.push(envoltorio);
       }
 
-      vacio?.classList.toggle("hidden", visibles > 0);
+      const cmp = (a: HTMLElement, b: HTMLElement) => {
+        if (orden === "precio") {
+          const d = Number(a.dataset.precio) - Number(b.dataset.precio);
+          if (d) return d;
+        }
+        return (a.dataset.nombre ?? "").localeCompare(b.dataset.nombre ?? "", "es");
+      };
+      visibles.sort(cmp);
+      const ocultos = lista.filter((el) => !visibles.includes(el));
+      for (const el of [...visibles, ...ocultos]) grilla!.appendChild(el);
 
-      const etiqueta = textoBusqueda
-        ? `"${textoMostrado}"`
-        : (NOMBRES[categoriaActual] ?? categoriaActual);
-      const unidad = visibles === 1 ? "producto" : "productos";
-      categoriaNombre!.textContent = `${etiqueta} · ${visibles} ${unidad}`;
+      vacio?.classList.toggle("hidden", visibles.length > 0);
+      ordenGrupo?.classList.toggle("hidden", Boolean(textoBusqueda));
+      grilla!.classList.toggle("modo-lista", !textoBusqueda);
+      grilla!.classList.toggle("modo-cuadricula", Boolean(textoBusqueda));
+
+      const etiqueta = textoBusqueda ? `«${textoMostrado}»` : (NOMBRES[categoriaActual] ?? categoriaActual);
+      const unidad = visibles.length === 1 ? "producto" : "productos";
+      categoriaNombre!.textContent = textoBusqueda
+        ? `${visibles.length} ${visibles.length === 1 ? "resultado" : "resultados"} para ${etiqueta}`
+        : `${etiqueta} · ${visibles.length} ${unidad}`;
 
       if (recuento) {
         recuento.textContent = textoBusqueda
-          ? `${visibles} ${visibles === 1 ? "resultado" : "resultados"} para "${textoMostrado}".`
-          : `${visibles} ${visibles === 1 ? "pieza" : "piezas"} en ${NOMBRES[categoriaActual] ?? categoriaActual}.`;
+          ? `${visibles.length} ${visibles.length === 1 ? "resultado" : "resultados"} para "${textoMostrado}".`
+          : `${visibles.length} ${visibles.length === 1 ? "pieza" : "piezas"} en ${NOMBRES[categoriaActual] ?? categoriaActual}.`;
       }
 
+      pintarChips();
+      pintarOrden();
+
       const url = new URL(location.href);
-      if (categoriaActual === "todo") url.searchParams.delete("categoria");
+      if (categoriaActual === "todo" || textoBusqueda) url.searchParams.delete("categoria");
       else url.searchParams.set("categoria", categoriaActual);
       if (textoBusqueda) url.searchParams.set("buscar", textoMostrado);
       else url.searchParams.delete("buscar");
       history.replaceState(null, "", url);
     }
 
-    function mostrarGrilla(cat: string) {
+    function sincronizarBuscador(texto: string) {
+      document.querySelectorAll<HTMLInputElement>("[data-buscar] input[name=buscar]").forEach((input) => {
+        if (input.value !== texto) input.value = texto;
+      });
+      document.querySelectorAll<HTMLButtonElement>("[data-buscar-limpiar]").forEach((b) => {
+        b.hidden = texto.trim() === "";
+      });
+    }
+
+    function mostrarGrilla(cat: string, opts: { scroll?: boolean } = {}) {
       categoriaActual = NOMBRES[cat] ? cat : "todo";
       textoBusqueda = "";
       textoMostrado = "";
+      sincronizarBuscador("");
       portada!.hidden = true;
       vistaGrilla!.hidden = false;
       aplicarFiltros();
-      vistaGrilla!.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (opts.scroll !== false) {
+        const comportamiento: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth";
+        vistaGrilla!.scrollIntoView({ behavior: comportamiento, block: "start" });
+      }
     }
 
-    function mostrarPortada() {
+    function mostrarPortada(opts: { scroll?: boolean } = {}) {
       vistaGrilla!.hidden = true;
       portada!.hidden = false;
       textoBusqueda = "";
       textoMostrado = "";
       categoriaActual = "todo";
-      /* Deja la dirección limpia (sin ?categoria= ni ?buscar=): si se recarga
-         o se comparte, se abre la portada y no la última búsqueda. */
+      sincronizarBuscador("");
       aplicarFiltros();
-      portada!.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (opts.scroll !== false) {
+        const comportamiento: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth";
+        window.scrollTo({ top: 0, behavior: comportamiento });
+      }
     }
 
-    /* Por delegación y no una por tarjeta: el carrusel agrega copias de las
-       tarjetas para dar la vuelta sin fin, y esas copias también se tocan. */
+    function buscar(texto: string, opts: { scroll?: boolean } = {}) {
+      textoMostrado = texto.trim();
+      textoBusqueda = textoMostrado.toLowerCase();
+      categoriaActual = "todo";
+      sincronizarBuscador(textoMostrado);
+      portada!.hidden = true;
+      vistaGrilla!.hidden = false;
+      aplicarFiltros();
+      if (opts.scroll !== false) {
+        const comportamiento: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth";
+        vistaGrilla!.scrollIntoView({ behavior: comportamiento, block: "start" });
+      }
+    }
+
     portada.addEventListener("click", (e) => {
-      const tile = (e.target as Element).closest<HTMLAnchorElement>("[data-categoria-tile]");
+      const tile = (e.target as Element).closest<HTMLElement>("[data-categoria-tile]");
       if (!tile) return;
       e.preventDefault();
-      mostrarGrilla(tile.dataset.categoriaTile ?? "todo");
+      mostrarGrilla(tile.dataset.categoriaTile ?? tile.dataset.chip ?? "todo");
+    });
+
+    vistaGrilla.addEventListener("click", (e) => {
+      const chip = (e.target as Element).closest<HTMLElement>("[data-chip]");
+      if (!chip || chip.hasAttribute("data-categoria-tile")) return;
+      e.preventDefault();
+      mostrarGrilla(chip.dataset.chip ?? "todo");
     });
 
     volveres.forEach((volver) =>
@@ -514,10 +405,13 @@ const enlaceListaCompleta = tienda.whatsapp
       })
     );
 
-    /* Volver arriba: con una categoría abierta, al inicio de su lista (donde
-       están su nombre y «Todas las categorías»); en la portada, al principio
-       de la página. El foco va al nombre de la categoría para que quien usa
-       teclado o lector de pantalla también quede arriba. */
+    ordenGrupo?.addEventListener("click", (e) => {
+      const b = (e.target as Element).closest<HTMLButtonElement>("[data-orden-modo]");
+      if (!b) return;
+      orden = b.dataset.ordenModo === "precio" ? "precio" : "az";
+      aplicarFiltros();
+    });
+
     const sinMovimiento = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     function subir() {
       const comportamiento: ScrollBehavior = sinMovimiento() ? "auto" : "smooth";
@@ -557,55 +451,37 @@ const enlaceListaCompleta = tienda.whatsapp
       revisar();
     }
 
-    /* «Ver catálogo» y las categorías del menú: aquí en la portada se
-       resuelven sin recargar la página (en las demás páginas, el enlace
-       normal lleva a /?categoria=… y la portada se abre ya filtrada). */
-    document.addEventListener("click", (e) => {
-      const a = (e.target as Element).closest?.<HTMLAnchorElement>("a[data-ver-portada], a[data-ir-categoria]");
-      if (!a) return;
-      e.preventDefault();
-      document.querySelector<HTMLDialogElement>("dialog[data-menu]")?.close();
-      if (a.dataset.irCategoria) mostrarGrilla(a.dataset.irCategoria);
-      else mostrarPortada();
+    forms.forEach((form) => {
+      form.addEventListener("submit", (e) => {
+        const datos = new FormData(form);
+        const texto = (datos.get("buscar") ?? "").toString();
+        e.preventDefault();
+        if (!texto.trim()) mostrarPortada();
+        else buscar(texto);
+      });
+      const input = form.querySelector<HTMLInputElement>("input[name=buscar]");
+      input?.addEventListener("input", () => {
+        const texto = input.value;
+        if (!texto.trim()) mostrarPortada({ scroll: false });
+        else buscar(texto, { scroll: false });
+      });
     });
 
-    /* Búsqueda: en todas las categorías, resultados en la grilla. */
-    function buscar(texto: string) {
-      textoMostrado = texto.trim();
-      textoBusqueda = textoMostrado.toLowerCase();
-      categoriaActual = "todo";
-      portada!.hidden = true;
-      vistaGrilla!.hidden = false;
-      aplicarFiltros();
-      vistaGrilla!.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    document.querySelectorAll("[data-buscar-limpiar]").forEach((b) =>
+      b.addEventListener("click", () => mostrarPortada())
+    );
 
-    /* El buscador del menú: aquí en la portada se resuelve sin recargar (en
-       las demás páginas el formulario lleva a /?buscar=…). */
-    formBuscar?.addEventListener("submit", (e) => {
-      const texto = (new FormData(formBuscar).get("buscar") ?? "").toString().trim();
-      e.preventDefault();
-      if (!texto) return;
-      document.querySelector<HTMLDialogElement>("dialog[data-menu]")?.close();
-      buscar(texto);
-    });
-
-    /* Si se llega con ?categoria=unas desde un enlace compartido, se abre
-       directo en la grilla de esa categoría, sin pasar por la portada. */
     const params = new URL(location.href).searchParams;
     const inicial = params.get("categoria");
     const buscado = (params.get("buscar") ?? "").trim();
-    if (buscado) {
-      buscar(buscado);
-    } else if (inicial && NOMBRES[inicial]) {
-      mostrarGrilla(inicial);
-    } else {
-      portada!.hidden = false;
-      vistaGrilla!.hidden = true;
+    if (buscado) buscar(buscado, { scroll: false });
+    else if (inicial && NOMBRES[inicial]) mostrarGrilla(inicial, { scroll: false });
+    else {
+      portada.hidden = false;
+      vistaGrilla.hidden = true;
       aplicarFiltros();
     }
 
-    /* Desde aquí manda el atributo hidden; la regla del primer pintado sobra. */
     delete document.documentElement.dataset.vistaInicial;
   }
 </script>

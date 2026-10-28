@@ -14,7 +14,7 @@ const monto = new Intl.NumberFormat("es-VE", { minimumFractionDigits: 2, maximum
 
 const raiz = document.querySelector("[data-producto]");
 if (raiz) {
-  const foto = raiz.querySelector("[data-foto]");
+  const foto = document.querySelector("[data-foto]");
   const botones = [...raiz.querySelectorAll('[data-selector-variante] [role="radio"]')];
   const nombreTono = raiz.querySelector("[data-tono-elegido]");
   const avisoAgotado = raiz.querySelector("[data-tono-agotado]");
@@ -29,11 +29,14 @@ if (raiz) {
   /* Los botones de agregar (el principal y los de la barra fija) dicen el
      total de lo que se va a agregar: precio × cantidad. */
   function pintarTotal(n) {
+    const texto = `$${monto.format(precioActual() * n)}`;
     for (const t of document.querySelectorAll("[data-precio-total]")) {
-      t.textContent = `\u00a0· $${monto.format(precioActual() * n)}`;
+      t.textContent = `\u00a0· ${texto}`;
     }
+    for (const t of document.querySelectorAll("[data-precio-suma]")) t.textContent = texto;
   }
   grupo?.addEventListener("cantidad", (e) => pintarTotal(e.detail.valor));
+  pintarTotal(grupo ? valor(grupo) : 1);
 
   let elegida = 0;
 
@@ -108,7 +111,7 @@ if (raiz) {
   }
 
   /* ── lupa ─────────────────────────────────────────────────────────── */
-  raiz.querySelector("[data-ampliar]")?.addEventListener("click", () => lupa?.showModal());
+  document.querySelector("[data-ampliar]")?.addEventListener("click", () => lupa?.showModal());
   document.querySelector("[data-lupa-cerrar]")?.addEventListener("click", () => lupa?.close());
   lupa?.addEventListener("click", (e) => {
     if (e.target === lupa) lupa.close();
@@ -124,6 +127,7 @@ if (raiz) {
         precio: precioActual(),
         referencia: Number(raiz.dataset.referencia),
         tono: botones[elegida]?.dataset.tono ?? null,
+        imagen: botones[elegida]?.dataset.imagen || foto?.getAttribute("src") || null,
         max: stockDe(botones[elegida]),
       },
       grupo ? valor(grupo) : 1
@@ -136,7 +140,7 @@ if (raiz) {
   /* ── barra persistente ──────────────────────────────────────────────
      Entra justo cuando el botón principal deja de verse. Un observador, no
      un listener de scroll: no se ejecuta en cada pixel. */
-  const barras = document.querySelectorAll("[data-barra-producto]");
+  const barras = document.querySelectorAll("[data-barra-producto]:not([data-siempre])");
   const ctaPrincipal = document.querySelector("[data-cta-principal]");
 
   for (const b of document.querySelectorAll("[data-agregar-barra]")) {

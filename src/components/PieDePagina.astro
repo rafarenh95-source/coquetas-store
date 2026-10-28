@@ -22,6 +22,7 @@
 import tienda from "../data/tienda.json";
 import preguntas from "../data/preguntas.json";
 import Icono from "./Icono.astro";
+import Logo from "./Logo.astro";
 
 const whatsapp = (mensaje: string) =>
   tienda.whatsapp
@@ -59,14 +60,114 @@ const botonRespuesta =
   "presionable t-etiqueta mt-2 inline-flex min-h-[44px] items-center gap-1 border border-ciruela px-3 text-ciruela transition-colors duration-[var(--paso)] hover:bg-ciruela hover:text-crema";
 ---
 
-{/* Abajo deja sitio al botón flotante de WhatsApp y a la barra de la ficha,
-    que van fijos sobre el final de la página en el teléfono. */}
-<footer
-  id="preguntas"
-  class="mt-12 scroll-mt-4 pb-[calc(96px+env(safe-area-inset-bottom))] md:pb-8"
->
+<footer id="informacion" class="mt-10 scroll-mt-4 pb-8">
   <div class="contenedor">
-    <h2 class="t-h2 text-ciruela">Preguntas frecuentes</h2>
+    <div class="mb-4 text-center">
+      <Logo version="horizontal" ancho={200} class="mx-auto" />
+      <p class="mt-2 font-sans text-[13px] text-ciruela/60">
+        Insumos de uñas y belleza · {tienda.ciudad}, Zulia
+      </p>
+    </div>
+
+    <div class="rounded-3xl bg-papel px-4 shadow-[0_0_0_1px_rgba(43,10,38,0.08)]">
+      <div class="flex gap-3 border-b border-ciruela/10 py-3">
+        <span class="grid h-[44px] w-[44px] shrink-0 place-items-center rounded-xl bg-[#fdeef3] text-magenta">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <div>
+          <h2 class="font-sans text-[14px] font-bold text-ciruela">Horario</h2>
+          <p class="font-sans text-[14px] leading-snug text-ciruela/80">{tienda.horario}</p>
+        </div>
+      </div>
+
+      <div class="flex gap-3 border-b border-ciruela/10 py-3">
+        <span class="grid h-[44px] w-[44px] shrink-0 place-items-center rounded-xl bg-[#fdeef3] text-magenta">
+          <Icono nombre="ubicacion" tamano={18} />
+        </span>
+        <div>
+          <h2 class="font-sans text-[14px] font-bold text-ciruela">Ubicación y retiro</h2>
+          <p class="font-sans text-[14px] leading-snug text-ciruela/80">
+            {tienda.ciudad}, {tienda.estado}. Dirección: [marcador]. Puedes retirar tu pedido en la tienda en el horario de atención.
+          </p>
+          <a href={enlaceMapa} target="_blank" rel="noopener" class="presionable inline-flex min-h-[44px] items-center font-sans text-[14px] font-semibold text-purpura">
+            Ver en el mapa
+          </a>
+        </div>
+      </div>
+
+      <div class="flex gap-3 border-b border-ciruela/10 py-3">
+        <span class="grid h-[44px] w-[44px] shrink-0 place-items-center rounded-xl bg-[#fdeef3] text-magenta">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none">
+            <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+            <path d="M3 10h18" stroke="currentColor" stroke-width="1.8"></path>
+          </svg>
+        </span>
+        <div>
+          <h2 class="font-sans text-[14px] font-bold text-ciruela">Formas de pago</h2>
+          <p class="mt-1 flex flex-wrap gap-1">
+            <span class="rounded-lg bg-[#fdeef3] px-2 py-1 font-sans text-[13px] font-semibold text-purpura">Binance</span>
+            <span class="rounded-lg bg-[#fdeef3] px-2 py-1 font-sans text-[13px] font-semibold text-purpura">Pago móvil</span>
+            <span class="rounded-lg bg-[#fdeef3] px-2 py-1 font-sans text-[13px] font-semibold text-purpura">Transferencia</span>
+            <span class="rounded-lg bg-[#fdeef3] px-2 py-1 font-sans text-[13px] font-semibold text-purpura">Zelle</span>
+            <span class="rounded-lg bg-[#fdeef3] px-2 py-1 font-sans text-[13px] font-semibold text-purpura">Efectivo</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex gap-3 border-b border-ciruela/10 py-3">
+        <span class="grid h-[44px] w-[44px] shrink-0 place-items-center rounded-xl bg-[#fdeef3] text-magenta">
+          <Icono nombre="confirmar" tamano={18} />
+        </span>
+        <div>
+          <h2 class="font-sans text-[14px] font-bold text-ciruela">Precios al mayor</h2>
+          <p class="font-sans text-[14px] leading-snug text-ciruela/80">
+            Tenemos precios especiales al mayor. Escríbenos por WhatsApp y te los enviamos.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex gap-3 py-3">
+        <span class="grid h-[44px] w-[44px] shrink-0 place-items-center rounded-xl bg-[#fdeef3] text-magenta">
+          <Icono nombre="tiktok" tamano={18} />
+        </span>
+        <div>
+          <h2 class="font-sans text-[14px] font-bold text-ciruela">Redes</h2>
+          {
+            tienda.tiktok ? (
+              <a
+                href={`https://www.tiktok.com/@${tienda.tiktok}`}
+                target="_blank"
+                rel="noopener"
+                class="presionable inline-flex min-h-[44px] items-center font-sans text-[14px] font-semibold text-purpura"
+              >
+                TikTok @{tienda.tiktok}
+              </a>
+            ) : (
+              <p class="font-sans text-[14px] text-ciruela/70">[marcador]</p>
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    {
+      enlaceConsulta && (
+        <a
+          href={enlaceConsulta}
+          target="_blank"
+          rel="noopener"
+          class="presionable mt-4 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl bg-magenta font-sans text-[16px] font-bold text-crema"
+        >
+          <Icono nombre="whatsapp" tamano={20} />
+          Escribir por WhatsApp
+        </a>
+      )
+    }
+
+    <h2 id="preguntas" class="mt-10 scroll-mt-4 font-didot text-[24px] leading-tight text-ciruela">Preguntas frecuentes</h2>
 
     <div class="mt-3 border-t border-ciruela/15">
       {
