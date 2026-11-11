@@ -13,7 +13,7 @@ export const GRUPO =
 
 export const PASO =
   "presionable flex h-[44px] w-[44px] shrink-0 items-center justify-center text-magenta " +
-  "disabled:cursor-not-allowed disabled:text-magenta/30";
+  "disabled:cursor-not-allowed disabled:text-magenta/55";
 
 export const CAMPO =
   "h-[44px] w-[44px] shrink-0 border-0 bg-transparent p-0 text-center " +

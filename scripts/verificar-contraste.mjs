@@ -49,7 +49,9 @@ function usadas(dir, encontradas = new Map()) {
     }
     if (!/\.(astro|css|js|ts)$/.test(entrada.name)) continue;
     const texto = fs.readFileSync(ruta, "utf8");
-    for (const m of texto.matchAll(/text-(ciruela|purpura|magenta|crema)(?:\/(\d{1,3}))?\b/g)) {
+    /* Los «disabled:» no cuentan: un control apagado está exento del mínimo de
+       contraste (WCAG 1.4.3). Sí cuentan placeholder:, hover:, etc. */
+    for (const m of texto.matchAll(/(?<!disabled:)text-(ciruela|purpura|magenta|crema)(?:\/(\d{1,3}))?\b/g)) {
       const clave = `${m[1]}/${m[2] ?? "100"}`;
       if (!encontradas.has(clave)) encontradas.set(clave, new Set());
       encontradas.get(clave).add(path.relative(process.cwd(), ruta));
