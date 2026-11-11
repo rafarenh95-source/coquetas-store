@@ -75,7 +75,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
               </svg>
               <span
                 data-bolsa-cuenta
-                class="absolute -top-1 -right-1 hidden min-h-[18px] min-w-[18px] items-center justify-center rounded-full bg-magenta px-1 text-[11px] font-bold text-crema tabular-nums [&:not(.hidden)]:flex"
+                class="absolute -top-1 -right-[2px] hidden min-h-[18px] min-w-[18px] items-center justify-center rounded-full bg-magenta px-1 text-[11px] font-bold text-crema tabular-nums [&:not(.hidden)]:flex"
                 >0</span
               >
             </button>
@@ -111,7 +111,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
         </div>
 
         <div
-          class="contenedor -mt-4 rounded-t-3xl bg-[#fffaf7] pt-5"
+          class="contenedor -mt-4 rounded-t-3xl bg-crema pt-5"
           data-producto
           data-id={p.producto_id}
           data-nombre={p.nombre}
@@ -124,7 +124,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
             {CATEGORIAS[p.categoria as keyof typeof CATEGORIAS]}{p.marca && <Fragment> · {p.marca}</Fragment>}
           </p>
           <h1 class="mt-1 font-didot text-[30px] leading-tight text-ciruela">{p.nombre}</h1>
-          {p.presentacion && <p class="mt-1 font-sans text-[14px] text-ciruela/60">{p.presentacion}</p>}
+          {p.presentacion && <p class="mt-1 font-sans text-[14px] text-ciruela/70">{p.presentacion}</p>}
 
           <div class="mt-3">
             <Precio
@@ -146,7 +146,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
             )
           }
 
-          <p class="mt-3 font-sans text-[12px] text-ciruela/60">
+          <p class="mt-3 font-sans text-[12px] text-ciruela/70">
             {
               p.foto_editada
                 ? p.tipo_variante === "color"
@@ -172,7 +172,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
               hidden
               role="group"
               aria-label={`${p.nombre} en tu pedido`}
-              class="flex min-h-[52px] items-stretch justify-between rounded-2xl bg-[#fdeef3] [&[hidden]]:hidden"
+              class="flex min-h-[52px] items-stretch justify-between rounded-2xl bg-papel [&[hidden]]:hidden"
             >
               <button
                 type="button"
@@ -197,7 +197,7 @@ const bloques = [{ titulo: "Cuánto rinde", texto: p.rendimiento }].filter((b) =
                 <Fragment set:html={ICONO_MAS.replaceAll('"14"', '"18"')} />
               </button>
             </div>
-            <p class="mt-2 font-sans text-[13px] text-ciruela/60">
+            <p class="mt-2 font-sans text-[13px] text-ciruela/70">
               Te confirmamos disponibilidad y cuándo lo tienes.
             </p>
           </div>

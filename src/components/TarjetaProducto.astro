@@ -75,7 +75,7 @@ const nombreGrupo = `${p.tipo_variante === "color" ? "Tono" : p.tipo_variante ==
   <div class="card-texto mt-2 flex min-w-0 flex-1 flex-col gap-1 px-1 pb-1">
     <a href={`/producto/${p.producto_id.toLowerCase()}`} class="flex flex-col gap-[2px]">
       <h3 class="font-sans text-[15px] leading-snug font-semibold text-ciruela">{p.nombre}</h3>
-      {p.presentacion && <p class="font-sans text-[13px] leading-snug text-ciruela/60">{p.presentacion}</p>}
+      {p.presentacion && <p class="font-sans text-[13px] leading-snug text-ciruela/70">{p.presentacion}</p>}
       <Precio divisa={p.precio_divisa} referencia={p.precio_referencia} nota={p.nota_precio} />
     </a>
 

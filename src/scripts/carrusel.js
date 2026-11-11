@@ -100,8 +100,8 @@ function iniciar(raiz) {
   /* data-sobre-oscuro: el carrusel va sobre un bloque de color (la vitrina
      de Destacados) y los puntos pasan a crema para que se sigan viendo. */
   const sobreOscuro = raiz.hasAttribute("data-sobre-oscuro");
-  const PUNTO_ACTUAL = sobreOscuro ? "bg-crema" : "bg-ciruela";
-  const PUNTO_RESTO = sobreOscuro ? "bg-crema/35" : "bg-ciruela/25";
+  const PUNTO_ACTUAL = sobreOscuro ? "bg-crema" : "bg-purpura";
+  const PUNTO_RESTO = sobreOscuro ? "bg-crema/35" : "bg-purpura/25";
 
   const puntos = Array.from({ length: n }, () => {
     const p = document.createElement("span");

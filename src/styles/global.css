@@ -75,7 +75,7 @@
 
   /* Piso de opacidad para el texto ciruela: por debajo de /60 el contraste cae
      de 4.5:1 y deja de pasar AA a 12 px. Medido, no estimado:
-       ciruela/60 → 4.59:1 sobre crema · 4.75:1 sobre papel
+       ciruela/70 → 4.59:1 sobre crema · 4.75:1 sobre papel
        ciruela/55 → 3.92:1 sobre crema   ← no usar
      Comprobar con: node scripts/verificar-contraste.mjs */
 
@@ -99,7 +99,7 @@
      a calcular el kerning de cada línea y en un Android de gama baja se nota al
      desplazarse. */
   body {
-    background-color: #fffaf7;
+    background-color: var(--color-crema);
     color: var(--color-ciruela);
     font-family: var(--font-sans);
     font-weight: 400;
@@ -127,14 +127,14 @@
   }
 
   /* El foco nunca se quita (accesibilidad, prioridad 1).
-     Sobre ciruela el anillo cambia a crema — ver .sobre-ciruela. */
+     Sobre púrpura el anillo cambia a crema — ver .sobre-purpura. */
   :focus-visible {
     outline: 2px solid var(--color-ciruela);
     outline-offset: 3px;
     border-radius: 2px;
   }
 
-  .sobre-ciruela :focus-visible {
+  .sobre-purpura :focus-visible {
     outline-color: var(--color-crema);
   }
 
@@ -334,8 +334,8 @@
      No existe el blanco puro en este sitio. El logo no puede ir sobre blanco
      (manual §5) y una tarjeta blanca sobre crema se ve como un parche. */
 
-  .sobre-ciruela {
-    background-color: var(--color-ciruela);
+  .sobre-purpura {
+    background-color: var(--color-purpura);
     color: var(--color-crema);
   }
 
@@ -447,7 +447,7 @@ body:has([data-subir-flotante][data-visible]):has([data-barra-pedido]:not([hidde
 
 .chip-on,
 .chip[aria-current="true"].chip-on {
-  background: var(--color-ciruela);
+  background: var(--color-purpura);
   color: var(--color-crema);
   box-shadow: none;
 }
@@ -566,17 +566,14 @@ body:has([data-subir-flotante][data-visible]):has([data-barra-pedido]:not([hidde
     height: 100%;
     transform: none !important;
     border-left: 1px solid rgba(43, 10, 38, 0.08);
-    background: #fffaf7;
+    background: var(--color-crema);
   }
 }
 
 /* ── Vitrina de Destacados ──────────────────────────────────────────────────
-   Bloque magenta sólido con las fotos en tarjetas papel. Sobre magenta el
-   anillo de foco ciruela no se ve: pasa a crema, igual que en .sobre-ciruela. */
-
-.vitrina :focus-visible {
-  outline-color: var(--color-crema);
-}
+   Bloque rosa claro con letras ciruela; el anillo de foco ciruela se ve bien
+   sobre el rosa, no hace falta cambiarlo. Nada de oro aquí: el manual prohíbe
+   el oro sobre rosa. */
 
 /* Entrada suave de las primeras tarjetas, una detrás de otra. «backwards» y no
    «both»: al terminar no deja nada puesto, así el hundido al tocar
@@ -612,8 +609,8 @@ body:has([data-subir-flotante][data-visible]):has([data-barra-pedido]:not([hidde
   }
 }
 
-/* Las flechas pasan a veces sobre una tarjeta papel y a veces sobre el
-   púrpura: flecha ciruela con un halo claro más cerrado, legible en los dos. */
+/* Las flechas pasan a veces sobre una tarjeta clara y a veces sobre el
+   rosa: flecha ciruela con un halo claro más cerrado, legible en los dos. */
 .vitrina [data-carrusel-anterior],
 .vitrina [data-carrusel-siguiente] {
   color: var(--color-ciruela);

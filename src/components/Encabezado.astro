@@ -26,7 +26,7 @@ const icono =
   "presionable inline-flex h-[44px] w-[44px] items-center justify-center rounded-xl bg-papel text-ciruela shadow-[0_0_0_1px_rgba(43,10,38,0.08)]";
 ---
 
-<header class="sticky top-0 z-40 border-b border-ciruela/10 bg-[#fffaf7] pt-[env(safe-area-inset-top)]">
+<header class="sticky top-0 z-40 border-b border-ciruela/10 bg-crema pt-[env(safe-area-inset-top)]">
   <div class="contenedor flex items-center gap-2 py-2 min-[1100px]:gap-4 min-[1100px]:py-3">
     <a href="/" class="shrink-0" aria-label={`${tienda.nombre} — inicio`}>
       <span class="min-[1100px]:hidden">
@@ -89,7 +89,7 @@ const icono =
         </svg>
         <span
           data-bolsa-cuenta
-          class="absolute -top-1 -right-1 hidden min-h-[18px] min-w-[18px] items-center justify-center rounded-full bg-magenta px-1 text-[11px] font-bold text-crema tabular-nums [&:not(.hidden)]:flex"
+          class="absolute -top-1 -right-[2px] hidden min-h-[18px] min-w-[18px] items-center justify-center rounded-full bg-magenta px-1 text-[11px] font-bold text-crema tabular-nums [&:not(.hidden)]:flex"
           >0</span
         >
       </button>
@@ -101,7 +101,7 @@ const icono =
     <div
       class="flex h-[48px] items-center gap-2 rounded-2xl bg-papel px-3 shadow-[0_0_0_1px_rgba(43,10,38,0.08)] focus-within:shadow-[0_0_0_2px_var(--color-magenta)]"
     >
-      <Icono nombre="buscar" tamano={18} class="shrink-0 text-ciruela/60" />
+      <Icono nombre="buscar" tamano={18} class="shrink-0 text-ciruela/70" />
       <input
         id="buscar-catalogo-movil"
         name="buscar"

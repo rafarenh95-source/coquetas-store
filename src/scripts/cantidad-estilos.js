@@ -9,7 +9,7 @@
  */
 
 export const GRUPO =
-  "inline-flex shrink-0 items-stretch rounded-2xl bg-[#fdeef3]";
+  "inline-flex shrink-0 items-stretch rounded-2xl bg-papel";
 
 export const PASO =
   "presionable flex h-[44px] w-[44px] shrink-0 items-center justify-center text-magenta " +

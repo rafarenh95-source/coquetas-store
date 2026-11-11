@@ -138,12 +138,17 @@ el navegador que ningún importe visible se quede sin su símbolo de moneda.
 
 ## 11 de noviembre de 2026 (rama `destacados-llamativos`)
 
-- **Destacados como vitrina:** bloque magenta (pedido de la dueña), título grande en crema, fotos en tarjetas papel con
+- **Destacados como vitrina:** bloque rosa claro con letras ciruela (antes probado en magenta), título grande, fotos en tarjetas con
   entrada suave. Los 20 productos, el orden, «solo la foto» y el avance (1 s, bucle) no cambiaron.
 - **Pedido:** la vista previa del mensaje salió del pie de la bolsa. «Confirmar pedido» abre la
   ventana «Confirma tu pedido»; de ahí «Enviar por WhatsApp» o «Volver y editar».
-- Prueba nueva: `node scripts/qa-pedido.mjs`. Contraste: siguen fallando `ciruela/50` y
-  `magenta/30`, que ya fallaban antes (no son de este cambio).
+- **Colores (auditoría y decisiones de la dueña):** fondo crema en vez del casi blanco, fuera el
+  rosado #FDEEF3, ciruela solo para textos y títulos, Destacados en rosa claro, aro dorado en los
+  círculos de categoría. Arreglados los textos que no se leían bien (buscador, números de
+  categoría, contador de la barra, «−» apagado) y la barra «Ver pedido», que partía el texto.
+  El globito de la bolsa ya no se sale de la pantalla a 320 px. 0 fallas de contraste medidas.
+- Prueba nueva: `node scripts/qa-pedido.mjs`. `npm run contraste` pasa entero (ya no quedan `ciruela/50`
+  ni `magenta/30`).
 
 ## Cosas que conviene no repetir
 

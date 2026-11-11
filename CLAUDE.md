@@ -85,9 +85,10 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   rehacerlos para v2. **Destacados** (portada v2) = carrusel con SOLO la foto (sin nombre, precio ni
   tonos; la dueña probó con nombre y prefirió sin), 20 productos de la lista `DESTACADOS` en
   `Catalogo.astro`, avance solo con 1 s de pausa y vuelta sin fin (`scripts/carrusel.js`).
-  Se ve como **vitrina** (11 nov. 2026): bloque **magenta** sólido (pedido de la dueña, igual que los botones; a sangre en el teléfono, redondeado
-  desde 640 px), «Selección de Coquetas» + «Destacados» en Didot 34/44 px crema, fotos en tarjetas
-  papel con entrada suave (sin ella con movimiento reducido); puntos en crema con `data-sobre-oscuro`.
+  Se ve como **vitrina** (11 nov. 2026): bloque **rosa claro** sólido con letras ciruela (a sangre en el
+  teléfono, redondeado desde 640 px), «Selección de Coquetas» + «Destacados» en Didot 34/44 px, fotos
+  en tarjetas #FDF1EC (el mismo tono del fondo de las fotos, sin marco) con entrada suave (sin ella con
+  movimiento reducido). Nada de oro dentro (el manual prohíbe oro sobre rosa).
   **Pedido** (11 nov. 2026, como en Market Planet): la bolsa ya no muestra el mensaje; el botón magenta
   «Confirmar pedido» abre el `<dialog data-confirmar>` «Confirma tu pedido» (mensaje armado al
   confirmar, con el tono; «Enviar por WhatsApp» abre wa.me en pestaña nueva y cierra; «Volver y
@@ -101,6 +102,17 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
 
 - Manual de marca: `manual_de_identidad_visual_coquetas.md`. Colores crema, papel, ciruela, púrpura,
   magenta (magenta solo para la acción principal). GFS Didot solo en títulos ≥ 24 px.
+- **Color (decisiones de la dueña, 11 nov. 2026):** lienzo **crema** (body, encabezado, bolsa, ficha;
+  ya no el casi blanco #FFFAF7), tarjetas y pastillas **papel**; el rosado inventado #FDEEF3 ya no
+  existe. **Ciruela solo para textos y títulos** (no como fondo): la categoría activa, el aviso
+  flotante (`.sobre-purpura`) y el salto al contenido van en púrpura; el botón de buscar del menú en
+  magenta; los puntos del carrusel en púrpura. Texto secundario como mínimo `ciruela/70` (5,51:1
+  sobre crema; `/60` no pasa). **Dorado** solo en el aro de los círculos de categoría (probado en
+  tarjetas, ficha y encabezado y descartado). Magenta y rosa de la marca para comprar.
+  Contraste medido con el píxel pintado: `node revision/auditoria-pixel.mjs` (los colores con
+  transparencia de Tailwind 4 son oklab y no se pueden leer del CSS).
+- Barra «Ver pedido»: textos sin partirse; por debajo de 380 px se oculta el cuadro con el número
+  (repite «N productos») para que quepan el total y el botón.
 - Cantidad: selector «− número +» (`Cantidad.astro` + `scripts/cantidad.js`, clases compartidas en
   `cantidad-estilos.js`) en tarjeta, ficha y cada fila de la bolsa. Agregar suma la cantidad elegida
   y ya **no abre la bolsa**: muestra un aviso «N unidades agregadas» con botón «Ver bolsa».

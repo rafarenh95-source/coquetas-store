@@ -36,10 +36,10 @@ const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
    de todas las categorías, en este orden. Lista aparte y no la bandera
    «destacado» de los datos, que sigue sirviendo para otras cosas. Avanza
    solo con 1 s de pausa y da la vuelta sin fin: scripts/carrusel.js.
-   Se presenta como vitrina: bloque magenta sólido (pedido de la dueña,
-   el mismo color de los botones, por coherencia de marca) (a sangre en el teléfono,
-   redondeado desde 640 px), título grande en crema y las fotos en tarjetas
-   papel que entran suavemente (estilos «.vitrina» en global.css). */
+   Se presenta como vitrina: bloque rosa claro con letras ciruela (la tríada
+   del manual para catálogo; el magenta queda solo para comprar) (a sangre en el teléfono,
+   redondeado desde 640 px), título grande y las fotos en tarjetas del
+   mismo tono que el fondo de las fotos (#FDF1EC, sin marco) que entran suavemente (estilos «.vitrina» en global.css). */
 const DESTACADOS = [
   "MG-ESM-SEMI-10",
   "MG-GEL-COLOR-15",
@@ -97,7 +97,7 @@ const NOMBRES: Record<string, string> = {
   <h1 class="sr-only">Catálogo de Coquetas Store</h1>
 
   <div class="contenedor pt-3">
-    <p class="inline-flex items-center gap-2 rounded-2xl bg-[#fdeef3] px-3 py-2 font-sans text-[13px] font-semibold text-purpura">
+    <p class="inline-flex items-center gap-2 rounded-2xl bg-papel px-3 py-2 font-sans text-[13px] font-semibold text-purpura">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none">
         <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle>
         <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
@@ -132,16 +132,15 @@ const NOMBRES: Record<string, string> = {
           role="region"
           aria-roledescription="carrusel"
           aria-labelledby="titulo-destacados"
-          data-sobre-oscuro
-          class="vitrina -mx-[var(--sangria)] mt-5 bg-magenta pt-3 pb-2 text-crema sm:mx-0 sm:overflow-hidden sm:rounded-3xl sm:pt-4"
+          class="vitrina -mx-[var(--sangria)] mt-5 bg-rosa-claro pt-3 pb-2 text-ciruela sm:mx-0 sm:overflow-hidden sm:rounded-3xl sm:pt-4"
         >
           <div class="px-[var(--sangria)] sm:px-3">
-            <p class="font-sans text-[12px] leading-none font-bold tracking-[0.16em] text-crema uppercase">
+            <p class="font-sans text-[12px] leading-none font-bold tracking-[0.16em] text-ciruela uppercase">
               Selección de Coquetas
             </p>
             <h2
               id="titulo-destacados"
-              class="mt-1 font-didot text-[34px] leading-none text-crema sm:text-[44px]"
+              class="mt-1 font-didot text-[34px] leading-none text-ciruela sm:text-[44px]"
             >
               Destacados
             </h2>
@@ -162,7 +161,7 @@ const NOMBRES: Record<string, string> = {
                 >
                   <a
                     href={`/producto/${p.producto_id.toLowerCase()}`}
-                    class="presionable group block w-full overflow-hidden rounded-2xl bg-papel"
+                    class="presionable group block w-full overflow-hidden rounded-2xl bg-[#fdf1ec]"
                   >
                     <div data-carrusel-foto class="aspect-square overflow-hidden">
                       <img
@@ -258,7 +257,7 @@ const NOMBRES: Record<string, string> = {
         <button type="button" data-orden-modo="az" aria-pressed="true" class="presionable min-h-[44px] rounded-lg px-3 font-sans text-[14px] font-semibold">
           A–Z
         </button>
-        <button type="button" data-orden-modo="precio" aria-pressed="false" class="presionable min-h-[44px] rounded-lg px-3 font-sans text-[14px] font-semibold text-ciruela/60">
+        <button type="button" data-orden-modo="precio" aria-pressed="false" class="presionable min-h-[44px] rounded-lg px-3 font-sans text-[14px] font-semibold text-ciruela/70">
           Precio
         </button>
       </div>
@@ -355,9 +354,9 @@ const NOMBRES: Record<string, string> = {
       ordenGrupo?.querySelectorAll<HTMLButtonElement>("[data-orden-modo]").forEach((b) => {
         const activo = b.dataset.ordenModo === orden;
         b.setAttribute("aria-pressed", String(activo));
-        b.classList.toggle("bg-[#fdeef3]", activo);
+        b.classList.toggle("bg-crema", activo);
         b.classList.toggle("text-magenta", activo);
-        b.classList.toggle("text-ciruela/60", !activo);
+        b.classList.toggle("text-ciruela/70", !activo);
       });
     }
 

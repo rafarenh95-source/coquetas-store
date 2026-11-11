@@ -289,7 +289,7 @@ function pintar() {
     const datos = nodo("div", "min-w-0 flex-1");
     datos.append(
       nodo("p", "font-sans text-[15px] leading-tight font-semibold text-ciruela", i.nombre),
-      nodo("p", "font-sans text-[13px] leading-snug text-ciruela/60", detalle)
+      nodo("p", "font-sans text-[13px] leading-snug text-ciruela/70", detalle)
     );
     datos.append(
       nodo(
@@ -303,7 +303,7 @@ function pintar() {
       : `$${dinero.format(i.referencia * i.cantidad)} en bolívares`;
     datos.append(nodo("p", "font-sans text-[12px] leading-snug text-ciruela/70 tabular-nums", enBolivares));
     if (i.cantidad > 1) {
-      datos.append(nodo("p", "font-sans text-[12px] text-ciruela/60 tabular-nums", `$${dinero.format(i.precio)} c/u`));
+      datos.append(nodo("p", "font-sans text-[12px] text-ciruela/70 tabular-nums", `$${dinero.format(i.precio)} c/u`));
     }
 
     /* El mismo selector de la tarjeta y la ficha. */
