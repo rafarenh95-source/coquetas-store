@@ -35,7 +35,10 @@ const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
    dueña: sin nombre, precio ni tonos; tocarla abre la ficha). 20 productos
    de todas las categorías, en este orden. Lista aparte y no la bandera
    «destacado» de los datos, que sigue sirviendo para otras cosas. Avanza
-   solo con 1 s de pausa y da la vuelta sin fin: scripts/carrusel.js. */
+   solo con 1 s de pausa y da la vuelta sin fin: scripts/carrusel.js.
+   Se presenta como vitrina: bloque púrpura sólido (a sangre en el teléfono,
+   redondeado desde 640 px), título grande en crema y las fotos en tarjetas
+   papel que entran suavemente (estilos «.vitrina» en global.css). */
 const DESTACADOS = [
   "MG-ESM-SEMI-10",
   "MG-GEL-COLOR-15",
@@ -128,14 +131,25 @@ const NOMBRES: Record<string, string> = {
           role="region"
           aria-roledescription="carrusel"
           aria-labelledby="titulo-destacados"
-          class="mt-6"
+          data-sobre-oscuro
+          class="vitrina -mx-[var(--sangria)] mt-5 bg-purpura pt-3 pb-2 text-crema sm:mx-0 sm:overflow-hidden sm:rounded-3xl sm:pt-4"
         >
-          <h2 id="titulo-destacados" class="mb-2 font-didot text-[24px] leading-tight text-ciruela">Destacados</h2>
-          <div class="relative -mx-[var(--sangria)]">
+          <div class="px-[var(--sangria)] sm:px-3">
+            <p class="font-sans text-[12px] leading-none font-bold tracking-[0.16em] text-crema uppercase">
+              Selección de Coquetas
+            </p>
+            <h2
+              id="titulo-destacados"
+              class="mt-1 font-didot text-[34px] leading-none text-crema sm:text-[44px]"
+            >
+              Destacados
+            </h2>
+          </div>
+          <div class="relative mt-2">
             <div
               data-carrusel-pista
               aria-live="off"
-              class="sin-riel flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-[var(--sangria)] scroll-px-[var(--sangria)] md:gap-3"
+              class="sin-riel flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-[var(--sangria)] py-1 scroll-px-[var(--sangria)] sm:px-3 sm:scroll-px-3 md:gap-3"
             >
               {destacados.map((p, i) => (
                 <div
@@ -170,7 +184,7 @@ const NOMBRES: Record<string, string> = {
             <FlechaCarrusel direccion="anterior" etiqueta="Destacado anterior" />
             <FlechaCarrusel direccion="siguiente" etiqueta="Destacado siguiente" />
           </div>
-          <div data-carrusel-puntos aria-hidden="true" hidden class="mt-2 flex justify-center gap-[6px]"></div>
+          <div data-carrusel-puntos aria-hidden="true" hidden class="mt-1 flex justify-center gap-[6px]"></div>
         </div>
       )
     }

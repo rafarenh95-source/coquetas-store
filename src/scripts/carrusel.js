@@ -97,9 +97,15 @@ function iniciar(raiz) {
   }
 
   /* ── puntos ──────────────────────────────────────────────────────────── */
+  /* data-sobre-oscuro: el carrusel va sobre un bloque de color (la vitrina
+     de Destacados) y los puntos pasan a crema para que se sigan viendo. */
+  const sobreOscuro = raiz.hasAttribute("data-sobre-oscuro");
+  const PUNTO_ACTUAL = sobreOscuro ? "bg-crema" : "bg-ciruela";
+  const PUNTO_RESTO = sobreOscuro ? "bg-crema/35" : "bg-ciruela/25";
+
   const puntos = Array.from({ length: n }, () => {
     const p = document.createElement("span");
-    p.className = "h-[6px] w-[6px] rounded-full bg-ciruela/25 transition-colors duration-[var(--paso)]";
+    p.className = `h-[6px] w-[6px] rounded-full ${PUNTO_RESTO} transition-colors duration-[var(--paso)]`;
     puntosCaja?.appendChild(p);
     return p;
   });
@@ -107,8 +113,8 @@ function iniciar(raiz) {
   function pintarPuntos() {
     const actual = indiceActual();
     puntos.forEach((p, i) => {
-      p.classList.toggle("bg-ciruela", i === actual);
-      p.classList.toggle("bg-ciruela/25", i !== actual);
+      p.classList.toggle(PUNTO_ACTUAL, i === actual);
+      p.classList.toggle(PUNTO_RESTO, i !== actual);
     });
     pintarFlechas();
   }

@@ -569,3 +569,53 @@ body:has([data-subir-flotante][data-visible]):has([data-barra-pedido]:not([hidde
     background: #fffaf7;
   }
 }
+
+/* ── Vitrina de Destacados ──────────────────────────────────────────────────
+   Bloque púrpura sólido con las fotos en tarjetas papel. Sobre púrpura el
+   anillo de foco ciruela no se ve: pasa a crema, igual que en .sobre-ciruela. */
+
+.vitrina :focus-visible {
+  outline-color: var(--color-crema);
+}
+
+/* Entrada suave de las primeras tarjetas, una detrás de otra. «backwards» y no
+   «both»: al terminar no deja nada puesto, así el hundido al tocar
+   (.presionable) sigue funcionando. Las copias de la vuelta sin fin no entran.
+   Con movimiento reducido no hay entrada: las tarjetas están ahí desde el
+   principio. */
+@media (prefers-reduced-motion: no-preference) {
+  .vitrina [data-carrusel-diapositiva]:not([data-copia]) > a {
+    animation: vitrina-entra 480ms var(--curva) backwards;
+  }
+
+  .vitrina [data-carrusel-diapositiva]:nth-child(2) > a {
+    animation-delay: 70ms;
+  }
+
+  .vitrina [data-carrusel-diapositiva]:nth-child(3) > a {
+    animation-delay: 140ms;
+  }
+
+  .vitrina [data-carrusel-diapositiva]:nth-child(4) > a {
+    animation-delay: 210ms;
+  }
+
+  .vitrina [data-carrusel-diapositiva]:nth-child(5) > a {
+    animation-delay: 280ms;
+  }
+}
+
+@keyframes vitrina-entra {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Las flechas pasan a veces sobre una tarjeta papel y a veces sobre el
+   púrpura: flecha ciruela con un halo claro más cerrado, legible en los dos. */
+.vitrina [data-carrusel-anterior],
+.vitrina [data-carrusel-siguiente] {
+  color: var(--color-ciruela);
+  filter: drop-shadow(0 0 1px #fffaf7) drop-shadow(0 0 2px #fffaf7) drop-shadow(0 0 5px #fffaf7);
+}
