@@ -271,7 +271,7 @@ const NOMBRES: Record<string, string> = {
       id="grilla"
       role="region"
       aria-labelledby="categoria-nombre"
-      class="modo-lista mt-3 flex flex-col gap-2"
+      class="modo-cuadricula mt-3"
     >
       {
         productos.map((p) => (
@@ -395,8 +395,6 @@ const NOMBRES: Record<string, string> = {
 
       vacio?.classList.toggle("hidden", visibles.length > 0);
       ordenGrupo?.classList.toggle("hidden", Boolean(textoBusqueda));
-      grilla!.classList.toggle("modo-lista", !textoBusqueda);
-      grilla!.classList.toggle("modo-cuadricula", Boolean(textoBusqueda));
 
       const etiqueta = textoBusqueda ? `«${textoMostrado}»` : (NOMBRES[categoriaActual] ?? categoriaActual);
       const unidad = visibles.length === 1 ? "producto" : "productos";

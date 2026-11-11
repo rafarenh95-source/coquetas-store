@@ -45,7 +45,7 @@ const enTarjeta = modo === "tarjeta";
    para el dedo, también en la tarjeta: antes eran 30 + 8 = 38, y entre catorce
    tonos seguidos se tocaba el vecino. */
 const medidaColor = "h-[36px] w-[36px]";
-const medidaChip = enTarjeta ? "min-h-[36px] px-2 py-1" : "min-h-[40px] px-2 py-1";
+const medidaChip = enTarjeta ? "min-h-[36px] px-[10px] py-1" : "min-h-[40px] px-2 py-1";
 
 const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${variantes
   .map((v) => v.tono)
@@ -81,7 +81,8 @@ const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${varia
         {/* En la tarjeta, si son colores, van en una sola fila con scroll
             horizontal: con 14 tonos, envolver los deja en cuatro filas y la
             tarjeta crece hasta desentonar con las vecinas de una tarjeta.
-            Los chips de texto (aroma, código) sí envuelven -- son pocos.
+            Los chips de texto (aroma, código), igual: en dos columnas, tres chips
+            apilados estiraban la tarjeta y descuadraban la fila.
 
             El -mx-2 px-2 no es decorativo: sin él, el riel de scroll no
             reserva margen propio y el último tono queda pegado al borde de
@@ -95,7 +96,7 @@ const resumen = `${variantes.length} ${esColor ? "tonos" : "variantes"}: ${varia
           data-selector-variante
           class:list={[
             "flex items-center gap-1",
-            enTarjeta && esColor
+            enTarjeta
               ? "sin-riel -mx-2 flex-nowrap overflow-x-auto overscroll-x-contain px-2 py-[4px]"
               : "flex-wrap",
           ]}
@@ -144,7 +145,7 @@ class:list={[
                   // vez de quedarse dentro. break-words parte la palabra si no
                   // entra; leading-tight controla el alto cuando pasa a dos
                   // líneas.
-                  "min-w-0 text-center leading-tight",
+                  enTarjeta ? "shrink-0 whitespace-nowrap text-center leading-tight" : "min-w-0 text-center leading-tight",
                   "duration-[var(--paso-rapido)] border-ciruela/25 text-ciruela/80",
                   "hover:border-ciruela aria-checked:border-ciruela aria-checked:text-ciruela",
                   !v.disponible && "cursor-not-allowed opacity-35",

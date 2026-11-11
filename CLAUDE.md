@@ -111,6 +111,13 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   tarjetas, ficha y encabezado y descartado). Magenta y rosa de la marca para comprar.
   Contraste medido con el píxel pintado: `node revision/auditoria-pixel.mjs` (los colores con
   transparencia de Tailwind 4 son oklab y no se pueden leer del CSS).
+- **Categorías en tarjetas verticales** (11 nov. 2026, pedido de la dueña: en la lista la foto medía 76 px):
+  `#grilla` siempre en `modo-cuadricula` (2 columnas; 3 desde 640 px), foto de 106 a 211 px según el
+  ancho. Los tonos de la tarjeta (círculos y chips de texto) van en UNA fila deslizable; la tarjeta
+  lleva `overflow-x-clip` (sin eso la página se movía 1 px a 320). Las reglas `#grilla.modo-lista`
+  de global.css quedan sin uso.
+- Computadora: el panel «Tu pedido» se queda fijo al bajar (`top: 0` va después de `inset: auto`,
+  que antes lo anulaba; el fallo ya estaba publicado).
 - Barra «Ver pedido»: textos sin partirse; por debajo de 380 px se oculta el cuadro con el número
   (repite «N productos») para que quepan el total y el botón.
 - Cantidad: selector «− número +» (`Cantidad.astro` + `scripts/cantidad.js`, clases compartidas en

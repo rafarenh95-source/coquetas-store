@@ -544,11 +544,11 @@ body:has([data-subir-flotante][data-visible]):has([data-barra-pedido]:not([hidde
 
   .bolsa-panel {
     position: sticky;
-    top: 0;
     z-index: 20;
     height: 100dvh;
     width: auto;
     inset: auto;
+    top: 0; /* va después de «inset»: antes «inset: auto» lo pisaba y el panel no se quedaba fijo */
     display: block;
     overflow: hidden;
     pointer-events: auto;
