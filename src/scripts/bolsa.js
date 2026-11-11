@@ -8,6 +8,9 @@
  * El mensaje incluye el tono elegido, no solo el nombre del producto. Si no, la
  * tienda recibe pedidos ambiguos y hay que volver a preguntar — justo el trámite
  * que el manual dice que hace desistir a la clienta.
+ *
+ * El mensaje no se pinta en la bolsa: se arma al tocar «Confirmar pedido», que
+ * abre la ventana «Confirma tu pedido» con el mensaje tal como va a llegar.
  */
 
 import { proyectar, elastico, resorte, rastreador } from "./resorte.js";
@@ -399,17 +402,9 @@ function pintar() {
   if (barra) barra.hidden = unidades === 0;
   const barraDivisa = document.querySelector("[data-barra-divisa]");
   if (barraDivisa) barraDivisa.textContent = `$${dinero.format(subtotal)}`;
-  const preview = document.querySelector("[data-bolsa-preview]");
-  if (preview) preview.textContent = unidades > 0 ? construirMensaje(items) : "";
 
-  const pedir = document.querySelector("[data-bolsa-pedir]");
-  if (pedir instanceof HTMLAnchorElement) {
-    const numero = pedir.dataset.whatsapp;
-    if (numero) {
-      pedir.href = `https://wa.me/${numero}?text=${encodeURIComponent(construirMensaje(items))}`;
-    }
-  }
-
+  /* Sin número de WhatsApp no hay ventana de confirmación: queda «Copiar el
+     pedido», con el mensaje ya listo para el portapapeles. */
   const copiar = document.querySelector("[data-bolsa-copiar]");
   if (copiar) copiar.dataset.mensaje = construirMensaje(items);
 }
@@ -545,6 +540,37 @@ function cerrar(velocidad = 0) {
   if (ultimoFoco instanceof HTMLElement) ultimoFoco.focus();
 }
 
+/* ── confirmar el pedido ────────────────────────────────────────────────────
+   El mensaje se arma aquí, al confirmar, y no antes: así siempre es el de la
+   bolsa tal como está en ese momento. «Enviar» es un enlace de verdad a
+   wa.me (pestaña nueva): al ser el propio toque el que lo abre, el navegador
+   no lo bloquea como ventana emergente. */
+
+const confirmarEl = () => document.querySelector("dialog[data-confirmar]");
+
+function abrirConfirmacion() {
+  const ventana = confirmarEl();
+  const items = leer();
+  if (!ventana || ventana.open || items.length === 0) return;
+
+  const mensaje = construirMensaje(items);
+  const burbuja = ventana.querySelector("[data-confirmar-mensaje]");
+  const enviar = ventana.querySelector("[data-confirmar-enviar]");
+  if (burbuja) burbuja.textContent = mensaje;
+  if (enviar) enviar.href = `https://wa.me/${enviar.dataset.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+
+  ventana.showModal();
+  const caja = ventana.querySelector("[data-confirmar-caja]");
+  if (caja) caja.scrollTop = 0;
+  enviar?.focus();
+}
+
+/* close() devuelve el foco a «Confirmar pedido» por su cuenta. */
+function cerrarConfirmacion() {
+  const ventana = confirmarEl();
+  if (ventana?.open) ventana.close();
+}
+
 /* ── arrastrar para cerrar ──────────────────────────────────────────────────
    Seguimiento 1:1 con el dedo, resistencia creciente al tirar hacia el otro
    lado, y al soltar se decide por dónde iba el gesto —no por dónde quedó—
@@ -654,6 +680,12 @@ document.addEventListener("click", (e) => {
   const filaQuitar = quitarBtn?.closest("[data-clave]");
   if (filaQuitar) return quitar(filaQuitar.dataset.clave);
 
+  if (t.closest("[data-bolsa-confirmar]")) return abrirConfirmacion();
+  // «Volver y editar» o tocar el velo de fuera: la bolsa queda como estaba.
+  if (t.closest("[data-confirmar-volver]") || t === confirmarEl()) return cerrarConfirmacion();
+  // «Enviar»: el enlace sigue su curso (abre WhatsApp) y la ventana se cierra.
+  if (t.closest("[data-confirmar-enviar]")) return void setTimeout(cerrarConfirmacion, 0);
+
   if (t.closest("[data-aviso-ver]")) {
     cerrarAviso(true);
     return abrir();
@@ -677,7 +709,11 @@ document.addEventListener("cantidad", (e) => {
 });
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") cerrar();
+  if (e.key !== "Escape") return;
+  // Con la ventana de confirmación abierta, Escape cierra solo la ventana
+  // (lo hace el propio <dialog>); la bolsa se queda abierta debajo.
+  if (confirmarEl()?.open) return;
+  cerrar();
 });
 
 pintar();

@@ -5,6 +5,13 @@
  * En el teléfono es una hoja que se abre desde la barra de abajo o el ícono.
  * En la computadora queda fijo a la derecha. El mensaje de WhatsApp lo arma
  * scripts/bolsa.js, igual que antes.
+ *
+ * El mensaje ya no se muestra siempre debajo del total (ocupaba media bolsa):
+ * «Confirmar pedido» abre la ventana «Confirma tu pedido» con la burbuja del
+ * mensaje, y de ahí se envía o se vuelve a editar. Es un <dialog> nativo con
+ * showModal(): Escape lo cierra, el fondo queda inerte y el foco vuelve al
+ * botón que lo abrió. Va fuera del panel de la bolsa, como hermano, para que
+ * nada de lo que la bolsa deja inerte lo alcance.
  */
 
 import tienda from "../data/tienda.json";
@@ -120,25 +127,17 @@ import Icono from "./Icono.astro";
         <p data-bolsa-divisa class="font-sans text-[28px] leading-none font-extrabold text-ciruela tabular-nums">$0,00</p>
       </div>
 
-      <p class="mt-3 font-sans text-[11px] font-bold tracking-wide text-ciruela/50 uppercase">Vista previa del mensaje</p>
-      <div class="mt-2 rounded-2xl bg-[#efeae2] p-2">
-        <p
-          data-bolsa-preview
-          class="ml-3 rounded-xl rounded-br-sm bg-[#d9fdd3] p-2 font-sans text-[12px] leading-snug whitespace-pre-wrap text-[#111b21]"
-        ></p>
-      </div>
-
       {
         tienda.whatsapp ? (
-          <a
-            data-bolsa-pedir
-            data-whatsapp={tienda.whatsapp}
-            href={`https://wa.me/${tienda.whatsapp}`}
+          <button
+            type="button"
+            data-bolsa-confirmar
+            aria-haspopup="dialog"
             class="presionable mt-3 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl bg-magenta px-3 font-sans text-[16px] font-bold text-crema"
           >
             <Icono nombre="whatsapp" tamano={20} />
-            Enviar pedido por WhatsApp
-          </a>
+            Confirmar pedido
+          </button>
         ) : (
           <button
             type="button"
@@ -162,3 +161,86 @@ import Icono from "./Icono.astro";
     </div>
   </aside>
 </div>
+
+{
+  tienda.whatsapp && (
+    <dialog
+      data-confirmar
+      aria-labelledby="confirmar-titulo"
+      class="confirmar-pedido m-auto w-[calc(100vw-32px)] max-w-[420px] rounded-3xl bg-papel p-0 text-ciruela shadow-[0_24px_60px_rgba(43,10,38,0.35)] backdrop:bg-ciruela/50"
+    >
+      <div class="flex max-h-[calc(100dvh-48px)] flex-col p-2 min-[360px]:p-3">
+        <h2 id="confirmar-titulo" class="font-didot text-[24px] leading-tight text-ciruela">Confirma tu pedido</h2>
+        <p id="confirmar-intro" class="mt-1 font-sans text-[14px] leading-snug text-ciruela/70">
+          Este es el mensaje que llegará por WhatsApp:
+        </p>
+
+        {/* Si el pedido es largo, la burbuja se desliza por dentro y los
+            botones quedan siempre a la vista. tabindex para poder deslizarla
+            con el teclado. */}
+        <div
+          data-confirmar-caja
+          tabindex="0"
+          role="group"
+          aria-labelledby="confirmar-intro"
+          class="mt-2 min-h-[72px] flex-1 overflow-y-auto overscroll-contain rounded-2xl bg-[#efeae2] p-2"
+        >
+          <p
+            data-confirmar-mensaje
+            class="ml-3 rounded-xl rounded-br-sm bg-[#d9fdd3] p-2 font-sans text-[14px] leading-snug break-words whitespace-pre-wrap text-[#111b21]"
+          />
+        </div>
+
+        <a
+          data-confirmar-enviar
+          data-whatsapp={tienda.whatsapp}
+          href={`https://wa.me/${tienda.whatsapp}`}
+          target="_blank"
+          rel="noopener"
+          class="presionable mt-3 flex min-h-[52px] w-full shrink-0 items-center justify-center gap-2 rounded-2xl bg-magenta px-2 font-sans leading-tight text-[16px] font-bold text-crema"
+        >
+          <Icono nombre="whatsapp" tamano={20} />
+          Enviar por WhatsApp
+        </a>
+        <button
+          type="button"
+          data-confirmar-volver
+          class="presionable mt-1 flex min-h-[48px] w-full shrink-0 items-center justify-center rounded-2xl bg-crema px-3 font-sans text-[16px] font-semibold text-ciruela"
+        >
+          Volver y editar
+        </button>
+      </div>
+    </dialog>
+  )
+}
+
+<style>
+  /* Entrada corta de la ventana. Todo dentro de «no-preference»: con
+     movimiento reducido no hay estado de partida, así que aparece sin más. */
+  @media (prefers-reduced-motion: no-preference) {
+    .confirmar-pedido {
+      opacity: 0;
+      scale: 0.96;
+      transition:
+        opacity 160ms ease,
+        scale 200ms cubic-bezier(0.2, 0, 0.2, 1),
+        display 160ms allow-discrete,
+        overlay 160ms allow-discrete;
+    }
+    .confirmar-pedido[open] {
+      opacity: 1;
+      scale: 1;
+    }
+    @starting-style {
+      .confirmar-pedido[open] {
+        opacity: 0;
+        scale: 0.96;
+      }
+    }
+  }
+
+  /* La página de atrás no se desliza mientras la ventana está abierta. */
+  :global(html:has(dialog[data-confirmar][open])) {
+    overflow: hidden;
+  }
+</style>
