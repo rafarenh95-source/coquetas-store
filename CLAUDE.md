@@ -83,7 +83,7 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   categorías; buena parte de lo que sigue en esta sección describe la versión anterior. Los scripts
   `qa-sitio/movil/cantidad/banner/menu/carrusel` todavía buscan esas piezas y fallan: hay que
   rehacerlos para v2. **Destacados** (portada v2) = carrusel con SOLO la foto (sin nombre, precio ni
-  tonos; la dueña probó con nombre y prefirió sin), 20 productos de la lista `DESTACADOS` en
+  tonos; la dueña probó con nombre y prefirió sin), 18 productos de la lista `DESTACADOS` (la dueña quitó el set de pinceles y el microbrush) en
   `Catalogo.astro`, avance solo con 1 s de pausa y vuelta sin fin (`scripts/carrusel.js`).
   Se ve como **vitrina** (11 nov. 2026): bloque **rosa claro** sólido con letras ciruela (a sangre en el
   teléfono, redondeado desde 640 px), «Selección de Coquetas» + «Destacados» en Didot 34/44 px, fotos
