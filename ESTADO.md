@@ -136,6 +136,15 @@ Nada de esto lo detecta axe: son problemas de orden de foco y de código, no de 
 Todas estas comprobaciones quedaron incorporadas a `npm run qa`, incluida una que verifica en
 el navegador que ningún importe visible se quede sin su símbolo de moneda.
 
+## 11 de noviembre de 2026 (rama `destacados-llamativos`)
+
+- **Destacados como vitrina:** bloque púrpura, título grande en crema, fotos en tarjetas papel con
+  entrada suave. Los 20 productos, el orden, «solo la foto» y el avance (1 s, bucle) no cambiaron.
+- **Pedido:** la vista previa del mensaje salió del pie de la bolsa. «Confirmar pedido» abre la
+  ventana «Confirma tu pedido»; de ahí «Enviar por WhatsApp» o «Volver y editar».
+- Prueba nueva: `node scripts/qa-pedido.mjs`. Contraste: siguen fallando `ciruela/50` y
+  `magenta/30`, que ya fallaban antes (no son de este cambio).
+
 ## Cosas que conviene no repetir
 
 - `/sistema` es andamiaje interno, no el sitio. En producción redirige a la portada con
