@@ -138,7 +138,7 @@ el navegador que ningún importe visible se quede sin su símbolo de moneda.
 
 ## 11 de noviembre de 2026 (rama `destacados-llamativos`)
 
-- **Destacados como vitrina:** bloque púrpura, título grande en crema, fotos en tarjetas papel con
+- **Destacados como vitrina:** bloque magenta (pedido de la dueña), título grande en crema, fotos en tarjetas papel con
   entrada suave. Los 20 productos, el orden, «solo la foto» y el avance (1 s, bucle) no cambiaron.
 - **Pedido:** la vista previa del mensaje salió del pie de la bolsa. «Confirmar pedido» abre la
   ventana «Confirma tu pedido»; de ahí «Enviar por WhatsApp» o «Volver y editar».

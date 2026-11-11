@@ -571,7 +571,7 @@ body:has([data-subir-flotante][data-visible]):has([data-barra-pedido]:not([hidde
 }
 
 /* ── Vitrina de Destacados ──────────────────────────────────────────────────
-   Bloque púrpura sólido con las fotos en tarjetas papel. Sobre púrpura el
+   Bloque magenta sólido con las fotos en tarjetas papel. Sobre magenta el
    anillo de foco ciruela no se ve: pasa a crema, igual que en .sobre-ciruela. */
 
 .vitrina :focus-visible {

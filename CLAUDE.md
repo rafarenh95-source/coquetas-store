@@ -85,7 +85,7 @@ Astro 5 estático + Tailwind 4. Se publica solo en Vercel al hacer push a `main`
   rehacerlos para v2. **Destacados** (portada v2) = carrusel con SOLO la foto (sin nombre, precio ni
   tonos; la dueña probó con nombre y prefirió sin), 20 productos de la lista `DESTACADOS` en
   `Catalogo.astro`, avance solo con 1 s de pausa y vuelta sin fin (`scripts/carrusel.js`).
-  Se ve como **vitrina** (11 nov. 2026): bloque púrpura sólido (a sangre en el teléfono, redondeado
+  Se ve como **vitrina** (11 nov. 2026): bloque **magenta** sólido (pedido de la dueña, igual que los botones; a sangre en el teléfono, redondeado
   desde 640 px), «Selección de Coquetas» + «Destacados» en Didot 34/44 px crema, fotos en tarjetas
   papel con entrada suave (sin ella con movimiento reducido); puntos en crema con `data-sobre-oscuro`.
   **Pedido** (11 nov. 2026, como en Market Planet): la bolsa ya no muestra el mensaje; el botón magenta

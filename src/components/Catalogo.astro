@@ -36,7 +36,8 @@ const CATEGORIAS = CATEGORIAS_BASE.map((c) => {
    de todas las categorías, en este orden. Lista aparte y no la bandera
    «destacado» de los datos, que sigue sirviendo para otras cosas. Avanza
    solo con 1 s de pausa y da la vuelta sin fin: scripts/carrusel.js.
-   Se presenta como vitrina: bloque púrpura sólido (a sangre en el teléfono,
+   Se presenta como vitrina: bloque magenta sólido (pedido de la dueña,
+   el mismo color de los botones, por coherencia de marca) (a sangre en el teléfono,
    redondeado desde 640 px), título grande en crema y las fotos en tarjetas
    papel que entran suavemente (estilos «.vitrina» en global.css). */
 const DESTACADOS = [
@@ -132,7 +133,7 @@ const NOMBRES: Record<string, string> = {
           aria-roledescription="carrusel"
           aria-labelledby="titulo-destacados"
           data-sobre-oscuro
-          class="vitrina -mx-[var(--sangria)] mt-5 bg-purpura pt-3 pb-2 text-crema sm:mx-0 sm:overflow-hidden sm:rounded-3xl sm:pt-4"
+          class="vitrina -mx-[var(--sangria)] mt-5 bg-magenta pt-3 pb-2 text-crema sm:mx-0 sm:overflow-hidden sm:rounded-3xl sm:pt-4"
         >
           <div class="px-[var(--sangria)] sm:px-3">
             <p class="font-sans text-[12px] leading-none font-bold tracking-[0.16em] text-crema uppercase">
